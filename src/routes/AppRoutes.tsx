@@ -7,6 +7,7 @@ import { SignIn } from "../pages/Auth/Signin";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ComplaintManagement from "../pages/complaint/ComplaintManagement";
 import BuildingsManagement from "../pages/Buildings/BuildingsManagement";
+import ComplaintDetails from "../components/complaint/ComplaintDetails";
 
 export default function AppRoutes() {
   return (
@@ -30,6 +31,8 @@ export default function AppRoutes() {
           <Route index element={<Dashboard />} />
           <Route path="/complaint" element={<ComplaintManagement />} />
           <Route path="/building" element={<BuildingsManagement />} />
+          <Route path="/complaint-details" element={<ComplaintDetails />} />
+
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
