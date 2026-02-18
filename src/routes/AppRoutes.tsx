@@ -8,6 +8,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import ComplaintManagement from "../pages/complaint/ComplaintManagement";
 import BuildingsManagement from "../pages/Buildings/BuildingsManagement";
 import ComplaintDetails from "../components/complaint/ComplaintDetails";
+import Users from "../pages/Users/Users";
 
 export default function AppRoutes() {
   return (
@@ -32,6 +33,7 @@ export default function AppRoutes() {
           <Route path="/complaint" element={<ComplaintManagement />} />
           <Route path="/building" element={<BuildingsManagement />} />
           <Route path="/complaint-details" element={<ComplaintDetails />} />
+          <Route path="/users" element={<Users/>}/>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
