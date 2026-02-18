@@ -18,8 +18,8 @@ interface Complaint {
 }
 
 interface Props {
-  complaint: Complaint;
-  onClose: () => void;
+  complaint?: Complaint;
+  onClose?: () => void;
 }
 
 const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
@@ -47,21 +47,22 @@ const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm flex justify-center items-center p-3 sm:p-6">
-
       {/* Main Container */}
       <div className="bg-[#101828] w-full max-w-4xl h-[95vh] rounded-2xl shadow-xl flex flex-col overflow-hidden">
-
         {/* Scrollable Content */}
         <div
           ref={scrollRef}
           className="flex-1 overflow-y-auto p-4 sm:p-8 text-white scroll-smooth"
         >
-
           {/* Header */}
-<div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 pb-4">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 pb-4">
             <div>
               <h2 className="flex items-center gap-2 text-xl sm:text-2xl font-bold">
-                <img src={paper} alt="paper" className="w-5 h-5 sm:w-6 sm:h-6" />
+                <img
+                  src={paper}
+                  alt="paper"
+                  className="w-5 h-5 sm:w-6 sm:h-6"
+                />
                 Complaint Details
               </h2>
 
@@ -82,7 +83,6 @@ const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
 
           {/* Info Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
-
             <div>
               <p className="text-[#99A1AF]">Resident</p>
               <p className="mt-1">{complaint.resident}</p>
@@ -116,8 +116,8 @@ const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
                 {complaint.resolvedAt
                   ? new Date(complaint.resolvedAt).toLocaleString()
                   : resolvedAt
-                  ? new Date(resolvedAt).toLocaleString()
-                  : "N/A"}
+                    ? new Date(resolvedAt).toLocaleString()
+                    : "N/A"}
               </p>
             </div>
 
@@ -132,7 +132,6 @@ const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
                 {complaint.description || "No description provided."}
               </div>
             </div>
-
           </div>
 
           {/* Quick Actions */}
@@ -140,7 +139,6 @@ const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
             <h3 className="text-sm text-[#99A1AF] mb-4">Quick Actions</h3>
 
             <div className="flex flex-col sm:flex-row gap-4">
-
               {complaint.status !== "RESOLVED" && (
                 <button
                   onClick={() => {
@@ -166,7 +164,6 @@ const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
                   Mark Resolved
                 </button>
               )}
-
             </div>
           </div>
         </div>
@@ -190,7 +187,6 @@ const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
               <img src={worker} alt="worker" className="w-5 h-5" />
               Assign Complaint
             </h3>
-
             Assigned to
             <input
               type="text"
@@ -199,7 +195,6 @@ const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
               placeholder=""
               className="w-full px-4 py-2 rounded-xl bg-white/10 border border-white/20 focus:outline-none"
             />
-
             <div className="flex gap-4 mt-6">
               <button
                 onClick={() => setShowAssignModal(false)}
@@ -226,7 +221,6 @@ const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
       {showResolveModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-50 p-4">
           <div className="w-full max-w-sm sm:max-w-md md:max-w-lg bg-gray-900 border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8">
-
             <h3 className="text-lg sm:text-xl font-semibold mb-4 text-green-400">
               Complaint Resolved
             </h3>
@@ -238,9 +232,7 @@ const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
             <p className="text-sm text-gray-300 mb-4">
               Resolved On:
               <span className="block mt-1 text-white">
-                {resolvedAt
-                  ? new Date(resolvedAt).toLocaleString()
-                  : ""}
+                {resolvedAt ? new Date(resolvedAt).toLocaleString() : ""}
               </span>
             </p>
 
@@ -253,10 +245,8 @@ const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
           </div>
         </div>
       )}
-
     </div>
   );
 };
 
 export default ComplaintDetails;
-

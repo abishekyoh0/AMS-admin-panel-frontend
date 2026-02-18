@@ -32,7 +32,6 @@ export default function AppRoutes() {
           <Route path="/complaint" element={<ComplaintManagement />} />
           <Route path="/building" element={<BuildingsManagement />} />
           <Route path="/complaint-details" element={<ComplaintDetails />} />
-
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
