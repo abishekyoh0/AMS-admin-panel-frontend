@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Export from "../../assets/Sidebar/graph.png"
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
+import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import user from "../../assets/Sidebar/user.png"
 
 type Visitor = {
   id: number;
@@ -114,71 +116,72 @@ const VisitorManagement: React.FC = () => {
   };
 
   return (
-    <div className="text-white">
+    <div style={{ color: COLORS.primary_white, background: COLORS.primary_black }} >
 
-      <h1 className="text-2xl font-bold">Visitor Management</h1>
-      <p className="text-gray-400 mb-6">
+      <h1 className={`${FONTSIZE[36]} ${FONTWEIGHT[700]}`}>Visitor Management</h1>
+      <p className={`mb-6 ${FONTSIZE[16]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
         Monitor and track all visitor entries and exits
       </p>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="p-4 rounded-xl bg-blue-900/30 border border-blue-500/30">
-          <p className="text-2xl font-bold">{inside}</p>
-          <p className="text-gray-400 text-sm">Currently Inside</p>
+        <div className="p-4 rounded-xl bg-[#2B7FFF33] border border-[#51A2FF4D]">
+          <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>{inside}</p>
+          <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: "#D1D5DC" }}>Currently Inside</p>
         </div>
 
-        <div className="p-4 rounded-xl bg-green-900/30 border border-green-500/30">
-          <p className="text-2xl font-bold">{checkedOut}</p>
-          <p className="text-gray-400 text-sm">Checked Out</p>
+        <div className="p-4 rounded-xl bg-[#00C95033] border border-[#05DF724D]">
+          <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>{checkedOut}</p>
+          <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: "#D1D5DC" }}>Checked Out</p>
         </div>
 
-        <div className="p-4 rounded-xl bg-purple-900/30 border border-purple-500/30">
-          <p className="text-2xl font-bold">{total}</p>
-          <p className="text-gray-400 text-sm">Total Today</p>
+        <div className="p-4 rounded-xl bg-[#AD46FF33] border border-[#C27AFF4D]">
+          <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>{total}</p>
+          <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: "#D1D5DC" }}>Total Today</p>
         </div>
 
-        <div className="p-4 rounded-xl bg-orange-900/30 border border-orange-500/30">
-          <p className="text-2xl font-bold">{vehicle}</p>
-          <p className="text-gray-400 text-sm">With Vehicle</p>
+        <div className="p-4 rounded-xl bg-[#FF690033] border border-[#FF690033]">
+          <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>{vehicle}</p>
+          <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: "#D1D5DC" }}>With Vehicle</p>
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row mb-4">
+      <div className="flex flex-col sm:flex-row mt-4 mb-8">
         <div className="w-[25%]">
-          <button className="flex gap-2 bg-linear-to-r from-cyan-500 to-blue-600 px-6 py-2 rounded-full">
+          <button className={`flex gap-2 bg-linear-to-r from-[#00B8DB] to-[#155DFC] px-6 py-2 rounded-full ${FONTSIZE[16]} ${FONTWEIGHT[700]} cursor-pointer`}
+            style={{ color: COLORS.primary_black }}>
             <img src={Export} alt="" className="w-5 h-5" />
             Export Report
           </button>
         </div>
-        <div className="flex gap-2 items-center bg-white/10 border border-white/20 rounded-full px-4 py-2 w-full">
+        <div className="flex gap-2 items-center bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-full px-4 py-2 w-full">
           <Search className="w-5 h-5" />
           <input type="text" placeholder="Search visitors..."
             value={search} onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 bg-transparent outline-none" />
+            className={`flex-1 bg-transparent outline-none ${FONTSIZE[16]} ${FONTWEIGHT[400]}`} />
         </div>
       </div>
 
-      <div className="flex gap-3 mb-4 flex-wrap">
+      <div className={`flex gap-3 mb-4 flex-wrap ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}>
         <button onClick={() => setFilter("ALL")}
-          className={`px-4 py-1 rounded-full ${filter === "ALL" ? "bg-cyan-600" : "bg-white/10"}`}>
+          className={`px-4 py-1 rounded-full ${filter === "ALL" ? "bg-[#00B8DB]" : "bg-[#FFFFFF0D]"} cursor-pointer`}>
           All ({total})
         </button>
 
         <button onClick={() => setFilter("CHECKED IN")}
-          className={`px-4 py-1 rounded-full ${filter === "CHECKED IN" ? "bg-cyan-600" : "bg-white/10"}`}>
+          className={`px-4 py-1 rounded-full ${filter === "CHECKED IN" ? "bg-[#00B8DB]" : "bg-[#FFFFFF0D]"} cursor-pointer`}>
           Checked In ({inside})
         </button>
 
         <button onClick={() => setFilter("CHECKED OUT")}
-          className={`px-4 py-1 rounded-full ${filter === "CHECKED OUT" ? "bg-cyan-600" : "bg-white/10"}`}>
+          className={`px-4 py-1 rounded-full ${filter === "CHECKED OUT" ? "bg-[#00B8DB]" : "bg-[#FFFFFF0D]"} cursor-pointer`}>
           Checked Out ({checkedOut})
         </button>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-white/10">
+      <div className="overflow-x-auto rounded-xl border border-[#FFFFFF33] bg-[#FFFFFF0D]">
         <table className="w-full min-w-[900px] text-sm">
           <thead className="bg-white/5 text-gray-400">
-            <tr>
+            <tr className={`uppercase ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
               <th className="text-left p-3">Visitor</th>
               <th className="text-left p-3">Phone</th>
               <th className="text-left p-3">Purpose</th>
@@ -192,29 +195,29 @@ const VisitorManagement: React.FC = () => {
           <tbody>
             {filteredVisitors.map((v) => (
               <tr key={v.id} className="border-t border-white/10">
-                <td className="p-3 font-medium">{v.name}</td>
-                <td className="p-3 text-gray-400">{v.phone}</td>
-                <td className="p-3">{v.purpose}</td>
+                <td className={`p-3 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}>{v.name}</td>
+                <td className={`p-3 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{v.phone}</td>
+                <td className={`p-3 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}>{v.purpose}</td>
 
-                <td className="p-3">
+                <td className={`p-3 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}>
                   {v.visiting}
-                  <div className="text-xs text-gray-400">{v.flat}</div>
+                  <div className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{v.flat}</div>
                 </td>
-                <td className="p-3">{v.checkin}</td>
+                <td className={`p-3 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}>{v.checkin}</td>
                 <td className="p-3">
                   <span
-                    className={`px-3 py-1 rounded-full text-xs ${v.status === "CHECKED IN" ? "bg-blue-600/30 text-blue-400" : "bg-green-600/30 text-green-400"}`}>
+                    className={`px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]} ${v.status === "CHECKED IN" ? "bg-[#2B7FFF33] text-[#51A2FF]" : "bg-[#00C95033] text-[#05DF72]"}`}>
                     {v.status}
                   </span>
                 </td>
 
                 <td className="p-3 flex gap-2">
-                  <button onClick={() => handleView(v)} className="bg-blue-600/30 px-3 py-1 rounded-2xl">
+                  <button onClick={() => handleView(v)} className={`bg-[#2B7FFF33] text-[#51A2FF] px-3 py-1 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[400]} cursor-pointer`}>
                     View
                   </button>
 
                   {v.status === "CHECKED IN" && (
-                    <button onClick={() => handleCheckout(v.id)} className="bg-green-600/30 px-3 py-1 rounded-2xl">
+                    <button onClick={() => handleCheckout(v.id)} className={`bg-[#00C95033] text-[#05DF72] px-3 py-1 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[400]} cursor-pointer`}>
                       Check Out
                     </button>
                   )}
@@ -227,32 +230,38 @@ const VisitorManagement: React.FC = () => {
 
       {selected && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50">
-          <div className="bg-linear-to-br from-[#0f172a] to-[#0b1220] w-[500px] rounded-2xl border border-white/20 p-6">
-            <h2 className="text-xl font-bold mb-4">👤 Visitor Details</h2>
+          <div className="relative bg-[#101828F2] w-[500px] rounded-2xl border border-[#FFFFFF33] p-6">
+            <h2 className={`flex gap-2 items-center mb-4 ${FONTSIZE[30]} ${FONTWEIGHT[700]}`}>
+              <button onClick={() => setSelected(null)}
+                className="absolute top-4 right-4 p-2 rounded-full cursor-pointer hover:bg-[#2a2c30]">
+                <X size={18} color={COLORS.primary_white} />
+              </button>
+
+              <img src={user} alt="" className="w-8 h-8" /> Visitor Details</h2>
             <div className="flex justify-between mb-4">
               <div>
-                <h3 className="text-lg font-semibold">{selected.name}</h3>
-                <p className="text-gray-400 text-sm">{selected.phone}</p>
+                <h3 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>{selected.name}</h3>
+                <p className={`${FONTSIZE[16]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{selected.phone}</p>
               </div>
 
-              <span
-                className={`px-3 py-1 rounded-full text-xs ${selected.status === "CHECKED IN" ? "bg-blue-600/30 text-blue-400" : "bg-green-600/30 text-green-400"}`}>
+              <div
+                className={`flex items-center px-3 py-1 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]} ${selected.status === "CHECKED IN" ? "bg-[#2B7FFF33] text-[#51A2FF]" : "bg-[#00C95033] text-[#05DF72]"}`}>
                 {selected.status}
-              </span>
+              </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 text-sm mb-4">
-              <div><p className="text-gray-400">Purpose</p><p>{selected.purpose}</p></div>
-              <div><p className="text-gray-400">Gate</p><p>{selected.gate}</p></div>
-              <div><p className="text-gray-400">Visiting</p><p>{selected.visiting}</p></div>
-              <div><p className="text-gray-400">Flat</p><p>{selected.flat}</p></div>
-              <div><p className="text-gray-400">Photo ID</p><p>{selected.photoId}</p></div>
-              <div><p className="text-gray-400">Vehicle</p><p>{selected.vehicle || "-"}</p></div>
-              <div><p className="text-gray-400">Check-in</p><p>{selected.checkin}</p></div>
+            <div className={`grid grid-cols-2 gap-4 mb-4 ${FONTSIZE[18]} ${FONTWEIGHT[400]}`}>
+              <div><p className={`mb-1 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Purpose</p><p>{selected.purpose}</p></div>
+              <div><p className={`mb-1 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Gate</p><p>{selected.gate}</p></div>
+              <div><p className={`mb-1 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Visiting</p><p>{selected.visiting}</p></div>
+              <div><p className={`mb-1 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Flat</p><p>{selected.flat}</p></div>
+              <div><p className={`mb-1 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Photo ID</p><p>{selected.photoId}</p></div>
+              <div><p className={`mb-1 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Vehicle</p><p>{selected.vehicle || "-"}</p></div>
+              <div><p className={`mb-1 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Check-in</p><p>{selected.checkin}</p></div>
 
               {selected.checkout && (
                 <div>
-                  <p className="text-gray-400">Check-out</p>
+                  <p style={{ color: COLORS.secoundy_gray }}>Check-out</p>
                   <p>{selected.checkout}</p>
                 </div>
               )}
@@ -260,13 +269,15 @@ const VisitorManagement: React.FC = () => {
 
             {selected.status === "CHECKED IN" && (
               <button onClick={() => handleCheckout(selected.id)}
-                className="w-full bg-green-600 py-3 rounded-lg mb-3">
-                ✔ Check Out Visitor
+                className={`w-full bg-linear-to-r from-[#00C950] to-[#009966] py-3 rounded-full mb-3 ${FONTSIZE[16]} ${FONTWEIGHT[700]} cursor-pointer`}
+                style={{ color: COLORS.primary_black }}>
+                Check Out Visitor
               </button>
             )}
 
             <button onClick={() => setSelected(null)}
-              className="w-full bg-gray-700 py-3 rounded-lg">
+              className={`w-full bg-[#FFFFFF1A] border border-[#FFFFFF33]  py-3 rounded-full ${FONTSIZE[16]} ${FONTWEIGHT[700]} cursor-pointer`}
+              style={{ color: COLORS.primary_black }}>
               Close
             </button>
           </div>
