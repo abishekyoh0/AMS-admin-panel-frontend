@@ -108,13 +108,13 @@ const VisitorManagement: React.FC = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-4 mb-4">
-        <button className="bg-linear-to-r from-cyan-500 to-blue-600 px-4 py-2 rounded-lg">
+        <button className="bg-linear-to-r from-cyan-500 to-blue-600 px-4 py-2 rounded-full">
           Export Report
         </button>
 
         <input type="text" placeholder="Search visitors..."
           value={search} onChange={(e) => setSearch(e.target.value)}
-          className="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-2 outline-none"/>
+          className="flex-1 bg-white/10 border border-white/20 rounded-full px-4 py-2 outline-none"/>
       </div>
 
       <div className="flex gap-3 mb-4">
@@ -170,12 +170,12 @@ const VisitorManagement: React.FC = () => {
                 </td>
 
                 <td className="p-3 flex gap-2">
-                  <button className="bg-blue-600/30 px-3 py-1 rounded">
+                  <button className="bg-blue-600/30 px-3 py-1 rounded-2xl">
                     View
                   </button>
 
                   {v.status === "CHECKED IN" && (
-                    <button className="bg-green-600/30 px-3 py-1 rounded">
+                    <button className="bg-green-600/30 px-3 py-1 rounded-2xl">
                       Check Out
                     </button>
                   )}
