@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Export from "../../assets/Sidebar/graph.png"
+import { Search } from "lucide-react";
 
 type Visitor = {
   id: number;
@@ -42,29 +44,30 @@ const INITIAL_VISITORS: Visitor[] = [
     status: "CHECKED OUT",
     checkout: "1/20/2024, 4:10 PM",
   },
-  { 
-    id: 3, 
-    name: "Bob Johnson", 
-    phone: "+1 555-0103", 
-    purpose: "Contractor", 
-    visiting: "Emily Davis", 
-    flat: "C-108", 
-    gate: "Gate 1", 
+  {
+    id: 3,
+    name: "Bob Johnson",
+    phone: "+1 555-0103",
+    purpose: "Contractor",
+    visiting: "Emily Davis",
+    flat: "C-108",
+    gate: "Gate 1",
     photoId: "DL-333333",
-    checkin: "9:00 AM", 
-    status: "CHECKED IN", 
-  }, 
-  { id: 4, 
-    name: "Alice Brown", 
-    phone: "+1 555-0104", 
-    purpose: "Personal Visit", 
-    visiting: "Bob Wilson", 
-    flat: "A-102", 
-    gate: "Gate 3", 
+    checkin: "9:00 AM",
+    status: "CHECKED IN",
+  },
+  {
+    id: 4,
+    name: "Alice Brown",
+    phone: "+1 555-0104",
+    purpose: "Personal Visit",
+    visiting: "Bob Wilson",
+    flat: "A-102",
+    gate: "Gate 3",
     photoId: "DL-444444",
-    checkin: "4:00 PM", 
-    status: "CHECKED IN", 
-    vehicle: "XYZ-5678", 
+    checkin: "4:00 PM",
+    status: "CHECKED IN",
+    vehicle: "XYZ-5678",
   },
 ];
 
@@ -140,29 +143,34 @@ const VisitorManagement: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-4 mb-4">
-        <button className="bg-linear-to-r from-cyan-500 to-blue-600 px-4 py-2 rounded-full">
-          Export Report
-        </button>
-
-        <input type="text" placeholder="Search visitors..."
-          value={search} onChange={(e) => setSearch(e.target.value)}
-          className="flex-1 bg-white/10 border border-white/20 rounded-full px-4 py-2 outline-none"/>
+      <div className="flex flex-col sm:flex-row mb-4">
+        <div className="w-[25%]">
+          <button className="flex gap-2 bg-linear-to-r from-cyan-500 to-blue-600 px-6 py-2 rounded-full">
+            <img src={Export} alt="" className="w-5 h-5" />
+            Export Report
+          </button>
+        </div>
+        <div className="flex gap-2 items-center bg-white/10 border border-white/20 rounded-full px-4 py-2 w-full">
+          <Search className="w-5 h-5" />
+          <input type="text" placeholder="Search visitors..."
+            value={search} onChange={(e) => setSearch(e.target.value)}
+            className="flex-1 bg-transparent outline-none" />
+        </div>
       </div>
 
       <div className="flex gap-3 mb-4 flex-wrap">
         <button onClick={() => setFilter("ALL")}
-          className={`px-4 py-1 rounded-full ${ filter === "ALL" ? "bg-cyan-600" : "bg-white/10" }`}>
+          className={`px-4 py-1 rounded-full ${filter === "ALL" ? "bg-cyan-600" : "bg-white/10"}`}>
           All ({total})
         </button>
 
         <button onClick={() => setFilter("CHECKED IN")}
-          className={`px-4 py-1 rounded-full ${ filter === "CHECKED IN" ? "bg-cyan-600" : "bg-white/10" }`}>
+          className={`px-4 py-1 rounded-full ${filter === "CHECKED IN" ? "bg-cyan-600" : "bg-white/10"}`}>
           Checked In ({inside})
         </button>
 
         <button onClick={() => setFilter("CHECKED OUT")}
-          className={`px-4 py-1 rounded-full ${ filter === "CHECKED OUT" ? "bg-cyan-600" : "bg-white/10" }`}>
+          className={`px-4 py-1 rounded-full ${filter === "CHECKED OUT" ? "bg-cyan-600" : "bg-white/10"}`}>
           Checked Out ({checkedOut})
         </button>
       </div>
@@ -195,8 +203,7 @@ const VisitorManagement: React.FC = () => {
                 <td className="p-3">{v.checkin}</td>
                 <td className="p-3">
                   <span
-                    className={`px-3 py-1 rounded-full text-xs ${
-                      v.status === "CHECKED IN" ? "bg-blue-600/30 text-blue-400" : "bg-green-600/30 text-green-400" }`}>
+                    className={`px-3 py-1 rounded-full text-xs ${v.status === "CHECKED IN" ? "bg-blue-600/30 text-blue-400" : "bg-green-600/30 text-green-400"}`}>
                     {v.status}
                   </span>
                 </td>
@@ -229,8 +236,7 @@ const VisitorManagement: React.FC = () => {
               </div>
 
               <span
-                className={`px-3 py-1 rounded-full text-xs ${
-                  selected.status === "CHECKED IN" ? "bg-blue-600/30 text-blue-400" : "bg-green-600/30 text-green-400" }`}>
+                className={`px-3 py-1 rounded-full text-xs ${selected.status === "CHECKED IN" ? "bg-blue-600/30 text-blue-400" : "bg-green-600/30 text-green-400"}`}>
                 {selected.status}
               </span>
             </div>

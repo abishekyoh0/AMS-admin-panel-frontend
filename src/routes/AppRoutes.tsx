@@ -13,6 +13,7 @@ import Invoices from "../pages/Invoices/Invoices";
 import EntryReports from "../pages/EntryReports/EntryReports";
 import EmergencyControl from "../pages/EmergencyControl/EmergencyControl";
 import Users from "../pages/Users/Users";
+import AccessManagement from "../pages/AccessManagement/AccessManagement";
 
 export default function AppRoutes() {
   return (
@@ -36,6 +37,7 @@ export default function AppRoutes() {
           <Route index element={<Dashboard />} />
           <Route path="/complaint" element={<ComplaintManagement />} />
           <Route path="/building" element={<BuildingsManagement />} />
+          <Route path="/access-management" element={<AccessManagement />} />
           <Route path="/complaint-details" element={<ComplaintDetails />} />
           <Route path="/user" element={<Users />} />
           <Route path="/visitors" element={<Visitors />} />
