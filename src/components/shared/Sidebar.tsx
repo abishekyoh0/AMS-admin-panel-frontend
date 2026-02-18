@@ -3,12 +3,26 @@ import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 import { useState } from "react";
 import LogoutModal from "./logout";
 import { useAuth } from "../Auth/AuthContext";
+import dashboardicon from "../../assets/Sidebar/graph.png";
+import accessicon from "../../assets/Sidebar/access.png";
+import buildingicon from "../../assets/Sidebar/building.png";
+import usericon from "../../assets/Sidebar/user.png";
+import complainticon from "../../assets/Sidebar/complaints.png";
+import visitorsicon from "../../assets/Sidebar/visitor.png";
+import invoicesicon from "../../assets/Sidebar/visitor.png"
+import entryicon from "../../assets/Sidebar/entry.png";
+import emergencyicon from "../../assets/Sidebar/emergency.png";
 
 const menuItems = [
-  { to: "/", label: "Dashboard", end: true },
-  { to: "/complaint", label: "Complaints", end: true },
-  { to: "/building", label: "Building", end: true },
-  { to: "/visitors", label: "Visitors", end: true },
+  { to: "/", label: "Dashboard", icon: dashboardicon, end: true },
+  { to: "/access-management", label: "Access Management", icon: accessicon, end: false },
+  { to: "/building", label: "Building", icon: buildingicon, end: true },
+  { to: "/user", label: "Users", icon: usericon, end: true },
+  { to: "/complaint", label: "Complaints", icon: complainticon, end: true },
+  { to: "/visitors", label: "Visitors", icon: visitorsicon, end: true },
+  { to: "/invoices", label: "Invoices", icon: invoicesicon, end: true},
+  { to: "/entry-reports", label: "Entry Reports", icon: entryicon, end: true },
+  { to: "/emergency-control", label: "Emergency Control", icon: emergencyicon, end: true },
 ];
 
 type SidebarProps = {
@@ -44,7 +58,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
         </div>
         <div className="flex-1 flex flex-col justify-between  w-full ">
           <nav className="space-y-2 ">
-            {menuItems.map(({ to, label, end }) => (
+            {menuItems.map(({ to, label, icon, end }) => (
               <NavLink
                 key={to}
                 to={to}
@@ -58,7 +72,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
                   }`
                 }
               >
-                {/* <img src={icon} alt={label} className="w-5 h-5" /> */}
+                <img src={icon} alt={label} className="w-5 h-5" />
                 <span
                   style={{ color: COLORS.secoundy_gray }}
                   className={`${FONTSIZE[16]}`}
