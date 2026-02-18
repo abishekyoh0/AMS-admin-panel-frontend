@@ -8,6 +8,7 @@ const menuItems = [
   { to: "/", label: "Dashboard", end: true },
   { to: "/complaint", label: "Complaints", end: true },
   { to: "/building", label: "Building", end: true },
+  { to: "/visitors", label: "Visitors", end: true },
 ];
 
 type SidebarProps = {
@@ -71,7 +72,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
             <div className="mt-7 ">
               <button
                 onClick={() => setShowLogoutModal(true)}
-                className="w-full flex items-center gap-3 px-4 py-2 rounded-lg items-center bg-[linear-gradient(90deg,rgba(0,184,219,0.2)_0%,rgba(142,81,255,0.2)_100%)] text-white  transition cursor-pointer"
+                className="w-full flex items-center gap-3 px-4 py-2 rounded-lg bg-[linear-gradient(90deg,rgba(0,184,219,0.2)_0%,rgba(142,81,255,0.2)_100%)] text-white  transition cursor-pointer"
               >
                 {/* <img src={logoutIcon} alt="Logout" className="w-5 h-5" /> */}
                 <div className="flex justify-center  w-full">
