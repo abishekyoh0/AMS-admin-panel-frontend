@@ -4,6 +4,7 @@ import { Search, X } from "lucide-react";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import user from "../../assets/Sidebar/user.png";
 import Checkbox from "../../assets/Sidebar/square.png";
+
 import toast, { Toaster } from "react-hot-toast";
 
 type Visitor = {
