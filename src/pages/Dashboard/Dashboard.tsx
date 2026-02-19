@@ -6,11 +6,11 @@ import Card from "../../components/Dashboard/Card";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import Add from "../../assets/Dashboard/add.png"
 import Download from "../../assets/Dashboard/download.png"
-
+import Green from "../../assets/Dashboard/green.png"
 
 export default function Dashboard() {
   return (
-    <div className="mb-8" style={{ color: COLORS.primary_white }}>
+    <div className="mb-8" style={{ color: COLORS.primary_white, background: COLORS.primary_black }}>
       <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
         <div>
           <h1 className={`${FONTSIZE[36]} ${FONTWEIGHT[700]}`}>Admin Control Center</h1>
@@ -18,9 +18,9 @@ export default function Dashboard() {
             Complete system overview and management dashboard
           </p>
           <div style={{ marginBottom: 20 }}>
-            <span className={`px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
+            <span className={`flex w-fit gap-1 items-center px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
               style={{ background: "#00c95122", color: "#22c55e" }}>
-              ● All Systems Operational
+             <img src={Green} alt="" className={`w-2 h-2`} /> All Systems Operational
             </span>
             <span style={{ marginLeft: 15, color: "#9ca3af", fontSize: 13 }}>
               Last updated: Jan 28, 2026 at 11:45 AM
