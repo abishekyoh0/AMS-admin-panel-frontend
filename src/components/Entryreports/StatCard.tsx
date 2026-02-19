@@ -42,9 +42,8 @@ const StatCard: React.FC<Props> = ({ title, value, type = "inside" }) => {
 
   return (
     <div
-      className={`relative rounded-2xl p-5 border ${current.border} ${current.bg} backdrop-blur-md shadow-lg transition hover:scale-[1.02]`}
+      className={`relative rounded-2xl p-5 border ${current.border} ${current.bg} backdrop-blur-md shadow-lg transition `}
     >
-      {/* Icon */}
       <div className="mb-4">
         <img
           src={current.image}
@@ -53,7 +52,6 @@ const StatCard: React.FC<Props> = ({ title, value, type = "inside" }) => {
         />
       </div>
 
-      {/* Value */}
       <h2
         style={{ ...FONTWEIGHT[600] }}
         className={`${FONTSIZE[24]} text-white`}
@@ -61,7 +59,6 @@ const StatCard: React.FC<Props> = ({ title, value, type = "inside" }) => {
         {value}
       </h2>
 
-      {/* Title */}
       <p
         style={{ ...FONTWEIGHT[500] }}
         className={`${FONTSIZE[14]} mt-1 ${current.titleColor}`}

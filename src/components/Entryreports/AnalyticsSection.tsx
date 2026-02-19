@@ -9,7 +9,6 @@ interface Props {
 
 const AnalyticsSection: React.FC<Props> = ({ data }) => {
 
-  /* ---------------- PEAK ENTRY TIME CALCULATION ---------------- */
 
   const timeRanges = [
     { label: "06:00 AM - 10:00 AM", start: 6, end: 10 },
@@ -38,7 +37,6 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
 
   const maxPeak = Math.max(...peakCounts.map((p) => p.count), 1);
 
-  /* ---------------- GATE USAGE ---------------- */
 
   const gateCount: Record<string, number> = {};
   data.forEach((entry) => {
@@ -50,7 +48,6 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-      {/* ---------------- PEAK ENTRY TIMES ---------------- */}
       <div className="bg-[#FFFFFF0D] border border-[#2f3246] rounded-2xl p-6">
 
         <div className="flex items-center gap-3 mb-5">
@@ -86,7 +83,7 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
 
             <div className="w-full bg-[#2a2e44] h-2 rounded-full">
               <div
-                className="h-2 rounded-full bg-gradient-to-r from-[#00B8DB] to-[#155DFC] transition-all"
+                className="h-2 rounded-full bg-linear-to-r from-[#00B8DB] to-[#155DFC] transition-all"
                 style={{
                   width: `${(slot.count / maxPeak) * 100}%`,
                 }}
@@ -96,7 +93,6 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
         ))}
       </div>
 
-      {/* ---------------- GATE USAGE ---------------- */}
       <div className="bg-[#FFFFFF0D] border border-[#2f3246] rounded-2xl p-6">
 
         <div className="flex items-center gap-3 mb-5">
@@ -137,7 +133,7 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
 
               <div className="w-full bg-[#2a2e44] h-2 rounded-full">
                 <div
-                  className="h-2 rounded-full bg-gradient-to-r from-[#00C950] to-[#009966] transition-all"
+                  className="h-2 rounded-full bg-linear-to-r from-[#00C950] to-[#009966] transition-all"
                   style={{
                     width: `${percent}%`,
                   }}

@@ -117,7 +117,6 @@ const UserManagement = () => {
     password: "",
   });
 
-  // Filter Users
   const filteredUsers = useMemo(() => {
     return users.filter((user) => {
       const matchesSearch =
@@ -130,13 +129,11 @@ const UserManagement = () => {
     });
   }, [users, search, selectedRole]);
 
-  // Counts
   const getRoleCount = (role: Role) =>
     users.filter((u) => u.role === role).length;
 
   const activeCount = users.filter((u) => u.status === "ACTIVE").length;
 
-  // Toggle Status
   const toggleStatus = (id: string) => {
     setUsers((prev) =>
       prev.map((user) =>
@@ -150,7 +147,6 @@ const UserManagement = () => {
     );
   };
 
-  // Create User
   const handleCreateUser = () => {
     if (!formData.name || !formData.email) return;
 
@@ -167,7 +163,7 @@ const UserManagement = () => {
     setUsers((prev) => [newUser, ...prev]);
 
     setIsModalOpen(false);
-    setEditingUserId(null); // 👈 reset edit mode
+    setEditingUserId(null); 
 
     setFormData({
       name: "",
@@ -175,7 +171,7 @@ const UserManagement = () => {
       role: "RESIDENT",
       phone: "",
       unit: "",
-      password: "", // 👈 always cleared
+      password: "", 
     });
   };
 
@@ -203,7 +199,6 @@ const UserManagement = () => {
 
   return (
     <div className="min-h-screen  text-white">
-      {/* Header */}
       <div className="mb-6">
         <h1
           style={{ ...FONTWEIGHT[700] }}
@@ -221,7 +216,6 @@ const UserManagement = () => {
         </p>
       </div>
 
-      {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
         <StatCard
           title="Residents"
@@ -246,11 +240,9 @@ const UserManagement = () => {
         <StatCard title="Active Users" count={activeCount} color="blue" />
       </div>
 
-            {/* Controls */}
             <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
 
-                {/* Left Buttons */}
-                <div className="flex gap-3 shrink-0 ">
+\                <div className="flex gap-3 shrink-0 ">
                     <button
                         onClick={() => {
                             setEditingUserId(null);
@@ -273,7 +265,7 @@ const UserManagement = () => {
 
                     <button
                         onClick={() => {
-                            // Your export logic here
+                            
                             toast.success("CSV exported successfully!");
                         }}
                         className="px-10 py-3 rounded-full cursor-pointer bg-[#FFFFFF1A] border border-[#FFFFFF33] hover:bg-gray-600 text-black text-sm"
@@ -283,7 +275,6 @@ const UserManagement = () => {
 
                 </div>
 
-                {/* Search - pushed to end */}
                 <div className="flex-1 lg:ml-auto">
                     <input
                         type="text"
@@ -313,11 +304,9 @@ const UserManagement = () => {
         ))}
       </div>
 
-            {/* Table */}
             <div className="overflow-x-auto bg-[#FFFFFF0D] rounded-xl shadow-lg">
   <table className="min-w-full">
 
-    {/* ---------------- TABLE HEAD ---------------- */}
   <thead className="bg-[#FFFFFF0D] border border-[#FFFFFF1A]">
   <tr>
     {["NAME", "EMAIL", "ROLE", "UNIT", "STATUS", "ACTIONS"].map((head, index) => (
@@ -335,14 +324,12 @@ const UserManagement = () => {
 </thead>
 
 
-    {/* ---------------- TABLE BODY ---------------- */}
     <tbody>
       {filteredUsers.map((user) => (
         <tr
           key={user.id}
           className="border-b border-[#FFFFFF1A] hover:bg-[#273449]"
         >
-          {/* Name */}
           <td
             style={{ ...FONTWEIGHT[500] }}
             className={`${FONTSIZE[14]} px-4 py-3 text-white`}
@@ -350,7 +337,6 @@ const UserManagement = () => {
             {user.name}
           </td>
 
-          {/* Email */}
           <td
             style={{ ...FONTWEIGHT[400] }}
             className={`${FONTSIZE[14]} px-4 py-3 text-[#99A1AF]`}
@@ -358,7 +344,6 @@ const UserManagement = () => {
             {user.email}
           </td>
 
-          {/* Role */}
           <td className="px-4 py-3">
             <span
               style={{ ...FONTWEIGHT[500] }}
@@ -368,7 +353,6 @@ const UserManagement = () => {
             </span>
           </td>
 
-          {/* Unit */}
           <td
             style={{ ...FONTWEIGHT[400] }}
             className={`${FONTSIZE[14]} px-4 py-3 text-white`}
@@ -376,7 +360,6 @@ const UserManagement = () => {
             {user.unit ?? "-"}
           </td>
 
-          {/* Status */}
           <td className="px-4 py-3">
             <span
               style={{ ...FONTWEIGHT[500] }}
@@ -390,10 +373,8 @@ const UserManagement = () => {
             </span>
           </td>
 
-          {/* ---------------- ACTIONS ---------------- */}
           <td className="px-4 py-3 flex justify-center gap-2 flex-wrap">
 
-            {/* View */}
             <button
               onClick={() => setViewUser(user)}
               style={{ ...FONTWEIGHT[500] }}
@@ -404,7 +385,6 @@ const UserManagement = () => {
               View
             </button>
 
-            {/* Edit */}
             <button
               onClick={() => {
                 setFormData({
@@ -426,7 +406,6 @@ const UserManagement = () => {
               Edit
             </button>
 
-            {/* Activate / Deactivate */}
             <button
               onClick={() => setConfirmUser(user)}
               style={{ ...FONTWEIGHT[500] }}
@@ -440,7 +419,6 @@ const UserManagement = () => {
               {user.status === "ACTIVE" ? "Deactivate" : "Activate"}
             </button>
 
-            {/* Delete */}
             <button
               onClick={() => setDeleteUser(user)}
               style={{ ...FONTWEIGHT[500] }}
@@ -461,7 +439,6 @@ const UserManagement = () => {
 
 
 
-      {/* ================= MODAL ================= */}
       {isModalOpen && (
         <Modal
           formData={formData}
@@ -527,7 +504,6 @@ const UserManagement = () => {
 
 export default UserManagement;
 
-/* ---------------- Components ---------------- */
 
 interface StatCardProps {
   title: string;
@@ -590,7 +566,6 @@ const Modal = ({
   isEdit,
 }: any) => (
   <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-3 sm:p-6">
-    {/* Scroll wrapper for small screens */}
     <div className="w-full max-h-[95vh] overflow-y-auto">
       <div
         className="w-full max-w-md sm:max-w-xl md:max-w-2xl 
@@ -599,7 +574,6 @@ const Modal = ({
                     border border-[#FFFFFF33]
                     rounded-2xl shadow-xl"
       >
-        {/* Header */}
         <div
           className="flex items-center justify-between 
                       px-4 sm:px-6 py-4 
@@ -617,7 +591,6 @@ const Modal = ({
           </button>
         </div>
 
-        {/* Body */}
         <div className="px-4 sm:px-6 py-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input
@@ -685,7 +658,6 @@ const Modal = ({
           </div>
         </div>
 
-        {/* Footer */}
         <div
           className="flex flex-col sm:flex-row gap-3 
                       px-4 sm:px-6 py-4 

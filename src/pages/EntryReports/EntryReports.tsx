@@ -6,6 +6,7 @@ import AnalyticsSection from "../../components/Entryreports/AnalyticsSection";
 import house from "../../assets/resident/house.png";
 import download from "../../assets/resident/download.png";
 import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import { toast } from "react-toastify";
 
 export type Block = "All" | "Block A" | "Block B" | "Block C";
 export type Period = "Today" | "Week" | "Month";
@@ -103,7 +104,6 @@ const ResidentEntryReports: React.FC = () => {
   const [period, setPeriod] = useState<Period>("Today");
   const [search, setSearch] = useState("");
 
-  /* ---------------- FILTER ---------------- */
 
   const filteredData = useMemo(() => {
     return dummyData.filter((entry) => {
@@ -118,7 +118,6 @@ const ResidentEntryReports: React.FC = () => {
     });
   }, [block, search]);
 
-  /* ---------------- STATS ---------------- */
 
   const insideCount = filteredData.filter(
     (e) => e.status === "Inside"
@@ -144,7 +143,6 @@ const ResidentEntryReports: React.FC = () => {
   return (
     <div className="text-white">
 
-      {/* ================= HEADER ================= */}
 
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
 
@@ -169,9 +167,12 @@ const ResidentEntryReports: React.FC = () => {
           </p>
         </div>
 
-        <button
+        <button onClick={() => {
+                                    
+                                    toast.success("CSV exported successfully!");
+                                }}
           className="flex items-center gap-2 px-8 py-2 rounded-xl
-          bg-gradient-to-r from-[#2B7FFF] to-[#0092B8]
+          bg-linear-to-r from-[#2B7FFF] to-[#0092B8]
           shadow-lg shadow-[#2B7FFF80]
           transition-all duration-300 cursor-pointer"
         >
@@ -189,7 +190,6 @@ const ResidentEntryReports: React.FC = () => {
         </button>
       </div>
 
-      {/* ================= STAT CARDS ================= */}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <StatCard
@@ -214,7 +214,6 @@ const ResidentEntryReports: React.FC = () => {
         />
       </div>
 
-      {/* ================= FILTER ================= */}
 
       <FilterSection
         block={block}
@@ -225,11 +224,9 @@ const ResidentEntryReports: React.FC = () => {
         setSearch={setSearch}
       />
 
-      {/* ================= TABLE ================= */}
 
       <EntryTable data={filteredData} />
 
-      {/* ================= ANALYTICS ================= */}
 
       <AnalyticsSection data={filteredData} />
     </div>

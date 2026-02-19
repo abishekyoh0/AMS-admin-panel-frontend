@@ -25,7 +25,6 @@ const FilterSection: React.FC<Props> = ({
     <div className="bg-[#FFFFFF0D] border border-[#3a3450] rounded-2xl p-6 mb-6">
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
 
-        {/* 🔍 Search Section */}
         <div className="w-full lg:w-[35%]">
           <p
             style={{ ...FONTWEIGHT[500] }}
@@ -44,7 +43,6 @@ const FilterSection: React.FC<Props> = ({
           />
         </div>
 
-        {/* 🏢 Block Filter */}
         <div className="w-full lg:w-[36%]">
           <p
             style={{ ...FONTWEIGHT[500] }}
@@ -73,7 +71,6 @@ const FilterSection: React.FC<Props> = ({
           </div>
         </div>
 
-        {/* 📅 Period Filter */}
         <div className="w-full lg:w-[28%]">
           <p
             style={{ ...FONTWEIGHT[500] }}

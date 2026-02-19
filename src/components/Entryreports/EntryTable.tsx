@@ -27,7 +27,6 @@ const EntryTable: React.FC<Props> = ({ data }) => {
         let entryMinutes = convertToMinutes(entryTime);
         let exitMinutes = convertToMinutes(exitTime);
 
-        // ✅ Handle crossing midnight
         if (exitMinutes < entryMinutes) {
             exitMinutes += 24 * 60;
         }
@@ -47,7 +46,6 @@ const EntryTable: React.FC<Props> = ({ data }) => {
     return (
         <div className="bg-[#FFFFFF0D] border border-gray-700 rounded-2xl mb-6">
 
-            {/* Header */}
             <div className="px-6 py-4 border-b border-gray-700">
                 <h2
                     style={{ ...FONTWEIGHT[600] }}
@@ -65,9 +63,8 @@ const EntryTable: React.FC<Props> = ({ data }) => {
                 </p>
             </div>
 
-            {/* Horizontal Scroll Wrapper */}
             <div className="w-full overflow-x-auto">
-                <div className="min-w-[1100px]">
+                <div className="min-w-275">
 
                     <table className="w-full text-left">
 
@@ -102,7 +99,6 @@ const EntryTable: React.FC<Props> = ({ data }) => {
                                     key={entry.id}
                                     className="border-b border-gray-800 hover:bg-[#1a2433] transition"
                                 >
-                                    {/* Resident */}
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div
                                             style={{ ...FONTWEIGHT[500] }}
@@ -119,7 +115,6 @@ const EntryTable: React.FC<Props> = ({ data }) => {
                                         </div>
                                     </td>
 
-                                    {/* Flat */}
                                     <td
                                         style={{ ...FONTWEIGHT[500] }}
                                         className={`${FONTSIZE[14]} px-4 py-4 text-[#00D3F3] whitespace-nowrap`}
@@ -127,7 +122,6 @@ const EntryTable: React.FC<Props> = ({ data }) => {
                                         {entry.flat}
                                     </td>
 
-                                    {/* Date */}
                                     <td
                                         style={{ ...FONTWEIGHT[400] }}
                                         className={`${FONTSIZE[14]} px-4 py-4 text-white whitespace-nowrap`}
@@ -135,7 +129,6 @@ const EntryTable: React.FC<Props> = ({ data }) => {
                                         {entry.date}
                                     </td>
 
-                                    {/* Entry */}
                                     <td className="px-4 py-4 whitespace-nowrap">
                                         <div
                                             style={{ ...FONTWEIGHT[400] }}
@@ -146,7 +139,6 @@ const EntryTable: React.FC<Props> = ({ data }) => {
                                         </div>
                                     </td>
 
-                                    {/* Exit */}
                                     <td className="px-4 py-4 whitespace-nowrap">
                                         {entry.exitTime !== "—" ? (
                                             <div
@@ -166,7 +158,6 @@ const EntryTable: React.FC<Props> = ({ data }) => {
                                         )}
                                     </td>
 
-                                    {/* Duration */}
                                     <td
                                         style={{ ...FONTWEIGHT[500] }}
                                         className={`${FONTSIZE[14]} px-4 py-4 text-[#00D3F3] whitespace-nowrap`}
@@ -174,7 +165,6 @@ const EntryTable: React.FC<Props> = ({ data }) => {
                                         {calculateDuration(entry.entryTime, entry.exitTime)}
                                     </td>
 
-                                    {/* Gate */}
                                     <td
                                         style={{ ...FONTWEIGHT[400] }}
                                         className={`${FONTSIZE[14]} px-4 py-4 text-[#D1D5DC] whitespace-nowrap`}
@@ -182,7 +172,6 @@ const EntryTable: React.FC<Props> = ({ data }) => {
                                         {entry.gate}
                                     </td>
 
-                                    {/* Guard */}
                                     <td
                                         style={{ ...FONTWEIGHT[400] }}
                                         className={`${FONTSIZE[14]} px-4 py-4 text-[#99A1AF] whitespace-nowrap`}
@@ -190,7 +179,6 @@ const EntryTable: React.FC<Props> = ({ data }) => {
                                         {entry.guard}
                                     </td>
 
-                                    {/* Status */}
                                     <td className="px-4 py-4 whitespace-nowrap">
                                         <div
                                             className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border ${entry.status === "Inside"
