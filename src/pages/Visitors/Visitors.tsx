@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Export from "../../assets/Sidebar/graph.png";
 import { Search, X } from "lucide-react";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
-import user from "../../assets/Sidebar/user.png";
-import Checkbox from "../../assets/Sidebar/square.png";
+import user from "../../assets/Sidebar/user.png"
+import Checkbox from "../../assets/Sidebar/square.png"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import toast, { Toaster } from "react-hot-toast";
 
@@ -121,31 +123,19 @@ const VisitorManagement: React.FC = () => {
 
   const handleExport = () => {
     toast.success("Report exported successfully", {
-      style: {
-        background: "#0f172a",
-        color: "#fff",
-        border: "1px solid #00B8DB",
-        padding: "12px 16px",
-      },
-      iconTheme: {
-        primary: "#00B8DB",
-        secondary: "#fff",
-      },
+      // style: {
+      //   background: "#0f172a",
+      //   color: "#fff",
+      //   border: "1px solid #00B8DB",
+      //   padding: "12px 16px",
+      // },
     });
   };
 
   return (
-    <div
-      style={{ color: COLORS.primary_white, background: COLORS.primary_black }}
-    >
-      <Toaster position="top-right" />
-      <h1 className={`${FONTSIZE[36]} ${FONTWEIGHT[700]}`}>
-        Visitor Management
-      </h1>
-      <p
-        className={`mb-6 ${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
-        style={{ color: COLORS.secoundy_gray }}
-      >
+    <div style={{ color: COLORS.primary_white, background: COLORS.primary_black }} >
+      <h1 className={`${FONTSIZE[36]} ${FONTWEIGHT[700]}`}>Visitor Management</h1>
+      <p className={`mb-6 ${FONTSIZE[16]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
         Monitor and track all visitor entries and exits
       </p>
 
