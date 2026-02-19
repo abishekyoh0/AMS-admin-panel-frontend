@@ -10,11 +10,10 @@ import BuildingsManagement from "../pages/Buildings/BuildingsManagement";
 import ComplaintDetails from "../components/complaint/ComplaintDetails";
 import Visitors from "../pages/Visitors/Visitors";
 import Invoices from "../pages/Invoices/Invoices";
-import EntryReports from "../pages/EntryReports/EntryReports";
+import EntryReports from "../pages/EntryReports/entryreports";
 import EmergencyControl from "../pages/EmergencyControl/EmergencyControl";
 import Users from "../pages/Users/Users";
 import AccessManagement from "../pages/AccessManagement/AccessManagement";
-// import EntryReports from "../pages/EntryReports/ResidentEntryReports"
 
 
 export default function AppRoutes() {
@@ -42,11 +41,10 @@ export default function AppRoutes() {
           <Route path="/access-management" element={<AccessManagement />} />
           <Route path="/complaint-details" element={<ComplaintDetails />} />
           <Route path="/users" element={<Users/>}/>
-          <Route path="entryreports" element={<EntryReports/>}/> 
           <Route path="/user" element={<Users />} />
           <Route path="/visitors" element={<Visitors />} />
           <Route path="/invoices" element={<Invoices />} />
-          {/* <Route path="/entry-reports" element={<EntryReports />} /> */}
+          <Route path="/entry-reports" element={<EntryReports />} />
           <Route path="/emergency-control" element={<EmergencyControl />} />
         </Route>
         <Route path="*" element={<NotFound />} />

@@ -1,4 +1,4 @@
-import type { Entry } from "../../pages/EntryReports/ResidentEntryReports";
+import type { Entry } from "../../pages/EntryReports/entryreports";
 import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import graph from "../../assets/resident/graph.png";
 import mark from "../../assets/resident/mark.png";

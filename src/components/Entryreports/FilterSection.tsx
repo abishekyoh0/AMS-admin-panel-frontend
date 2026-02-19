@@ -1,7 +1,7 @@
 import type {
   Block,
   Period,
-} from "../../pages/EntryReports/ResidentEntryReports";
+} from "../../pages/EntryReports/entryreports";
 import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 
 interface Props {
