@@ -265,7 +265,7 @@ const UserManagement = () => {
                             setIsModalOpen(true);
                         }}
                         className="px-10 py-3 rounded-full 
-      bg-gradient-to-r from-[#AD46FF] to-[#E60076]
+      bg-linear-to-r from-[#AD46FF] to-[#E60076]
       text-black text-sm transition duration-300 cursor-pointer"
                     >
                         Add New User
@@ -315,104 +315,149 @@ const UserManagement = () => {
 
             {/* Table */}
             <div className="overflow-x-auto bg-[#FFFFFF0D] rounded-xl shadow-lg">
-                <table className="min-w-full text-sm">
-                    <thead className="bg-[#FFFFFF0D] border border-[#FFFFFF1A] text-gray-300">
-                        <tr>
-                            <th className="px-4 py-3 text-left text-[#99A1AF]">Name</th>
-                            <th className="px-4 py-3 text-left text-[#99A1AF]">Email</th>
-                            <th className="px-4 py-3 text-left text-[#99A1AF]">Role</th>
-                            <th className="px-4 py-3 text-left text-[#99A1AF]">Unit</th>
-                            <th className="px-4 py-3 text-left text-[#99A1AF]">Status</th>
-                            <th className="px-4 py-3 text-center text-[#99A1AF]">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredUsers.map((user) => (
-                            <tr
-                                key={user.id}
-                                className="border-b border-[#FFFFFF1A] hover:bg-[#273449]"
-                            >
-                                <td className="px-4 py-3 text-[#FFFFFF]">{user.name}</td>
-                                <td className="px-4 py-3 text-[#99A1AF]">{user.email}</td>
-                                <td className="px-4 py-3">
-                                    <span
-                                        className={`px-3 py-1 rounded-full text-xs font-medium ${roleStyles[user.role]}`}
-                                    >
-                                        {user.role}
-                                    </span>
+  <table className="min-w-full">
 
-                                </td>
-                                <td className="px-4 py-3">{user.unit ?? "-"}</td>
-                                <td className="px-4 py-3">
-                                    <span
-                                        className={`px-3 py-1 rounded-full text-xs ${user.status === "ACTIVE"
-                                            ? "bg-[#00C95033] text-[#05DF72]"
-                                            : "bg-[#FB2C3633] text-[#FF6467]"
-                                            }`}
-                                    >
-                                        {user.status}
-                                    </span>
-                                </td>
-
-                                {/* ACTIONS */}
-                                <td className="px-4 py-3 flex justify-center gap-2 flex-wrap">
-                                    {/* View */}
-                                    <button
-                                        onClick={() => setViewUser(user)}
-                                        className="px-3 py-1 text-xs rounded-lg bg-[#2B7FFF33] text-[#51A2FF] hover:bg-blue-700 cursor-pointer"
-                                    >
-                                        View
-                                    </button>
+    {/* ---------------- TABLE HEAD ---------------- */}
+  <thead className="bg-[#FFFFFF0D] border border-[#FFFFFF1A]">
+  <tr>
+    {["NAME", "EMAIL", "ROLE", "UNIT", "STATUS", "ACTIONS"].map((head, index) => (
+      <th
+        key={head}
+        style={{ ...FONTWEIGHT[500] }}
+        className={`${FONTSIZE[12]} px-4 py-3 text-[#99A1AF] ${
+          index === 5 ? "text-center pl-8" : "text-left"
+        }`}
+      >
+        {head}
+      </th>
+    ))}
+  </tr>
+</thead>
 
 
-                                    {/* Edit */}
-                                    <button
-                                        onClick={() => {
-                                            setFormData({
-                                                name: user.name,
-                                                email: user.email,
-                                                role: user.role,
-                                                phone: user.phone || "",
-                                                unit: user.unit || "",
-                                                password: "",
-                                            });
-                                            setEditingUserId(user.id);   // 👈 important
-                                            setIsModalOpen(true);
-                                        }}
-                                        className="px-3 py-1 text-xs cursor-pointer rounded-lg bg-[#FFFFFF1A] text-[#FFFFFF] hover:bg-gray-700"
-                                    >
-                                        Edit
-                                    </button>
+    {/* ---------------- TABLE BODY ---------------- */}
+    <tbody>
+      {filteredUsers.map((user) => (
+        <tr
+          key={user.id}
+          className="border-b border-[#FFFFFF1A] hover:bg-[#273449]"
+        >
+          {/* Name */}
+          <td
+            style={{ ...FONTWEIGHT[500] }}
+            className={`${FONTSIZE[14]} px-4 py-3 text-white`}
+          >
+            {user.name}
+          </td>
 
+          {/* Email */}
+          <td
+            style={{ ...FONTWEIGHT[400] }}
+            className={`${FONTSIZE[14]} px-4 py-3 text-[#99A1AF]`}
+          >
+            {user.email}
+          </td>
 
-                                    {/* Activate / Deactivate */}
-                                    <button
-                                        onClick={() => setConfirmUser(user)}
-                                        className={`px-3 py-1 text-xs rounded-lg transition duration-300 cursor-pointer
-    ${user.status === "ACTIVE"
-                                                ? "bg-[#FF690033] text-[#FF8904] hover:bg-yellow-700/40"
-                                                : "bg-[#00C95033] text-[#05DF72] hover:bg-[#00C95055]"
-                                            }`}
-                                    >
-                                        {user.status === "ACTIVE" ? "Deactivate" : "Activate"}
-                                    </button>
+          {/* Role */}
+          <td className="px-4 py-3">
+            <span
+              style={{ ...FONTWEIGHT[500] }}
+              className={`${FONTSIZE[12]} px-3 py-1 rounded-full ${roleStyles[user.role]}`}
+            >
+              {user.role}
+            </span>
+          </td>
 
+          {/* Unit */}
+          <td
+            style={{ ...FONTWEIGHT[400] }}
+            className={`${FONTSIZE[14]} px-4 py-3 text-white`}
+          >
+            {user.unit ?? "-"}
+          </td>
 
-                                    {/* Delete */}
-                                    <button
-                                        onClick={() => setDeleteUser(user)}
+          {/* Status */}
+          <td className="px-4 py-3">
+            <span
+              style={{ ...FONTWEIGHT[500] }}
+              className={`${FONTSIZE[12]} px-3 py-1 rounded-full ${
+                user.status === "ACTIVE"
+                  ? "bg-[#00C95033] text-[#05DF72]"
+                  : "bg-[#FB2C3633] text-[#FF6467]"
+              }`}
+            >
+              {user.status}
+            </span>
+          </td>
 
-                                        className="px-3 py-1 text-xs cursor-pointer rounded-lg bg-[#FB2C3633] text-[#FF6467] hover:bg-red-700"
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
+          {/* ---------------- ACTIONS ---------------- */}
+          <td className="px-4 py-3 flex justify-center gap-2 flex-wrap">
 
-                </table>
-            </div>
+            {/* View */}
+            <button
+              onClick={() => setViewUser(user)}
+              style={{ ...FONTWEIGHT[500] }}
+              className={`${FONTSIZE[12]} px-3 py-1 rounded-lg 
+                bg-[#2B7FFF33] text-[#51A2FF] 
+                hover:bg-blue-700 cursor-pointer`}
+            >
+              View
+            </button>
+
+            {/* Edit */}
+            <button
+              onClick={() => {
+                setFormData({
+                  name: user.name,
+                  email: user.email,
+                  role: user.role,
+                  phone: user.phone || "",
+                  unit: user.unit || "",
+                  password: "",
+                });
+                setEditingUserId(user.id);
+                setIsModalOpen(true);
+              }}
+              style={{ ...FONTWEIGHT[500] }}
+              className={`${FONTSIZE[12]} px-3 py-1 rounded-lg 
+                bg-[#FFFFFF1A] text-white 
+                hover:bg-gray-700 cursor-pointer`}
+            >
+              Edit
+            </button>
+
+            {/* Activate / Deactivate */}
+            <button
+              onClick={() => setConfirmUser(user)}
+              style={{ ...FONTWEIGHT[500] }}
+              className={`${FONTSIZE[12]} px-3 py-1 rounded-lg transition duration-300 cursor-pointer
+                ${
+                  user.status === "ACTIVE"
+                    ? "bg-[#FF690033] text-[#FF8904] hover:bg-yellow-700/40"
+                    : "bg-[#00C95033] text-[#05DF72] hover:bg-[#00C95055]"
+                }`}
+            >
+              {user.status === "ACTIVE" ? "Deactivate" : "Activate"}
+            </button>
+
+            {/* Delete */}
+            <button
+              onClick={() => setDeleteUser(user)}
+              style={{ ...FONTWEIGHT[500] }}
+              className={`${FONTSIZE[12]} px-3 py-1 rounded-lg 
+                bg-[#FB2C3633] text-[#FF6467] 
+                hover:bg-red-700 cursor-pointer`}
+            >
+              Delete
+            </button>
+
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
 
 
 
@@ -518,14 +563,22 @@ const FilterTab = ({
   onClick: () => void;
 }) => (
     <button
-        onClick={onClick}
-        className={`px-4 py-1.5 rounded-full text-xs transition cursor-pointer ${active
-            ? "bg-[#00B8DB] text-white"
-            : "bg-[#FFFFFF0D] text-[#99A1AF] hover:bg-gray-600"
-            }`}
-    >
-        {label}
-    </button>
+  onClick={onClick}
+  style={{ ...FONTWEIGHT[500] }}
+  className={`${FONTSIZE[12]} 
+    px-4 py-1.5 
+    rounded-full 
+    transition 
+    cursor-pointer 
+    ${
+      active
+        ? "bg-[#00B8DB] text-white"
+        : "bg-[#FFFFFF0D] text-[#99A1AF] hover:bg-gray-600"
+    }`}
+>
+  {label}
+</button>
+
 );
 
 const Modal = ({
@@ -542,7 +595,7 @@ const Modal = ({
       <div
         className="w-full max-w-md sm:max-w-xl md:max-w-2xl 
                     mx-auto
-                    bg-gradient-to-br from-[#0f172a] to-[#1e293b] 
+                    bg-linear-to-br from-[#0f172a] to-[#1e293b] 
                     border border-[#FFFFFF33]
                     rounded-2xl shadow-xl"
       >
@@ -651,7 +704,7 @@ const Modal = ({
             onClick={onSubmit}
             className="w-full sm:w-1/2 py-2.5 
                      rounded-full 
-                     bg-gradient-to-r from-[#AD46FF] to-[#E60076] 
+                     bg-linear-to-r from-[#AD46FF] to-[#E60076] 
                      transition cursor-pointer"
           >
             {isEdit ? "Update User" : "Create User"}
@@ -675,7 +728,7 @@ const ViewUserModal = ({
 }) => {
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
-      <div className="w-full max-w-2xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-gray-700 rounded-2xl p-6 shadow-xl">
+      <div className="w-full max-w-2xl bg-linear-to-br from-[#0f172a] to-[#1e293b] border border-gray-700 rounded-2xl p-6 shadow-xl">
         <div className="flex items-center justify-between mb-4 border-b border-gray-700 pb-3">
           <h2 className="text-lg font-semibold">User Details</h2>
 

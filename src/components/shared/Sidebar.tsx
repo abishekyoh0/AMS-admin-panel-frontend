@@ -9,6 +9,7 @@ const menuItems = [
   { to: "/complaint", label: "Complaints", end: true },
   { to: "/building", label: "Building", end: true },
   { to: "/users", label: "Users", end: true },
+  {to:"/entryreports", label: "Entry Reports", end: true},
 ];
 
 type SidebarProps = {

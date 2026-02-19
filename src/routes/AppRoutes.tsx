@@ -9,7 +9,7 @@ import ComplaintManagement from "../pages/complaint/ComplaintManagement";
 import BuildingsManagement from "../pages/Buildings/BuildingsManagement";
 import ComplaintDetails from "../components/complaint/ComplaintDetails";
 import Users from "../pages/Users/Users";
-
+import EntryReports from "../pages/EntryReports/ResidentEntryReports"
 export default function AppRoutes() {
   return (
     <div>
@@ -34,6 +34,7 @@ export default function AppRoutes() {
           <Route path="/building" element={<BuildingsManagement />} />
           <Route path="/complaint-details" element={<ComplaintDetails />} />
           <Route path="/users" element={<Users/>}/>
+          <Route path="entryreports" element={<EntryReports/>}/> 
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
