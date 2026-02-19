@@ -190,7 +190,7 @@ const VisitorManagement: React.FC = () => {
       </div>
 
       <div className="overflow-x-auto rounded-xl border border-[#FFFFFF33] bg-[#FFFFFF0D]">
-        <table className="w-full min-w-[900px] text-sm">
+        <table className="w-full min-w-225 text-sm">
           <thead className="bg-white/5 text-gray-400">
             <tr className={`uppercase ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
               <th className="text-left p-3">Visitor</th>
@@ -238,7 +238,7 @@ const VisitorManagement: React.FC = () => {
 
       {selected && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50">
-          <div className="relative bg-[#101828F2] w-[500px] rounded-2xl border border-[#FFFFFF33] p-6">
+          <div className="relative bg-[#101828F2] w-125 rounded-2xl border border-[#FFFFFF33] p-6">
             <h2 className={`flex gap-2 items-center mb-4 ${FONTSIZE[30]} ${FONTWEIGHT[700]}`}>
               <button onClick={() => setSelected(null)}
                 className="absolute top-4 right-4 p-2 rounded-full cursor-pointer hover:bg-[#2a2c30]">
