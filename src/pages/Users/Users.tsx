@@ -242,7 +242,7 @@ const UserManagement = () => {
 
             <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
 
-\                <div className="flex gap-3 shrink-0 ">
+              <div className="flex gap-3 shrink-0 ">
                     <button
                         onClick={() => {
                             setEditingUserId(null);
