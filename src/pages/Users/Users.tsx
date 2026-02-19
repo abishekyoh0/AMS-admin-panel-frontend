@@ -19,7 +19,7 @@ interface User {
 }
 const roleStyles: Record<Role, string> = {
     RESIDENT:
-        "bg-blue-500/10 text-blue-400 border border-blue-500/30 curor-pointer",
+        "bg-blue-500/10 text-blue-400 border border-blue-500/30 ",
 
     SECURITY:
         "bg-green-500/10 text-green-400 border border-green-500/30",
@@ -279,10 +279,10 @@ const UserManagement = () => {
                                 password: "",
                             });
                             setIsModalOpen(true);
-                        }}
+                        }}  style={{...FONTWEIGHT[700]}}
                         className="px-10 py-3 rounded-full 
       bg-gradient-to-r from-[#AD46FF] to-[#E60076]
-      text-black text-sm transition duration-300 cursor-pointer"
+      text-black text-sm transition duration-300 cursor-pointer" 
                     >
                         Add New User
                     </button>
@@ -291,7 +291,7 @@ const UserManagement = () => {
                         onClick={() => {
                             // Your export logic here
                             toast.success("CSV exported successfully!");
-                        }}
+                        }} style={{...FONTWEIGHT[700]}}
                         className="px-10 py-3 rounded-full cursor-pointer bg-[#FFFFFF1A] border border-[#FFFFFF33] hover:bg-gray-600 text-black text-sm"
                     >
                         Export to CSV
@@ -303,9 +303,10 @@ const UserManagement = () => {
                 <div className="flex-1 lg:ml-auto">
                     <input
                         type="text"
-                        placeholder="Search users by name or email..."
+                                              placeholder="Search users by name or email..."
                         className="w-full px-6 py-3 rounded-full bg-[#1e293b] border border-gray-600 
       focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
+
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
@@ -336,12 +337,12 @@ const UserManagement = () => {
                 <table className="min-w-full text-sm">
                     <thead className="bg-[#FFFFFF0D] border border-[#FFFFFF1A] text-gray-300">
                         <tr>
-                            <th className="px-4 py-3 text-left text-[#99A1AF]">Name</th>
-                            <th className="px-4 py-3 text-left text-[#99A1AF]">Email</th>
-                            <th className="px-4 py-3 text-left text-[#99A1AF]">Role</th>
-                            <th className="px-4 py-3 text-left text-[#99A1AF]">Unit</th>
-                            <th className="px-4 py-3 text-left text-[#99A1AF]">Status</th>
-                            <th className="px-4 py-3 text-center text-[#99A1AF]">Actions</th>
+                            <th style={{...FONTWEIGHT[700]}} className={` ${FONTSIZE[14]}px-4 py-3 text-left text-[#99A1AF]`}>Name</th>
+                            <th style={{...FONTWEIGHT[700]}} className={`${FONTSIZE[14]}px-4 py-3 text-left text-[#99A1AF]`}>Email</th>
+                            <th style={{...FONTWEIGHT[700]}} className={`${FONTSIZE[14]}px-4 py-3 text-left text-[#99A1AF]`}>Role</th>
+                            <th style={{...FONTWEIGHT[700]}} className={`${FONTSIZE[14]}px-4 py-3 text-left text-[#99A1AF]`}>Unit</th>
+                            <th style={{...FONTWEIGHT[700]}} className={`${FONTSIZE[14]}px-4 py-3 text-left text-[#99A1AF]`}>Status</th>
+                            <th style={{...FONTWEIGHT[700]}} className={`${FONTSIZE[14]}px-4 py-3 text-center text-[#99A1AF]`}>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -350,9 +351,9 @@ const UserManagement = () => {
                                 key={user.id}
                                 className="border-b border-[#FFFFFF1A] hover:bg-[#273449]"
                             >
-                                <td className="px-4 py-3 text-[#FFFFFF]">{user.name}</td>
-                                <td className="px-4 py-3 text-[#99A1AF]">{user.email}</td>
-                                <td className="px-4 py-3">
+                            <td style={{...FONTWEIGHT[400]}} className={`${FONTSIZE[14]}px-4 py-3 text-[#FFFFFF]`}>{user.name}</td>
+                                <td style={{...FONTWEIGHT[400]}} className={`${FONTSIZE[1]}px-4 py-3 text-[#99A1AF]`}>{user.email}</td>
+                                <td style={{...FONTWEIGHT[700]}} className={`${FONTSIZE[12]}px-4 py-3`}>
                                     <span
                                         className={`px-3 py-1 rounded-full text-xs font-medium ${roleStyles[user.role]}`}
                                     >
@@ -360,9 +361,9 @@ const UserManagement = () => {
                                     </span>
 
                                 </td>
-                                <td className="px-4 py-3">{user.unit ?? "-"}</td>
+                                <td style={{...FONTWEIGHT[400]}} className="px-4 py-3">{user.unit ?? "-"}</td>
                                 <td className="px-4 py-3">
-                                    <span
+                                    <span style={{...FONTWEIGHT[700]}}
                                         className={`px-3 py-1 rounded-full text-xs ${user.status === "ACTIVE"
                                             ? "bg-[#00C95033] text-[#05DF72]"
                                             : "bg-[#FB2C3633] text-[#FF6467]"
@@ -376,7 +377,7 @@ const UserManagement = () => {
                                 <td className="px-4 py-3 flex justify-center gap-2 flex-wrap">
                                     {/* View */}
                                     <button
-                                        onClick={() => setViewUser(user)}
+                                        onClick={() => setViewUser(user)} style={{...FONTWEIGHT[400]}}
                                         className="px-3 py-1 text-xs rounded-lg bg-[#2B7FFF33] text-[#51A2FF] hover:bg-blue-700 cursor-pointer"
                                     >
                                         View
@@ -396,7 +397,7 @@ const UserManagement = () => {
                                             });
                                             setEditingUserId(user.id);   // 👈 important
                                             setIsModalOpen(true);
-                                        }}
+                                        }} style={{...FONTWEIGHT[400]}}
                                         className="px-3 py-1 text-xs cursor-pointer rounded-lg bg-[#FFFFFF1A] text-[#FFFFFF] hover:bg-gray-700"
                                     >
                                         Edit
@@ -405,7 +406,7 @@ const UserManagement = () => {
 
                                     {/* Activate / Deactivate */}
                                     <button
-                                        onClick={() => setConfirmUser(user)}
+                                        onClick={() => setConfirmUser(user)} style={{...FONTWEIGHT[400]}}
                                         className={`px-3 py-1 text-xs rounded-lg transition duration-300 cursor-pointer
     ${user.status === "ACTIVE"
                                                 ? "bg-[#FF690033] text-[#FF8904] hover:bg-yellow-700/40"
@@ -418,7 +419,7 @@ const UserManagement = () => {
 
                                     {/* Delete */}
                                     <button
-                                        onClick={() => setDeleteUser(user)}
+                                        onClick={() => setDeleteUser(user)} style={{...FONTWEIGHT[400]}}
 
                                         className="px-3 py-1 text-xs cursor-pointer rounded-lg bg-[#FB2C3633] text-[#FF6467] hover:bg-red-700"
                                     >
@@ -530,8 +531,8 @@ const StatCard = ({ title, count, color }: StatCardProps) => (
     <div
         className={`p-4 rounded-2xl shadow-lg hover:scale-105 transition duration-300 ${colorStyles[color]}`}
     >
-        <p className="text-sm opacity-80">{title}</p>
-        <h2 className="text-2xl font-bold mt-1">{count}</h2>
+        <p style={{...FONTWEIGHT[400]}} className={` ${FONTSIZE[14]} text-sm opacity-80 text-[#D1D5DC]`}>{title}</p>
+        <h2 style={{...FONTWEIGHT[700]}} className={` ${FONTSIZE[24]}text-2xl font-bold mt-1`}>{count}</h2>
     </div>
 );
 
@@ -546,7 +547,7 @@ const FilterTab = ({
     onClick: () => void;
 }) => (
     <button
-        onClick={onClick}
+        onClick={onClick} style={{...FONTWEIGHT[700]}}
         className={`px-4 py-1.5 rounded-full text-xs transition cursor-pointer ${active
             ? "bg-[#00B8DB] text-white"
             : "bg-[#FFFFFF0D] text-[#99A1AF] hover:bg-gray-600"
