@@ -9,21 +9,31 @@ import buildingicon from "../../assets/Sidebar/building.png";
 import usericon from "../../assets/Sidebar/user.png";
 import complainticon from "../../assets/Sidebar/complaints.png";
 import visitorsicon from "../../assets/Sidebar/visitor.png";
-import invoicesicon from "../../assets/Sidebar/invoice.png"
+import invoicesicon from "../../assets/Sidebar/invoice.png";
 import entryicon from "../../assets/Sidebar/entry.png";
 import emergencyicon from "../../assets/Sidebar/emergency.png";
 import logoicon from "../../assets/Sidebar/settings.png";
 
 const menuItems = [
   { to: "/", label: "Dashboard", icon: dashboardicon, end: true },
-  { to: "/access-management", label: "Access Management", icon: accessicon, end: false },
+  {
+    to: "/access-management",
+    label: "Access Management",
+    icon: accessicon,
+    end: false,
+  },
   { to: "/building", label: "Building", icon: buildingicon, end: true },
   { to: "/user", label: "Users", icon: usericon, end: true },
   { to: "/complaint", label: "Complaints", icon: complainticon, end: true },
   { to: "/visitors", label: "Visitors", icon: visitorsicon, end: true },
-  { to: "/invoices", label: "Invoices", icon: invoicesicon, end: true},
+  { to: "/invoices", label: "Invoices", icon: invoicesicon, end: true },
   { to: "/entry-reports", label: "Entry Reports", icon: entryicon, end: true },
-  { to: "/emergency-control", label: "Emergency Control", icon: emergencyicon, end: true },
+  {
+    to: "/emergency-control",
+    label: "Emergency Control",
+    icon: emergencyicon,
+    end: true,
+  },
 ];
 
 type SidebarProps = {
