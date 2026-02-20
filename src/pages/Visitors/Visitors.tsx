@@ -304,9 +304,13 @@ const VisitorManagement: React.FC = () => {
       {selected && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50">
           <div className="relative bg-[#101828F2] w-125 rounded-2xl border border-[#FFFFFF33] p-6">
-            <h2 className={`flex gap-2 items-center mb-4 ${FONTSIZE[30]} ${FONTWEIGHT[700]}`}>
-              <button onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 p-2 rounded-full cursor-pointer hover:bg-[#2a2c30]">
+            <h2
+              className={`flex gap-2 items-center mb-4 ${FONTSIZE[30]} ${FONTWEIGHT[700]}`}
+            >
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-4 right-4 p-2 rounded-full cursor-pointer hover:bg-[#2a2c30]"
+              >
                 <X size={18} color={COLORS.primary_white} />
               </button>
               <img src={user} alt="" className="w-8 h-8" /> Visitor Details
