@@ -205,13 +205,13 @@ const BOTTOM_CARDS: BottomGradientCard[] = [
 const AdminDashboard: React.FC = () => {
     return (
         <>
-            <div className="flex gap-4 mb-8">
+            <div className=" gap-4 mb-8 grid sm:grid-cols-6">
                 {CARDS.map((card) => (
                     <div className="w-full p-4 rounded-2xl"
                         key={card.id}
                         style={{ background: "#12162b", border: "1px solid #ffffff1a", boxShadow: "0px 4px 6px -4px #ffffff1a, 0px 10px 15px -3px #ffffff1a" }}>
                         <div className="flex justify-between items-center">
-                            <p><img src={card.icon} alt="" /></p>
+                            <p><img src={card.icon} alt="" className="w-5 h-5"/></p>
                             <p className={`px-2 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
                                 style={{ background: card.badgeColor + "22", color: card.badgeColor }}>
                                 {card.badge}</p>

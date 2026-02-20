@@ -18,7 +18,7 @@ export default function Dashboard() {
             Complete system overview and management dashboard
           </p>
           <div style={{ marginBottom: 20 }}>
-            <span className={`flex w-fit gap-1 items-center px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
+            <span className={`flex w-fit gap-1 items-center px-3 py-1 mb-2 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
               style={{ background: "#00c95122", color: "#22c55e" }}>
              <img src={Green} alt="" className={`w-2 h-2`} /> All Systems Operational
             </span>
