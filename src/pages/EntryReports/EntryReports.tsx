@@ -169,7 +169,7 @@ const ResidentEntryReports: React.FC = () => {
 
         <button onClick={() => {
                                     
-                                    toast.success("CSV exported successfully!");
+                                    toast.success("Report downloaded successfully!");
                                 }}
           className="flex items-center gap-2 px-8 py-2 rounded-xl
           bg-linear-to-r from-[#2B7FFF] to-[#0092B8]
