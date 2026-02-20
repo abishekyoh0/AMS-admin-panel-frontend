@@ -159,43 +159,34 @@ const RevenueComplaintsDashboard: React.FC = () => {
         </div>
 
         <div className="bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-5">
-          <h2 className="text-lg font-bold">Complaints Overview</h2>
-          <p className="text-xs text-gray-400 mb-6">
+          <h2 className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>Complaints Overview</h2>
+          <p className={`mb-6 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
             By category and status
           </p>
 
           <div className="space-y-5">
             {COMPLAINTS.map((item, i) => {
               const percent = (item.resolved / item.total) * 100;
-
               return (
                 <div key={i}>
-                  <div className="flex justify-between text-sm mb-1">
+                  <div className="flex justify-between text-sm mb-2">
                     <span className="flex items-center gap-2">
-                      <span
-                        className="w-2 h-2 rounded-full"
-                        style={{ background: item.color }}
-                      ></span>
+                      <span className="w-2 h-2 rounded-full"
+                        style={{ background: item.color }}>
+                      </span>
                       {item.category}
                     </span>
-
-                    <span className="text-xs text-gray-400">
-                      {item.resolved} resolved • {item.pending} pending •{" "}
+                    <span className={`flex gap-3`}>
+                      <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: "#05df72" }}>{item.resolved} resolved</p>
+                      <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: "#ff8904" }}>{item.pending} pending {" "}</p>
                       {item.total}
                     </span>
                   </div>
-
                   <div className="w-full bg-white/10 h-2 rounded">
-                    <div
-                      className="h-2 rounded"
-                      style={{
-                        width: `${percent}%`,
-                        background: item.color,
-                      }}
-                    />
+                    <div className="h-2 rounded"
+                      style={{ width: `${percent}%`, background: item.color }} />
                   </div>
-
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className={`mt-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
                     Resolution Rate: {percent.toFixed(0)}%
                   </p>
                 </div>
@@ -203,19 +194,17 @@ const RevenueComplaintsDashboard: React.FC = () => {
             })}
           </div>
 
-          <div className="flex justify-between mt-8 border-t border-white/10 pt-4">
-            <div>
-              <p className="text-xs text-gray-400">Total Complaints</p>
-              <p className="text-xl font-bold">{totalComplaints}</p>
+          <div className="flex justify-around mt-3 border-t-2 border-white/10 pt-4">
+            <div className="flex flex-col justify-center items-center">
+              <p className={`mt-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Total Complaints</p>
+              <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>{totalComplaints}</p>
             </div>
-
-            <div className="text-right">
-              <p className="text-xs text-gray-400">Avg Resolution Time</p>
-              <p className="text-xl font-bold text-cyan-400">2.3 days</p>
+            <div className="flex flex-col justify-center items-center">
+              <p className={`mt-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Avg Resolution Time</p>
+              <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`} style={{ color: "#00D3F3" }}>2.3 days</p>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
