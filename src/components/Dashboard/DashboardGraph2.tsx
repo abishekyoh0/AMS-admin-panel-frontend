@@ -1,4 +1,9 @@
 import React from "react";
+import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import Tool from "../../assets/Dashboard/tool.png";
+import Currency from "../../assets/Dashboard/currency.png";
+import Hand from "../../assets/Dashboard/hand.png";
+import User from "../../assets/Dashboard/admin.png"
 
 type Staff = {
   role: string;
@@ -15,7 +20,7 @@ type Activity = {
   amount?: string;
   time: string;
   tag?: string;
-  icon: string;
+  icon?: string;
 };
 
 const STAFF_DATA: Staff[] = [
@@ -33,7 +38,7 @@ const RECENT_ACTIVITY: Activity[] = [
     action: "raised complaint #CM-1245",
     time: "5 mins ago",
     tag: "High",
-    icon: "🛠",
+    icon: Tool,
   },
   {
     id: 2,
@@ -42,7 +47,7 @@ const RECENT_ACTIVITY: Activity[] = [
     action: "paid invoice #INV-8934",
     amount: "$4,200",
     time: "12 mins ago",
-    icon: "💰",
+    icon: Currency,
   },
   {
     id: 3,
@@ -50,7 +55,7 @@ const RECENT_ACTIVITY: Activity[] = [
     unit: "C-305",
     action: "visitor checked in at Gate 2",
     time: "18 mins ago",
-    icon: "👋",
+    icon: Hand,
   },
   {
     id: 4,
@@ -58,89 +63,72 @@ const RECENT_ACTIVITY: Activity[] = [
     unit: "",
     action: "added new user David Chen",
     time: "32 mins ago",
-    icon: "👥",
+    icon: User,
   },
 ];
 
 const StaffActivityDashboard: React.FC = () => {
   return (
-    <div className="text-white mb-8">
-
+    <div className="mb-8">
       <div className="grid lg:grid-cols-2 gap-6">
-
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-          <h2 className="text-lg font-bold">Staff Performance</h2>
-          <p className="text-gray-400 text-sm mb-6">
+        <div className="bg-[#FFFFFF0D] border border-[#FFFFFF0A] rounded-2xl p-6">
+          <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>Staff Performance</h2>
+          <p className={`mb-2 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
             Current duty status and efficiency
           </p>
 
           <div className="space-y-6">
             {STAFF_DATA.map((staff, index) => (
-              <div key={index} className="bg-white/5 rounded-xl p-4">
+              <div key={index} className="bg-[#FFFFFF0A] rounded-xl p-4">
 
                 <div className="flex justify-between mb-2">
                   <div>
-                    <p className="font-semibold">{staff.role}</p>
-                    <p className="text-xs text-gray-400">{staff.onDuty}</p>
+                    <p className={`${FONTSIZE[14]} ${FONTWEIGHT[700]}`}>{staff.role}</p>
+                    <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{staff.onDuty}</p>
                   </div>
-
                   <div className="text-right">
-                    <p className="font-bold text-lg">{staff.efficiency}%</p>
-                    <p className="text-xs text-gray-400">Efficiency</p>
+                    <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>{staff.efficiency}%</p>
+                    <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Efficiency</p>
                   </div>
                 </div>
-
                 <div className="w-full bg-white/10 h-2 rounded">
-                  <div
-                    className="h-2 rounded"
-                    style={{
-                      width: `${staff.efficiency}%`,
-                      background: staff.color,
-                    }}
-                  />
+                  <div className="h-2 rounded"
+                    style={{ width: `${staff.efficiency}%`, background: staff.color }} />
                 </div>
-
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-          <h2 className="text-lg font-bold">Recent Activity</h2>
-          <p className="text-gray-400 text-sm mb-6">
+        <div className="bg-[#FFFFFF0D] border border-[#FFFFFF0A] rounded-2xl p-6">
+          <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>Recent Activity</h2>
+          <p className={`mb-6 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
             Live system updates
           </p>
-
           <div className="space-y-4">
             {RECENT_ACTIVITY.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-start gap-4 bg-white/5 p-4 rounded-xl"
-              >
-                <div className="text-2xl">{item.icon}</div>
-
+              <div key={item.id}
+                className="flex items-start gap-4 bg-[#FFFFFF0D] p-4 rounded-xl">
+                <div><img src={item.icon} alt="" /></div>
                 <div className="flex-1">
-                  <p className="text-sm">
-                    <span className="text-cyan-400 font-semibold">
+                  <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{color: COLORS.secoundy_gray}}>
+                    <span className={`${FONTSIZE[14]} ${FONTWEIGHT[700]}`} style={{color: "#00D3F3"}}>
                       {item.name}
                     </span>{" "}
                     • {item.unit}
                   </p>
-
-                  <p className="text-gray-300 text-sm mt-1">
-                    {item.action}{" "}
-                    {item.amount && (
-                      <span className="text-green-400 font-semibold">
+                  <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{color: COLORS.secoundy_gray}}>
+                    {item.action}{" "} <br />
+                      <span className={`${FONTSIZE[14]} ${FONTWEIGHT[700]}`} style={{color: COLORS.green}}>
                         {item.amount}
                       </span>
-                    )}
                   </p>
-
-                  <p className="text-xs text-gray-500 mt-1">{item.time}</p>
+                  <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{color: COLORS.secoundy_gray}}>{item.time}</p>
                 </div>
 
                 {item.tag && (
-                  <span className="bg-red-600/30 text-red-400 text-xs px-3 py-1 rounded-full">
+                  <span className={`${FONTSIZE[12]} ${FONTWEIGHT[700]} px-3 py-1 rounded-full`}
+                  style={{color: "#FF6467", background: "#FB2C3633"}}>
                     {item.tag}
                   </span>
                 )}
@@ -148,7 +136,6 @@ const StaffActivityDashboard: React.FC = () => {
             ))}
           </div>
         </div>
-
       </div>
     </div>
   );
