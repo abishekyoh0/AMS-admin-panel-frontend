@@ -268,7 +268,7 @@ const UserManagement = () => {
                             
                             toast.success("CSV exported successfully!");
                         }}
-                        className="px-10 py-3 rounded-full cursor-pointer bg-[#FFFFFF1A] border border-[#FFFFFF33] hover:bg-gray-600 text-black text-sm"
+                        className="px-10 py-3 rounded-full cursor-pointer bg-[#FFFFFF1A] border border-[#FFFFFF33] hover:bg-gray-600 text-white text-sm"
                     >
                         Export to CSV
                     </button>

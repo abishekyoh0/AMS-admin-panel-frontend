@@ -51,24 +51,24 @@ const FilterSection: React.FC<Props> = ({
             Filter by Block
           </p>
 
-          <div className="flex gap-2 flex-wrap">
-            {(["All", "Block A", "Block B", "Block C"] as Block[]).map(
-              (b) => (
-                <button
-                  key={b}
-                  onClick={() => setBlock(b)}
-                  style={{ ...FONTWEIGHT[500] }}
-                  className={`${FONTSIZE[14]} px-8 py-2 rounded-xl transition cursor-pointer ${
-                    block === b
-                      ? "bg-[#00B8DB] text-white shadow-lg"
-                      : "bg-[#FFFFFF0D] text-[#99A1AF] hover:bg-[#FFFFFF1A]"
-                  }`}
-                >
-                  {b}
-                </button>
-              )
-            )}
-          </div>
+         <div className="w-52">
+  <select
+    value={block}
+    onChange={(e) => setBlock(e.target.value as Block)}
+    style={{ ...FONTWEIGHT[500] }}
+    className={`${FONTSIZE[14]} w-full px-4 py-2 rounded-xl 
+    bg-[#FFFFFF0D] border border-[#FFFFFF33] 
+    text-white outline-none cursor-pointer
+    focus:border-[#00B8DB]`}
+  >
+    {(["All", "Block A", "Block B", "Block C"] as Block[]).map((b) => (
+      <option key={b} value={b} className="bg-[#0f172a] text-white">
+        {b}
+      </option>
+    ))}
+  </select>
+</div>
+
         </div>
 
         <div className="w-full lg:w-[28%]">
