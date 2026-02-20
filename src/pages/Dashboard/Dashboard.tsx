@@ -1,12 +1,12 @@
 import DashboardCard from "../../components/Dashboard/DashboardCard";
-import DashboardGraph from "../../components/Dashboard/DashboardGraph";
-import DashboardGraph1 from "../../components/Dashboard/DashboardGraph1";
-import DashboardGraph2 from "../../components/Dashboard/DashboardGraph2";
 import Card from "../../components/Dashboard/Card";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import Add from "../../assets/Dashboard/add.png"
 import Download from "../../assets/Dashboard/download.png"
 import Green from "../../assets/Dashboard/green.png"
+import AnalyticsDashboard from "../../components/Dashboard/AnalyticsDashboard";
+import RevenueComplaintsDashboard from "../../components/Dashboard/RevenueComplaints";
+import StaffActivityDashboard from "../../components/Dashboard/StaffActivity";
 
 export default function Dashboard() {
   return (
@@ -41,9 +41,9 @@ export default function Dashboard() {
       </div>
 
       <DashboardCard />
-      <DashboardGraph />
-      <DashboardGraph1 />
-      <DashboardGraph2 />
+      <AnalyticsDashboard />
+      <RevenueComplaintsDashboard />
+      <StaffActivityDashboard />
       <Card />
     </div>
   )
