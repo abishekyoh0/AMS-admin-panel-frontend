@@ -28,7 +28,7 @@ const complaintsData: Complaint[] = [
     description: "Water is continuously dripping from the kitchen sink tap.",
     priority: "HIGH",
     status: "OPEN",
-    assignedTo: "Not Assigned",
+    assignedTo: "John",
     createdAt: "2026-02-17 09:30:00",
   },
   {
@@ -169,12 +169,12 @@ const ComplaintManagement: React.FC = () => {
       
 
       {/* Filter Tabs */}
-      <div className="flex gap-3 mb-4 overflow-x-auto">
+      <div className="flex gap-3 mb-4 overflow-x-auto cursor-pointer">
         {["ALL", "OPEN", "IN_PROGRESS", "RESOLVED", "CLOSED"].map((tab) => (
           <button
             key={tab}
             onClick={() => setFilter(tab as any)}
-            className={`px-4 py-1 whitespace-nowrap rounded-full text-sm ${
+            className={`px-4 py-1 whitespace-nowrap rounded-full text-sm cursor-pointer ${
               filter === tab
                 ? "bg-[#00B8DB] text-white"
                 : "bg-[#FFFFFF0D] hover:bg-white/20 text-[#99A1AF]"
@@ -313,7 +313,8 @@ const ComplaintManagement: React.FC = () => {
                       View
                     </button>
 
-                    <button className="px-3 py-1 bg-[#AD46FF33] text-[#C27AFF] text-xs rounded-lg">
+                    <button
+                     className="px-3 py-1 bg-[#AD46FF33] text-[#C27AFF] text-xs rounded-lg">
                       Assign
                     </button>
 

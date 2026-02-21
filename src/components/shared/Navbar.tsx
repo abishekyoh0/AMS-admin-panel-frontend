@@ -9,7 +9,6 @@ type NavbarProps = {
 
 export function Navbar({ setIsOpen }: NavbarProps) {
   const navigate = useNavigate();
-
   return (
     <div className="flex justify-between items-center w-full p-2 sm:p-3 md:p-4">
       <div className="flex items-center gap-2 sm:gap-3 md:gap-4">

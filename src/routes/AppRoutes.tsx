@@ -15,6 +15,7 @@ import EmergencyControl from "../pages/EmergencyControl/EmergencyControl";
 import Users from "../pages/Users/Users";
 import AccessManagement from "../pages/AccessManagement/AccessManagement";
 
+
 export default function AppRoutes() {
   return (
     <div>
@@ -39,6 +40,7 @@ export default function AppRoutes() {
           <Route path="/building" element={<BuildingsManagement />} />
           <Route path="/access-management" element={<AccessManagement />} />
           <Route path="/complaint-details" element={<ComplaintDetails />} />
+          <Route path="/users" element={<Users/>}/>
           <Route path="/user" element={<Users />} />
           <Route path="/visitors" element={<Visitors />} />
           <Route path="/invoices" element={<Invoices />} />

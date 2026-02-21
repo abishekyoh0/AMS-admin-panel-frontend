@@ -144,7 +144,7 @@ const RevenueComplaintsDashboard: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
             {SUMMARY_CARDS.map((card, index) => (
               <div key={index}
-                className="bg-[#FFFFFF0D] p-4 rounded-xl text-center">
+                className="bg-[#FFFFFF0D] p-4 rounded-xl text-center hover:scale-105 transition duration-300">
                 <p className={`mb-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{card.title}</p>
                 <p className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`} style={{ color: card.color }}>
                   {card.value}
@@ -169,7 +169,7 @@ const RevenueComplaintsDashboard: React.FC = () => {
               const percent = (item.resolved / item.total) * 100;
               return (
                 <div key={i}>
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2 ">
                     <span className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full"
                         style={{ background: item.color }}>
