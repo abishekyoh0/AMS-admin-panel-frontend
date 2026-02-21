@@ -154,46 +154,64 @@ const Invoices = () => {
         />
       </div>
 
-      <div className="flex flex-wrap items-center gap-4 mb-6">
+  <div className="flex flex-col lg:flex-row gap-4 mb-6 w-full">
 
-        <button
-          onClick={() => setShowCreate(true)}
-          style={{ ...FONTWEIGHT[700] }}
-          className={`px-12 py-3 bg-linear-to-r from-[#00C950] to-[#009966]
-          hover:bg-green-700 rounded-full flex items-center gap-3 cursor-pointer text-[#0A0A0A] ${$styles[16]}`}
-        >
-          <img src={invoice} alt="create" className="w-5 h-5 object-contain mb-1" />
-          Create Invoice
-        </button>
+  {/* Buttons Wrapper */}
+  <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
 
-        <button
-          onClick={() => {
-            toast.success("Report exported successfully!");
-          }}
-          style={{ ...FONTWEIGHT[700] }}
-          className={`px-12 py-3 cursor-pointer bg-white/10 border border-white/20 hover:bg-white/20 text-[#FFFFFF] rounded-full flex items-center gap-3 ${$styles[16]}`}
-        >
-          <img src={graph} alt="export" className="w-5 h-5 object-contain" />
-          Export Report
-        </button>
+    {/* Create Invoice */}
+    <button
+      onClick={() => setShowCreate(true)}
+      style={{ ...FONTWEIGHT[700] }}
+      className={`w-full sm:w-auto px-8 py-3
+      bg-gradient-to-r from-[#00C950] to-[#009966]
+      hover:bg-green-700 rounded-full
+      flex justify-center items-center gap-3
+      cursor-pointer text-[#0A0A0A] ${$styles[16]}`}
+    >
+      <img src={invoice} alt="create" className="w-5 h-5 object-contain" />
+      Create Invoice
+    </button>
 
-        <div className="relative flex-1 min-w-62.5 max-w-125">
+    {/* Export Report */}
+    <button
+      onClick={() => {
+        toast.success("Report exported successfully!");
+      }}
+      style={{ ...FONTWEIGHT[700] }}
+      className={`w-full sm:w-auto px-8 py-3
+      bg-white/10 border border-white/20
+      hover:bg-white/20 text-white rounded-full
+      flex justify-center items-center gap-3
+      cursor-pointer ${$styles[16]}`}
+    >
+      <img src={graph} alt="export" className="w-5 h-5 object-contain" />
+      Export Report
+    </button>
 
-          <Search
-            size={18}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-          />
+  </div>
 
-          <input
-            type="text"
-            placeholder="Search invoices..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            style={{ ...FONTWEIGHT[400] }}
-            className={`w-full pl-12 pr-5 py-3 rounded-full bg-white/10 border border-white/20 focus:outline-none focus:border-blue-500 text-white ${$styles[16]}`}
-          />
-        </div>
-      </div>
+  {/* Search */}
+  <div className="relative w-full lg:flex-1">
+    <Search
+      size={18}
+      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+    />
+
+    <input
+      type="text"
+      placeholder="Search invoices..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      style={{ ...FONTWEIGHT[400] }}
+      className={`w-full pl-12 pr-5 py-3 rounded-full
+      bg-white/10 border border-white/20
+      focus:outline-none focus:border-blue-500
+      text-white ${$styles[16]}`}
+    />
+  </div>
+
+</div>
 
       <div className="mb-4 overflow-x-auto">
   <div className="flex gap-3 min-w-max">
