@@ -14,6 +14,7 @@ import EntryReports from "../pages/EntryReports/EntryReports";
 import EmergencyControl from "../pages/EmergencyControl/EmergencyControl";
 import Users from "../pages/Users/Users";
 import AccessManagement from "../pages/AccessManagement/AccessManagement";
+import Notification from "../pages/Notifications/Notifications";
 
 
 export default function AppRoutes() {
@@ -46,6 +47,7 @@ export default function AppRoutes() {
           <Route path="/invoices" element={<Invoices />} />
           <Route path="/entry-reports" element={<EntryReports />} />
           <Route path="/emergency-control" element={<EmergencyControl />} />
+          <Route path="/notification" element={<Notification />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
