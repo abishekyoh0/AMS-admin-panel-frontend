@@ -1,8 +1,8 @@
 import React from "react";
-import Bell from "../../assets/notification/pop-up/bell.png";
-import User from "../../assets/notification/pop-up/user.png";
-import Parcel from "../../assets/notification/pop-up/parcel.png";
-import Car from "../../assets/notification/pop-up/car.png";
+import Bell from "../../assets/notification/bell1.png";
+import User from "../../assets/notification/user.png";
+import Parcel from "../../assets/notification/parcel.png";
+import Car from "../../assets/notification/car.png";
 import { useNavigate } from "react-router-dom";
 import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 
