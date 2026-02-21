@@ -14,10 +14,11 @@ import EntryReports from "../pages/EntryReports/EntryReports";
 import EmergencyControl from "../pages/EmergencyControl/EmergencyControl";
 import Users from "../pages/Users/Users";
 import AccessManagement from "../pages/AccessManagement/AccessManagement";
-import Notification from "../pages/Notifications/Notifications";
+import NotificationsPage from "../components/Notifications/Notification";
 
 
 export default function AppRoutes() {
+
   return (
     <div>
       <Routes>
@@ -41,13 +42,13 @@ export default function AppRoutes() {
           <Route path="/building" element={<BuildingsManagement />} />
           <Route path="/access-management" element={<AccessManagement />} />
           <Route path="/complaint-details" element={<ComplaintDetails />} />
-          <Route path="/users" element={<Users/>}/>
+          <Route path="/users" element={<Users />} />
           <Route path="/user" element={<Users />} />
           <Route path="/visitors" element={<Visitors />} />
           <Route path="/invoices" element={<Invoices />} />
           <Route path="/entry-reports" element={<EntryReports />} />
           <Route path="/emergency-control" element={<EmergencyControl />} />
-          <Route path="/notification" element={<Notification />} />
+          <Route path="/notification" element={<NotificationsPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

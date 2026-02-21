@@ -1,7 +1,7 @@
 import { COLORS, FONTSIZE } from "../../constent/uiconstent";
 import notification from "../../assets/navbar/notification.png";
 import website from "../../assets/navbar/website.png";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import NotificationPopup from "../../pages/Notifications/Notifications";
 import { useState } from "react";
 
@@ -10,7 +10,7 @@ type NavbarProps = {
 };
 
 export function Navbar({ setIsOpen }: NavbarProps) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [openNotif, setOpenNotif] = useState(false);
 
   return (

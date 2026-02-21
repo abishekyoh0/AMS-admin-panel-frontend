@@ -38,12 +38,10 @@ const notificationData = [
 
 const Notification: React.FC<Props> = ({ open, setOpen }) => {
     if (!open) return null;
-
   const navigate = useNavigate();
   return (
     <>
       <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-
       <div
         className="fixed right-4 top-18 z-50 max-w-[95vw] bg-black"
         style={{ color: COLORS.primary_white }}
