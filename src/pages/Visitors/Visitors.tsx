@@ -4,8 +4,10 @@ import { Search, X } from "lucide-react";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import user from "../../assets/Sidebar/user.png";
 import Checkbox from "../../assets/Sidebar/square.png";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
 
 type Visitor = {
   id: number;
@@ -121,16 +123,12 @@ const VisitorManagement: React.FC = () => {
 
   const handleExport = () => {
     toast.success("Report exported successfully", {
-      style: {
-        background: "#0f172a",
-        color: "#fff",
-        border: "1px solid #00B8DB",
-        padding: "12px 16px",
-      },
-      iconTheme: {
-        primary: "#00B8DB",
-        secondary: "#fff",
-      },
+      // style: {
+      //   background: "#0f172a",
+      //   color: "#fff",
+      //   border: "1px solid #00B8DB",
+      //   padding: "12px 16px",
+      // },
     });
   };
 
@@ -138,7 +136,6 @@ const VisitorManagement: React.FC = () => {
     <div
       style={{ color: COLORS.primary_white, background: COLORS.primary_black }}
     >
-      <Toaster position="top-right" />
       <h1 className={`${FONTSIZE[36]} ${FONTWEIGHT[700]}`}>
         Visitor Management
       </h1>
@@ -235,7 +232,7 @@ const VisitorManagement: React.FC = () => {
       </div>
 
       <div className="overflow-x-auto rounded-xl border border-[#FFFFFF33] bg-[#FFFFFF0D]">
-        <table className="w-full min-w-[900px] text-sm">
+        <table className="w-full min-w-225 text-sm">
           <thead className="bg-white/5 text-gray-400">
             <tr className={`uppercase ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
               <th className="text-left p-3">Visitor</th>
@@ -306,7 +303,7 @@ const VisitorManagement: React.FC = () => {
 
       {selected && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50">
-          <div className="relative bg-[#101828F2] w-[500px] rounded-2xl border border-[#FFFFFF33] p-6">
+          <div className="relative bg-[#101828F2] w-125 rounded-2xl border border-[#FFFFFF33] p-6">
             <h2
               className={`flex gap-2 items-center mb-4 ${FONTSIZE[30]} ${FONTWEIGHT[700]}`}
             >
