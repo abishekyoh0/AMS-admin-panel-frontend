@@ -205,7 +205,7 @@ const BOTTOM_CARDS: BottomGradientCard[] = [
 const AdminDashboard: React.FC = () => {
     return (
         <>
-            <div className=" gap-4 mb-8 grid sm:grid-cols-6">
+            <div className="gap-4 mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
                 {CARDS.map((card) => (
                     <div className="w-full p-4 rounded-2xl"
                         key={card.id}
@@ -254,7 +254,7 @@ const AdminDashboard: React.FC = () => {
                     ))}
                 </div>
             </div>
-            <div className="grid md:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
                 {BOTTOM_CARDS.map((card) => (
                     <div className="px-3 py-4 rounded-2xl"
                         key={card.id}
