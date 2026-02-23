@@ -5,7 +5,8 @@ import BackIcon from "../../assets/notification/back-arrow.png"
 import Bell from "../../assets/notification/bell1.png"
 import All from "../../assets/notification/alarm.png"
 import Unread from "../../assets/notification/alert.png"
-import Action from "../../assets/notification/shield-red.png"
+import Action from "../../assets/notification/shield.png"
+import ActionRed from "../../assets/notification/shield-red.png"
 import Security from "../../assets/notification/alert.png"
 import Complaints from "../../assets/notification/note.png"
 import Payment from "../../assets/notification/dollar.png"
@@ -188,7 +189,7 @@ const NotificationsPage: React.FC = () => {
               <img src={Alert} alt="" /> {unread} Unread
             </span>
             <span className={`flex items-center gap-2 bg-[#FB2C3633] text-[#FF6467] px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
-              <img src={Action} alt="" /> {action} Need Action
+              <img src={ActionRed} alt="" /> {action} Need Action
             </span>
           </div>
         </div>
@@ -209,9 +210,7 @@ const NotificationsPage: React.FC = () => {
       </div>
 
       <div className="bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-4 mb-6">
-
-        <div className="flex lg:flex-row gap-4">
-          <div className="flex items-center gap-2 bg-[#FFFFFF0D] border border-[#FFFFFF1A] rounded-xl px-3 py-2 w-full lg:w-72">
+          <div className="flex items-center gap-2 bg-[#FFFFFF0D] border border-[#FFFFFF1A] rounded-xl px-3 py-2 mb-4">
             <img src={Search} className="w-4 h-4 opacity-70" />
             <input
               placeholder="Search notifications..."
@@ -219,6 +218,8 @@ const NotificationsPage: React.FC = () => {
               onChange={(e) => setSearch(e.target.value)}
               className={`bg-transparent outline-none w-full ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} />
           </div>
+
+        <div className="flex lg:flex-row gap-4">
           <div className="flex gap-3 overflow-x-auto">
             {FILTERS.map((btn) => (
               <button

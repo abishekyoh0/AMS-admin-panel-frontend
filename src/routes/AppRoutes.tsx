@@ -17,6 +17,7 @@ import AccessManagement from "../pages/AccessManagement/AccessManagement";
 import NotificationsPage from "../components/Notifications/Notification";
 import NotificationDetails from "../components/Notifications/NotificationDetails";
 import AnnouncementManagement from "../components/Notifications/AnnouncementPage";
+import CreateAnnouncement from "../components/Notifications/CreateAnnouncement";
 
 
 export default function AppRoutes() {
@@ -53,6 +54,7 @@ export default function AppRoutes() {
           <Route path="/notification" element={<NotificationsPage />} />
           <Route path="/notification-details" element={<NotificationDetails />} />
           <Route path="/announcement-management" element={<AnnouncementManagement />} />
+          <Route path="/create-announcement" element={<CreateAnnouncement />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
