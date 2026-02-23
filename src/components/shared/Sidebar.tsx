@@ -13,6 +13,7 @@ import invoicesicon from "../../assets/Sidebar/invoice.png";
 import entryicon from "../../assets/Sidebar/entry.png";
 import emergencyicon from "../../assets/Sidebar/emergency.png";
 import logoicon from "../../assets/Sidebar/settings.png";
+import logoutIcon from "../../assets/Sidebar/logout.png"
 
 const menuItems = [
   { to: "/", label: "Dashboard", icon: dashboardicon, end: true },
@@ -99,7 +100,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
                 onClick={() => setShowLogoutModal(true)}
                 className="w-full flex items-center gap-3 px-4 py-2 rounded-lg bg-[linear-gradient(90deg,rgba(0,184,219,0.2)_0%,rgba(142,81,255,0.2)_100%)] text-white  transition cursor-pointer"
               >
-                {/* <img src={logoutIcon} alt="Logout" className="w-5 h-5" /> */}
+                <img src={logoutIcon} alt="Logout" className="w-5 h-5" />
                 <div className="flex justify-center  w-full">
                   <span
                     className={`${FONTSIZE[16]}`}
