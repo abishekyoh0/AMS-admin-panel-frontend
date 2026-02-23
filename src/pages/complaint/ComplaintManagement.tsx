@@ -124,7 +124,7 @@ const ComplaintManagement: React.FC = () => {
   }, [search, filter]);
 
   return (
-    <div className="min-h-screen max-w-7xl mx-auto px-3 sm:px-6 lg:px-10 py-4 sm:py-6 text-white">
+    <div className=" text-white">
 
       {/* Header */}
       <div className="mb-6">

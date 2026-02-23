@@ -1,5 +1,13 @@
 import React from "react";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
 import { COLORS, FONTWEIGHT, FONTSIZE } from "../../constent/uiconstent";
 import Purple from "../../assets/Dashboard/purple.png";
 import Red from "../../assets/Dashboard/red.png";
@@ -59,11 +67,14 @@ const COMPLAINTS: Complaint[] = [
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="p-3 rounded-2xl"
+      <div
+        className="p-3 rounded-2xl"
         style={{
-          background: "#0f172a", border: "1px solid #ffffff22",
-          boxShadow: "0 8px 20px rgba(0,0,0,0.5)"
-        }}>
+          background: "#0f172a",
+          border: "1px solid #ffffff22",
+          boxShadow: "0 8px 20px rgba(0,0,0,0.5)",
+        }}
+      >
         <p style={{ fontWeight: 600, marginBottom: 8 }}>{label}</p>
         {payload.map((item: any, index: number) => (
           <p key={index} style={{ color: item.color }}>
@@ -110,21 +121,27 @@ const totalComplaints = COMPLAINTS.reduce((a, b) => a + b.total, 0);
 const RevenueComplaintsDashboard: React.FC = () => {
   return (
     <div className="mb-8 ">
-
       <div className="grid lg:grid-cols-2 gap-6">
         <div className="bg-[#FFFFFF0D] border-[#FFFFFF33] rounded-2xl p-4 sm:p-5">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-5">
             <div>
-              <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`} >Revenue by Building</h2>
-              <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
+              <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
+                Revenue by Building
+              </h2>
+              <p
+                className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+                style={{ color: COLORS.secoundy_gray }}
+              >
                 Monthly income comparison
               </p>
             </div>
             <div className={`flex gap-2 ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
               <span className="flex gap-1 items-center px-3 py-1 bg-[#AD46FF33] border border-[#C27AFF4D] rounded-xl">
-                <img src={Purple} alt="" className={`w-2 h-2`} /> Revenue</span>
+                <img src={Purple} alt="" className={`w-2 h-2`} /> Revenue
+              </span>
               <span className="flex gap-1 items-center px-3 py-1 bg-[#2B7FFF33] border border-[#51A2FF4D] rounded-xl">
-                <img src={Red} alt="" className={`w-2 h-2`} /> Expenses</span>
+                <img src={Red} alt="" className={`w-2 h-2`} /> Expenses
+              </span>
             </div>
           </div>
 
@@ -136,22 +153,39 @@ const RevenueComplaintsDashboard: React.FC = () => {
                 <YAxis stroke="#aaa" />
                 <Tooltip content={<CustomTooltip />} />
                 <Bar dataKey="revenue" fill="#fbbf24" radius={[15, 15, 0, 0]} />
-                <Bar dataKey="expenses" fill="#10b981" radius={[15, 15, 0, 0]} />
+                <Bar
+                  dataKey="expenses"
+                  fill="#10b981"
+                  radius={[15, 15, 0, 0]}
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
             {SUMMARY_CARDS.map((card, index) => (
-              <div key={index}
-                className="bg-[#FFFFFF0D] p-4 rounded-xl text-center hover:scale-105 transition duration-300">
-                <p className={`mb-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{card.title}</p>
-                <p className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`} style={{ color: card.color }}>
+              <div
+                key={index}
+                className="bg-[#FFFFFF0D] p-4 rounded-xl text-center hover:scale-105 transition duration-300"
+              >
+                <p
+                  className={`mb-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                  style={{ color: COLORS.secoundy_gray }}
+                >
+                  {card.title}
+                </p>
+                <p
+                  className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}
+                  style={{ color: card.color }}
+                >
                   {card.value}
                 </p>
-                <div className={`flex justify-center items-center gap-2 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
-                  style={{ color: card.bottomColor }}>
-                  <img src={card.icon} alt="" />{card.bottom}
+                <div
+                  className={`flex justify-center items-center gap-2 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                  style={{ color: card.bottomColor }}
+                >
+                  <img src={card.icon} alt="" />
+                  {card.bottom}
                 </div>
               </div>
             ))}
@@ -159,8 +193,13 @@ const RevenueComplaintsDashboard: React.FC = () => {
         </div>
 
         <div className="bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-4 sm:p-5">
-          <h2 className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>Complaints Overview</h2>
-          <p className={`mb-6 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
+          <h2 className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
+            Complaints Overview
+          </h2>
+          <p
+            className={`mb-6 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+            style={{ color: COLORS.secoundy_gray }}
+          >
             By category and status
           </p>
 
@@ -171,22 +210,38 @@ const RevenueComplaintsDashboard: React.FC = () => {
                 <div key={i}>
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2 ">
                     <span className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full"
-                        style={{ background: item.color }}>
-                      </span>
+                      <span
+                        className="w-2 h-2 rounded-full"
+                        style={{ background: item.color }}
+                      ></span>
                       {item.category}
                     </span>
                     <span className={`flex gap-3`}>
-                      <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: "#05df72" }}>{item.resolved} resolved</p>
-                      <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: "#ff8904" }}>{item.pending} pending {" "}</p>
+                      <p
+                        className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                        style={{ color: "#05df72" }}
+                      >
+                        {item.resolved} resolved
+                      </p>
+                      <p
+                        className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                        style={{ color: "#ff8904" }}
+                      >
+                        {item.pending} pending{" "}
+                      </p>
                       {item.total}
                     </span>
                   </div>
                   <div className="w-full bg-white/10 h-2 rounded">
-                    <div className="h-2 rounded"
-                      style={{ width: `${percent}%`, background: item.color }} />
+                    <div
+                      className="h-2 rounded"
+                      style={{ width: `${percent}%`, background: item.color }}
+                    />
                   </div>
-                  <p className={`mt-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
+                  <p
+                    className={`mt-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                    style={{ color: COLORS.secoundy_gray }}
+                  >
                     Resolution Rate: {percent.toFixed(0)}%
                   </p>
                 </div>
@@ -196,12 +251,29 @@ const RevenueComplaintsDashboard: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-6 border-t-2 border-white/10 pt-4">
             <div className="flex flex-col justify-center items-center">
-              <p className={`mt-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Total Complaints</p>
-              <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>{totalComplaints}</p>
+              <p
+                className={`mt-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                style={{ color: COLORS.secoundy_gray }}
+              >
+                Total Complaints
+              </p>
+              <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
+                {totalComplaints}
+              </p>
             </div>
             <div className="flex flex-col justify-center items-center">
-              <p className={`mt-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Avg Resolution Time</p>
-              <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`} style={{ color: "#00D3F3" }}>2.3 days</p>
+              <p
+                className={`mt-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                style={{ color: COLORS.secoundy_gray }}
+              >
+                Avg Resolution Time
+              </p>
+              <p
+                className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}
+                style={{ color: "#00D3F3" }}
+              >
+                2.3 days
+              </p>
             </div>
           </div>
         </div>
