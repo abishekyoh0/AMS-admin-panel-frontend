@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AddUnitModal from "./addunitmodel";
+import plus from "../../assets/building/plus.png"
 
 type Unit = {
   unit: string;
@@ -40,9 +41,11 @@ export default function UnitsModal({ open, onClose }: Props) {
        
 <button
 onClick={() => setOpenAddUnit(true)}
-  className="w-32 h-12 flex items-center justify-center rounded-full cursor-pointer bg-linear-to-r from-[#00C950] to-[#009966] text-black font-semibold hover:opacity-90 transition"
+  className="w-32 h-12 flex items-center justify-center rounded-full cursor-pointer bg-linear-to-r from-[#00C950] to-[#009966] text-white font-semibold hover:opacity-90 transition"
 >
-   + Add Unit
+  <img src={plus} alt="building" className="w-4 h-4" />
+
+    Add Unit
 </button>
 
 
@@ -86,7 +89,7 @@ onClick={() => setOpenAddUnit(true)}
 
         <button
           onClick={onClose}
-          className="mt-6 w-full py-3 cursor-pointer rounded-full border border-[#FFFFFF33] bg-[#FFFFFF1A] hover:bg-[#FFFFFF1A] transition"
+          className="mt-6 w-full py-3 text-white  cursor-pointer rounded-full border border-[#FFFFFF33] bg-[#FFFFFF1A] hover:bg-[#FFFFFF1A] transition"
         >
           Close
         </button>

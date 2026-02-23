@@ -1,3 +1,4 @@
+import { X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 type Building = {
@@ -38,8 +39,26 @@ export default function EditBuildingModal({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-[#000000CC] z-50 p-4">
-      <div className="w-full max-w-2xl bg-[#101828F2] border border-[#FFFFFF33] rounded-2xl p-6 text-white shadow-xl">
-
+      <div className="relative w-full max-w-2xl bg-[#101828F2] border border-[#FFFFFF33] rounded-2xl p-6 text-white shadow-xl">         <button
+  type="button"
+  onClick={onClose}
+  className="
+    absolute top-4 right-4
+    sm:top-6 sm:right-6
+    w-8 h-8 sm:w-10 sm:h-10
+    flex items-center justify-center
+    rounded-full
+    hover:opacity-70
+   
+    text-white font-bold
+    cursor-pointer
+    transition
+    shadow-md
+  "
+  aria-label="Close"
+>
+  <X />
+</button>
         <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
           ✏️ Edit Building
         </h2>
@@ -82,14 +101,14 @@ export default function EditBuildingModal({
         <div className="flex gap-4 mt-8">
           <button
             onClick={onClose}
-            className="flex-1 py-3 border cursor-pointer border-[#FFFFFF33] rounded-full bg-[#FFFFFF1A]"
+            className="flex-1 py-3 text-white  border cursor-pointer border-[#FFFFFF33] rounded-full bg-[#FFFFFF1A]"
           >
             Cancel
           </button>
 
           <button
             onClick={handleSave}
-            className="flex-1 py-3 cursor-pointer rounded-full bg-linear-to-r from-[#2B7FFF] to-[#0092B8] font-semibold"
+            className="flex-1 py-3 text-white  cursor-pointer rounded-full bg-linear-to-r from-[#2B7FFF] to-[#0092B8] font-semibold"
           >
             Update Building
           </button>
