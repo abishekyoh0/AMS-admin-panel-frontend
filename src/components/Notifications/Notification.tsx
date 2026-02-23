@@ -16,6 +16,7 @@ import Search from "../../assets/notification/search.png"
 import Mark from "../../assets/notification/mark.png"
 import Total from "../../assets/notification/Vector.png"
 import Alert from "../../assets/notification/warning.png"
+import BellIcon from "../../assets/notification/bell-icon.png"
 
 type FilterBtn = {
   id: number;
@@ -191,13 +192,20 @@ const NotificationsPage: React.FC = () => {
             </span>
           </div>
         </div>
-
-        <button
-          onClick={markSelectedRead}
-          className={`flex items-center gap-2 bg-linear-to-r from-[#00C950] to-[#009966] px-5 py-2 rounded-2xl shadow-lg cursor-pointer ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}
-          style={{ boxShadow: "0px 4px 6px -4px #00C95040, 0px 10px 15px -3px #00C95040" }}>
-          <img src={Mark} alt="" /> Mark All Read
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => navigate("/announcement-management")}
+            className={`flex items-center gap-2 bg-linear-to-r from-[#AD46FF] to-[#E60076] px-5 py-2 rounded-2xl shadow-lg cursor-pointer ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}
+            style={{ boxShadow: "0px 4px 6px -4px #AD46FF40,0px 10px 15px -3px #AD46FF40"}}>
+            <img src={BellIcon} alt="" /> Manage Announcements
+          </button>
+          <button
+            onClick={markSelectedRead}
+            className={`flex items-center gap-2 bg-linear-to-r from-[#00C950] to-[#009966] px-5 py-2 rounded-2xl shadow-lg cursor-pointer ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}
+            style={{ boxShadow: "0px 4px 6px -4px #00C95040, 0px 10px 15px -3px #00C95040" }}>
+            <img src={Mark} alt="" /> Mark All Read
+          </button>
+        </div>
       </div>
 
       <div className="bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-4 mb-6">
@@ -291,8 +299,8 @@ const NotificationsPage: React.FC = () => {
                 <p className="text-xs text-gray-500 mt-2">{n.time}</p>
               </div>
               <div className="flex gap-3 text-gray-400 text-sm">
-                <button  onClick={() => navigate("/notification-details", { state: n })}
-                className="hover:text-green-400 cursor-pointer">
+                <button onClick={() => navigate("/notification-details", { state: n })}
+                  className="hover:text-green-400 cursor-pointer">
                   <img src={View} alt="" />
                 </button>
                 <button className="hover:text-red-400 cursor-pointer">
