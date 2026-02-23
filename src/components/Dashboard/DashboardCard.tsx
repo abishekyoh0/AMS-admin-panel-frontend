@@ -205,9 +205,9 @@ const BOTTOM_CARDS: BottomGradientCard[] = [
 const AdminDashboard: React.FC = () => {
     return (
         <>
-            <div className=" gap-4 mb-8 grid sm:grid-cols-6">
+            <div className="gap-4 mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
                 {CARDS.map((card) => (
-                    <div className="w-full p-4 rounded-2xl"
+                    <div className="w-full p-4 rounded-2xl hover:scale-105 transition duration-300"
                         key={card.id}
                         style={{ background: "#12162b", border: "1px solid #ffffff1a", boxShadow: "0px 4px 6px -4px #ffffff1a, 0px 10px 15px -3px #ffffff1a" }}>
                         <div className="flex justify-between items-center">
@@ -240,7 +240,7 @@ const AdminDashboard: React.FC = () => {
                 </h2>
                 <div className="grid md:grid-cols-3 gap-4">
                     {ALERTS.map((a, i) => (
-                        <div key={i} className="bg-[#FFFFFF0D] rounded-lg p-4 border border-[#FFFFFF33]">
+                        <div key={i} className="bg-[#FFFFFF0D] rounded-lg p-4 border border-[#FFFFFF33] hover:scale-105 transition duration-300">
                             <div className="flex justify-between items-center">
                                 <h3 className={`${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>{a.title}</h3>
                                 <span className={`${FONTSIZE[12]} ${FONTWEIGHT[400]} px-2 py-1 rounded-full ${a.priority === "critical"
@@ -254,9 +254,9 @@ const AdminDashboard: React.FC = () => {
                     ))}
                 </div>
             </div>
-            <div className="grid md:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
                 {BOTTOM_CARDS.map((card) => (
-                    <div className="px-3 py-4 rounded-2xl"
+                    <div className="px-3 py-4 rounded-2xl hover:scale-105 transition duration-300"
                         key={card.id}
                         style={{ background: card.gradient, border: `1px solid ${card.border}`, boxShadow: "0 10px 25px rgba(0,0,0,0.4)" }}>
                         <div className="flex justify-between items-center mb-4">

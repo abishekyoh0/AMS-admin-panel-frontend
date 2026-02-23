@@ -109,11 +109,11 @@ const totalComplaints = COMPLAINTS.reduce((a, b) => a + b.total, 0);
 
 const RevenueComplaintsDashboard: React.FC = () => {
   return (
-    <div className="mb-8">
+    <div className="mb-8 ">
 
       <div className="grid lg:grid-cols-2 gap-6">
-        <div className="bg-[#FFFFFF0D] border-[#FFFFFF33] rounded-2xl p-5">
-          <div className="flex justify-between items-center mb-5">
+        <div className="bg-[#FFFFFF0D] border-[#FFFFFF33] rounded-2xl p-4 sm:p-5">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-5">
             <div>
               <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`} >Revenue by Building</h2>
               <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
@@ -128,7 +128,7 @@ const RevenueComplaintsDashboard: React.FC = () => {
             </div>
           </div>
 
-          <div className="h-65">
+          <div className="h-56 sm:h-64 md:h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={BUILDING_DATA}>
                 <CartesianGrid stroke="#ffffff10" />
@@ -141,10 +141,10 @@ const RevenueComplaintsDashboard: React.FC = () => {
             </ResponsiveContainer>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
             {SUMMARY_CARDS.map((card, index) => (
               <div key={index}
-                className="bg-[#FFFFFF0D] p-4 rounded-xl text-center">
+                className="bg-[#FFFFFF0D] p-4 rounded-xl text-center hover:scale-105 transition duration-300">
                 <p className={`mb-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{card.title}</p>
                 <p className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`} style={{ color: card.color }}>
                   {card.value}
@@ -158,7 +158,7 @@ const RevenueComplaintsDashboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-5">
+        <div className="bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-4 sm:p-5">
           <h2 className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>Complaints Overview</h2>
           <p className={`mb-6 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
             By category and status
@@ -169,7 +169,7 @@ const RevenueComplaintsDashboard: React.FC = () => {
               const percent = (item.resolved / item.total) * 100;
               return (
                 <div key={i}>
-                  <div className="flex justify-between text-sm mb-2">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2 ">
                     <span className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full"
                         style={{ background: item.color }}>
@@ -194,7 +194,7 @@ const RevenueComplaintsDashboard: React.FC = () => {
             })}
           </div>
 
-          <div className="flex justify-around mt-3 border-t-2 border-white/10 pt-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-6 border-t-2 border-white/10 pt-4">
             <div className="flex flex-col justify-center items-center">
               <p className={`mt-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Total Complaints</p>
               <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>{totalComplaints}</p>

@@ -29,11 +29,11 @@ export default function Dashboard() {
         </div>
 
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 bg-linear-to-r from-[#00C950] to-[#009966] px-4 py-2 rounded-2xl"
+          <button className="flex items-center gap-2 bg-linear-to-r from-[#00C950] to-[#009966] px-4 py-2 rounded-2xl cursor-pointer"
             style={{ boxShadow: "0px 4px 6px -4px #00C95040, 0px 10px 15px -3px #00C95040" }}>
             <img src={Add} alt="" className={`w-5 h-5 ${FONTSIZE[16]} ${FONTWEIGHT[700]}`} /> Quick Add
           </button>
-          <button className="flex items-center gap-2 bg-linear-to-r from-[#AD46FF] to-[#E60076] px-4 py-2 rounded-2xl"
+          <button className="flex items-center gap-2 bg-linear-to-r from-[#AD46FF] to-[#E60076] px-4 py-2 rounded-2xl cursor-pointer"
             style={{ boxShadow: "0px 4px 6px -4px #AD46FF40, 0px 10px 15px -3px #AD46FF40" }}>
             <img src={Download} alt="" className={`w-5 h-5 ${FONTSIZE[16]} ${FONTWEIGHT[700]}`} /> Reports
           </button>

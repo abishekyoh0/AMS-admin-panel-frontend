@@ -134,14 +134,14 @@ const strokeDashoffset =
 const AnalyticsDashboard: React.FC = () => {
     return (
         <div className="mb-8">
-            <div className="grid lg:grid-cols-3 gap-6">
-                <div className="lg:col-span-2 bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-5">
-                    <div className="flex justify-between items-center mb-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-4 sm:p-5">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
                         <div>
                             <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>Occupancy & Revenue Trends</h2>
                             <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>6-month performance analysis</p>
                         </div>
-                        <div className={`flex gap-2 ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
+                        <div className={`flex flex-wrap gap-2 ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
                             <span className="flex gap-1 items-center px-3 py-1 bg-[#00C95033] border border-[#05DF724D] rounded-xl">
                                 <img src={Green} alt="" className={`w-2 h-2`} /> Occupancy</span>
                             <span className="flex gap-1 items-center px-3 py-1 bg-[#AD46FF33] border border-[#C27AFF4D] rounded-xl">
@@ -151,7 +151,7 @@ const AnalyticsDashboard: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="mt-5 h-105">
+                    <div className="mt-5 h-[280px] sm:h-[350px] md:h-[420px] lg:h-[420px] xl:h-[420px]">
                         <ResponsiveContainer width="100%" height="100%">
                             <ComposedChart data={TREND_DATA}>
                                 <defs>
@@ -179,11 +179,11 @@ const AnalyticsDashboard: React.FC = () => {
                         </ResponsiveContainer>
                     </div>
 
-                    <div className="grid md:grid-cols-4 gap-4 mt-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-6">
                         {BOTTOM_STATS.map((item, i) => (
                             <div key={i}
                                 style={{ background: item.gradient, border: `1px solid ${item.border}`, boxShadow: "0 10px 25px rgba(0,0,0,0.4)" }}
-                                className=" rounded-xl p-4">
+                                className=" rounded-xl p-4 hover:scale-105 transition duration-300">
                                 <p className={`mb-2 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{item.title}</p>
                                 <p className={`mb-2 ${FONTSIZE[30]} ${FONTWEIGHT[700]}`} style={{ color: item.color }}>
                                     {item.value}
@@ -196,7 +196,7 @@ const AnalyticsDashboard: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-5">
+                <div className="bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-4 sm:p-5">
                     <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>System Performance</h2>
                     <p className={`mb-4 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Overall health metrics</p>
 
