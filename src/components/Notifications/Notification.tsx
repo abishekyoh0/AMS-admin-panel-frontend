@@ -10,7 +10,7 @@ import Security from "../../assets/notification/alert.png"
 import Complaints from "../../assets/notification/note.png"
 import Payment from "../../assets/notification/dollar.png"
 import System from "../../assets/notification/settings.png"
-import View from "../../assets/notification/mark.png"
+import View from "../../assets/notification/eye.png"
 import Trash from "../../assets/notification/trash.png"
 import Search from "../../assets/notification/search.png"
 import Mark from "../../assets/notification/mark.png"
@@ -102,7 +102,7 @@ const NotificationsPage: React.FC = () => {
   const [data, setData] = useState(NOTIFICATIONS);
   const [selected, setSelected] = useState<number[]>([]);
 
-  const filtered = NOTIFICATIONS.filter((n) => {
+  const filtered = data.filter((n) => {
     const matchSearch = n.title.toLowerCase().includes(search.toLowerCase());
 
     if (activeFilter === "unread") return n.unread && matchSearch;
@@ -118,7 +118,6 @@ const NotificationsPage: React.FC = () => {
 
     return matchSearch;
   });
-
   const badgeColor = (priority?: string) => {
     switch (priority) {
       case "CRITICAL":
@@ -148,15 +147,15 @@ const NotificationsPage: React.FC = () => {
     setSelected([]);
   };
 
-  const unreadCount = data.filter((n) => n.unread).length;
+  // const unreadCount = data.filter((n) => n.unread).length;
 
-  const markAllRead = () => {
-    alert("All notifications marked as read (connect backend)");
-  };
+  // const markAllRead = () => {
+  //   alert("All notifications marked as read (connect backend)");
+  // };
 
-  const total = NOTIFICATIONS.length;
-  const unread = NOTIFICATIONS.filter((n) => n.unread).length;
-  const action = NOTIFICATIONS.filter((n) => n.action).length;
+  const total = data.length;
+  const unread = data.filter((n) => n.unread).length;
+  const action = data.filter((n) => n.action).length;
 
   const navigate = useNavigate();
   return (
@@ -194,7 +193,7 @@ const NotificationsPage: React.FC = () => {
         </div>
 
         <button
-          onClick={markAllRead}
+          onClick={markSelectedRead}
           className={`flex items-center gap-2 bg-linear-to-r from-[#00C950] to-[#009966] px-5 py-2 rounded-2xl shadow-lg cursor-pointer ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}
           style={{ boxShadow: "0px 4px 6px -4px #00C95040, 0px 10px 15px -3px #00C95040" }}>
           <img src={Mark} alt="" /> Mark All Read
@@ -232,7 +231,7 @@ const NotificationsPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-between items-center mb-4">
+      {/* <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Notifications ({unreadCount} unread)</h2>
 
         <button
@@ -242,10 +241,10 @@ const NotificationsPage: React.FC = () => {
         >
           Mark Selected Read
         </button>
-      </div>
+      </div> */}
 
       <div className="space-y-4">
-        {data.map((n) => (
+        {filtered.map((n) => (
           <div
             key={n.id}
             className={`p-4 rounded-xl border transition
@@ -292,7 +291,8 @@ const NotificationsPage: React.FC = () => {
                 <p className="text-xs text-gray-500 mt-2">{n.time}</p>
               </div>
               <div className="flex gap-3 text-gray-400 text-sm">
-                <button className="hover:text-green-400 cursor-pointer">
+                <button  onClick={() => navigate("/notification-details", { state: n })}
+                className="hover:text-green-400 cursor-pointer">
                   <img src={View} alt="" />
                 </button>
                 <button className="hover:text-red-400 cursor-pointer">
