@@ -1,14 +1,18 @@
 import { COLORS, FONTSIZE } from "../../constent/uiconstent";
 import notification from "../../assets/navbar/notification.png";
 import website from "../../assets/navbar/website.png";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import NotificationPopup from "../../pages/Notifications/Notifications";
+import { useState } from "react";
 
 type NavbarProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export function Navbar({ setIsOpen }: NavbarProps) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const [openNotif, setOpenNotif] = useState(false);
+
   return (
     <div className="flex justify-between items-center w-full p-2 sm:p-3 md:p-4">
       <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
@@ -31,16 +35,17 @@ export function Navbar({ setIsOpen }: NavbarProps) {
 
       <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-5">
         <div
-          className="relative cursor-pointer flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10"
-          onClick={() => navigate("/notification")}
+          className="relative cursor-pointer"
+          onClick={() => setOpenNotif((prev) => !prev)}
         >
-          <img
-            src={notification}
-            alt="notification"
-            className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-auto lg:h-auto object-contain"
-          />
-          <span className="absolute top-0 right-0 h-2 w-2 sm:h-2.5 sm:w-2.5 bg-red-500 rounded-full border border-white" />
+          <img src={notification} className="w-6 h-6" />
+          <span className="absolute -top-1 -right-1 h-2 w-2 bg-red-500 rounded-full" />
         </div>
+
+        {openNotif && (
+          <NotificationPopup open={openNotif} setOpen={setOpenNotif} onClose={() => setIsOpen(false)} />
+        )}
+
 
         <div
           className="flex items-center gap-1 sm:gap-1.5 md:gap-2 px-1.5 sm:px-1.5 md:px-2 lg:px-3 py-1 sm:py-1.5 md:py-2 rounded border cursor-pointer"
