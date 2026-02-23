@@ -15,6 +15,7 @@ import Users from "../pages/Users/Users";
 import AccessManagement from "../pages/AccessManagement/AccessManagement";
 import ResidentEntryReports from "../pages/EntryReports/EntryReports";
 
+
 export default function AppRoutes() {
   return (
     <div>
