@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import StatCard from "../../components/EmergencyContol/StatCard";
 import AlertTabs from "../../components/EmergencyContol/AlertTabs";
 import EmergencyTable from "../../components/EmergencyContol/EmergencyTable";
