@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 
 type Props = {
-    open: boolean;
-    setOpen: (v: boolean) => void;
-    onClose: () => void;
+  open: boolean;
+  setOpen: (v: boolean) => void;
+  onClose: () => void;
 };
 
 const notificationData = [
@@ -37,7 +37,7 @@ const notificationData = [
 ];
 
 const Notification: React.FC<Props> = ({ open, setOpen }) => {
-    if (!open) return null;
+  if (!open) return null;
   const navigate = useNavigate();
   return (
     <>
@@ -50,18 +50,26 @@ const Notification: React.FC<Props> = ({ open, setOpen }) => {
           <div className="flex justify-between items-center p-3 border-b border-white/10">
             <div className="flex gap-2 items-center">
               <img src={Bell} className="w-5 h-5" />
-              <h2 className={`${FONTSIZE[20]}`}
-              style={{fontWeight: WEIGHT.seven}}>Notifications</h2>
+              <h2
+                className={`${FONTSIZE[20]}`}
+                style={{ fontWeight: WEIGHT.seven }}
+              >
+                Notifications
+              </h2>
             </div>
 
-            <span className={`bg-pink-500 px-3 py-1 rounded-full ${FONTSIZE[12]}`}
-            style={{fontWeight: WEIGHT.seven}}>
+            <span
+              className={`bg-pink-500 px-3 py-1 rounded-full ${FONTSIZE[12]}`}
+              style={{ fontWeight: WEIGHT.seven }}
+            >
               3 New
             </span>
           </div>
 
-          <p className={`px-4 pt-1 pb-3 ${FONTSIZE[12]}`}
-          style={{fontWeight: WEIGHT.four, color: COLORS.secoundy_gray}}>
+          <p
+            className={`px-4 pt-1 pb-3 ${FONTSIZE[12]}`}
+            style={{ fontWeight: WEIGHT.four, color: COLORS.secoundy_gray }}
+          >
             Stay updated with your latest activities
           </p>
 
@@ -77,33 +85,56 @@ const Notification: React.FC<Props> = ({ open, setOpen }) => {
                   </span>
 
                   <div>
-                    <p className={`${FONTSIZE[14]}`} style={{fontWeight: WEIGHT.seven}}>{item.title}</p>
+                    <p
+                      className={`${FONTSIZE[14]}`}
+                      style={{ fontWeight: WEIGHT.seven }}
+                    >
+                      {item.title}
+                    </p>
 
-                    <p className={`${FONTSIZE[12]}`} style={{fontWeight: WEIGHT.four, color: COLORS.secoundy_gray}}>{item.desc}</p>
+                    <p
+                      className={`${FONTSIZE[12]}`}
+                      style={{
+                        fontWeight: WEIGHT.four,
+                        color: COLORS.secoundy_gray,
+                      }}
+                    >
+                      {item.desc}
+                    </p>
 
                     <p className={`flex gap-2 mt-1 ${FONTSIZE[12]}`}>
-                      <p style={{color: COLORS.secoundy_gray}}>{item.time}</p>
-                       • <p style={{color: COLORS.blue}}>{item.type}</p>
+                      <p style={{ color: COLORS.secoundy_gray }}>{item.time}</p>
+                      • <p style={{ color: COLORS.blue }}>{item.type}</p>
                     </p>
                   </div>
                 </div>
-                <span className="w-2 h-2 rounded-full mt-2" style={{background: COLORS.blue}}></span>
+                <span
+                  className="w-2 h-2 rounded-full mt-2"
+                  style={{ background: COLORS.blue }}
+                ></span>
               </div>
             ))}
           </div>
 
-                    <div className="p-4">
-                        <button onClick={() => { navigate("/notification"); setOpen(false); }}
-                            className={`w-full bg-linear-to-r from-[#00B8DB] to-[#8E51FF] py-3 rounded-xl font-medium cursor-pointer shadow-lg hover:opacity-90 transition ${FONTSIZE[16]}`}
-                            style={{ boxShadow:"0px 4px 6px -4px #00B8DB40, 0px 10px 15px -3px #00B8DB40" }}>
-                            View All Notifications →
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-        </>
-    );
+          <div className="p-4">
+            <button
+              onClick={() => {
+                navigate("/notification");
+                setOpen(false);
+              }}
+              className={`w-full bg-linear-to-r from-[#00B8DB] to-[#8E51FF] py-3 rounded-xl font-medium cursor-pointer shadow-lg hover:opacity-90 transition ${FONTSIZE[16]}`}
+              style={{
+                boxShadow:
+                  "0px 4px 6px -4px #00B8DB40, 0px 10px 15px -3px #00B8DB40",
+              }}
+            >
+              View All Notifications →
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Notification;

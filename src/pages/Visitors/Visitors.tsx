@@ -185,25 +185,28 @@ const VisitorManagement: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row mt-4 mb-8">
-        <div className="w-[25%]">
+      <div className="flex flex-col sm:flex-row sm:items-center mt-4 mb-8 gap-4">
+        <div className="w-full sm:w-auto">
           <button
+            type="button"
             onClick={handleExport}
-            className={`flex gap-2 bg-linear-to-r from-[#00B8DB] to-[#155DFC] px-6 py-2 rounded-full ${FONTSIZE[16]} ${FONTWEIGHT[700]} cursor-pointer`}
-            style={{ color: COLORS.primary_black }}
+            className={`w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-[#00B8DB] to-[#155DFC] px-6 py-2 rounded-full ${FONTSIZE[16]} ${FONTWEIGHT[700]} transition`}
+            style={{ color: COLORS.primary_white }}
           >
-            <img src={Export} alt="" className="w-5 h-5" />
+            <img src={Export} alt="Export" className="w-5 h-5" />
             Export Report
           </button>
         </div>
-        <div className="flex gap-2 items-center bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-full px-4 py-2 w-full">
-          <Search className="w-5 h-5" />
+
+        <div className="flex items-center gap-2 bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-full px-4 py-2 w-full sm:flex-1">
+          <Search className="w-5 h-5 shrink-0" />
           <input
             type="text"
             placeholder="Search visitors..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className={`flex-1 bg-transparent outline-none ${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
+            className={`flex-1 bg-transparent outline-none 
+        ${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
           />
         </div>
       </div>
@@ -320,7 +323,7 @@ const VisitorManagement: React.FC = () => {
                 <h3 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
                   {selected.name}
                 </h3>
-                
+
                 <p
                   className={`${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
                   style={{ color: COLORS.secoundy_gray }}
@@ -329,12 +332,11 @@ const VisitorManagement: React.FC = () => {
                 </p>
               </div>
               <div>
-
-              <div
-                className={`flex items-center px-3 py-2 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]} ${selected.status === "CHECKED IN" ? "bg-[#2B7FFF33] text-[#51A2FF]" : "bg-[#00C95033] text-[#05DF72]"}`}
-              >
-                {selected.status}
-              </div>
+                <div
+                  className={`flex items-center px-3 py-2 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]} ${selected.status === "CHECKED IN" ? "bg-[#2B7FFF33] text-[#51A2FF]" : "bg-[#00C95033] text-[#05DF72]"}`}
+                >
+                  {selected.status}
+                </div>
               </div>
             </div>
             <div

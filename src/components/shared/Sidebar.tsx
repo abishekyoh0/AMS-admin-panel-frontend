@@ -13,7 +13,7 @@ import invoicesicon from "../../assets/Sidebar/invoice.png";
 import entryicon from "../../assets/Sidebar/entry.png";
 import emergencyicon from "../../assets/Sidebar/emergency.png";
 import logoicon from "../../assets/Sidebar/settings.png";
-import logoutIcon from "../../assets/Sidebar/logout.png"
+import logoutIcon from "../../assets/Sidebar/logout.png";
 
 const menuItems = [
   { to: "/", label: "Dashboard", icon: dashboardicon, end: true },

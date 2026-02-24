@@ -65,29 +65,36 @@ const AdminCards: React.FC = () => {
 
   return (
     <div className="mb-8">
-
       <div className="grid md:grid-cols-3 gap-6">
-
         {ADMIN_CARDS.map((card) => (
           <div key={card.id} onClick={() => navigate(card.path)}
             className={`relative p-6 rounded-2xl border ${card.border}
             bg-linear-to-br ${card.gradient}
             hover:scale-105 transition cursor-pointer`}>
             <div className="flex justify-between items-start mb-6">
-                <img src={card.icon} alt="" className="w-10 h-10"/>
-                <img src={card.smallIcon} alt="" />
+              <img src={card.icon} alt="" className="w-10 h-10" />
+              <img src={card.smallIcon} alt="" />
             </div>
 
-            <h2 className={`mb-1 ${FONTSIZE[20]} ${FONTWEIGHT[700]}`}>{card.title}</h2>
+            <h2 className={`mb-1 ${FONTSIZE[20]} ${FONTWEIGHT[700]}`}>
+              {card.title}
+            </h2>
 
-            <p className={`mb-6 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{color: COLORS.secoundy_gray}}>{card.desc}</p>
+            <p
+              className={`mb-6 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+              style={{ color: COLORS.secoundy_gray }}
+            >
+              {card.desc}
+            </p>
 
-            <button className={`${FONTSIZE[14]} ${FONTWEIGHT[700]}`} style={{color: card.actionClr}}>
+            <button
+              className={`${FONTSIZE[14]} ${FONTWEIGHT[700]}`}
+              style={{ color: card.actionClr }}
+            >
               {card.action}
             </button>
           </div>
         ))}
-
       </div>
     </div>
   );

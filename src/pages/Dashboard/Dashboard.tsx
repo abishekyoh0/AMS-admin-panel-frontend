@@ -2,9 +2,9 @@ import { useState } from "react";
 import DashboardCard from "../../components/Dashboard/DashboardCard";
 import Card from "../../components/Dashboard/Card";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
-import Add from "../../assets/Dashboard/add.png"
-import Download from "../../assets/Dashboard/download.png"
-import Green from "../../assets/Dashboard/green.png"
+import Add from "../../assets/Dashboard/add.png";
+import Download from "../../assets/Dashboard/download.png";
+import Green from "../../assets/Dashboard/green.png";
 import AnalyticsDashboard from "../../components/Dashboard/AnalyticsDashboard";
 import RevenueComplaintsDashboard from "../../components/Dashboard/RevenueComplaints";
 import StaffActivityDashboard from "../../components/Dashboard/StaffActivity";
@@ -16,11 +16,19 @@ export default function Dashboard() {
   const [showReports, setShowReports] = useState(false);
 
   return (
-    <div className="mb-8" style={{ color: COLORS.primary_white, background: COLORS.primary_black }}>
+    <div
+      className=" "
+      style={{ color: COLORS.primary_white, background: COLORS.primary_black }}
+    >
       <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
         <div>
-          <h1 className={`${FONTSIZE[36]} ${FONTWEIGHT[700]}`}>Admin Control Center</h1>
-          <p className={`mb-4 ${FONTSIZE[16]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
+          <h1 className={`${FONTSIZE[36]} ${FONTWEIGHT[700]}`}>
+            Admin Control Center
+          </h1>
+          <p
+            className={`mb-4 ${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
+            style={{ color: COLORS.secoundy_gray }}
+          >
             Complete system overview and management dashboard
           </p>
           <div style={{ marginBottom: 20 }}>
@@ -62,5 +70,5 @@ export default function Dashboard() {
         <DownloadReportsModal onClose={() => setShowReports(false)} />
       )}
     </div>
-  )
+  );
 }
