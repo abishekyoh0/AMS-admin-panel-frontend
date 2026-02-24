@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
-import BackIcon from "../../assets/notification/back-arrow.png"
-import Bell from "../../assets/notification/bell1.png"
-import All from "../../assets/notification/alarm.png"
-import Unread from "../../assets/notification/alert.png"
-import Action from "../../assets/notification/shield.png"
-import ActionRed from "../../assets/notification/shield-red.png"
-import Security from "../../assets/notification/alert.png"
-import Complaints from "../../assets/notification/note.png"
-import Payment from "../../assets/notification/dollar.png"
-import System from "../../assets/notification/settings.png"
-import View from "../../assets/notification/eye.png"
-import Trash from "../../assets/notification/trash.png"
-import Search from "../../assets/notification/search.png"
-import Mark from "../../assets/notification/mark.png"
-import Total from "../../assets/notification/Vector.png"
-import Alert from "../../assets/notification/warning.png"
-import BellIcon from "../../assets/notification/bell-icon.png"
+import BackIcon from "../../assets/notification/back-arrow.png";
+import Bell from "../../assets/notification/bell1.png";
+// import All from "../../assets/notification/alarm.png";
+import Unread from "../../assets/notification/alert.png";
+import Action from "../../assets/notification/shield.png";
+import ActionRed from "../../assets/notification/shield-red.png";
+import Security from "../../assets/notification/alert.png";
+import Complaints from "../../assets/notification/note.png";
+import Payment from "../../assets/notification/dollar.png";
+import System from "../../assets/notification/settings.png";
+import View from "../../assets/notification/eye.png";
+import Trash from "../../assets/notification/trash.png";
+import Search from "../../assets/notification/search.png";
+import Mark from "../../assets/notification/mark.png";
+import Total from "../../assets/notification/Vector.png";
+import Alert from "../../assets/notification/warning.png";
+import BellIcon from "../../assets/notification/bell-icon.png";
 
 type FilterBtn = {
   id: number;
@@ -38,7 +38,7 @@ type Notification = {
 };
 
 const FILTERS: FilterBtn[] = [
-  { id: 1, label: "All", key: "all", icon: All },
+  { id: 1, label: "All", key: "all", icon: BellIcon },
   { id: 2, label: "Unread", key: "unread", icon: Unread },
   { id: 3, label: "Action Required", key: "action", icon: Action },
   { id: 4, label: "Security", key: "security", icon: Security },
@@ -196,7 +196,9 @@ const NotificationsPage: React.FC = () => {
             >
               <img src={Alert} alt="" /> {unread} Unread
             </span>
-            <span className={`flex items-center gap-2 bg-[#FB2C3633] text-[#FF6467] px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
+            <span
+              className={`flex items-center gap-2 bg-[#FB2C3633] text-[#FF6467] px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
+            >
               <img src={ActionRed} alt="" /> {action} Need Action
             </span>
           </div>
@@ -226,38 +228,33 @@ const NotificationsPage: React.FC = () => {
       </div>
 
       <div className="bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-4 mb-6">
-          <div className="flex items-center gap-2 bg-[#FFFFFF0D] border border-[#FFFFFF1A] rounded-xl px-3 py-2 mb-4">
-            <img src={Search} className="w-4 h-4 opacity-70" />
-            <input
-              placeholder="Search notifications..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className={`bg-transparent outline-none w-full ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-            />
-          </div>
+        <div className="flex items-center gap-2 bg-[#FFFFFF0D] border border-[#FFFFFF1A] rounded-xl px-3 py-2 mb-4">
+          <img src={Search} className="w-4 h-4 opacity-70" />
+          <input
+            placeholder="Search notifications..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className={`bg-transparent outline-none w-full ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+          />
+        </div>
 
         <div className="flex lg:flex-row gap-4">
-          <div className="flex gap-3 overflow-x-auto">
+          <div className="flex flex-nowrap gap-3 overflow-x-auto">
             {FILTERS.map((btn) => (
               <button
+                type="button"
                 key={btn.id}
                 onClick={() => setActiveFilter(btn.key)}
-                className={`flex w-full justify-center items-center gap-2 px-4 rounded-xl transition ${FONTSIZE[16]} ${FONTWEIGHT[700]}
-                  ${
-                    activeFilter === btn.key
-                      ? "bg-linear-to-r from-[#2B7FFF] to-[#00B8DB]"
-                      : "bg-white/5 border border-[#FFFFFF0D]"
-                  }`}
-                style={
-                  activeFilter === btn.key
-                    ? {
-                        boxShadow:
-                          "0px 4px 6px -4px #2B7FFF40, 0px 10px 15px -3px #2B7FFF40",
-                      }
-                    : {}
-                }
+                className={`flex shrink-0 whitespace-nowrap px-4 py-2 
+          justify-center items-center gap-2 rounded-xl transition
+          ${FONTSIZE[16]} ${FONTWEIGHT[700]}
+          ${
+            activeFilter === btn.key
+              ? "bg-gradient-to-r from-[#2B7FFF] to-[#00B8DB]"
+              : "bg-white/5 border border-[#FFFFFF0D]"
+          }`}
               >
-                <img src={btn.icon} className="w-4 h-4" />
+                <img src={btn.icon} alt={btn.label} className="w-4 h-4" />
                 {btn.label}
               </button>
             ))}

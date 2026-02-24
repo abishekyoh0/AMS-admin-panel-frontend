@@ -4,8 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import BackIcon from "../../assets/notification/back-arrow.png";
-import Search from "../../assets/notification/search.png"
-import Bell from "../../assets/notification/bell1.png"
+import Search from "../../assets/notification/search.png";
+import Bell from "../../assets/notification/bell1.png";
 import { X } from "lucide-react";
 
 type StatCard = {
@@ -83,12 +83,42 @@ const ANNOUNCEMENTS: Announcement[] = [
 ];
 
 const STATS: StatCard[] = [
-  { id: 1, title: "Total Announcements", value: 5, color: "#60a5fa", bg: "bg-blue-500/10" },
-  { id: 2, title: "Published", value: 3, color: "#22c55e", bg: "bg-green-500/10" },
-  { id: 3, title: "Scheduled", value: 1, color: "#f59e0b", bg: "bg-yellow-500/10" },
+  {
+    id: 1,
+    title: "Total Announcements",
+    value: 5,
+    color: "#60a5fa",
+    bg: "bg-blue-500/10",
+  },
+  {
+    id: 2,
+    title: "Published",
+    value: 3,
+    color: "#22c55e",
+    bg: "bg-green-500/10",
+  },
+  {
+    id: 3,
+    title: "Scheduled",
+    value: 1,
+    color: "#f59e0b",
+    bg: "bg-yellow-500/10",
+  },
   { id: 4, title: "Expired", value: 1, color: "#ef4444", bg: "bg-red-500/10" },
-  { id: 5, title: "Total Sent", value: 1200, color: "#a855f7", bg: "bg-purple-500/10" },
-  { id: 6, title: "Total Read", value: 842, color: "#06b6d4", bg: "bg-cyan-500/10" },
+  {
+    id: 5,
+    title: "Total Sent",
+    value: 1200,
+    color: "#a855f7",
+    bg: "bg-purple-500/10",
+  },
+  {
+    id: 6,
+    title: "Total Read",
+    value: 842,
+    color: "#06b6d4",
+    bg: "bg-cyan-500/10",
+  },
 ];
 
 const STATUS_FILTERS: Filter[] = [
@@ -113,14 +143,11 @@ const AnnouncementModal = ({
   onClose: () => void;
 }) => {
   const percent =
-    item.totalSent === 0
-      ? 0
-      : Math.round((item.read / item.totalSent) * 100);
+    item.totalSent === 0 ? 0 : Math.round((item.read / item.totalSent) * 100);
 
   return (
     <div className="fixed inset-0 bg-black/70 z-50 flex justify-center items-center p-4">
       <div className="w-full max-w-3xl bg-linear-to-br from-[#111633] to-[#0b0f25] border border-white/10 rounded-2xl p-6 text-white relative">
-
         <button
           onClick={onClose}
           className="absolute right-5 top-5 text-gray-400 hover:text-white text-xl"
@@ -196,7 +223,9 @@ const AnnouncementModal = ({
               <p className="text-gray-400 text-xs">Read ({percent}%)</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-yellow-400">{item.unread}</p>
+              <p className="text-2xl font-bold text-yellow-400">
+                {item.unread}
+              </p>
               <p className="text-gray-400 text-xs">Unread</p>
             </div>
           </div>
@@ -252,7 +281,6 @@ const AnnouncementManagement: React.FC = () => {
 
   return (
     <div style={{ color: COLORS.primary_white }} className="p-4 sm:p-6">
-
       <ToastContainer position="top-right" autoClose={2000} />
 
       <button
@@ -266,7 +294,9 @@ const AnnouncementManagement: React.FC = () => {
 
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-6">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold">📢 Announcement Management</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">
+            📢 Announcement Management
+          </h1>
           <p className="text-gray-400 text-sm mt-1">
             Create and manage resident announcements
           </p>
@@ -282,9 +312,15 @@ const AnnouncementManagement: React.FC = () => {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
         {STATS.map((card) => (
-          <div key={card.id} className={`rounded-xl p-4 border border-white/10 ${card.bg}`}>
+          <div
+            key={card.id}
+            className={`rounded-xl p-4 border border-white/10 ${card.bg}`}
+          >
             <p className="text-xs text-gray-400">{card.title}</p>
-            <h2 className="text-2xl font-bold mt-1" style={{ color: card.color }}>
+            <h2
+              className="text-2xl font-bold mt-1"
+              style={{ color: card.color }}
+            >
               {card.value}
             </h2>
           </div>
@@ -292,17 +328,17 @@ const AnnouncementManagement: React.FC = () => {
       </div>
 
       <div className="bg-white/5 border border-white/10 rounded-2xl p-4 mb-6">
-          <div className="flex items-center gap-2 bg-[#FFFFFF0D] border border-[#FFFFFF1A] rounded-xl px-3 py-2 mb-4">
-            <img src={Search} className="w-4 h-4 opacity-70" />
-            <input
-              placeholder="Search notifications..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className={`bg-transparent outline-none w-full ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} />
-          </div>
+        <div className="flex items-center gap-2 bg-[#FFFFFF0D] border border-[#FFFFFF1A] rounded-xl px-3 py-2 mb-4">
+          <img src={Search} className="w-4 h-4 opacity-70" />
+          <input
+            placeholder="Search notifications..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className={`bg-transparent outline-none w-full ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+          />
+        </div>
 
         <div className="flex justify-between flex-col lg:flex-row gap-4 mt-4">
-
           <div className="flex gap-3 overflow-x-auto">
             {STATUS_FILTERS.map((btn) => (
               <button
@@ -340,7 +376,9 @@ const AnnouncementManagement: React.FC = () => {
       <div className="space-y-6">
         {filtered.map((item) => {
           const readPercent =
-            item.totalSent === 0 ? 0 : Math.round((item.read / item.totalSent) * 100);
+            item.totalSent === 0
+              ? 0
+              : Math.round((item.read / item.totalSent) * 100);
 
           return (
             <div
@@ -350,9 +388,15 @@ const AnnouncementManagement: React.FC = () => {
               <h2 className="font-semibold text-lg">{item.title}</h2>
 
               <div className="flex flex-wrap gap-2 mt-2 text-xs">
-                <span className="bg-red-500/20 text-red-400 px-2 py-1 rounded">{item.tag}</span>
-                <span className="bg-orange-500/20 text-orange-400 px-2 py-1 rounded">{item.priority}</span>
-                <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded">{item.status}</span>
+                <span className="bg-red-500/20 text-red-400 px-2 py-1 rounded">
+                  {item.tag}
+                </span>
+                <span className="bg-orange-500/20 text-orange-400 px-2 py-1 rounded">
+                  {item.priority}
+                </span>
+                <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded">
+                  {item.status}
+                </span>
               </div>
 
               <p className="text-gray-400 mt-3 text-sm">{item.desc}</p>
@@ -364,7 +408,9 @@ const AnnouncementManagement: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-gray-400 text-xs">Read</p>
-                  <p className="text-green-400 font-bold">{item.read} ({readPercent}%)</p>
+                  <p className="text-green-400 font-bold">
+                    {item.read} ({readPercent}%)
+                  </p>
                 </div>
                 <div>
                   <p className="text-gray-400 text-xs">Unread</p>
@@ -373,22 +419,38 @@ const AnnouncementManagement: React.FC = () => {
               </div>
 
               <div className="flex flex-wrap gap-3 mt-4">
-                <button onClick={() => viewDetails(item)} className="bg-blue-600 px-4 py-2 rounded-lg text-sm">View</button>
-                <button onClick={() => pinAnnouncement(item.id)} className="bg-yellow-500 px-4 py-2 rounded-lg text-sm">Pin</button>
-                <button onClick={() => resendAnnouncement(item.id)} className="bg-purple-600 px-4 py-2 rounded-lg text-sm">Resend</button>
-                <button onClick={() => deleteAnnouncement(item.id)} className="bg-red-600 px-4 py-2 rounded-lg text-sm">Delete</button>
+                <button
+                  onClick={() => viewDetails(item)}
+                  className="bg-blue-600 px-4 py-2 rounded-lg text-sm"
+                >
+                  View
+                </button>
+                <button
+                  onClick={() => pinAnnouncement(item.id)}
+                  className="bg-yellow-500 px-4 py-2 rounded-lg text-sm"
+                >
+                  Pin
+                </button>
+                <button
+                  onClick={() => resendAnnouncement(item.id)}
+                  className="bg-purple-600 px-4 py-2 rounded-lg text-sm"
+                >
+                  Resend
+                </button>
+                <button
+                  onClick={() => deleteAnnouncement(item.id)}
+                  className="bg-red-600 px-4 py-2 rounded-lg text-sm"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           );
         })}
       </div>
       {selected && (
-        <AnnouncementModal
-          item={selected}
-          onClose={() => setSelected(null)}
-        />
+        <AnnouncementModal item={selected} onClose={() => setSelected(null)} />
       )}
-      
     </div>
   );
 };
