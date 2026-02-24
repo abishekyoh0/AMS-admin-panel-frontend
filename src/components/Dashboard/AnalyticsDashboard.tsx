@@ -206,7 +206,7 @@ const AnalyticsDashboard: React.FC = () => {
                                 <circle stroke="#ffffff20" fill="transparent" strokeWidth={stroke} r={normalizedRadius} cx="120" cy="120" />
                                 <circle stroke="url(#gradient)" fill="transparent" strokeWidth={stroke}
                                     strokeLinecap="round" strokeDasharray={`${circumference} ${circumference}`}
-                                    style={{ strokeDashoffset, transition: "stroke-dashoffset 1s ease" }}
+                                    // style={{ strokeDashoffset, transition: "stroke-dashoffset 1s ease" }}
                                     r={normalizedRadius} cx="120" cy="120" />
                                 <defs>
                                     <linearGradient id="gradient">

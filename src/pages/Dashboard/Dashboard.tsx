@@ -1,3 +1,4 @@
+import { useState } from "react";
 import DashboardCard from "../../components/Dashboard/DashboardCard";
 import Card from "../../components/Dashboard/Card";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
@@ -7,8 +8,10 @@ import Green from "../../assets/Dashboard/green.png"
 import AnalyticsDashboard from "../../components/Dashboard/AnalyticsDashboard";
 import RevenueComplaintsDashboard from "../../components/Dashboard/RevenueComplaints";
 import StaffActivityDashboard from "../../components/Dashboard/StaffActivity";
+import QuickAddModal from "../../components/Dashboard/QuickAddModal";
 
 export default function Dashboard() {
+  const [showQuickAdd, setShowQuickAdd] = useState(false);
   return (
     <div className="mb-8" style={{ color: COLORS.primary_white, background: COLORS.primary_black }}>
       <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
@@ -29,7 +32,8 @@ export default function Dashboard() {
         </div>
 
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 bg-linear-to-r from-[#00C950] to-[#009966] px-4 py-2 rounded-2xl cursor-pointer"
+          <button onClick={() => setShowQuickAdd(true)}
+          className="flex items-center gap-2 bg-linear-to-r from-[#00C950] to-[#009966] px-4 py-2 rounded-2xl cursor-pointer"
             style={{ boxShadow: "0px 4px 6px -4px #00C95040, 0px 10px 15px -3px #00C95040" }}>
             <img src={Add} alt="" className={`w-5 h-5 ${FONTSIZE[16]} ${FONTWEIGHT[700]}`} /> Quick Add
           </button>
@@ -45,6 +49,10 @@ export default function Dashboard() {
       <RevenueComplaintsDashboard />
       <StaffActivityDashboard />
       <Card />
+      
+      {showQuickAdd && (
+        <QuickAddModal onClose={() => setShowQuickAdd(false)} />
+      )}
     </div>
   )
 }
