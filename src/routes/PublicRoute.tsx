@@ -9,9 +9,7 @@ interface PublicRouteProps {
 export const PublicRoute = ({ children }: PublicRouteProps) => {
   const { user, loading } = useAuth();
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+if (loading) return null;
 
   if (user) {
     return <Navigate to="/" replace />;

@@ -10,11 +10,14 @@ import BuildingsManagement from "../pages/Buildings/BuildingsManagement";
 import ComplaintDetails from "../components/complaint/ComplaintDetails";
 import Visitors from "../pages/Visitors/Visitors";
 import Invoices from "../pages/Invoices/Invoices";
-import EntryReports from "../pages/EntryReports/entryreports";
 import EmergencyControl from "../pages/EmergencyControl/EmergencyControl";
 import Users from "../pages/Users/Users";
 import AccessManagement from "../pages/AccessManagement/AccessManagement";
-
+import ResidentEntryReports from "../pages/EntryReports/EntryReports";
+import NotificationsPage from "../components/Notifications/Notification";
+import NotificationDetails from "../components/Notifications/NotificationDetails";
+import AnnouncementManagement from "../components/Notifications/AnnouncementPage";
+import CreateAnnouncement from "../components/Notifications/CreateAnnouncement";
 
 export default function AppRoutes() {
   return (
@@ -40,12 +43,22 @@ export default function AppRoutes() {
           <Route path="/building" element={<BuildingsManagement />} />
           <Route path="/access-management" element={<AccessManagement />} />
           <Route path="/complaint-details" element={<ComplaintDetails />} />
-          <Route path="/users" element={<Users/>}/>
+          <Route path="/users" element={<Users />} />
           <Route path="/user" element={<Users />} />
           <Route path="/visitors" element={<Visitors />} />
           <Route path="/invoices" element={<Invoices />} />
-          <Route path="/entry-reports" element={<EntryReports />} />
+          <Route path="/entry-reports" element={<ResidentEntryReports />} />
           <Route path="/emergency-control" element={<EmergencyControl />} />
+          <Route path="/notification" element={<NotificationsPage />} />
+          <Route
+            path="/notification-details"
+            element={<NotificationDetails />}
+          />
+          <Route
+            path="/announcement-management"
+            element={<AnnouncementManagement />}
+          />
+          <Route path="/create-announcement" element={<CreateAnnouncement />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

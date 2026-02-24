@@ -198,7 +198,7 @@ const UserManagement = () => {
   };
 
   return (
-    <div className="min-h-screen  text-white">
+    <div className="  text-white">
       <div className="mb-6">
         <h1
           style={{ ...FONTWEIGHT[700] }}
@@ -522,7 +522,7 @@ const colorStyles = {
 
 const StatCard = ({ title, count, color }: StatCardProps) => (
     <div
-        className={`p-4 rounded-2xl shadow-lg hover:scale-105 transition duration-300 ${colorStyles[color]}`}
+        className={`p-4 rounded-2xl shadow-lg transition duration-300 ${colorStyles[color]}`}
     >
         <p className="text-sm opacity-80">{title}</p>
         <h2 className="text-2xl font-bold mt-1">{count}</h2>
