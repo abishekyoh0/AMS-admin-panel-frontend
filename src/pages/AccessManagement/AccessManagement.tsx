@@ -22,9 +22,6 @@ import {
   FONTWEIGHT,
 } from "../../constent/uiconstent";
 
-/* =====================================================
-   MOVE-IN TYPES
-===================================================== */
 
 export type StatusType =
   | "Pending"
@@ -42,9 +39,7 @@ export interface FormData {
   submitted: string;
 }
 
-/* =====================================================
-   MOVE-IN DATA
-===================================================== */
+
 
 export const formList: FormData[] = [
   {
@@ -85,9 +80,7 @@ export const formList: FormData[] = [
   },
 ];
 
-/* =====================================================
-   MOVE-OUT DATA
-===================================================== */
+
 
 const moveOutData: MoveOutData[] = [
   {
@@ -122,9 +115,7 @@ const moveOutData: MoveOutData[] = [
   },
 ];
 
-/* =====================================================
-   ACCESS DATA
-===================================================== */
+
 
 const accessData: AccessRequestData[] = [
   {
@@ -156,16 +147,13 @@ const accessData: AccessRequestData[] = [
   },
 ];
 
-/* =====================================================
-   COMPONENT
-===================================================== */
+
 
 const AccessManagement: React.FC = () => {
   const [activeType, setActiveType] = useState<
     "moveIn" | "moveOut" | "access"
   >("moveIn");
 
-  /* ================= MOVE-IN ================= */
 
   const [activeTab, setActiveTab] =
     useState<"All" | StatusType>("All");
@@ -181,7 +169,6 @@ const AccessManagement: React.FC = () => {
       ? formList
       : formList.filter((f) => f.status === activeTab);
 
-  /* ================= MOVE-OUT ================= */
 
   const [moveOutStatus, setMoveOutStatus] =
     useState<"All" | "Pending" | "Inspected" | "Completed">("All");
@@ -199,7 +186,6 @@ const AccessManagement: React.FC = () => {
           (item) => item.status === moveOutStatus
         );
 
-  /* ================= ACCESS ================= */
 
   const [accessStatus, setAccessStatus] =
     useState<"All" | "Pending" | "Approved" | "Active">("All");
@@ -217,7 +203,6 @@ const AccessManagement: React.FC = () => {
           (item) => item.status === accessStatus
         );
 
-  /* ================= HANDLERS ================= */
 
   const handleMoveInView = (form: FormData) => {
     setSelectedForm(form);
@@ -234,7 +219,6 @@ const AccessManagement: React.FC = () => {
     setIsAccessModalOpen(true);
   };
 
-  /* ================= UI ================= */
 
   return (
     <div
@@ -247,7 +231,6 @@ const AccessManagement: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto space-y-6">
 
-        {/* HEADER */}
         <div>
           <h1
             className={FONTSIZE[28]}
@@ -270,7 +253,6 @@ const AccessManagement: React.FC = () => {
           </p>
         </div>
 
-        {/* STATS */}
         <StatsSection
           totalCount={
             formList.length +
@@ -282,13 +264,11 @@ const AccessManagement: React.FC = () => {
           accessCount={accessData.length}
         />
 
-        {/* TYPE SWITCH */}
         <ActionBar
           activeType={activeType}
           setActiveType={setActiveType}
         />
 
-        {/* FILTER TABS */}
         {activeType === "moveIn" && (
           <FilterTabs
             activeTab={activeTab}
@@ -344,7 +324,6 @@ const AccessManagement: React.FC = () => {
         </div>
       </div>
 
-      {/* MODALS */}
       <MoveInDetailsModal
         isOpen={isMoveInModalOpen}
         onClose={() => setIsMoveInModalOpen(false)}

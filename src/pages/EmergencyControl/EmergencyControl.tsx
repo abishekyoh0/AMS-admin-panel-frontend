@@ -57,7 +57,7 @@ const data: Emergency[] = [
     id: 2,
     type: " Medical Emergencyy",
     alertId: "MED003",
-    priority: "Low",
+    priority: "High",
     location: "Flat B-204",
     raisedBy: "Security-3",
     time: "09:10 AM",
@@ -72,7 +72,6 @@ const EmergencyControlCenter = () => {
   const [emergencies, setEmergencies] = useState<Emergency[]>(data);
   const [selected, setSelected] = useState<Emergency | null>(null);
   const [activeTab, setActiveTab] = useState("All");
-  // const [selected, setSelected] = useState<Emergency | null>(null);
   const filtered =
     activeTab === "All"
       ? emergencies
@@ -99,7 +98,6 @@ const EmergencyControlCenter = () => {
     <div className=" text-white ">
       <div className="mb-8">
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Icon */}
           <div
             className="w-8 h-8 sm:w-10 sm:h-10 
                flex items-center justify-center 
@@ -113,7 +111,6 @@ const EmergencyControlCenter = () => {
             />
           </div>
 
-          {/* Title */}
           <h3
             className={`${FONTSIZE[24]} tracking-tight`}
             style={{ fontWeight: 700 }} // 👈 font-weight here
@@ -122,13 +119,11 @@ const EmergencyControlCenter = () => {
           </h3>
         </div>
 
-        {/* Subtitle */}
         <p className="text-sm text-gray-400 mt-2">
           Monitor and manage all emergency alerts across the community
         </p>
       </div>
 
-      {/* ✅ Stat Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <StatCard
           title="Active Emergencies"
@@ -163,7 +158,6 @@ const EmergencyControlCenter = () => {
         />
       </div>
 
-      {/* ✅ Tabs */}
       <AlertTabs
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -172,20 +166,17 @@ const EmergencyControlCenter = () => {
         resolved={data.filter((d) => d.status === "Resolved").length}
       />
 
-      {/* ✅ Table */}
       <EmergencyTable
         data={filtered}
         onView={setSelected}
         setEmergencies={setEmergencies}
       />
 
-      {/* ✅ Bottom Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
         <AlertDistribution data={distributionData} />
         <RecentActivity data={data} />
       </div>
 
-      {/* ✅ Modal */}
       {selected && (
         <EmergencyModal
           emergency={selected}

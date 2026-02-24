@@ -172,7 +172,7 @@ const EmergencyModal: React.FC<Props> = ({
   onClick={handleResolve}
   className="flex-1 py-2 rounded-xl font-medium
              bg-gradient-to-r from-green-500 to-emerald-600
-             hover:opacity-90 transition"
+             hover:opacity-90 transition cursor-pointer"
 >
   ✅ Mark as Resolved
 </button>
@@ -180,7 +180,7 @@ const EmergencyModal: React.FC<Props> = ({
           <button
             className="flex-1 py-2 rounded-xl font-medium
                        bg-gradient-to-r from-blue-500 to-cyan-500
-                       hover:opacity-90 transition"
+                       hover:opacity-90 transition cursor-pointer"
           >
             📄 Download Report
           </button>

@@ -20,7 +20,7 @@ const StatCard: React.FC<Props> = ({ title, value, gradient, icon }) => {
       {/* Value */}
       <h3
         className="mt-2 text-lg sm:text-2xl md:text-3xl"
-        style={{ fontWeight: 700 }}   // Bold
+        style={{ fontWeight: 700 }}   
       >
         {value}
       </h3>
@@ -28,7 +28,7 @@ const StatCard: React.FC<Props> = ({ title, value, gradient, icon }) => {
       {/* Title */}
       <p
         className="text-xs sm:text-sm md:text-base text-gray-300"
-        style={{ fontWeight: 500 }}   // Medium
+        style={{ fontWeight: 500 }}   
       >
         {title}
       </p>

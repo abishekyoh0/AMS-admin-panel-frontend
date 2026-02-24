@@ -148,13 +148,12 @@ const Invoices = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-4 mb-6 w-full">
-        {/* Buttons Wrapper */}
         <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-          {/* Create Invoice */}
           <button
             onClick={() => setShowCreate(true)}
             style={{ ...FONTWEIGHT[700] }}
-            className={`w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-[#00C950] to-[#009966] hover:bg-green-700 rounded-full flex justify-center items-center gap-3 cursor-pointer text-[#0A0A0A] ${$styles[16]}`}
+            className={`w-full sm:w-auto px-5 py-1 bg-gradient-to-r from-[#00C950] to-[#009966]
+               hover:bg-green-700 rounded-full flex justify-center items-center gap-3 cursor-pointer text-[#FFFFFF] ${$styles[16]}`}
           >
             <img
               src={invoice}
@@ -164,7 +163,6 @@ const Invoices = () => {
             Create Invoice
           </button>
 
-          {/* Export Report */}
           <button
             onClick={() => {
               toast.success("Report exported successfully!");
@@ -177,7 +175,6 @@ const Invoices = () => {
           </button>
         </div>
 
-        {/* Search */}
         <div className="relative w-full lg:flex-1">
           <Search
             size={18}
@@ -202,7 +199,7 @@ const Invoices = () => {
               key={tab}
               onClick={() => setActiveTab(tab as any)}
               style={{ ...FONTWEIGHT[400] }}
-              className={`px-6 py-2 whitespace-nowrap rounded-full border transition cursor-pointer ${$styles[14]} ${
+              className={`px-6 py-2 whitespace-nowrap rounded-full border transition cursor-pointer ${$styles[12]} ${
                 activeTab === tab
                   ? "bg-[#00B8DB] border-blue-600 text-white"
                   : "bg-[#FFFFFF0D] border-white/20 text-[#99A1AF] hover:bg-white/20"

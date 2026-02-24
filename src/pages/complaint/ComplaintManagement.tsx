@@ -109,7 +109,7 @@ const ComplaintManagement: React.FC = () => {
   const [filter, setFilter] = useState<Status | "ALL">("ALL");
   const [selectedComplaint, setSelectedComplaint] =
     useState<Complaint | null>(null);
-
+const [showAssignModal, setShowAssignModal] = useState(false);
   const filteredData = useMemo(() => {
     return complaintsData.filter((item) => {
       const matchesSearch =
@@ -126,7 +126,6 @@ const ComplaintManagement: React.FC = () => {
   return (
     <div className=" text-white">
 
-      {/* Header */}
       <div className="mb-6">
         <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold">
           Complaint Management
@@ -135,7 +134,6 @@ const ComplaintManagement: React.FC = () => {
           Monitor and manage all resident compla ints
         </p>
       </div>
-       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <StatCard title="Open" value={statusCounts.OPEN} color="yellow" />
         <StatCard
@@ -155,7 +153,6 @@ const ComplaintManagement: React.FC = () => {
         />
       </div>
 
-      {/* Search */}
       <div className="mb-4">
         <input
           type="text"
@@ -168,7 +165,6 @@ const ComplaintManagement: React.FC = () => {
 
       
 
-      {/* Filter Tabs */}
       <div className="flex gap-3 mb-4 overflow-x-auto cursor-pointer">
         {["ALL", "OPEN", "IN_PROGRESS", "RESOLVED", "CLOSED"].map((tab) => (
           <button
@@ -185,7 +181,6 @@ const ComplaintManagement: React.FC = () => {
         ))}
       </div>
 
-      {/* MOBILE CARD VIEW */}
       <div className="sm:hidden space-y-4">
         {filteredData.map((item) => (
           <div
@@ -217,7 +212,6 @@ const ComplaintManagement: React.FC = () => {
               {item.priority}
             </span>
 
-            {/* Actions */}
             <div className="flex flex-wrap gap-2 mt-3">
               <button
                 onClick={() => setSelectedComplaint(item)}
@@ -244,7 +238,6 @@ const ComplaintManagement: React.FC = () => {
         ))}
       </div>
 
-      {/* TABLE VIEW */}
       <div className="hidden sm:block overflow-x-auto bg-white/5 backdrop-blur-md rounded-2xl border border-white/10">
         <table className="min-w-full text-sm">
           <thead className="border-b border-white/10 text-gray-300">
@@ -308,23 +301,28 @@ const ComplaintManagement: React.FC = () => {
                   <div className="flex flex-wrap gap-2">
                     <button
                       onClick={() => setSelectedComplaint(item)}
-                      className="px-3 py-1 bg-[#2B7FFF33] text-[#51A2FF] text-xs rounded-lg"
+                      className="px-3 py-1 bg-[#2B7FFF33] text-[#51A2FF] text-xs rounded-lg cursor-pointer"
                     >
                       View
                     </button>
 
-                    <button
-                     className="px-3 py-1 bg-[#AD46FF33] text-[#C27AFF] text-xs rounded-lg">
-                      Assign
-                    </button>
+                   <button
+  onClick={() => {
+    setSelectedComplaint(item);
+    setShowAssignModal(true);
+  }}
+  className="px-3 py-1 bg-[#AD46FF33] text-[#C27AFF] text-xs rounded-lg cursor-pointer"
+>
+  Assign
+</button>
 
                     {item.status !== "RESOLVED" && (
-                      <button className="px-3 py-1 bg-[#00C95033] text-[#05DF72] text-xs rounded-lg">
+                      <button className="px-3 py-1 bg-[#00C95033] text-[#05DF72] text-xs rounded-lg cursor-pointer">
                         Resolve
                       </button>
                     )}
 
-                    <button className="px-3 py-1 bg-[#FB2C3633] text-[#FF6467] text-xs rounded-lg">
+                    <button className="px-3 py-1 bg-[#FB2C3633] text-[#FF6467] text-xs rounded-lg cursor-pointer">
                       Delete
                     </button>
                   </div>
@@ -335,20 +333,24 @@ const ComplaintManagement: React.FC = () => {
         </table>
       </div>
 
-      {/* Modal */}
-      {selectedComplaint && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999] p-4">
-          <div className="bg-gray-900 w-full max-w-lg sm:max-w-xl lg:max-w-2xl rounded-xl p-4 sm:p-6 relative">
-            <ComplaintDetails
-              complaint={selectedComplaint}
-              onClose={() => setSelectedComplaint(null)}
-            />
-          </div>
-        </div>
-      )}
+     {selectedComplaint && (
+  <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999] p-4">
+    <div className="bg-gray-900 w-full max-w-lg sm:max-w-xl lg:max-w-2xl rounded-xl p-4 sm:p-6 relative">
+      <ComplaintDetails
+        complaint={selectedComplaint}
+        onClose={() => {
+          setSelectedComplaint(null);
+          setShowAssignModal(false);
+        }}
+        openAssignModal={showAssignModal}   // 👈 pass this
+      />
+    </div>
+  </div>
+)}
     </div>
   );
 };
+
 const StatCard = ({
   title,
   value,
