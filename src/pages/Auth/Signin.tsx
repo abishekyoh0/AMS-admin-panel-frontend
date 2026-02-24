@@ -8,7 +8,8 @@ import lock from "../../assets/signin/lock.png";
 import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 import { useAuth } from "../../components/Auth/AuthContext";
 import top from "../../assets/signin/topimg.png";
-import orange from "../../assets/signin/orange.png"
+import orange from "../../assets/signin/orange.png";
+import { toast } from "react-toastify";
 
 export const SignIn = () => {
   const [username, setUsername] = useState("");
@@ -25,6 +26,7 @@ export const SignIn = () => {
     e.preventDefault();
     setError("");
     setStep("otp");
+    toast.success("OTP sent successfully!");
   };
 
   const handleOtpChange = (index: number, value: string) => {
@@ -35,6 +37,18 @@ export const SignIn = () => {
     if (value && index < 5) {
       otpRefs.current[index + 1]?.focus();
     }
+  };
+
+  const handleOtpPaste = (e: React.ClipboardEvent<HTMLInputElement>, index: number) => {
+    e.preventDefault();
+    const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6);
+    if (!pasted) return;
+    const newOtp = [...otp];
+    for (let i = 0; i < pasted.length; i++) {
+      if (index + i < 6) newOtp[index + i] = pasted[i];
+    }
+    setOtp(newOtp);
+    otpRefs.current[Math.min(index + pasted.length, 5)]?.focus();
   };
 
   const handleOtpKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -53,6 +67,8 @@ export const SignIn = () => {
       return;
     }
 
+    toast.success("OTP verified successfully!");
+
     try {
       const mockResponse = {
         user: { id: 1, email: username, name: "Security User" },
@@ -61,39 +77,40 @@ export const SignIn = () => {
       login(mockResponse.user, mockResponse.token);
     } catch (err) {
       setError("Invalid OTP");
+      toast.error("Invalid OTP. Please try again.");
     }
   };
 
   const handleResendOtp = () => {
     setOtp(["", "", "", "", "", ""]);
     otpRefs.current[0]?.focus();
+    toast.info("OTP has been resent to your email.");
   };
 
   return (
     <div className="min-h-screen bg-[linear-gradient(#0F1A1E,#0F2A2E,#141E1E)] flex items-center justify-center px-4">
+
       <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
+
         <div className="flex-1 flex flex-col justify-between py-3 lg:py-3 px-4 lg:px-4 md:order-1">
           <div>
-            <div className="flex items-center gap-3 lg:mb-6">
+            <div className="flex items-center gap-3 mb-4 md:mb-3 lg:mb-6">
               <div className="hidden lg:block absolute inset-0 pointer-events-none">
                 <div className="absolute top-10 border border-white w-125 h-125 bg-[#00BBA733] rounded-full blur-[100px]" />
               </div>
-             <div className="relative inline-block">
-
-  <div className="w-15 h-15 lg:w-12 lg:h-12 bg-linear-to-br from-[#00B8DB] to-[#00BBA7] rounded-2xl flex items-center justify-center">
-    <img src={admin} alt="admin" className="w-8 h-8 lg:w-auto lg:h-auto" />
-  </div>
-
-  <img
-    src={orange}   
-    alt="tick"
-    className="absolute -top-2 -right-2 w-5 h-5 lg:w-6 lg:h-6"
-  />
-
-</div>
+              <div className="relative inline-block">
+                <div className="w-15 h-15 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-linear-to-br from-[#00B8DB] to-[#00BBA7] rounded-2xl flex items-center justify-center">
+                  <img src={admin} alt="admin" className="w-8 h-8 md:w-6 md:h-6 lg:w-auto lg:h-auto" />
+                </div>
+                <img
+                  src={orange}
+                  alt="tick"
+                  className="absolute -top-2 -right-2 w-5 h-5 lg:w-6 lg:h-6"
+                />
+              </div>
               <div>
                 <h1
-                  className={`text-white text-lg lg:text-4xl font-semibold ${FONTSIZE[35]}`}
+                  className={`text-white text-lg md:text-xl lg:text-4xl font-semibold ${FONTSIZE[35]}`}
                   style={{ color: COLORS.primary_white, fontWeight: WEIGHT.seven }}
                 >
                   Skyline Rentals
@@ -108,17 +125,17 @@ export const SignIn = () => {
             </div>
 
             <div className="hidden md:block">
-              <div className="mb-8 lg:mb-2">
+              <div className="mb-4 md:mb-3 lg:mb-2">
                 <div className={`${FONTSIZE[40]}`} style={{ fontWeight: WEIGHT.seven }}>
-                  <h2 className="text-white text-3xl lg:text-4xl font-bold mb-2">
+                  <h2 className="text-white text-xl md:text-2xl lg:text-4xl font-bold mb-2">
                     Complete Control
                   </h2>
-                  <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 bg-linear-to-r from-[#00D3F3] to-[#00D5BE] bg-clip-text text-transparent">
+                  <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-3 lg:mb-6 bg-linear-to-r from-[#00D3F3] to-[#00D5BE] bg-clip-text text-transparent">
                     Of Your Platform
                   </h2>
                 </div>
                 <p
-                  className={`text-base lg:text-lg max-w-md ${FONTSIZE[16]}`}
+                  className={`text-sm md:text-xs lg:text-lg max-w-md ${FONTSIZE[16]}`}
                   style={{ color: COLORS.secoundy_gray, fontWeight: WEIGHT.four }}
                 >
                   Master dashboard with comprehensive control over buildings, users, complaints,
@@ -126,7 +143,7 @@ export const SignIn = () => {
                 </p>
               </div>
 
-              <div className="space-y-3 mb-8 lg:mb-8">
+              <div className="space-y-3 md:space-y-1.5 lg:space-y-3 mb-4 md:mb-3 lg:mb-8">
                 {[
                   "Complete system administration",
                   "User & role management",
@@ -136,9 +153,9 @@ export const SignIn = () => {
                   "System-wide notifications",
                 ].map((feature, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <img src={tick} alt="" className="w-4 h-4 lg:w-auto lg:h-auto" />
+                    <img src={tick} alt="" className="w-4 h-4 lg:w-auto lg:h-auto shrink-0" />
                     <span
-                      className={`text-gray-300 text-sm lg:text-base ${FONTSIZE[16]}`}
+                      className={`text-gray-300 text-xs md:text-xs lg:text-base ${FONTSIZE[16]}`}
                       style={{ color: COLORS.smalltext, fontWeight: WEIGHT.four }}
                     >
                       {feature}
@@ -149,22 +166,21 @@ export const SignIn = () => {
             </div>
           </div>
 
-          <div className="mt-1 hidden md:block border-t-[1.85px] border-t-[#FFFFFF1A] rounded-2xl p-4 bg-[#FFFFFF0D] backdrop-blur-sm max-w-md mx-auto lg:mx-0">
+          <div className="mt-1 hidden md:block border-t-[1.85px] border-t-[#FFFFFF1A] rounded-2xl p-3 md:p-3 lg:p-4 bg-[#FFFFFF0D] backdrop-blur-sm w-full lg:max-w-md lg:mx-0">
             <div className="flex items-center gap-3">
-              <img src={shield} alt="" className="w-8 h-8 lg:w-auto lg:h-auto" />
+              <img src={shield} alt="" className="w-6 h-6 md:w-6 md:h-6 lg:w-auto lg:h-auto" />
               <div>
                 <div className="flex items-center gap-2">
-  <img src={top} alt="admin" className="w-5 h-5" />
-
-  <h3
-    className={`text-white font-semibold text-sm lg:text-base ${FONTSIZE[16]}`}
-    style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
-  >
-    Administrator Access
-  </h3>
-</div>
+                  <img src={top} alt="admin" className="w-4 h-4 md:w-4 md:h-4 lg:w-5 lg:h-5" />
+                  <h3
+                    className={`text-white font-semibold text-xs md:text-xs lg:text-base ${FONTSIZE[16]}`}
+                    style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
+                  >
+                    Administrator Access
+                  </h3>
+                </div>
                 <p
-                  className={`text-gray-400 text-xs lg:text-sm ${FONTSIZE[14]}`}
+                  className={`text-gray-400 text-xs ${FONTSIZE[14]}`}
                   style={{ fontWeight: WEIGHT.four, color: COLORS.secoundy_gray }}
                 >
                   Protected with two-factor authentication
@@ -173,12 +189,12 @@ export const SignIn = () => {
             </div>
           </div>
 
-          <div className="hidden mt-2 md:block border-t-[1.85px] border-t-[#FDC7004D] rounded-2xl p-4 bg-[#F0B1001A] backdrop-blur-sm max-w-md mx-auto lg:mx-0">
+          <div className="hidden mt-2 md:block border-t-[1.85px] border-t-[#FDC7004D] rounded-2xl p-4 md:p-2.5 lg:p-4 bg-[#F0B1001A] backdrop-blur-sm max-w-md mx-auto lg:mx-0">
             <div className="flex items-center gap-3">
-              <img src={top} alt="" className="w-8 h-8 lg:w-auto lg:h-auto" />
+              <img src={top} alt="" className="w-6 h-6 md:w-6 md:h-6 lg:w-auto lg:h-auto" />
               <div>
                 <h3
-                  className={`text-white font-semibold text-sm lg:text-base ${FONTSIZE[16]}`}
+                  className={`text-white font-semibold text-xs md:text-xs lg:text-base ${FONTSIZE[16]}`}
                   style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
                 >
                   Enhanced Security
@@ -194,13 +210,13 @@ export const SignIn = () => {
           </div>
         </div>
 
-        <div className="flex-1 flex items-center justify-center p-4 lg:p-8 md:order-2">
-          <div className="w-full max-w-md bg-[#FFFFFF0D] rounded-xl border-t-[1.85px] border-t-[#FFFFFF1A]">
-            <div className="rounded-3xl p-6 lg:p-8 border border-[#00000040] shadow-2xl">
+        <div className="flex-1 flex items-center justify-center p-4 md:p-3 lg:p-8 md:order-2">
+          <div className="w-full max-w-md md:max-w-sm lg:max-w-md bg-[#FFFFFF0D] rounded-xl border-t-[1.85px] border-t-[#FFFFFF1A]">
+            <div className="rounded-3xl p-5 md:p-5 lg:p-8 border border-[#00000040] shadow-2xl">
 
               {step === "login" ? (
                 <>
-                  <div className="mb-6 lg:mb-6">
+                  <div className="mb-5 lg:mb-6">
                     <h3
                       className={`text-white text-xl lg:text-2xl font-semibold mb-2 ${FONTSIZE[30]}`}
                       style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
@@ -221,7 +237,7 @@ export const SignIn = () => {
                     </div>
                   )}
 
-                  <form onSubmit={handleLoginSubmit} className="space-y-6">
+                  <form onSubmit={handleLoginSubmit} className="space-y-4 md:space-y-4 lg:space-y-6">
                     <div>
                       <label
                         className={`text-gray-300 text-sm font-medium mb-2 block ${FONTSIZE[14]}`}
@@ -317,7 +333,7 @@ export const SignIn = () => {
                 </>
               ) : (
                 <>
-                  <div className="mb-6">
+                  <div className="mb-4 md:mb-3 lg:mb-6">
                     <h3
                       className={`text-white text-xl lg:text-2xl font-semibold mb-1 ${FONTSIZE[30]}`}
                       style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
@@ -325,13 +341,13 @@ export const SignIn = () => {
                       Sign In
                     </h3>
                     <p
-                      className={`text-gray-400 text-xs lg:text-sm mb-6 ${FONTSIZE[16]}`}
+                      className={`text-gray-400 text-xs lg:text-sm mb-4 lg:mb-6 ${FONTSIZE[16]}`}
                       style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
                     >
                       Access your resident dashboard
                     </p>
 
-                    <div className=" rounded-2xl p-5 text-center">
+                    <div className="rounded-2xl p-3 md:p-3 lg:p-5 text-center">
                       <h4
                         className={`text-white font-semibold text-base mb-1 ${FONTSIZE[22]}`}
                         style={{ fontWeight: WEIGHT.six, color: COLORS.primary_white }}
@@ -353,7 +369,7 @@ export const SignIn = () => {
                     </div>
                   )}
 
-                  <form onSubmit={handleOtpSubmit} className="space-y-6">
+                  <form onSubmit={handleOtpSubmit} className="space-y-4 md:space-y-4 lg:space-y-6">
                     <div>
                       <label
                         className={`text-gray-300 text-sm font-medium mb-3 block ${FONTSIZE[14]}`}
@@ -361,7 +377,7 @@ export const SignIn = () => {
                       >
                         Enter Otp
                       </label>
-                      <div className="flex gap-2 justify-between">
+                      <div className="flex gap-1.5 md:gap-1.5 lg:gap-2 justify-between">
                         {otp.map((digit, index) => (
                           <input
                             key={index}
@@ -372,7 +388,8 @@ export const SignIn = () => {
                             value={digit}
                             onChange={(e) => handleOtpChange(index, e.target.value)}
                             onKeyDown={(e) => handleOtpKeyDown(index, e)}
-                            className="flex-1 min-w-0 aspect-square text-center text-white text-lg font-semibold bg-[#FFFFFF0D] border border-[#FFFFFF1A] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#00B8DB] transition-all"
+                            onPaste={(e) => handleOtpPaste(e, index)}
+                            className="flex-1 min-w-0 aspect-square text-center text-white text-base md:text-sm lg:text-lg font-semibold bg-[#FFFFFF0D] border border-[#FFFFFF1A] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#00B8DB] transition-all"
                             style={{ caretColor: "#00B8DB" }}
                           />
                         ))}

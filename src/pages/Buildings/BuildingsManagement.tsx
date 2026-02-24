@@ -5,6 +5,8 @@ import AddBuildingModal from "../../components/Buildings/addbuilding";
 import UnitsModal from "../../components/Buildings/unitsmodel";
 import EditBuildingModal from "../../components/Buildings/editnewbuilding";
 import DeleteModal from "../../components/Buildings/deletemodel";
+import buildingIcon from "../../assets/Dashboard/building.png"
+import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 
 export default function BuildingsManagement() {
   const [openModal, setOpenModal] = useState(false);
@@ -34,10 +36,38 @@ export default function BuildingsManagement() {
     setSelectedBuilding(null);
   };
 
+  const buildings = [
+  {
+    name: "Tower A",
+    code: "TWR-A",
+    address: "123 Main St, NYC",
+    floors: 15,
+    units: 45,
+    occupied: 43,
+  },
+  {
+    name: "Tower B",
+    code: "TWR-B",
+    address: "125 Main St, NYC",
+    floors: 12,
+    units: 42,
+    occupied: 40,
+  },
+  {
+    name: "Tower C",
+    code: "TWR-C",
+    address: "127 Main St, NYC",
+    floors: 10,
+    units: 33,
+    occupied: 31,
+  },
+];
+
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-1">Building Management</h1>
-      <p className="opacity-70 mb-6">
+      <h1 className={`text-3xl font-bold mb-1 ${FONTSIZE[36]}`}
+      style={{fontWeight:WEIGHT.seven,color:COLORS.primary_white}}>Building Management</h1>
+      <p className={`opacity-70 mb-6 ${FONTSIZE[16]}`} style={{fontWeight:WEIGHT.four,color:COLORS.grey}}>
         Manage buildings, units, and infrastructure
       </p>
 
@@ -70,9 +100,10 @@ export default function BuildingsManagement() {
 
       <button
         onClick={() => setOpenModal(true)}
-        className="mb-8 flex cursor-pointer items-center gap-2 px-6 py-3 rounded-full font-semibold text-black shadow-lg hover:scale-105 transition bg-linear-to-r from-[#2B7FFF] to-[#0092B8]"
+        className="mb-8 flex cursor-pointer items-center gap-2 px-6 py-3 rounded-full font-semibold text-white shadow-lg hover:scale-105 transition bg-linear-to-r from-[#2B7FFF] to-[#0092B8]"
       >
-        🏢 Add New Building
+        <img src={buildingIcon} alt="building" className="w-5 h-5" />
+         Add New Building
       </button>
 
       <AddBuildingModal open={openModal} onClose={() => setOpenModal(false)} />
@@ -94,66 +125,21 @@ export default function BuildingsManagement() {
       />
 
       <div className="grid gap-6 grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-        <BuildingCard
-          name="Tower A"
-          code="TWR-A"
-          address="123 Main St, NYC"
-          floors={15}
-          units={45}
-          occupied={43}
-          onViewUnits={() => setOpenUnits(true)}
-          onEdit={() =>
-            handleEdit({
-              name: "Tower A",
-              code: "TWR-A",
-              address: "123 Main St, NYC",
-              floors: 15,
-              units: 45,
-            })
-          }
-          onDelete={() => handleDeleteClick("Tower A")}
-        />
-
-        <BuildingCard
-          name="Tower B"
-          code="TWR-B"
-          address="125 Main St, NYC"
-          floors={12}
-          units={42}
-          occupied={40}
-          onViewUnits={() => setOpenUnits(true)}
-          onEdit={() =>
-            handleEdit({
-              name: "Tower B",
-              code: "TWR-B",
-              address: "125 Main St, NYC",
-              floors: 12,
-              units: 42,
-            })
-          }
-          onDelete={() => handleDeleteClick("Tower B")}
-        />
-
-        <BuildingCard
-          name="Tower C"
-          code="TWR-C"
-          address="127 Main St, NYC"
-          floors={10}
-          units={33}
-          occupied={31}
-          onViewUnits={() => setOpenUnits(true)}
-          onEdit={() =>
-            handleEdit({
-              name: "Tower C",
-              code: "TWR-C",
-              address: "127 Main St, NYC",
-              floors: 10,
-              units: 33,
-            })
-          }
-          onDelete={() => handleDeleteClick("Tower C")}
-        />
-      </div>
+  {buildings.map((building, index) => (
+    <BuildingCard
+      key={index}
+      name={building.name}
+      code={building.code}
+      address={building.address}
+      floors={building.floors}
+      units={building.units}
+      occupied={building.occupied}
+      onViewUnits={() => setOpenUnits(true)}
+      onEdit={() => handleEdit(building)}
+      onDelete={() => handleDeleteClick(building.name)}
+    />
+  ))}
+</div>
     </div>
   );
 }

@@ -48,11 +48,8 @@ export function Navbar({ setIsOpen }: NavbarProps) {
 
 
         <div
-          className="flex items-center gap-1 sm:gap-1.5 md:gap-2 px-1.5 sm:px-1.5 md:px-2 lg:px-3 py-1 sm:py-1.5 md:py-2 rounded border cursor-pointer"
-          style={{
-            backgroundColor: "#FFFFFF0D",
-            borderColor: "#FFFFFF1A",
-          }}
+          className="flex items-center bg-white/20  border-white/20  gap-1 sm:gap-1.5 md:gap-2 px-1.5 sm:px-1.5 md:px-2 lg:px-3 py-1 sm:py-1.5 md:py-2 rounded border cursor-pointer"
+         
         >
           <img
             src={website}
