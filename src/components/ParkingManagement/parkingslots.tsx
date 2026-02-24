@@ -28,7 +28,7 @@ const slots: Slot[] = [
   { id: "B1-M-030", status: "Occupied", type: "2W" },
   { id: "B2-A-104", status: "Occupied", type: "4W" },
   { id: "B2-A-105", status: "Available", type: "4W" },
-   { id: "B1-M-020", status: "Available", type: "2W" },
+  { id: "B1-M-020", status: "Available", type: "2W" },
 
   {
     id: "B1-M-025",
@@ -53,16 +53,11 @@ const slots: Slot[] = [
       vehicle: "Tesla Model 3",
     },
   },
-
 ];
 
-
-
 export default function ParkingSlots() {
-
   return (
     <div className="text-white space-y-6">
-
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-semibold">Parking Slot Management</h2>
@@ -71,13 +66,14 @@ export default function ParkingSlots() {
           </p>
         </div>
 
-        <button className="px-5 py-2 rounded-xl
+        <button
+          className="px-5 py-2 rounded-xl
                            bg-linear-to-r from-purple-500 to-pink-500
-                           text-sm font-medium shadow-lg">
+                           text-sm font-medium shadow-lg"
+        >
           + Create New Slot
         </button>
       </div>
-      
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         <StatusCard
@@ -148,32 +144,37 @@ export default function ParkingSlots() {
         />
 
         <div className="flex gap-2 flex-wrap">
-          {["All", "2-Wheeler", "4-Wheeler", "Available", "Occupied", "Maintenance"].map(
-            (f) => (
-              <button
-                key={f}
-                className="px-4 py-2 text-xs rounded-lg bg-[#111827] border border-gray-700 hover:bg-gray-800"
-              >
-                {f}
-              </button>
-            )
-          )}
+          {[
+            "All",
+            "2-Wheeler",
+            "4-Wheeler",
+            "Available",
+            "Occupied",
+            "Maintenance",
+          ].map((f) => (
+            <button
+              key={f}
+              className="px-4 py-2 text-xs rounded-lg bg-[#111827] border border-gray-700 hover:bg-gray-800"
+            >
+              {f}
+            </button>
+          ))}
         </div>
       </div>
 
-     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-  {slots.map((slot) => (
-    <SlotCard
-      key={slot.id}
-      id={slot.id}
-      status={slot.status}
-      type={slot.type}
-      bikeIcon={bike}
-      assignedTo={slot.assignedTo}
-      carIcon={car}
-    />
-  ))}
-</div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {slots.map((slot) => (
+          <SlotCard
+            key={slot.id}
+            id={slot.id}
+            status={slot.status}
+            type={slot.type}
+            bikeIcon={bike}
+            assignedTo={slot.assignedTo}
+            carIcon={car}
+          />
+        ))}
+      </div>
     </div>
   );
 }

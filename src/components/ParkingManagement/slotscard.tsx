@@ -13,7 +13,7 @@ type SlotCardProps = {
   type: VehicleType;
   bikeIcon: string;
   carIcon: string;
-  assignedTo?: AssignedTo; 
+  assignedTo?: AssignedTo;
 };
 
 export default function SlotCard({
@@ -64,7 +64,7 @@ export default function SlotCard({
 
       {status === "Occupied" && assignedTo && (
         <div className="mt-3 text-xs text-gray-300 border-t border-white/10 pt-3 space-y-1">
-            <p>Assigned To:</p>
+          <p>Assigned To:</p>
           <p className="font-medium text-white">{assignedTo.name}</p>
           <p> {assignedTo.unit}</p>
           <p> {assignedTo.vehicle}</p>
