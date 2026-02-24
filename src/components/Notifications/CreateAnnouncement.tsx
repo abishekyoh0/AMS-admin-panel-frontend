@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import { X } from "lucide-react";
+
+type Props = {
+  onClose: () => void;
+};
 
 type Field = {
   id: number;
@@ -56,7 +61,7 @@ const FORM_FIELDS: Field[] = [
   },
 ];
 
-const CreateAnnouncement: React.FC = () => {
+const CreateAnnouncement: React.FC<Props> = ({ onClose }) => {
   const [form, setForm] = useState<any>({});
   const [sendType, setSendType] = useState("now");
 
@@ -66,14 +71,21 @@ const CreateAnnouncement: React.FC = () => {
 
   const handleSubmit = () => {
     console.log("FORM DATA →", { ...form, sendType });
-
     alert("Announcement Published 🚀 (connect backend)");
+    onClose();
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-[#0b1026] to-[#050816] text-white flex justify-center items-center p-4">
+    <div className="fixed inset-0 bg-black/70 z-50 flex justify-center items-center p-4">
 
-      <div className="w-full max-w-3xl bg-linear-to-br from-[#111633] to-[#0b0f25] border border-white/10 rounded-2xl p-6 shadow-xl">
+      <div className="w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-linear-to-br from-[#111633] to-[#0b0f25] border border-white/10 rounded-2xl p-6 text-white relative">
+
+        <button
+          onClick={onClose}
+          className="absolute right-5 top-5 text-gray-400 hover:text-white"
+        >
+          <X />
+        </button>
 
         <div className="text-center mb-6">
           <div className="w-12 h-12 mx-auto rounded-full bg-purple-600/20 flex items-center justify-center text-xl">
@@ -91,8 +103,7 @@ const CreateAnnouncement: React.FC = () => {
         <div className="space-y-4">
 
           {FORM_FIELDS.map((field) => (
-            <div key={field.id} className="w-full">
-
+            <div key={field.id}>
               <label className="text-sm text-gray-300">
                 {field.label}
                 {field.required && <span className="text-red-400"> *</span>}
@@ -121,10 +132,10 @@ const CreateAnnouncement: React.FC = () => {
           <div>
             <label className="text-sm text-gray-300">Send Option *</label>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
+            <div className="grid grid-cols-2 gap-3 mt-2">
               <button
                 onClick={() => setSendType("now")}
-                className={`p-4 rounded-xl border cursor-pointer ${
+                className={`p-4 rounded-xl border ${
                   sendType === "now"
                     ? "bg-green-600/20 border-green-500"
                     : "bg-white/5 border-white/10"
@@ -136,7 +147,7 @@ const CreateAnnouncement: React.FC = () => {
 
               <button
                 onClick={() => setSendType("schedule")}
-                className={`p-4 rounded-xl border cursor-pointer ${
+                className={`p-4 rounded-xl border ${
                   sendType === "schedule"
                     ? "bg-blue-600/20 border-blue-500"
                     : "bg-white/5 border-white/10"
@@ -147,6 +158,20 @@ const CreateAnnouncement: React.FC = () => {
               </button>
             </div>
           </div>
+
+          {sendType === "schedule" && (
+            <div>
+              <label className="text-sm text-gray-300">
+                Schedule Date & Time *
+              </label>
+              <input
+                type="datetime-local"
+                name="schedule"
+                onChange={handleChange}
+                className="w-full mt-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-blue-500"
+              />
+            </div>
+          )}
 
           <div>
             <label className="text-sm text-gray-300">
@@ -161,18 +186,22 @@ const CreateAnnouncement: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 pt-4">
-            <button className="flex-1 bg-white/10 py-3 rounded-xl cursor-pointer">
+          <div className="flex gap-3 pt-4">
+            <button
+              onClick={onClose}
+              className="flex-1 bg-white/10 py-3 rounded-xl"
+            >
               Cancel
             </button>
 
             <button
               onClick={handleSubmit}
-              className="flex-1 bg-linear-to-r from-purple-600 to-pink-500 py-3 rounded-xl font-semibold cursor-pointer"
+              className="flex-1 bg-linear-to-r from-purple-600 to-pink-500 py-3 rounded-xl font-semibold"
             >
-              Publish Now
+              Publish
             </button>
           </div>
+
         </div>
       </div>
     </div>
