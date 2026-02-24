@@ -191,7 +191,7 @@ const VisitorManagement: React.FC = () => {
             type="button"
             onClick={handleExport}
             className={`w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-[#00B8DB] to-[#155DFC] px-6 py-2 rounded-full ${FONTSIZE[16]} ${FONTWEIGHT[700]} transition`}
-            style={{ color: COLORS.primary_black }}
+            style={{ color: COLORS.primary_white }}
           >
             <img src={Export} alt="Export" className="w-5 h-5" />
             Export Report
