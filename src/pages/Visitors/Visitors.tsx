@@ -320,6 +320,7 @@ const VisitorManagement: React.FC = () => {
                 <h3 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
                   {selected.name}
                 </h3>
+                
                 <p
                   className={`${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
                   style={{ color: COLORS.secoundy_gray }}
@@ -327,10 +328,13 @@ const VisitorManagement: React.FC = () => {
                   {selected.phone}
                 </p>
               </div>
+              <div>
+
               <div
-                className={`flex items-center px-3 py-1 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]} ${selected.status === "CHECKED IN" ? "bg-[#2B7FFF33] text-[#51A2FF]" : "bg-[#00C95033] text-[#05DF72]"}`}
+                className={`flex items-center px-3 py-2 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]} ${selected.status === "CHECKED IN" ? "bg-[#2B7FFF33] text-[#51A2FF]" : "bg-[#00C95033] text-[#05DF72]"}`}
               >
                 {selected.status}
+              </div>
               </div>
             </div>
             <div

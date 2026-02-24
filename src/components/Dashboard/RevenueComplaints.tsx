@@ -134,7 +134,7 @@ const RevenueComplaintsDashboard: React.FC = () => {
                 <CartesianGrid stroke="#ffffff10" />
                 <XAxis dataKey="name" stroke="#aaa" />
                 <YAxis stroke="#aaa" />
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip content={<CustomTooltip />} cursor={false}/>
                 <Bar dataKey="revenue" fill="#fbbf24" radius={[15, 15, 0, 0]} />
                 <Bar dataKey="expenses" fill="#10b981" radius={[15, 15, 0, 0]} />
               </BarChart>
