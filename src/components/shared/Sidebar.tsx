@@ -14,6 +14,7 @@ import entryicon from "../../assets/Sidebar/entry.png";
 import emergencyicon from "../../assets/Sidebar/emergency.png";
 import logoicon from "../../assets/Sidebar/settings.png";
 import logoutIcon from "../../assets/Sidebar/logout.png"
+import parkingicon from "../../assets/Sidebar/parking.png"
 
 const menuItems = [
   { to: "/", label: "Dashboard", icon: dashboardicon, end: true },
@@ -35,6 +36,8 @@ const menuItems = [
     icon: emergencyicon,
     end: true,
   },
+    { to: "/parking", label: "Parking", icon: parkingicon, end: true },
+
 ];
 
 type SidebarProps = {

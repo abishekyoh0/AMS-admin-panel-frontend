@@ -17,6 +17,8 @@ import ResidentEntryReports from "../pages/EntryReports/EntryReports";
 import NotificationsPage from "../components/Notifications/Notification";
 import NotificationDetails from "../components/Notifications/NotificationDetails";
 import AnnouncementManagement from "../components/Notifications/AnnouncementPage";
+import ParkingManagement from "../pages/ParkingManagement/parkingmanagement";
+import ParkingSlots from "../components/ParkingManagement/parkingslots";
 
 
 export default function AppRoutes() {
@@ -53,6 +55,8 @@ export default function AppRoutes() {
           <Route path="/notification" element={<NotificationsPage />} />
           <Route path="/notification-details" element={<NotificationDetails />} />
           <Route path="/announcement-management" element={<AnnouncementManagement />} />
+          <Route path="/parking" element={<ParkingManagement />} />
+          <Route path="/parkingslots" element={<ParkingSlots />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
