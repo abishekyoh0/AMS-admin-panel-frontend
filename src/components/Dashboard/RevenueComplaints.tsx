@@ -166,7 +166,7 @@ const RevenueComplaintsDashboard: React.FC = () => {
             {SUMMARY_CARDS.map((card, index) => (
               <div
                 key={index}
-                className="bg-[#FFFFFF0D] p-4 rounded-xl text-center hover:scale-105 transition duration-300"
+                className="bg-[#FFFFFF0D] p-4 rounded-xl text-center  transition duration-300"
               >
                 <p
                   className={`mb-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}

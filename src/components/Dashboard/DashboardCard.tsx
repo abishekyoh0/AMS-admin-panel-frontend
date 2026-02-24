@@ -208,7 +208,7 @@ const AdminDashboard: React.FC = () => {
       <div className="gap-4 mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         {CARDS.map((card) => (
           <div
-            className="w-full p-4 rounded-2xl hover:scale-105 transition duration-300"
+            className="w-full p-4 rounded-2xl  transition duration-300"
             key={card.id}
             style={{
               background: "#12162b",
@@ -274,7 +274,7 @@ const AdminDashboard: React.FC = () => {
           {ALERTS.map((a, i) => (
             <div
               key={i}
-              className="bg-[#FFFFFF0D] rounded-lg p-4 border border-[#FFFFFF33] hover:scale-105 transition duration-300"
+              className="bg-[#FFFFFF0D] rounded-lg p-4 border border-[#FFFFFF33] transition duration-300"
             >
               <div className="flex justify-between items-center">
                 <h3 className={`${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>
@@ -309,7 +309,7 @@ const AdminDashboard: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
         {BOTTOM_CARDS.map((card) => (
           <div
-            className="px-3 py-4 rounded-2xl hover:scale-105 transition duration-300"
+            className="px-3 py-4 rounded-2xl  transition duration-300"
             key={card.id}
             style={{
               background: card.gradient,

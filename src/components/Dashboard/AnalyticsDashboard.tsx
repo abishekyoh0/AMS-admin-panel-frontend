@@ -247,7 +247,7 @@ const AnalyticsDashboard: React.FC = () => {
                   border: `1px solid ${item.border}`,
                   boxShadow: "0 10px 25px rgba(0,0,0,0.4)",
                 }}
-                className=" rounded-xl p-4 hover:scale-105 transition duration-300"
+                className=" rounded-xl p-4  transition duration-300"
               >
                 <p
                   className={`mb-2 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}

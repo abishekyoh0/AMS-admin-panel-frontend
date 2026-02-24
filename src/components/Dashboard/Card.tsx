@@ -62,7 +62,7 @@ const AdminCards: React.FC = () => {
         {ADMIN_CARDS.map((card) => (
           <div
             key={card.id}
-            className={`relative p-6 rounded-2xl border ${card.border} bg-linear-to-br ${card.gradient} hover:scale-105 transition cursor-pointer`}
+            className={`relative p-6 rounded-2xl border ${card.border} bg-linear-to-br ${card.gradient} transition cursor-pointer`}
           >
             <div className="flex justify-between items-start mb-6">
               <img src={card.icon} alt="" className="w-10 h-10" />
