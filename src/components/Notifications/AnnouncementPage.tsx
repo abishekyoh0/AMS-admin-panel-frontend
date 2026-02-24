@@ -251,7 +251,7 @@ const AnnouncementManagement: React.FC = () => {
   });
 
   return (
-    <div style={{ color: COLORS.primary_white }} className="p-4 sm:p-6">
+    <div style={{ color: COLORS.primary_white }}>
 
       <ToastContainer position="top-right" autoClose={2000} />
 
