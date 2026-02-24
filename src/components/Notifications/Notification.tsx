@@ -250,7 +250,7 @@ const NotificationsPage: React.FC = () => {
           ${FONTSIZE[16]} ${FONTWEIGHT[700]}
           ${
             activeFilter === btn.key
-              ? "bg-gradient-to-r from-[#2B7FFF] to-[#00B8DB]"
+              ? "bg-linear-to-r from-[#2B7FFF] to-[#00B8DB]"
               : "bg-white/5 border border-[#FFFFFF0D]"
           }`}
               >
