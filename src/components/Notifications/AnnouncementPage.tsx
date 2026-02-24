@@ -225,11 +225,11 @@ const AnnouncementManagement: React.FC = () => {
     setSelected(item);
   };
 
-  const pinAnnouncement = (id: number) => {
+  const pinAnnouncement = (_id: number) => {
     toast.success("Announcement pinned");
   };
 
-  const resendAnnouncement = (id: number) => {
+  const resendAnnouncement = (_id: number) => {
     toast.success("Announcement resend");
   };
 
