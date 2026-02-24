@@ -94,7 +94,7 @@ const DownloadReportsModal: React.FC<Props> = ({ onClose }) => {
 
           <button
             onClick={onClose}
-            className="text-gray-300 hover:text-white text-xl"
+            className="text-gray-300 hover:text-white text-xl cursor-pointer"
           >
             ✕
           </button>
@@ -123,7 +123,7 @@ const DownloadReportsModal: React.FC<Props> = ({ onClose }) => {
         <div className="p-5">
           <button
             onClick={onClose}
-            className="w-full bg-white/10 hover:bg-white/20 border border-white/20 py-3 rounded-xl"
+            className="w-full bg-white/10 hover:bg-white/20 border border-white/20 py-3 rounded-xl cursor-pointer"
           >
             Close
           </button>

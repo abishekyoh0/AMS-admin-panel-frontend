@@ -73,7 +73,7 @@ const QuickAddModal: React.FC<Props> = ({ onClose }) => {
 
         <button
           onClick={onClose}
-          className="absolute right-5 top-5 text-gray-400 hover:text-white text-xl"
+          className="absolute right-5 top-5 text-gray-400 hover:text-white text-xl cursor-pointer"
         >
           <X />
         </button>
@@ -103,7 +103,7 @@ const QuickAddModal: React.FC<Props> = ({ onClose }) => {
 
         <button
           onClick={onClose}
-          className="w-full mt-6 bg-white/10 border border-white/20 py-3 rounded-xl hover:bg-white/20 transition"
+          className="w-full mt-6 bg-white/10 border border-white/20 py-3 rounded-xl hover:bg-white/20 transition cursor-pointer"
         >
           Close
         </button>

@@ -124,7 +124,7 @@ const CreateAnnouncement: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
               <button
                 onClick={() => setSendType("now")}
-                className={`p-4 rounded-xl border ${
+                className={`p-4 rounded-xl border cursor-pointer ${
                   sendType === "now"
                     ? "bg-green-600/20 border-green-500"
                     : "bg-white/5 border-white/10"
@@ -136,7 +136,7 @@ const CreateAnnouncement: React.FC = () => {
 
               <button
                 onClick={() => setSendType("schedule")}
-                className={`p-4 rounded-xl border ${
+                className={`p-4 rounded-xl border cursor-pointer ${
                   sendType === "schedule"
                     ? "bg-blue-600/20 border-blue-500"
                     : "bg-white/5 border-white/10"
@@ -162,13 +162,13 @@ const CreateAnnouncement: React.FC = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
-            <button className="flex-1 bg-white/10 py-3 rounded-xl">
+            <button className="flex-1 bg-white/10 py-3 rounded-xl cursor-pointer">
               Cancel
             </button>
 
             <button
               onClick={handleSubmit}
-              className="flex-1 bg-linear-to-r from-purple-600 to-pink-500 py-3 rounded-xl font-semibold"
+              className="flex-1 bg-linear-to-r from-purple-600 to-pink-500 py-3 rounded-xl font-semibold cursor-pointer"
             >
               Publish Now
             </button>

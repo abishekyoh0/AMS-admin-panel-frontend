@@ -225,7 +225,7 @@ const NotificationsPage: React.FC = () => {
               <button
                 key={btn.id}
                 onClick={() => setActiveFilter(btn.key)}
-                className={`flex w-full justify-center items-center gap-2 px-4 rounded-xl transition ${FONTSIZE[16]} ${FONTWEIGHT[700]}
+                className={`flex w-full justify-center items-center gap-2 px-4 rounded-xl transition cursor-pointer ${FONTSIZE[16]} ${FONTWEIGHT[700]}
                   ${activeFilter === btn.key
                     ? "bg-linear-to-r from-[#2B7FFF] to-[#00B8DB]"
                     : "bg-white/5 border border-[#FFFFFF0D]"

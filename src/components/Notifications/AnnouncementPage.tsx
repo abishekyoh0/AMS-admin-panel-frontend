@@ -123,7 +123,7 @@ const AnnouncementModal = ({
 
         <button
           onClick={onClose}
-          className="absolute right-5 top-5 text-gray-400 hover:text-white text-xl"
+          className="absolute right-5 top-5 text-gray-400 hover:text-white text-xl cursor-pointer"
         >
           <X />
         </button>
@@ -204,7 +204,7 @@ const AnnouncementModal = ({
 
         <button
           onClick={onClose}
-          className="w-full bg-white/10 border border-white/20 py-3 rounded-xl hover:bg-white/20 transition"
+          className="w-full bg-white/10 border border-white/20 py-3 rounded-xl hover:bg-white/20 transition cursor-pointer"
         >
           Close
         </button>
@@ -274,7 +274,7 @@ const AnnouncementManagement: React.FC = () => {
 
         <button
           onClick={() => navigate("/create-announcement")}
-          className="bg-linear-to-r from-purple-600 to-pink-500 px-5 py-2 rounded-xl font-semibold shadow-lg"
+          className="bg-linear-to-r from-purple-600 to-pink-500 px-5 py-2 rounded-xl font-semibold shadow-lg cursor-pointer"
         >
           + Create Announcement
         </button>
@@ -308,7 +308,7 @@ const AnnouncementManagement: React.FC = () => {
               <button
                 key={btn.id}
                 onClick={() => setStatus(btn.key)}
-                className={`px-4 py-2 rounded-xl whitespace-nowrap ${
+                className={`px-4 py-2 rounded-xl whitespace-nowrap cursor-pointer ${
                   status === btn.key
                     ? "bg-linear-to-r from-pink-500 to-purple-600"
                     : "bg-white/5 border border-white/10"
@@ -324,7 +324,7 @@ const AnnouncementManagement: React.FC = () => {
               <button
                 key={btn.id}
                 onClick={() => setCategory(btn.key)}
-                className={`px-4 py-2 rounded-xl whitespace-nowrap ${
+                className={`px-4 py-2 rounded-xl whitespace-nowrap cursor-pointer ${
                   category === btn.key
                     ? "bg-linear-to-r from-blue-600 to-cyan-500"
                     : "bg-white/5 border border-white/10"
@@ -373,10 +373,10 @@ const AnnouncementManagement: React.FC = () => {
               </div>
 
               <div className="flex flex-wrap gap-3 mt-4">
-                <button onClick={() => viewDetails(item)} className="bg-blue-600 px-4 py-2 rounded-lg text-sm">View</button>
-                <button onClick={() => pinAnnouncement(item.id)} className="bg-yellow-500 px-4 py-2 rounded-lg text-sm">Pin</button>
-                <button onClick={() => resendAnnouncement(item.id)} className="bg-purple-600 px-4 py-2 rounded-lg text-sm">Resend</button>
-                <button onClick={() => deleteAnnouncement(item.id)} className="bg-red-600 px-4 py-2 rounded-lg text-sm">Delete</button>
+                <button onClick={() => viewDetails(item)} className="bg-blue-600 px-4 py-2 rounded-lg text-sm cursor-pointer">View</button>
+                <button onClick={() => pinAnnouncement(item.id)} className="bg-yellow-500 px-4 py-2 rounded-lg text-sm cursor-pointer">Pin</button>
+                <button onClick={() => resendAnnouncement(item.id)} className="bg-purple-600 px-4 py-2 rounded-lg text-sm cursor-pointer">Resend</button>
+                <button onClick={() => deleteAnnouncement(item.id)} className="bg-red-600 px-4 py-2 rounded-lg text-sm cursor-pointer">Delete</button>
               </div>
             </div>
           );
