@@ -183,7 +183,7 @@ const AnalyticsDashboard: React.FC = () => {
                         {BOTTOM_STATS.map((item, i) => (
                             <div key={i}
                                 style={{ background: item.gradient, border: `1px solid ${item.border}`, boxShadow: "0 10px 25px rgba(0,0,0,0.4)" }}
-                                className=" rounded-xl p-4 hover:scale-105 transition duration-300">
+                                className=" rounded-xl p-4">
                                 <p className={`mb-2 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{item.title}</p>
                                 <p className={`mb-2 ${FONTSIZE[30]} ${FONTWEIGHT[700]}`} style={{ color: item.color }}>
                                     {item.value}
