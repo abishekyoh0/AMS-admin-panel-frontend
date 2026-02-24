@@ -24,11 +24,11 @@ const AlertTabs: React.FC<Props> = ({
 
   const getActiveStyle = (value: string) => {
     if (value === "All")
-      return "bg-cyan-500 text-white shadow-lg shadow-cyan-500/30";
+      return "bg-cyan-500 text-white  ";
     if (value === "Active")
-      return "bg-red-500 text-white shadow-lg shadow-red-500/30";
+      return "bg-red-500 text-white ";
     if (value === "Resolved")
-      return "bg-green-500 text-white shadow-lg shadow-green-500/30";
+      return "bg-green-500 text-white ";
   };
 
   return (
@@ -56,7 +56,7 @@ const AlertTabs: React.FC<Props> = ({
             py-1.5 sm:py-2
             rounded-full
             text-xs sm:text-sm md:text-base
-            transition-all duration-300
+            transition-all duration-300 cursor-pointer
             ${
               activeTab === tab.value
                 ? getActiveStyle(tab.value)
@@ -88,7 +88,7 @@ const AlertTabs: React.FC<Props> = ({
     bg-gradient-to-r from-blue-500 to-cyan-500
     hover:opacity-90
     transition
-    flex items-center justify-center gap-2
+    flex items-center justify-center gap-2 cursor-pointer
   "
   style={{ fontWeight: 600 }}
 >

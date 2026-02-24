@@ -206,7 +206,7 @@ const EmergencyTable: React.FC<Props> = ({
                     className={`px-3 py-1 rounded-full ${FONTSIZE[14]} ${
                       item.status === "Active"
                         ? "bg-green-500/20 text-green-400"
-                        : "bg-gray-500/20 text-gray-400"
+                        : "bg-gray-500/20 text-gray-400 cursor-pointer"
                     }`}
                   >
                     {item.status}
@@ -215,32 +215,34 @@ const EmergencyTable: React.FC<Props> = ({
 
                 {/* Actions */}
                 <td className="px-4 py-4">
-                  <div className="flex items-center gap-2">
+  <div className="flex items-center gap-2">
 
-                    <button
-                      onClick={() => onView(item)}
-                      style={{ ...FONTWEIGHT[600] }}
-                      className={`${FONTSIZE[14]} px-3 py-1 rounded-lg 
-                                  bg-blue-500/20 text-blue-400 
-                                  hover:bg-blue-500/30 transition`}
-                    >
-                      View
-                    </button>
+    {/* View Button */}
+    <button
+      onClick={() => onView(item)}
+      style={{ ...FONTWEIGHT[600] }}
+      className={`${FONTSIZE[14]} px-3 py-1 rounded-lg 
+                  bg-blue-500/20 text-blue-400 
+                  hover:bg-blue-500/30 transition cursor-pointer`}
+    >
+      View
+    </button>
 
-                    {item.status === "Active" && (
-                      <button
-                        onClick={() => handleClose(item.id)}
-                        style={{ ...FONTWEIGHT[600] }}
-                        className={`${FONTSIZE[14]} px-3 py-1 rounded-lg 
-                                    bg-green-500/20 text-green-400 
-                                    hover:bg-green-500/30 transition`}
-                      >
-                        Close
-                      </button>
-                    )}
+    {/* Close Button */}
+    {item.status === "Active" && (
+      <button
+        onClick={() => handleClose(item.id)}
+        style={{ ...FONTWEIGHT[600] }}
+        className={`${FONTSIZE[14]} px-3 py-1 rounded-lg 
+                    bg-green-500/20 text-green-400 
+                    hover:bg-green-500/30 transition cursor-pointer`}
+      >
+        Close
+      </button>
+    )}
 
-                  </div>
-                </td>
+  </div>
+</td>
 
               </tr>
             ))}

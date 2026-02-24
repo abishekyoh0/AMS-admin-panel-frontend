@@ -20,22 +20,38 @@ interface Complaint {
 interface Props {
   complaint?: Complaint;
   onClose?: () => void;
+  openAssignModal?: boolean;   // 👈 add
 }
 
-const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
+const ComplaintDetails: React.FC<Props> = ({
+  complaint,
+  onClose,
+  openAssignModal
+}) => {
+
   const [showAssignModal, setShowAssignModal] = useState(false);
-  const [assignTo, setAssignTo] = useState(complaint?.assignedTo || "");
+  const [assignTo, setAssignTo] = useState("");
   const [showResolveModal, setShowResolveModal] = useState(false);
   const [resolvedAt, setResolvedAt] = useState<string | null>(null);
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // ✅ Scroll to top whenever complaint changes
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [complaint]);
+
+  useEffect(() => {
+    setAssignTo(complaint?.assignedTo || "");
+  }, [complaint]);
+
+  useEffect(() => {
+    if (openAssignModal) {
+      setAssignTo(complaint?.assignedTo || "");
+      setShowAssignModal(true);
+    }
+  }, [openAssignModal, complaint]);
 
   if (!complaint) {
     return (
@@ -54,32 +70,45 @@ const ComplaintDetails: React.FC<Props> = ({ complaint, onClose }) => {
           ref={scrollRef}
           className="flex-1 overflow-y-auto p-4 sm:p-8 text-white scroll-smooth"
         >
-          {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 pb-4">
-            <div>
-              <h2 className="flex items-center gap-2 text-xl sm:text-2xl font-bold">
-                <img
-                  src={paper}
-                  alt="paper"
-                  className="w-5 h-5 sm:w-6 sm:h-6"
-                />
-                Complaint Details
-              </h2>
+          
+<div className="flex justify-between items-start sm:items-center mb-6 pb-4 border-b border-white/10">
 
-              <p className="text-[#00D3F3] font-semibold mt-2">
-                {complaint.id}
-              </p>
-            </div>
+  {/* Left Section */}
+  <div>
+    <h2 className="flex items-center gap-2 text-xl sm:text-2xl font-bold">
+      <img
+        src={paper}
+        alt="paper"
+        className="w-5 h-5 sm:w-6 sm:h-6"
+      />
+      Complaint Details
+    </h2>
 
-            <div className="flex gap-3">
-              <span className="px-3 py-1 text-xs rounded-full bg-[#FF690033] text-[#FF8904]">
-                {complaint.priority}
-              </span>
-              <span className="px-3 py-1 text-xs rounded-full bg-[#F0B10033] text-[#FDC700]">
-                {complaint.status}
-              </span>
-            </div>
-          </div>
+    <p className="text-[#00D3F3] font-semibold mt-2">
+      {complaint.id}
+    </p>
+  </div>
+
+  {/* Right Section */}
+  <div className="flex items-center gap-3">
+
+    <span className="px-3 py-1 text-xs rounded-full bg-[#FF690033] text-[#FF8904]">
+      {complaint.priority}
+    </span>
+
+    <span className="px-3 py-1 text-xs rounded-full bg-[#F0B10033] text-[#FDC700]">
+      {complaint.status}
+    </span>
+
+    <button
+      onClick={onClose}
+      className="ml-2 p-2 rounded-full hover:bg-white/10 transition"
+    >
+      ✕
+    </button>
+
+  </div>
+</div>
 
           {/* Info Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
