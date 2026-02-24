@@ -154,11 +154,7 @@ const Invoices = () => {
           <button
             onClick={() => setShowCreate(true)}
             style={{ ...FONTWEIGHT[700] }}
-            className={`w-full sm:w-auto px-8 py-3
-      bg-gradient-to-r from-[#00C950] to-[#009966]
-      hover:bg-green-700 rounded-full
-      flex justify-center items-center gap-3
-      cursor-pointer text-[#0A0A0A] ${$styles[16]}`}
+            className={`w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-[#00C950] to-[#009966] hover:bg-green-700 rounded-full flex justify-center items-center gap-3 cursor-pointer text-[#0A0A0A] ${$styles[16]}`}
           >
             <img
               src={invoice}
@@ -174,11 +170,7 @@ const Invoices = () => {
               toast.success("Report exported successfully!");
             }}
             style={{ ...FONTWEIGHT[700] }}
-            className={`w-full sm:w-auto px-8 py-3
-      bg-white/10 border border-white/20
-      hover:bg-white/20 text-white rounded-full
-      flex justify-center items-center gap-3
-      cursor-pointer ${$styles[16]}`}
+            className={`w-full sm:w-auto px-8 py-3 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-full flex justify-center items-center gap-3 cursor-pointer ${$styles[16]}`}
           >
             <img src={graph} alt="export" className="w-5 h-5 object-contain" />
             Export Report
@@ -198,10 +190,7 @@ const Invoices = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={{ ...FONTWEIGHT[400] }}
-            className={`w-full pl-12 pr-5 py-3 rounded-full
-      bg-white/10 border border-white/20
-      focus:outline-none focus:border-blue-500
-      text-white ${$styles[16]}`}
+            className={`w-full pl-12 pr-5 py-3 rounded-full bg-white/10 border border-white/20 focus:outline-none focus:border-blue-500 text-white ${$styles[16]}`}
           />
         </div>
       </div>

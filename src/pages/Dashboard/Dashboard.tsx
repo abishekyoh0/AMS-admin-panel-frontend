@@ -11,7 +11,7 @@ import StaffActivityDashboard from "../../components/Dashboard/StaffActivity";
 export default function Dashboard() {
   return (
     <div
-      className="mb-8"
+      className=" "
       style={{ color: COLORS.primary_white, background: COLORS.primary_black }}
     >
       <div className="flex justify-between items-center mb-8 flex-wrap gap-4">

@@ -8,7 +8,7 @@ type LogoutModalProps = {
 export default function LogoutModal({ onCancel, onConfirm }: LogoutModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#000000]">
-      <div className="w-full max-w-md p-6 sm:p-8 rounded-xl bg-gradient-to-br from-[#0B8DB11A] to-[#2B7FFF1A] border borde-[#00D3F24D] flex flex-col gap-6">
+      <div className="w-full max-w-sm md:max-w-md p-6 sm:p-8 rounded-xl bg-gradient-to-br from-[#0B8DB11A] to-[#2B7FFF1A] border borde-[#00D3F24D] flex flex-col gap-6">
         <div
           className={`text-white text-center text-lg font-semibold ${FONTSIZE[32]}`}
           style={{ fontWeight: WEIGHT.four }}
@@ -18,7 +18,7 @@ export default function LogoutModal({ onCancel, onConfirm }: LogoutModalProps) {
 
         <div
           className={`w-full flex justify-evenly gap-4 ${FONTSIZE[16]}`}
-          style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_black }}
+          style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
         >
           <div className="">
             <button

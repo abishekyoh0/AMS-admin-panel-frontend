@@ -4,6 +4,7 @@ import website from "../../assets/navbar/website.png";
 // import { useNavigate } from "react-router-dom";
 import NotificationPopup from "../../pages/Notifications/Notifications";
 import { useState } from "react";
+import { Menu } from "lucide-react";
 
 type NavbarProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,7 +21,7 @@ export function Navbar({ setIsOpen }: NavbarProps) {
           onClick={() => setIsOpen((prev) => !prev)}
           className="md:hidden text-white text-xl sm:text-2xl p-1"
         >
-          ☰
+          <Menu />
         </button>
 
         <h3
@@ -33,7 +34,7 @@ export function Navbar({ setIsOpen }: NavbarProps) {
         </h3>
       </div>
 
-      <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-5">
+      <div className="flex items-center gap-3 sm:gap-2 md:gap-3 lg:gap-5">
         <div
           className="relative cursor-pointer"
           onClick={() => setOpenNotif((prev) => !prev)}
@@ -43,14 +44,14 @@ export function Navbar({ setIsOpen }: NavbarProps) {
         </div>
 
         {openNotif && (
-          <NotificationPopup open={openNotif} setOpen={setOpenNotif} onClose={() => setIsOpen(false)} />
+          <NotificationPopup
+            open={openNotif}
+            setOpen={setOpenNotif}
+            onClose={() => setIsOpen(false)}
+          />
         )}
 
-
-        <div
-          className="flex items-center bg-white/20  border-white/20  gap-1 sm:gap-1.5 md:gap-2 px-1.5 sm:px-1.5 md:px-2 lg:px-3 py-1 sm:py-1.5 md:py-2 rounded border cursor-pointer"
-         
-        >
+        <div className="flex items-center bg-white/20  border-white/20  gap-1 sm:gap-1.5 md:gap-2 px-1.5 sm:px-1.5 md:px-2 lg:px-3 py-1 sm:py-1.5 md:py-2 rounded border cursor-pointer">
           <img
             src={website}
             alt="website"

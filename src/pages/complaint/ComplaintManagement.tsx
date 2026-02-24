@@ -132,7 +132,7 @@ const ComplaintManagement: React.FC = () => {
           Complaint Management
         </h1>
         <p className="text-gray-300 text-xs sm:text-sm">
-          Monitor and manage all resident complaints
+          Monitor and manage all resident compla ints
         </p>
       </div>
        {/* Stats Cards */}

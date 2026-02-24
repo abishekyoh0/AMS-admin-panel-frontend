@@ -79,8 +79,8 @@ const dummyData: Entry[] = [
     entryTime: "07:00 AM",
     exitTime: "05:00 PM",
     duration: "10h 00m",
-    gate: " Side Gate"
-    , guard: "Security-1",
+    gate: " Side Gate",
+    guard: "Security-1",
     status: "Exited",
   },
   {
@@ -104,11 +104,9 @@ const ResidentEntryReports: React.FC = () => {
   const [period, setPeriod] = useState<Period>("Today");
   const [search, setSearch] = useState("");
 
-
   const filteredData = useMemo(() => {
     return dummyData.filter((entry) => {
-      const blockMatch =
-        block === "All" || entry.block === block;
+      const blockMatch = block === "All" || entry.block === block;
 
       const searchMatch =
         entry.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -118,21 +116,15 @@ const ResidentEntryReports: React.FC = () => {
     });
   }, [block, search]);
 
+  const insideCount = filteredData.filter((e) => e.status === "Inside").length;
 
-  const insideCount = filteredData.filter(
-    (e) => e.status === "Inside"
-  ).length;
-
-  const exitedCount = filteredData.filter(
-    (e) => e.status === "Exited"
-  ).length;
+  const exitedCount = filteredData.filter((e) => e.status === "Exited").length;
 
   const totalEntries = filteredData.length;
 
   const gateCount: Record<string, number> = {};
   filteredData.forEach((entry) => {
-    gateCount[entry.gate] =
-      (gateCount[entry.gate] || 0) + 1;
+    gateCount[entry.gate] = (gateCount[entry.gate] || 0) + 1;
   });
 
   const topGate =
@@ -142,20 +134,13 @@ const ResidentEntryReports: React.FC = () => {
 
   return (
     <div className="text-white">
-
-
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-
         <div>
           <h1
             style={{ ...FONTWEIGHT[600] }}
             className={`${FONTSIZE[24]} flex items-center gap-2 text-white`}
           >
-            <img
-              src={house}
-              alt="House"
-              className="w-6 h-6 mb-1 "
-            />
+            <img src={house} alt="House" className="w-6 h-6 mb-1 " />
             Resident Entry Reports
           </h1>
 
@@ -167,10 +152,10 @@ const ResidentEntryReports: React.FC = () => {
           </p>
         </div>
 
-        <button onClick={() => {
-                                    
-                                    toast.success("Report downloaded successfully!");
-                                }}
+        <button
+          onClick={() => {
+            toast.success("Report downloaded successfully!");
+          }}
           className="flex items-center gap-2 px-8 py-2 rounded-xl
           bg-linear-to-r from-[#2B7FFF] to-[#0092B8]
           shadow-lg shadow-[#2B7FFF80]
@@ -190,30 +175,12 @@ const ResidentEntryReports: React.FC = () => {
         </button>
       </div>
 
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <StatCard
-          title="Currently Inside"
-          value={insideCount}
-          type="inside"
-        />
-        <StatCard
-          title="Exited Today"
-          value={exitedCount}
-          type="exited"
-        />
-        <StatCard
-          title="Total Entries"
-          value={totalEntries}
-          type="entries"
-        />
-        <StatCard
-          title="Most Used Gate"
-          value={topGate}
-          type="gate"
-        />
+        <StatCard title="Currently Inside" value={insideCount} type="inside" />
+        <StatCard title="Exited Today" value={exitedCount} type="exited" />
+        <StatCard title="Total Entries" value={totalEntries} type="entries" />
+        <StatCard title="Most Used Gate" value={topGate} type="gate" />
       </div>
-
 
       <FilterSection
         block={block}
@@ -224,9 +191,7 @@ const ResidentEntryReports: React.FC = () => {
         setSearch={setSearch}
       />
 
-
       <EntryTable data={filteredData} />
-
 
       <AnalyticsSection data={filteredData} />
     </div>

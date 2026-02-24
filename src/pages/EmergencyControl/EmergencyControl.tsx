@@ -5,10 +5,10 @@ import EmergencyTable from "../../components/EmergencyContol/EmergencyTable";
 import EmergencyModal from "../../components/EmergencyContol/EmergencyModal";
 import AlertDistribution from "../../components/EmergencyContol/AlertDistribution";
 import RecentActivity from "../../components/EmergencyContol/RecentActivity";
-import alarm from "../../assets/emergency/alarm.png"
-import tick from "../../assets/emergency/tick.png"
-import red from "../../assets/emergency/red.png"
-import graph from "../../assets/emergency/graph.png"
+import alarm from "../../assets/emergency/alarm.png";
+import tick from "../../assets/emergency/tick.png";
+import red from "../../assets/emergency/red.png";
+import graph from "../../assets/emergency/graph.png";
 import { FONTSIZE } from "../../constent/uiconstent";
 
 export interface Emergency {
@@ -53,7 +53,7 @@ const data: Emergency[] = [
     status: "Resolved",
     message: "Medical emergency reported in Flat B-203.",
   },
-   {
+  {
     id: 2,
     type: " Medical Emergencyy",
     alertId: "MED003",
@@ -69,17 +69,16 @@ const data: Emergency[] = [
 ];
 
 const EmergencyControlCenter = () => {
- const [emergencies, setEmergencies] = useState<Emergency[]>(data);
-const [selected, setSelected] = useState<Emergency | null>(null);
-const [activeTab, setActiveTab] = useState("All");
-// const [selected, setSelected] = useState<Emergency | null>(null);
- const filtered =
-  activeTab === "All"
-    ? emergencies
-    : emergencies.filter((d) => d.status === activeTab);
+  const [emergencies, setEmergencies] = useState<Emergency[]>(data);
+  const [selected, setSelected] = useState<Emergency | null>(null);
+  const [activeTab, setActiveTab] = useState("All");
+  // const [selected, setSelected] = useState<Emergency | null>(null);
+  const filtered =
+    activeTab === "All"
+      ? emergencies
+      : emergencies.filter((d) => d.status === activeTab);
 
-     const distributionData: { label: string; value: number }[] =
-  Object.values(
+  const distributionData: { label: string; value: number }[] = Object.values(
     data.reduce<Record<string, { label: string; value: number }>>(
       (acc, item) => {
         const key = item.type;
@@ -92,75 +91,77 @@ const [activeTab, setActiveTab] = useState("All");
 
         return acc;
       },
-      {}
-    )
+      {},
+    ),
   );
 
   return (
     <div className=" text-white ">
-     <div className="mb-8">
-  <div className="flex items-center gap-2 sm:gap-3">
-  {/* Icon */}
-  <div
-    className="w-8 h-8 sm:w-10 sm:h-10 
+      <div className="mb-8">
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Icon */}
+          <div
+            className="w-8 h-8 sm:w-10 sm:h-10 
                flex items-center justify-center 
                rounded-lg 
                bg-red-500/20 border border-red-500/30"
-  >
-    <img
-      src={alarm}
-      alt="Alarm"
-      className="w-4 h-4 sm:w-6 sm:h-6 object-contain"
-    />
-  </div>
+          >
+            <img
+              src={alarm}
+              alt="Alarm"
+              className="w-4 h-4 sm:w-6 sm:h-6 object-contain"
+            />
+          </div>
 
-  {/* Title */}
-  <h3
-    className={`${FONTSIZE[24]} tracking-tight`}
-    style={{ fontWeight: 700 }}   // 👈 font-weight here
-  >
-    Emergency Alert Management
-  </h3>
-</div>
+          {/* Title */}
+          <h3
+            className={`${FONTSIZE[24]} tracking-tight`}
+            style={{ fontWeight: 700 }} // 👈 font-weight here
+          >
+            Emergency Alert Management
+          </h3>
+        </div>
 
-  {/* Subtitle */}
-  <p className="text-sm text-gray-400 mt-2">
-    Monitor and manage all emergency alerts across the community
-  </p>
-</div>
+        {/* Subtitle */}
+        <p className="text-sm text-gray-400 mt-2">
+          Monitor and manage all emergency alerts across the community
+        </p>
+      </div>
 
       {/* ✅ Stat Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-  <StatCard
-    title="Active Emergencies"
-    value={emergencies.filter((d) => d.status === "Active").length}
-    icon={<img src={alarm} alt="Alarm" className="w-6 h-6" />}
-    gradient="bg-gradient-to-r from-red-500/20 to-red-700/20"
-  />
+        <StatCard
+          title="Active Emergencies"
+          value={emergencies.filter((d) => d.status === "Active").length}
+          icon={<img src={alarm} alt="Alarm" className="w-6 h-6" />}
+          gradient="bg-gradient-to-r from-red-500/20 to-red-700/20"
+        />
 
-  <StatCard
-    title="Resolved Incidents"
-    value={emergencies.filter((d) => d.status === "Resolved").length}
-    icon={<img src={tick} alt="Tick" className="w-6 h-6" />}
-    gradient="bg-gradient-to-r from-green-500/20 to-green-700/20"
-  />
+        <StatCard
+          title="Resolved Incidents"
+          value={emergencies.filter((d) => d.status === "Resolved").length}
+          icon={<img src={tick} alt="Tick" className="w-6 h-6" />}
+          gradient="bg-gradient-to-r from-green-500/20 to-green-700/20"
+        />
 
-  <StatCard
-    title="High Priority Active"
-    value={emergencies.filter(
-      (d) => d.status === "Active" && d.priority === "High"
-    ).length}
-    icon={<img src={red} alt="High Priority" className="w-6 h-6" />}
-    gradient="bg-gradient-to-r from-purple-500/20 to-purple-700/20"
-  />
+        <StatCard
+          title="High Priority Active"
+          value={
+            emergencies.filter(
+              (d) => d.status === "Active" && d.priority === "High",
+            ).length
+          }
+          icon={<img src={red} alt="High Priority" className="w-6 h-6" />}
+          gradient="bg-gradient-to-r from-purple-500/20 to-purple-700/20"
+        />
 
-  <StatCard
-    title="Total Acknowledge"
-    value={emergencies.reduce((sum, d) => sum + d.acknowledged, 0)}
-    icon={<img src={graph} alt="Graph" className="w-6 h-6" />}
-    gradient="bg-gradient-to-r from-blue-500/20 to-blue-700/20"
-  />
-</div>
+        <StatCard
+          title="Total Acknowledge"
+          value={emergencies.reduce((sum, d) => sum + d.acknowledged, 0)}
+          icon={<img src={graph} alt="Graph" className="w-6 h-6" />}
+          gradient="bg-gradient-to-r from-blue-500/20 to-blue-700/20"
+        />
+      </div>
 
       {/* ✅ Tabs */}
       <AlertTabs
@@ -172,24 +173,26 @@ const [activeTab, setActiveTab] = useState("All");
       />
 
       {/* ✅ Table */}
-      <EmergencyTable data={filtered} onView={setSelected}     setEmergencies={setEmergencies}
-  />
+      <EmergencyTable
+        data={filtered}
+        onView={setSelected}
+        setEmergencies={setEmergencies}
+      />
 
       {/* ✅ Bottom Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-        
         <AlertDistribution data={distributionData} />
         <RecentActivity data={data} />
       </div>
 
       {/* ✅ Modal */}
       {selected && (
-  <EmergencyModal
-    emergency={selected}
-    onClose={() => setSelected(null)}
-    setEmergencies={setEmergencies}
-  />
-)}
+        <EmergencyModal
+          emergency={selected}
+          onClose={() => setSelected(null)}
+          setEmergencies={setEmergencies}
+        />
+      )}
     </div>
   );
 };

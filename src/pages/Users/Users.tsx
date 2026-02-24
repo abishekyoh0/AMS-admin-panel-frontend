@@ -198,7 +198,7 @@ const UserManagement = () => {
   };
 
   return (
-    <div className="min-h-screen  text-white">
+    <div className="  text-white">
       <div className="mb-6">
         <h1
           style={{ ...FONTWEIGHT[700] }}

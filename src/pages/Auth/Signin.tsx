@@ -39,9 +39,15 @@ export const SignIn = () => {
     }
   };
 
-  const handleOtpPaste = (e: React.ClipboardEvent<HTMLInputElement>, index: number) => {
+  const handleOtpPaste = (
+    e: React.ClipboardEvent<HTMLInputElement>,
+    index: number,
+  ) => {
     e.preventDefault();
-    const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6);
+    const pasted = e.clipboardData
+      .getData("text")
+      .replace(/\D/g, "")
+      .slice(0, 6);
     if (!pasted) return;
     const newOtp = [...otp];
     for (let i = 0; i < pasted.length; i++) {
@@ -51,7 +57,10 @@ export const SignIn = () => {
     otpRefs.current[Math.min(index + pasted.length, 5)]?.focus();
   };
 
-  const handleOtpKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleOtpKeyDown = (
+    index: number,
+    e: React.KeyboardEvent<HTMLInputElement>,
+  ) => {
     if (e.key === "Backspace" && !otp[index] && index > 0) {
       otpRefs.current[index - 1]?.focus();
     }
@@ -89,18 +98,20 @@ export const SignIn = () => {
 
   return (
     <div className="min-h-screen bg-[linear-gradient(#0F1A1E,#0F2A2E,#141E1E)] flex items-center justify-center px-4">
-
       <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
-
         <div className="flex-1 flex flex-col justify-between py-3 lg:py-3 px-4 lg:px-4 md:order-1">
           <div>
-            <div className="flex items-center gap-3 mb-4 md:mb-3 lg:mb-6">
+            <div className="flex items-center gap-3 mb-4 md:mb-3 lg:mb-2">
               <div className="hidden lg:block absolute inset-0 pointer-events-none">
-                <div className="absolute top-10 border border-white w-125 h-125 bg-[#00BBA733] rounded-full blur-[100px]" />
+                <div className="absolute top-10 border border-white w-[500px] h-[500px] bg-[#00BBA733] rounded-full blur-[100px]" />
               </div>
               <div className="relative inline-block">
                 <div className="w-15 h-15 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-linear-to-br from-[#00B8DB] to-[#00BBA7] rounded-2xl flex items-center justify-center">
-                  <img src={admin} alt="admin" className="w-8 h-8 md:w-6 md:h-6 lg:w-auto lg:h-auto" />
+                  <img
+                    src={admin}
+                    alt="admin"
+                    className="w-8 h-8 md:w-6 md:h-6 lg:w-auto lg:h-auto"
+                  />
                 </div>
                 <img
                   src={orange}
@@ -111,7 +122,10 @@ export const SignIn = () => {
               <div>
                 <h1
                   className={`text-white text-lg md:text-xl lg:text-4xl font-semibold ${FONTSIZE[35]}`}
-                  style={{ color: COLORS.primary_white, fontWeight: WEIGHT.seven }}
+                  style={{
+                    color: COLORS.primary_white,
+                    fontWeight: WEIGHT.seven,
+                  }}
                 >
                   Skyline Rentals
                 </h1>
@@ -126,24 +140,31 @@ export const SignIn = () => {
 
             <div className="hidden md:block">
               <div className="mb-4 md:mb-3 lg:mb-2">
-                <div className={`${FONTSIZE[40]}`} style={{ fontWeight: WEIGHT.seven }}>
+                <div
+                  className={`${FONTSIZE[40]}`}
+                  style={{ fontWeight: WEIGHT.seven }}
+                >
                   <h2 className="text-white text-xl md:text-2xl lg:text-4xl font-bold mb-2">
                     Complete Control
                   </h2>
-                  <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-3 lg:mb-6 bg-linear-to-r from-[#00D3F3] to-[#00D5BE] bg-clip-text text-transparent">
+                  <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-3 lg:mb-2 bg-linear-to-r from-[#00D3F3] to-[#00D5BE] bg-clip-text text-transparent">
                     Of Your Platform
                   </h2>
                 </div>
                 <p
                   className={`text-sm md:text-xs lg:text-lg max-w-md ${FONTSIZE[16]}`}
-                  style={{ color: COLORS.secoundy_gray, fontWeight: WEIGHT.four }}
+                  style={{
+                    color: COLORS.secoundy_gray,
+                    fontWeight: WEIGHT.four,
+                  }}
                 >
-                  Master dashboard with comprehensive control over buildings, users, complaints,
-                  visitors, invoices, and emergency management.
+                  Master dashboard with comprehensive control over buildings,
+                  users, complaints, visitors, invoices, and emergency
+                  management.
                 </p>
               </div>
 
-              <div className="space-y-3 md:space-y-1.5 lg:space-y-3 mb-4 md:mb-3 lg:mb-8">
+              <div className="space-y-3 md:space-y-1.5 lg:space-y-3 mb-4 md:mb-3 lg:mb-3">
                 {[
                   "Complete system administration",
                   "User & role management",
@@ -153,10 +174,17 @@ export const SignIn = () => {
                   "System-wide notifications",
                 ].map((feature, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <img src={tick} alt="" className="w-4 h-4 lg:w-auto lg:h-auto shrink-0" />
+                    <img
+                      src={tick}
+                      alt=""
+                      className="w-4 h-4 lg:w-auto lg:h-auto shrink-0"
+                    />
                     <span
                       className={`text-gray-300 text-xs md:text-xs lg:text-base ${FONTSIZE[16]}`}
-                      style={{ color: COLORS.smalltext, fontWeight: WEIGHT.four }}
+                      style={{
+                        color: COLORS.smalltext,
+                        fontWeight: WEIGHT.four,
+                      }}
                     >
                       {feature}
                     </span>
@@ -168,20 +196,34 @@ export const SignIn = () => {
 
           <div className="mt-1 hidden md:block border-t-[1.85px] border-t-[#FFFFFF1A] rounded-2xl p-3 md:p-3 lg:p-4 bg-[#FFFFFF0D] backdrop-blur-sm w-full lg:max-w-md lg:mx-0">
             <div className="flex items-center gap-3">
-              <img src={shield} alt="" className="w-6 h-6 md:w-6 md:h-6 lg:w-auto lg:h-auto" />
+              <img
+                src={shield}
+                alt=""
+                className="w-6 h-6 md:w-6 md:h-6 lg:w-auto lg:h-auto"
+              />
               <div>
                 <div className="flex items-center gap-2">
-                  <img src={top} alt="admin" className="w-4 h-4 md:w-4 md:h-4 lg:w-5 lg:h-5" />
+                  <img
+                    src={top}
+                    alt="admin"
+                    className="w-4 h-4 md:w-4 md:h-4 lg:w-5 lg:h-5"
+                  />
                   <h3
                     className={`text-white font-semibold text-xs md:text-xs lg:text-base ${FONTSIZE[16]}`}
-                    style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
+                    style={{
+                      fontWeight: WEIGHT.seven,
+                      color: COLORS.primary_white,
+                    }}
                   >
                     Administrator Access
                   </h3>
                 </div>
                 <p
                   className={`text-gray-400 text-xs ${FONTSIZE[14]}`}
-                  style={{ fontWeight: WEIGHT.four, color: COLORS.secoundy_gray }}
+                  style={{
+                    fontWeight: WEIGHT.four,
+                    color: COLORS.secoundy_gray,
+                  }}
                 >
                   Protected with two-factor authentication
                 </p>
@@ -191,19 +233,30 @@ export const SignIn = () => {
 
           <div className="hidden mt-2 md:block border-t-[1.85px] border-t-[#FDC7004D] rounded-2xl p-4 md:p-2.5 lg:p-4 bg-[#F0B1001A] backdrop-blur-sm max-w-md mx-auto lg:mx-0">
             <div className="flex items-center gap-3">
-              <img src={top} alt="" className="w-6 h-6 md:w-6 md:h-6 lg:w-auto lg:h-auto" />
+              <img
+                src={top}
+                alt=""
+                className="w-6 h-6 md:w-6 md:h-6 lg:w-auto lg:h-auto"
+              />
               <div>
                 <h3
                   className={`text-white font-semibold text-xs md:text-xs lg:text-base ${FONTSIZE[16]}`}
-                  style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
+                  style={{
+                    fontWeight: WEIGHT.seven,
+                    color: COLORS.primary_white,
+                  }}
                 >
                   Enhanced Security
                 </h3>
                 <p
                   className={`text-gray-400 text-xs lg:text-sm ${FONTSIZE[14]}`}
-                  style={{ fontWeight: WEIGHT.four, color: COLORS.secoundy_gray }}
+                  style={{
+                    fontWeight: WEIGHT.four,
+                    color: COLORS.secoundy_gray,
+                  }}
                 >
-                  All admin sessaions are monitored and logged for security purposes.
+                  All admin sessaions are monitored and logged for security
+                  purposes.
                 </p>
               </div>
             </div>
@@ -213,19 +266,24 @@ export const SignIn = () => {
         <div className="flex-1 flex items-center justify-center p-4 md:p-3 lg:p-8 md:order-2">
           <div className="w-full max-w-md md:max-w-sm lg:max-w-md bg-[#FFFFFF0D] rounded-xl border-t-[1.85px] border-t-[#FFFFFF1A]">
             <div className="rounded-3xl p-5 md:p-5 lg:p-8 border border-[#00000040] shadow-2xl">
-
               {step === "login" ? (
                 <>
                   <div className="mb-5 lg:mb-6">
                     <h3
                       className={`text-white text-xl lg:text-2xl font-semibold mb-2 ${FONTSIZE[30]}`}
-                      style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
+                      style={{
+                        fontWeight: WEIGHT.seven,
+                        color: COLORS.primary_white,
+                      }}
                     >
                       Admin Access
                     </h3>
                     <p
                       className={`text-gray-400 text-xs lg:text-sm ${FONTSIZE[16]}`}
-                      style={{ fontWeight: WEIGHT.four, color: COLORS.smalltext }}
+                      style={{
+                        fontWeight: WEIGHT.four,
+                        color: COLORS.smalltext,
+                      }}
                     >
                       Restricted administrator access
                     </p>
@@ -237,17 +295,27 @@ export const SignIn = () => {
                     </div>
                   )}
 
-                  <form onSubmit={handleLoginSubmit} className="space-y-4 md:space-y-4 lg:space-y-6">
+                  <form
+                    onSubmit={handleLoginSubmit}
+                    className="space-y-4 md:space-y-4 lg:space-y-6"
+                  >
                     <div>
                       <label
                         className={`text-gray-300 text-sm font-medium mb-2 block ${FONTSIZE[14]}`}
-                        style={{ color: COLORS.smalltext, fontWeight: WEIGHT.seven }}
+                        style={{
+                          color: COLORS.smalltext,
+                          fontWeight: WEIGHT.seven,
+                        }}
                       >
                         Admin Username
                       </label>
                       <div className="relative" style={{ color: COLORS.inbox }}>
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6A7282]">
-                          <img src={user} alt="" className="w-4 h-4 lg:w-auto lg:h-auto" />
+                          <img
+                            src={user}
+                            alt=""
+                            className="w-4 h-4 lg:w-auto lg:h-auto"
+                          />
                         </div>
                         <input
                           type="text"
@@ -263,13 +331,20 @@ export const SignIn = () => {
                     <div>
                       <label
                         className={`text-gray-300 text-sm font-medium mb-2 block ${FONTSIZE[14]}`}
-                        style={{ color: COLORS.smalltext, fontWeight: WEIGHT.seven }}
+                        style={{
+                          color: COLORS.smalltext,
+                          fontWeight: WEIGHT.seven,
+                        }}
                       >
                         Admin Password
                       </label>
                       <div className="relative" style={{ color: COLORS.inbox }}>
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6A7282]">
-                          <img src={lock} alt="" className="w-4 h-4 lg:w-auto lg:h-auto" />
+                          <img
+                            src={lock}
+                            alt=""
+                            className="w-4 h-4 lg:w-auto lg:h-auto"
+                          />
                         </div>
                         <input
                           type={showPassword ? "text" : "password"}
@@ -281,11 +356,19 @@ export const SignIn = () => {
                         />
                         <button
                           type="button"
-                          aria-label={showPassword ? "Hide access code" : "Show access code"}
+                          aria-label={
+                            showPassword
+                              ? "Hide access code"
+                              : "Show access code"
+                          }
                           onClick={() => setShowPassword(!showPassword)}
                           className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
                         >
-                          <img src={eye} alt="" className="w-4 h-4 lg:w-auto lg:h-auto" />
+                          <img
+                            src={eye}
+                            alt=""
+                            className="w-4 h-4 lg:w-auto lg:h-auto"
+                          />
                         </button>
                       </div>
                     </div>
@@ -301,7 +384,7 @@ export const SignIn = () => {
                         />
                         <label
                           htmlFor="keepSignedIn"
-                          className="flex h-5 w-5 cursor-pointer items-center justify-center rounded border border-emerald-800/50 bg-[#FFFFFF0D] backdrop-blur-sm transition-all peer-checked:border-emerald-500 peer-checked:bg-emerald-500/20"
+                          className="flex h-5 w-5 cursor-pointer items-center justify-center rounded border border-[#00B8DBAA] bg-[#FFFFFF0D] backdrop-blur-sm transition-all peer-checked:border-[#00B8DB] peer-checked:bg-[#00B8DB]/10"
                         >
                           <svg
                             className={`h-3 w-3 text-emerald-400 transition-opacity ${keepSignedIn ? "opacity-100" : "opacity-0"}`}
@@ -309,14 +392,22 @@ export const SignIn = () => {
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                           >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={3}
+                              d="M5 13l4 4L19 7"
+                            />
                           </svg>
                         </label>
                       </div>
                       <label
                         htmlFor="keepSignedIn"
                         className={`text-gray-400 text-xs lg:text-sm cursor-pointer select-none ${FONTSIZE[14]}`}
-                        style={{ fontWeight: WEIGHT.four, color: COLORS.secoundy_gray }}
+                        style={{
+                          fontWeight: WEIGHT.four,
+                          color: COLORS.secoundy_gray,
+                        }}
                       >
                         Remember me
                       </label>
@@ -325,7 +416,10 @@ export const SignIn = () => {
                     <button
                       type="submit"
                       className={`w-full bg-linear-to-r from-[#00B8DB] to-[#00BBA7] hover:from-[#00B8DB]/80 hover:to-[#00BBA7]/70 text-white font-semibold py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#00B8DB40] text-sm lg:text-base cursor-pointer ${FONTSIZE[16]}`}
-                      style={{ fontWeight: WEIGHT.four, color: COLORS.primary_white }}
+                      style={{
+                        fontWeight: WEIGHT.four,
+                        color: COLORS.primary_white,
+                      }}
                     >
                       Continue to 2FA Verfication
                     </button>
@@ -336,7 +430,10 @@ export const SignIn = () => {
                   <div className="mb-4 md:mb-3 lg:mb-6">
                     <h3
                       className={`text-white text-xl lg:text-2xl font-semibold mb-1 ${FONTSIZE[30]}`}
-                      style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
+                      style={{
+                        fontWeight: WEIGHT.seven,
+                        color: COLORS.primary_white,
+                      }}
                     >
                       Sign In
                     </h3>
@@ -350,7 +447,10 @@ export const SignIn = () => {
                     <div className="rounded-2xl p-3 md:p-3 lg:p-5 text-center">
                       <h4
                         className={`text-white font-semibold text-base mb-1 ${FONTSIZE[22]}`}
-                        style={{ fontWeight: WEIGHT.six, color: COLORS.primary_white }}
+                        style={{
+                          fontWeight: WEIGHT.six,
+                          color: COLORS.primary_white,
+                        }}
                       >
                         OTP Verification
                       </h4>
@@ -369,11 +469,17 @@ export const SignIn = () => {
                     </div>
                   )}
 
-                  <form onSubmit={handleOtpSubmit} className="space-y-4 md:space-y-4 lg:space-y-6">
+                  <form
+                    onSubmit={handleOtpSubmit}
+                    className="space-y-4 md:space-y-4 lg:space-y-6"
+                  >
                     <div>
                       <label
                         className={`text-gray-300 text-sm font-medium mb-3 block ${FONTSIZE[14]}`}
-                        style={{ color: COLORS.smalltext, fontWeight: WEIGHT.seven }}
+                        style={{
+                          color: COLORS.smalltext,
+                          fontWeight: WEIGHT.seven,
+                        }}
                       >
                         Enter Otp
                       </label>
@@ -381,12 +487,16 @@ export const SignIn = () => {
                         {otp.map((digit, index) => (
                           <input
                             key={index}
-                            ref={(el) => { otpRefs.current[index] = el; }}
+                            ref={(el) => {
+                              otpRefs.current[index] = el;
+                            }}
                             type="text"
                             inputMode="numeric"
                             maxLength={1}
                             value={digit}
-                            onChange={(e) => handleOtpChange(index, e.target.value)}
+                            onChange={(e) =>
+                              handleOtpChange(index, e.target.value)
+                            }
                             onKeyDown={(e) => handleOtpKeyDown(index, e)}
                             onPaste={(e) => handleOtpPaste(e, index)}
                             className="flex-1 min-w-0 aspect-square text-center text-white text-base md:text-sm lg:text-lg font-semibold bg-[#FFFFFF0D] border border-[#FFFFFF1A] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#00B8DB] transition-all"
@@ -397,7 +507,15 @@ export const SignIn = () => {
                     </div>
 
                     <div className="flex items-center justify-center gap-2 text-xs">
-                      <span className={`${FONTSIZE[12]}`} style={{ fontWeight: WEIGHT.four, color: COLORS.secoundy_gray }}>Do not send OTP ?</span>
+                      <span
+                        className={`${FONTSIZE[12]}`}
+                        style={{
+                          fontWeight: WEIGHT.four,
+                          color: COLORS.secoundy_gray,
+                        }}
+                      >
+                        Do not send OTP ?
+                      </span>
                       <button
                         type="button"
                         onClick={handleResendOtp}
@@ -411,16 +529,26 @@ export const SignIn = () => {
                     <div className="flex gap-3">
                       <button
                         type="button"
-                        onClick={() => { setStep("login"); setError(""); setOtp(["", "", "", "", "", ""]); }}
+                        onClick={() => {
+                          setStep("login");
+                          setError("");
+                          setOtp(["", "", "", "", "", ""]);
+                        }}
                         className={`flex-1 border border-[#FFFFFF1A] bg-[#FFFFFF0D] hover:bg-[#FFFFFF1A] text-white font-semibold py-3 rounded-xl transition-all duration-200 text-sm lg:text-base cursor-pointer ${FONTSIZE[16]}`}
-                        style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
+                        style={{
+                          fontWeight: WEIGHT.seven,
+                          color: COLORS.primary_white,
+                        }}
                       >
                         ← Sign In
                       </button>
                       <button
                         type="submit"
                         className={`flex-1 bg-linear-to-r from-[#00B8DB] to-[#00BBA7] hover:from-[#00B8DB]/80 hover:to-[#00BBA7]/70 text-white font-semibold py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#00B8DB40] text-sm lg:text-base cursor-pointer ${FONTSIZE[16]}`}
-                        style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
+                        style={{
+                          fontWeight: WEIGHT.seven,
+                          color: COLORS.primary_white,
+                        }}
                       >
                         Confirm OTP
                       </button>
@@ -428,7 +556,6 @@ export const SignIn = () => {
                   </form>
                 </>
               )}
-
             </div>
           </div>
         </div>
@@ -439,31 +566,31 @@ export const SignIn = () => {
               className={`text-white text-3xl font-bold mb-2 ${FONTSIZE[48]}`}
               style={{ fontWeight: WEIGHT.seven }}
             >
-              Keeping Everything
+              Complete Control
             </h2>
             <h2
-              className={`bg-linear-to-r from-[#FF8904] to-[#FFB900] bg-clip-text text-transparent text-3xl font-bold mb-4 ${FONTSIZE[48]}`}
+              className={`bg-linear-to-r from-[#00D3F3] to-[#00D5BE] bg-clip-text text-transparent text-3xl font-bold mb-4 ${FONTSIZE[48]}`}
               style={{ fontWeight: WEIGHT.seven }}
             >
-              Running Smoothly
+              Of Your Platform
             </h2>
             <p
               className={`text-gray-400 text-base ${FONTSIZE[18]}`}
               style={{ color: COLORS.secoundy_gray, fontWeight: WEIGHT.four }}
             >
-              Comprehensive maintenance management platform for work orders, scheduling, inventory
-              tracking, and repair coordination.
+              Master dashboard with comprehensive control over buildings, users,
+              complaints, visitors, invoices, and emergency management.
             </p>
           </div>
 
           <div className="space-y-3 mb-8">
             {[
-              "Work order management & assignment",
-              "Real-time complaint tracking",
-              "Scheduled maintenance calendar",
-              "Inventory & equipment tracking",
-              "Emergency repair coordination",
-              "Performance analytics & reports",
+             "Complete system administration",
+                  "User & role management",
+                  "Building & unit configuration",
+                  "Advanced analytics & reporting",
+                  "Emergency control center",
+                  "System-wide notifications",
             ].map((feature, index) => (
               <div key={index} className="flex items-center gap-3">
                 <img src={tick} alt="" className="w-4 h-4" />
@@ -483,15 +610,21 @@ export const SignIn = () => {
               <div>
                 <h3
                   className={`text-white font-semibold text-sm ${FONTSIZE[16]}`}
-                  style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
+                  style={{
+                    fontWeight: WEIGHT.seven,
+                    color: COLORS.primary_white,
+                  }}
                 >
-                  Professional Maintenance
+                 Administrator Access
                 </h3>
                 <p
                   className={`text-gray-400 text-xs ${FONTSIZE[14]}`}
-                  style={{ fontWeight: WEIGHT.four, color: COLORS.secoundy_gray }}
+                  style={{
+                    fontWeight: WEIGHT.four,
+                    color: COLORS.secoundy_gray,
+                  }}
                 >
-                  Efficient operations, happy residents
+                 Protected with two-factor authentication
                 </p>
               </div>
             </div>
@@ -503,15 +636,22 @@ export const SignIn = () => {
               <div>
                 <h3
                   className={`text-white font-semibold text-sm ${FONTSIZE[16]}`}
-                  style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
+                  style={{
+                    fontWeight: WEIGHT.seven,
+                    color: COLORS.primary_white,
+                  }}
                 >
                   Enhanced Security
                 </h3>
                 <p
                   className={`text-gray-400 text-xs ${FONTSIZE[14]}`}
-                  style={{ fontWeight: WEIGHT.four, color: COLORS.secoundy_gray }}
+                  style={{
+                    fontWeight: WEIGHT.four,
+                    color: COLORS.secoundy_gray,
+                  }}
                 >
-                  All admin sessaions are monitored and logged for security purposes.
+                  All admin sessaions are monitored and logged for security
+                  purposes.
                 </p>
               </div>
             </div>
