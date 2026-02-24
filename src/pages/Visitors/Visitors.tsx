@@ -286,14 +286,14 @@ const VisitorManagement: React.FC = () => {
                   >
                     View
                   </button>
-                  {v.status === "CHECKED IN" && (
+                  {/* {v.status === "CHECKED IN" && (
                     <button
                       onClick={() => handleCheckout(v.id)}
                       className={`bg-[#00C95033] text-[#05DF72] px-3 py-1 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[400]} cursor-pointer`}
                     >
                       Check Out
                     </button>
-                  )}
+                  )} */}
                 </td>
               </tr>
             ))}
@@ -320,6 +320,7 @@ const VisitorManagement: React.FC = () => {
                 <h3 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
                   {selected.name}
                 </h3>
+                
                 <p
                   className={`${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
                   style={{ color: COLORS.secoundy_gray }}
@@ -327,10 +328,13 @@ const VisitorManagement: React.FC = () => {
                   {selected.phone}
                 </p>
               </div>
+              <div>
+
               <div
-                className={`flex items-center px-3 py-1 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]} ${selected.status === "CHECKED IN" ? "bg-[#2B7FFF33] text-[#51A2FF]" : "bg-[#00C95033] text-[#05DF72]"}`}
+                className={`flex items-center px-3 py-2 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]} ${selected.status === "CHECKED IN" ? "bg-[#2B7FFF33] text-[#51A2FF]" : "bg-[#00C95033] text-[#05DF72]"}`}
               >
                 {selected.status}
+              </div>
               </div>
             </div>
             <div
@@ -408,7 +412,7 @@ const VisitorManagement: React.FC = () => {
               )}
             </div>
 
-            {selected.status === "CHECKED IN" && (
+            {/* {selected.status === "CHECKED IN" && (
               <button
                 onClick={() => handleCheckout(selected.id)}
                 className={`flex justify-center items-center gap-2 w-full bg-linear-to-r from-[#00C950] to-[#009966] py-3 rounded-full mb-3 ${FONTSIZE[16]} ${FONTWEIGHT[700]} cursor-pointer`}
@@ -417,12 +421,12 @@ const VisitorManagement: React.FC = () => {
                 <img src={Checkbox} alt="" className="w-6 h-6" /> Check Out
                 Visitor
               </button>
-            )}
+            )} */}
 
             <button
               onClick={() => setSelected(null)}
               className={`w-full bg-[#FFFFFF1A] border border-[#FFFFFF33]  py-3 rounded-full ${FONTSIZE[16]} ${FONTWEIGHT[700]} cursor-pointer`}
-              style={{ color: COLORS.primary_black }}
+              // style={{ color: COLORS.primary_black }}
             >
               Close
             </button>

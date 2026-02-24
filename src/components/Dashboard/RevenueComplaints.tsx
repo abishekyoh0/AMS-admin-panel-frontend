@@ -151,7 +151,7 @@ const RevenueComplaintsDashboard: React.FC = () => {
                 <CartesianGrid stroke="#ffffff10" />
                 <XAxis dataKey="name" stroke="#aaa" />
                 <YAxis stroke="#aaa" />
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip content={<CustomTooltip />} cursor={false}/>
                 <Bar dataKey="revenue" fill="#fbbf24" radius={[15, 15, 0, 0]} />
                 <Bar
                   dataKey="expenses"
@@ -164,20 +164,10 @@ const RevenueComplaintsDashboard: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
             {SUMMARY_CARDS.map((card, index) => (
-              <div
-                key={index}
-                className="bg-[#FFFFFF0D] p-4 rounded-xl text-center  transition duration-300"
-              >
-                <p
-                  className={`mb-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
-                  style={{ color: COLORS.secoundy_gray }}
-                >
-                  {card.title}
-                </p>
-                <p
-                  className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}
-                  style={{ color: card.color }}
-                >
+              <div key={index}
+                className="bg-[#FFFFFF0D] p-4 rounded-xl text-center">
+                <p className={`mb-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{card.title}</p>
+                <p className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`} style={{ color: card.color }}>
                   {card.value}
                 </p>
                 <div

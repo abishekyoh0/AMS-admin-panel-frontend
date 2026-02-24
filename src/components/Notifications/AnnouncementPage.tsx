@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import { COLORS } from "../../constent/uiconstent";
+import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import BackIcon from "../../assets/notification/back-arrow.png";
+import Search from "../../assets/notification/search.png"
+import Bell from "../../assets/notification/bell1.png"
+import { X } from "lucide-react";
 
 type StatCard = {
   id: number;
@@ -30,6 +32,9 @@ type Announcement = {
   totalSent: number;
   read: number;
   unread: number;
+  createdAt?: string;
+  scheduledFor?: string;
+  expiresOn?: string;
 };
 
 const ANNOUNCEMENTS: Announcement[] = [
@@ -43,6 +48,9 @@ const ANNOUNCEMENTS: Announcement[] = [
     totalSent: 0,
     read: 0,
     unread: 0,
+    createdAt: "2026-02-20 10:30:00",
+    scheduledFor: "2026-02-24 08:00:00",
+    expiresOn: "2026-02-25",
   },
   {
     id: 2,
@@ -54,6 +62,9 @@ const ANNOUNCEMENTS: Announcement[] = [
     totalSent: 450,
     read: 312,
     unread: 138,
+    createdAt: "2026-02-20 10:30:00",
+    scheduledFor: "2026-02-24 08:00:00",
+    expiresOn: "2026-02-25",
   },
   {
     id: 3,
@@ -65,6 +76,9 @@ const ANNOUNCEMENTS: Announcement[] = [
     totalSent: 450,
     read: 287,
     unread: 163,
+    createdAt: "2026-02-20 10:30:00",
+    scheduledFor: "2026-02-24 08:00:00",
+    expiresOn: "2026-02-25",
   },
 ];
 
@@ -91,26 +105,131 @@ const CATEGORY_FILTERS: Filter[] = [
   { id: 5, label: "Event", key: "event" },
 ];
 
+const AnnouncementModal = ({
+  item,
+  onClose,
+}: {
+  item: Announcement;
+  onClose: () => void;
+}) => {
+  const percent =
+    item.totalSent === 0
+      ? 0
+      : Math.round((item.read / item.totalSent) * 100);
+
+  return (
+    <div className="fixed inset-0 bg-black/70 z-50 flex justify-center items-center p-4">
+      <div className="w-full max-w-3xl bg-linear-to-br from-[#111633] to-[#0b0f25] border border-white/10 rounded-2xl p-6 text-white relative">
+
+        <button
+          onClick={onClose}
+          className="absolute right-5 top-5 text-gray-400 hover:text-white text-xl"
+        >
+          <X />
+        </button>
+
+        <div className="flex items-start gap-4 mb-4">
+          <div className="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center">
+            <img src={Bell} alt="" />
+          </div>
+          <div>
+            <h2 className="text-xl font-bold">{item.title}</h2>
+            <p className="text-gray-400 text-sm">ANN-00{item.id}</p>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2 mb-5 text-xs">
+          <span className="bg-red-500/20 text-red-400 px-3 py-1 rounded">
+            {item.tag}
+          </span>
+          <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded">
+            {item.priority}
+          </span>
+          <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded">
+            {item.status}
+          </span>
+          <span className="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded">
+            📌 Pinned
+          </span>
+        </div>
+
+        <div className="bg-white/5 border border-white/10 rounded-xl p-4 mb-5">
+          <h3 className="font-semibold mb-2">Description</h3>
+          <p className="text-gray-400 text-sm">{item.desc}</p>
+        </div>
+
+        <div className="bg-white/5 border border-white/10 rounded-xl p-4 mb-5">
+          <h3 className="font-semibold mb-4">Details</h3>
+          <div className="grid sm:grid-cols-2 gap-4 text-sm">
+            <div>
+              <p className="text-gray-400">Audience:</p>
+              <p>All Residents</p>
+            </div>
+            <div>
+              <p className="text-gray-400">Created By:</p>
+              <p>Admin - John Anderson</p>
+            </div>
+            <div>
+              <p className="text-gray-400">Created At:</p>
+              <p>{item.createdAt}</p>
+            </div>
+            <div>
+              <p className="text-gray-400">Scheduled For:</p>
+              <p>{item.scheduledFor}</p>
+            </div>
+            <div>
+              <p className="text-gray-400">Expires On:</p>
+              <p>{item.expiresOn}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white/5 border border-white/10 rounded-xl p-4 mb-5">
+          <h3 className="font-semibold mb-4">Statistics</h3>
+          <div className="grid grid-cols-3 text-center">
+            <div>
+              <p className="text-2xl font-bold">{item.totalSent}</p>
+              <p className="text-gray-400 text-xs">Total Sent</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-green-400">{item.read}</p>
+              <p className="text-gray-400 text-xs">Read ({percent}%)</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-yellow-400">{item.unread}</p>
+              <p className="text-gray-400 text-xs">Unread</p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          onClick={onClose}
+          className="w-full bg-white/10 border border-white/20 py-3 rounded-xl hover:bg-white/20 transition"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const AnnouncementManagement: React.FC = () => {
   const navigate = useNavigate();
   const [data, setData] = useState(ANNOUNCEMENTS);
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("all");
   const [category, setCategory] = useState("all");
-
-  const createAnnouncement = () => {
-    toast.success("Opening create announcement...");
-  };
+  const [selected, setSelected] = useState<Announcement | null>(null);
 
   const viewDetails = (item: Announcement) => {
-    toast.info("Viewing: " + item.title);
+    setSelected(item);
   };
 
-  const pinAnnouncement = (id: number) => {
+  const pinAnnouncement = (_id: number) => {
     toast.success("Announcement pinned");
   };
 
-  const resendAnnouncement = (id: number) => {
+  const resendAnnouncement = (_id: number) => {
     toast.success("Announcement resend");
   };
 
@@ -142,7 +261,7 @@ const AnnouncementManagement: React.FC = () => {
         style={{ color: COLORS.secoundy_gray }}
       >
         <img src={BackIcon} className="w-4 h-4" />
-        Back
+        Back to Notification
       </button>
 
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-6">
@@ -154,7 +273,7 @@ const AnnouncementManagement: React.FC = () => {
         </div>
 
         <button
-          onClick={createAnnouncement}
+          onClick={() => navigate("/create-announcement")}
           className="bg-linear-to-r from-purple-600 to-pink-500 px-5 py-2 rounded-xl font-semibold shadow-lg"
         >
           + Create Announcement
@@ -173,13 +292,16 @@ const AnnouncementManagement: React.FC = () => {
       </div>
 
       <div className="bg-white/5 border border-white/10 rounded-2xl p-4 mb-6">
-        <div className="flex flex-col lg:flex-row gap-4">
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search announcements..."
-            className="bg-white/10 border border-white/20 rounded-xl px-4 py-2 outline-none"
-          />
+          <div className="flex items-center gap-2 bg-[#FFFFFF0D] border border-[#FFFFFF1A] rounded-xl px-3 py-2 mb-4">
+            <img src={Search} className="w-4 h-4 opacity-70" />
+            <input
+              placeholder="Search notifications..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className={`bg-transparent outline-none w-full ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} />
+          </div>
+
+        <div className="flex justify-between flex-col lg:flex-row gap-4 mt-4">
 
           <div className="flex gap-3 overflow-x-auto">
             {STATUS_FILTERS.map((btn) => (
@@ -260,6 +382,13 @@ const AnnouncementManagement: React.FC = () => {
           );
         })}
       </div>
+      {selected && (
+        <AnnouncementModal
+          item={selected}
+          onClose={() => setSelected(null)}
+        />
+      )}
+      
     </div>
   );
 };

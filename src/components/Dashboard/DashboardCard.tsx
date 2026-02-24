@@ -203,164 +203,83 @@ const BOTTOM_CARDS: BottomGradientCard[] = [
 ];
 
 const AdminDashboard: React.FC = () => {
-  return (
-    <>
-      <div className="gap-4 mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-        {CARDS.map((card) => (
-          <div
-            className="w-full p-4 rounded-2xl  transition duration-300"
-            key={card.id}
-            style={{
-              background: "#12162b",
-              border: "1px solid #ffffff1a",
-              boxShadow:
-                "0px 4px 6px -4px #ffffff1a, 0px 10px 15px -3px #ffffff1a",
-            }}
-          >
-            <div className="flex justify-between items-center">
-              <p>
-                <img src={card.icon} alt="" className="w-5 h-5" />
-              </p>
-              <p
-                className={`px-2 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
-                style={{
-                  background: card.badgeColor + "22",
-                  color: card.badgeColor,
-                }}
-              >
-                {card.badge}
-              </p>
+    return (
+        <>
+            <div className="gap-4 mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+                {CARDS.map((card) => (
+                    <div className="w-full p-4 rounded-2xl"
+                        key={card.id}
+                        style={{ background: "#12162b", border: "1px solid #ffffff1a", boxShadow: "0px 4px 6px -4px #ffffff1a, 0px 10px 15px -3px #ffffff1a" }}>
+                        <div className="flex justify-between items-center">
+                            <p><img src={card.icon} alt="" className="w-5 h-5"/></p>
+                            <p className={`px-2 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                                style={{ background: card.badgeColor + "22", color: card.badgeColor }}>
+                                {card.badge}</p>
+                        </div>
+                        <h1 className={`py-2 rounded-2xl ${FONTSIZE[30]} ${FONTWEIGHT[700]}`}
+                            style={{ color: card.valueColor, }}>
+                            {card.value}
+                        </h1>
+                        <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+                            style={{ color: COLORS.secoundy_gray }}>{card.subtitle}</p>
+                        <div style={{ height: 2, background: "#ffffff30", margin: "10px 0", }} />
+                        <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                            style={{ color: card.bottomColor, }}>
+                            {card.bottomText}
+                        </p>
+                    </div>
+                ))}
             </div>
-            <h1
-              className={`py-2 rounded-2xl ${FONTSIZE[30]} ${FONTWEIGHT[700]}`}
-              style={{ color: card.valueColor }}
-            >
-              {card.value}
-            </h1>
-            <p
-              className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-              style={{ color: COLORS.secoundy_gray }}
-            >
-              {card.subtitle}
-            </p>
-            <div
-              style={{ height: 2, background: "#ffffff30", margin: "10px 0" }}
-            />
-            <p
-              className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
-              style={{ color: card.bottomColor }}
-            >
-              {card.bottomText}
-            </p>
-          </div>
-        ))}
-      </div>
-      <div className="border border-[#FF64674D] rounded-xl p-5 mb-8 bg-linear-to-r from-[#FB2C361A] to-[#FF69001A]">
-        <h2 className="flex gap-2 mb-4">
-          <img src={Alert} alt="" className="w-10 h-10" />
-          <div>
-            <p className={`${FONTSIZE[20]} ${FONTWEIGHT[700]}`}>
-              Critical Alerts
-            </p>
-            <p
-              className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-              style={{ color: COLORS.secoundy_gray }}
-            >
-              Requires immediate attention
-            </p>
-          </div>
-        </h2>
-        <div className="grid md:grid-cols-3 gap-4">
-          {ALERTS.map((a, i) => (
-            <div
-              key={i}
-              className="bg-[#FFFFFF0D] rounded-lg p-4 border border-[#FFFFFF33] transition duration-300"
-            >
-              <div className="flex justify-between items-center">
-                <h3 className={`${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>
-                  {a.title}
-                </h3>
-                <span
-                  className={`${FONTSIZE[12]} ${FONTWEIGHT[400]} px-2 py-1 rounded-full ${
-                    a.priority === "critical"
-                      ? "bg-red-600/30 text-red-400"
-                      : "bg-orange-500/30 text-orange-400"
-                  }`}
-                >
-                  {a.priority}
-                </span>
-              </div>
-              <p
-                className={`mt-2 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-                style={{ color: COLORS.secoundy_gray }}
-              >
-                {a.desc}
-              </p>
-              <p
-                className={`mt-2 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
-                style={{ color: COLORS.secoundy_gray }}
-              >
-                {a.time}
-              </p>
+            <div className="border border-[#FF64674D] rounded-xl p-5 mb-8 bg-linear-to-r from-[#FB2C361A] to-[#FF69001A]">
+                <h2 className="flex gap-2 mb-4">
+                    <img src={Alert} alt="" className="w-10 h-10" />
+                    <div>
+                        <p className={`${FONTSIZE[20]} ${FONTWEIGHT[700]}`}>Critical Alerts</p>
+                        <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Requires immediate attention</p>
+                    </div>
+                </h2>
+                <div className="grid md:grid-cols-3 gap-4">
+                    {ALERTS.map((a, i) => (
+                        <div key={i} className="bg-[#FFFFFF0D] rounded-lg p-4 border border-[#FFFFFF33]">
+                            <div className="flex justify-between items-center">
+                                <h3 className={`${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>{a.title}</h3>
+                                <span className={`${FONTSIZE[12]} ${FONTWEIGHT[400]} px-2 py-1 rounded-full ${a.priority === "critical"
+                                    ? "bg-red-600/30 text-red-400" : "bg-orange-500/30 text-orange-400"}`}>
+                                    {a.priority}
+                                </span>
+                            </div>
+                            <p className={`mt-2 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{a.desc}</p>
+                            <p className={`mt-2 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{a.time}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
-          ))}
-        </div>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
-        {BOTTOM_CARDS.map((card) => (
-          <div
-            className="px-3 py-4 rounded-2xl  transition duration-300"
-            key={card.id}
-            style={{
-              background: card.gradient,
-              border: `1px solid ${card.border}`,
-              boxShadow: "0 10px 25px rgba(0,0,0,0.4)",
-            }}
-          >
-            <div className="flex justify-between items-center mb-4">
-              <img src={card.icon} style={{ fontSize: 26 }}></img>
-              <div
-                className={`px-2 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
-                style={{
-                  background: card.badgeColor + "33",
-                  color: card.badgeText,
-                }}
-              >
-                {card.badge}
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
+                {BOTTOM_CARDS.map((card) => (
+                    <div className="px-3 py-4 rounded-2xl"
+                        key={card.id}
+                        style={{ background: card.gradient, border: `1px solid ${card.border}`, boxShadow: "0 10px 25px rgba(0,0,0,0.4)" }}>
+                        <div className="flex justify-between items-center mb-4">
+                            <img src={card.icon} style={{ fontSize: 26 }}></img>
+                            <div className={`px-2 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
+                                style={{ background: card.badgeColor + "33", color: card.badgeText }}>
+                                {card.badge}
+                            </div>
+                        </div>
+                        <h2 className={`${FONTSIZE[30]} ${FONTWEIGHT[700]}`}>{card.value}</h2>
+                        <p className={`${FONTSIZE[16]} ${FONTWEIGHT[400]}`} style={{ color: "#D1D5DC" }}>{card.title}</p>
+                        <div className="my-3" style={{ height: 1, background: "rgba(255,255,255,0.2)" }} />
+                        <div className="flex justify-between items-center">
+                            <span className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{card.subLeft}</span>
+                            <span className={`${FONTSIZE[14]} ${FONTWEIGHT[700]}`} style={{ color: card.subRightColor }}>
+                                {card.subRight}
+                            </span>
+                        </div>
+                    </div>
+                ))}
             </div>
-            <h2 className={`${FONTSIZE[30]} ${FONTWEIGHT[700]}`}>
-              {card.value}
-            </h2>
-            <p
-              className={`${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
-              style={{ color: "#D1D5DC" }}
-            >
-              {card.title}
-            </p>
-            <div
-              className="my-3"
-              style={{ height: 1, background: "rgba(255,255,255,0.2)" }}
-            />
-            <div className="flex justify-between items-center">
-              <span
-                className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-                style={{ color: COLORS.secoundy_gray }}
-              >
-                {card.subLeft}
-              </span>
-              <span
-                className={`${FONTSIZE[14]} ${FONTWEIGHT[700]}`}
-                style={{ color: card.subRightColor }}
-              >
-                {card.subRight}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </>
-  );
+        </>
+    );
 };
 
 export default AdminDashboard;
