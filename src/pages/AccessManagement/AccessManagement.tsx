@@ -1,33 +1,21 @@
 import React, { useState } from "react";
-
 import StatsSection from "../../components/AccessManagement/StatsSection";
 import ActionBar from "../../components/AccessManagement/ActionBar";
 import FilterTabs from "../../components/AccessManagement/FilterTabs";
 import FormCard from "../../components/AccessManagement/FormCard";
 import MoveInDetailsModal from "../../components/AccessManagement/MoveInDetailsModal";
-
 import MoveOutCard, {
   type MoveOutData,
 } from "../../components/AccessManagement/MoveOutCard";
 import MoveOutDetailsModal from "../../components/AccessManagement/MoveOutDetailsModal";
-
 import AccessRequestCard, {
   type AccessRequestData,
 } from "../../components/AccessManagement/AccessRequestCard";
 import AccessRequestModal from "../../components/AccessManagement/AccessRequestModal";
 
-import {
-  COLORS,
-  FONTSIZE,
-  FONTWEIGHT,
-} from "../../constent/uiconstent";
+import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 
-
-export type StatusType =
-  | "Pending"
-  | "Approved"
-  | "Completed"
-  | "Inspected";
+export type StatusType = "Pending" | "Approved" | "Completed" | "Inspected";
 
 export interface FormData {
   id: number;
@@ -38,8 +26,6 @@ export interface FormData {
   deposit: string;
   submitted: string;
 }
-
-
 
 export const formList: FormData[] = [
   {
@@ -80,8 +66,6 @@ export const formList: FormData[] = [
   },
 ];
 
-
-
 const moveOutData: MoveOutData[] = [
   {
     id: 1,
@@ -115,8 +99,6 @@ const moveOutData: MoveOutData[] = [
   },
 ];
 
-
-
 const accessData: AccessRequestData[] = [
   {
     id: 1,
@@ -147,62 +129,50 @@ const accessData: AccessRequestData[] = [
   },
 ];
 
-
-
 const AccessManagement: React.FC = () => {
-  const [activeType, setActiveType] = useState<
-    "moveIn" | "moveOut" | "access"
-  >("moveIn");
+  const [activeType, setActiveType] = useState<"moveIn" | "moveOut" | "access">(
+    "moveIn",
+  );
 
+  const [activeTab, setActiveTab] = useState<"All" | StatusType>("All");
 
-  const [activeTab, setActiveTab] =
-    useState<"All" | StatusType>("All");
+  const [selectedForm, setSelectedForm] = useState<FormData | null>(null);
 
-  const [selectedForm, setSelectedForm] =
-    useState<FormData | null>(null);
-
-  const [isMoveInModalOpen, setIsMoveInModalOpen] =
-    useState(false);
+  const [isMoveInModalOpen, setIsMoveInModalOpen] = useState(false);
 
   const filteredForms =
     activeTab === "All"
       ? formList
       : formList.filter((f) => f.status === activeTab);
 
+  const [moveOutStatus, setMoveOutStatus] = useState<
+    "All" | "Pending" | "Inspected" | "Completed"
+  >("All");
 
-  const [moveOutStatus, setMoveOutStatus] =
-    useState<"All" | "Pending" | "Inspected" | "Completed">("All");
+  const [selectedMoveOut, setSelectedMoveOut] = useState<MoveOutData | null>(
+    null,
+  );
 
-  const [selectedMoveOut, setSelectedMoveOut] =
-    useState<MoveOutData | null>(null);
-
-  const [isMoveOutModalOpen, setIsMoveOutModalOpen] =
-    useState(false);
+  const [isMoveOutModalOpen, setIsMoveOutModalOpen] = useState(false);
 
   const filteredMoveOut =
     moveOutStatus === "All"
       ? moveOutData
-      : moveOutData.filter(
-          (item) => item.status === moveOutStatus
-        );
+      : moveOutData.filter((item) => item.status === moveOutStatus);
 
-
-  const [accessStatus, setAccessStatus] =
-    useState<"All" | "Pending" | "Approved" | "Active">("All");
+  const [accessStatus, setAccessStatus] = useState<
+    "All" | "Pending" | "Approved" | "Active"
+  >("All");
 
   const [selectedAccess, setSelectedAccess] =
     useState<AccessRequestData | null>(null);
 
-  const [isAccessModalOpen, setIsAccessModalOpen] =
-    useState(false);
+  const [isAccessModalOpen, setIsAccessModalOpen] = useState(false);
 
   const filteredAccess =
     accessStatus === "All"
       ? accessData
-      : accessData.filter(
-          (item) => item.status === accessStatus
-        );
-
+      : accessData.filter((item) => item.status === accessStatus);
 
   const handleMoveInView = (form: FormData) => {
     setSelectedForm(form);
@@ -219,18 +189,16 @@ const AccessManagement: React.FC = () => {
     setIsAccessModalOpen(true);
   };
 
-
   return (
     <div
-      className="min-h-screen"
+      className=""
       style={{
         backgroundColor: COLORS.primary_black,
         color: COLORS.primary_white,
         ...FONTWEIGHT[400],
       }}
     >
-      <div className="max-w-7xl mx-auto space-y-6">
-
+      <div className="space-y-6">
         <div>
           <h1
             className={FONTSIZE[28]}
@@ -254,20 +222,13 @@ const AccessManagement: React.FC = () => {
         </div>
 
         <StatsSection
-          totalCount={
-            formList.length +
-            moveOutData.length +
-            accessData.length
-          }
+          totalCount={formList.length + moveOutData.length + accessData.length}
           moveInCount={formList.length}
           moveOutCount={moveOutData.length}
           accessCount={accessData.length}
         />
 
-        <ActionBar
-          activeType={activeType}
-          setActiveType={setActiveType}
-        />
+        <ActionBar activeType={activeType} setActiveType={setActiveType} />
 
         {activeType === "moveIn" && (
           <FilterTabs
@@ -293,15 +254,10 @@ const AccessManagement: React.FC = () => {
           />
         )}
 
-        {/* LIST */}
         <div className="space-y-4">
           {activeType === "moveIn" &&
             filteredForms.map((form) => (
-              <FormCard
-                key={form.id}
-                form={form}
-                onView={handleMoveInView}
-              />
+              <FormCard key={form.id} form={form} onView={handleMoveInView} />
             ))}
 
           {activeType === "moveOut" &&
