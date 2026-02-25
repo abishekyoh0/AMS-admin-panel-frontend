@@ -3,8 +3,8 @@ import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 type Props = {
   title: string;
   count: number;
-  gradientFrom: string;   
-  gradientTo: string;     
+  gradientFrom: string;
+  gradientTo: string;
   borderColor: string;
   iconBg: string;
   icon: string;

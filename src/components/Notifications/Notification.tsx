@@ -18,6 +18,11 @@ import Mark from "../../assets/notification/mark.png";
 import Total from "../../assets/notification/Vector.png";
 import Alert from "../../assets/notification/warning.png";
 import BellIcon from "../../assets/notification/bell-icon.png";
+import Unauthorized from "../../assets/notification/shield-red.png"
+import High from "../../assets/notification/warning.png"
+import New from "../../assets/notification/user.png"
+import Monthly from "../../assets/notification/dollar-green.png"
+import Clock from "../../assets/notification/clock.png"
 
 type FilterBtn = {
   id: number;
@@ -35,6 +40,7 @@ type Notification = {
   priority?: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
   action?: boolean;
   unread?: boolean;
+  icon?: string;
 };
 
 const FILTERS: FilterBtn[] = [
@@ -50,6 +56,7 @@ const FILTERS: FilterBtn[] = [
 const NOTIFICATIONS: Notification[] = [
   {
     id: 1,
+    icon: Unauthorized,
     title: "Unauthorized Access Attempt",
     desc: "Multiple failed login attempts detected from IP 192.168.1.45",
     time: "12 mins ago",
@@ -60,6 +67,7 @@ const NOTIFICATIONS: Notification[] = [
   },
   {
     id: 2,
+    icon: High,
     title: "High Priority Complaint - Elevator Malfunction",
     desc: "Unit B-305 reported elevator stuck on 12th floor",
     time: "45 mins ago",
@@ -70,6 +78,7 @@ const NOTIFICATIONS: Notification[] = [
   },
   {
     id: 3,
+    icon: New,
     title: "New Admin User Added",
     desc: "David Martinez added as System Administrator",
     time: "1 hour ago",
@@ -79,6 +88,7 @@ const NOTIFICATIONS: Notification[] = [
   },
   {
     id: 4,
+    icon: Monthly,
     title: "Monthly Collection Target Achieved",
     desc: "January collection reached $152,000",
     time: "2 hours ago",
@@ -88,6 +98,7 @@ const NOTIFICATIONS: Notification[] = [
   },
   {
     id: 5,
+    icon: Monthly,
     title: "Payment Overdue - Critical",
     desc: "Unit C-102 payment overdue by 30 days",
     time: "3 hours ago",
@@ -120,6 +131,7 @@ const NotificationsPage: React.FC = () => {
 
     return matchSearch;
   });
+
   const badgeColor = (priority?: string) => {
     switch (priority) {
       case "CRITICAL":
@@ -161,11 +173,9 @@ const NotificationsPage: React.FC = () => {
   return (
     <div style={{ color: COLORS.primary_white }}>
       <div className="pt-2 pb-3">
-        <button
-          onClick={() => navigate("/")}
+        <button onClick={() => navigate("/")}
           className={`flex items-center gap-2 sm:text-base cursor-pointer ${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
-          style={{ color: COLORS.secoundy_gray }}
-        >
+          style={{ color: COLORS.secoundy_gray }}>
           <img src={BackIcon} className="w-4 h-4 sm:w-5 sm:h-5" />
           Back to Dashboard
         </button>
@@ -173,55 +183,33 @@ const NotificationsPage: React.FC = () => {
 
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-6">
         <div>
-          <h1
-            className={`flex items-center gap-2 ${FONTSIZE[36]} ${FONTWEIGHT[700]}`}
-          >
-            <img src={Bell} alt="" /> Notifications
+          <h1 className={`flex items-center gap-2 ${FONTSIZE[36]} ${FONTWEIGHT[700]}`} >
+            <img src={Bell} alt="" className="w-8 h-8" /> Notifications
           </h1>
-          <p
-            className={`mt-1 ${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
-            style={{ color: COLORS.secoundy_gray }}
-          >
+          <p className={`mt-1 ${FONTSIZE[16]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
             System alerts and administrative notifications
           </p>
 
           <div className="flex flex-wrap gap-3 mt-3">
-            <span
-              className={`flex items-center gap-2 bg-[#2B7FFF33] text-[#51A2FF] px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
-            >
+            <span className={`flex items-center gap-2 bg-[#2B7FFF33] text-[#51A2FF] px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
               <img src={Total} alt="" className="w-4 h-4" /> {total} Total
             </span>
-            <span
-              className={`flex items-center gap-2 bg-[#FF690033] text-[#FF8904] px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
-            >
+            <span className={`flex items-center gap-2 bg-[#FF690033] text-[#FF8904] px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`} >
               <img src={Alert} alt="" /> {unread} Unread
             </span>
-            <span
-              className={`flex items-center gap-2 bg-[#FB2C3633] text-[#FF6467] px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
-            >
+            <span className={`flex items-center gap-2 bg-[#FB2C3633] text-[#FF6467] px-3 py-1 rounded-full ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
               <img src={ActionRed} alt="" /> {action} Need Action
             </span>
           </div>
         </div>
         <div className="flex gap-2">
-          <button
-            onClick={() => navigate("/announcement-management")}
+          <button onClick={() => navigate("/announcement-management")}
             className={`flex items-center gap-2 bg-linear-to-r from-[#AD46FF] to-[#E60076] px-5 py-2 rounded-2xl shadow-lg cursor-pointer ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}
-            style={{
-              boxShadow:
-                "0px 4px 6px -4px #AD46FF40,0px 10px 15px -3px #AD46FF40",
-            }}
-          >
+            style={{ boxShadow: "0px 4px 6px -4px #AD46FF40,0px 10px 15px -3px #AD46FF40" }}>
             <img src={BellIcon} alt="" /> Manage Announcements
           </button>
-          <button
-            onClick={markSelectedRead}
-            className={`flex items-center gap-2 bg-linear-to-r from-[#00C950] to-[#009966] px-5 py-2 rounded-2xl shadow-lg cursor-pointer ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}
-            style={{
-              boxShadow:
-                "0px 4px 6px -4px #00C95040, 0px 10px 15px -3px #00C95040",
-            }}
-          >
+          <button onClick={markSelectedRead} className={`flex items-center gap-2 bg-linear-to-r from-[#00C950] to-[#009966] px-5 py-2 rounded-2xl shadow-lg cursor-pointer ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}
+            style={{ boxShadow: "0px 4px 6px -4px #00C95040, 0px 10px 15px -3px #00C95040" }}>
             <img src={Mark} alt="" /> Mark All Read
           </button>
         </div>
@@ -230,30 +218,18 @@ const NotificationsPage: React.FC = () => {
       <div className="bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-4 mb-6">
         <div className="flex items-center gap-2 bg-[#FFFFFF0D] border border-[#FFFFFF1A] rounded-xl px-3 py-2 mb-4">
           <img src={Search} className="w-4 h-4 opacity-70" />
-          <input
-            placeholder="Search notifications..."
-            value={search}
+          <input placeholder="Search notifications..." value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className={`bg-transparent outline-none w-full ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-          />
+            className={`bg-transparent outline-none w-full ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} />
         </div>
 
         <div className="flex lg:flex-row gap-4">
           <div className="flex flex-nowrap gap-3 overflow-x-auto">
             {FILTERS.map((btn) => (
-              <button
-                type="button"
-                key={btn.id}
+              <button type="button" key={btn.id}
                 onClick={() => setActiveFilter(btn.key)}
-                className={`flex shrink-0 whitespace-nowrap px-4 py-2 
-          justify-center items-center gap-2 rounded-xl transition
-          ${FONTSIZE[16]} ${FONTWEIGHT[700]}
-          ${
-            activeFilter === btn.key
-              ? "bg-gradient-to-r from-[#2B7FFF] to-[#00B8DB]"
-              : "bg-white/5 border border-[#FFFFFF0D]"
-          }`}
-              >
+                className={`flex shrink-0 whitespace-nowrap px-4 py-2 justify-center items-center gap-2 rounded-xl transition ${FONTSIZE[16]} ${FONTWEIGHT[700]}
+                 ${activeFilter === btn.key ? "bg-linear-to-r from-[#2B7FFF] to-[#00B8DB]" : "bg-white/5 border border-[#FFFFFF0D]"}`}>
                 <img src={btn.icon} alt={btn.label} className="w-4 h-4" />
                 {btn.label}
               </button>
@@ -275,64 +251,58 @@ const NotificationsPage: React.FC = () => {
 
       <div className="space-y-4">
         {filtered.map((n) => (
-          <div
-            key={n.id}
+          <div key={n.id}
             className={`p-4 rounded-xl border transition
-            ${n.unread ? "border-blue-500/40" : "border-white/10"}
-            bg-linear-to-r from-[#121c44] to-[#1a103c]`}
-          >
+            ${n.unread ? "" : "border-blue-900"}
+            bg-[#FFFFFF0D] border-l-4 border-[#2B7FFF]`}>
             <div className="flex gap-3">
-              <input
-                type="checkbox"
+              <input type="checkbox"
                 checked={selected.includes(n.id)}
                 onChange={() => toggleSelect(n.id)}
-                className="mt-1 w-4 h-4 accent-cyan-500"
-              />
+                className="mt-1 w-4 h-4" />
 
               <div className="flex-1">
-                <h3 className="font-semibold flex items-center gap-2">
-                  {n.title}
-                  {n.unread && (
-                    <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
-                  )}
-                </h3>
-
-                <p className="text-gray-400 text-sm mt-1">{n.desc}</p>
-
-                <div className="flex flex-wrap gap-2 mt-2 text-xs font-semibold">
-                  <span className="bg-white/10 px-2 py-1 rounded">
+                <div className="flex justify-between items-center">
+                  <h3 className={`flex items-center gap-2 ${FONTSIZE[18]} ${FONTWEIGHT[700]}`}>
+                    <img src={n.icon} alt="" />
+                    {n.title}
+                    {n.unread && (
+                      <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                    )}
+                  </h3>
+                  <div className="flex gap-3 text-gray-400 text-sm mr-10">
+                    <button onClick={() => navigate("/notification-details", { state: n }) }
+                      className="hover:text-green-400 cursor-pointer">
+                      <img src={View} alt="" />
+                    </button>
+                    <button className="hover:text-red-400 cursor-pointer">
+                      <img src={Trash} alt="" />
+                    </button>
+                  </div>
+                </div>
+                <p className={`mt-1 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{color: COLORS.secoundy_gray}}>{n.desc}</p>
+                <div className={`flex flex-wrap items-center gap-2 mt-2 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}>
+                  <p className="flex items-center gap-1" style={{color: COLORS.secoundy_gray}}>
+                    <img src={Clock} alt="" className="w-3 h-3"/>{n.time}</p>
+                  <span className="bg-[#FFFFFF0D] px-2 py-1 rounded-2xl"
+                  style={{color: "#99A1AF"}}>
                     {n.category}
                   </span>
 
                   {n.priority && (
-                    <span
-                      className={`px-2 py-1 rounded ${badgeColor(n.priority)}`}
-                    >
+                    <span className={`px-2 py-1 rounded-2xl border-2 border-[#FB2C364D] ${badgeColor(n.priority)} ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
                       {n.priority}
                     </span>
                   )}
 
                   {n.action && (
-                    <span className="bg-red-500/20 text-red-400 px-2 py-1 rounded">
+                    <span className="bg-[#FB2C3633] border-2 border-[#FB2C364D] text-red-400 px-2 py-1 rounded-2xl">
                       ACTION REQUIRED
                     </span>
                   )}
                 </div>
 
-                <p className="text-xs text-gray-500 mt-2">{n.time}</p>
-              </div>
-              <div className="flex gap-3 text-gray-400 text-sm">
-                <button
-                  onClick={() =>
-                    navigate("/notification-details", { state: n })
-                  }
-                  className="hover:text-green-400 cursor-pointer"
-                >
-                  <img src={View} alt="" />
-                </button>
-                <button className="hover:text-red-400 cursor-pointer">
-                  <img src={Trash} alt="" />
-                </button>
+                
               </div>
             </div>
           </div>

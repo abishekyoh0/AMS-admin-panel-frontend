@@ -18,7 +18,7 @@ import NotificationsPage from "../components/Notifications/Notification";
 import NotificationDetails from "../components/Notifications/NotificationDetails";
 import AnnouncementManagement from "../components/Notifications/AnnouncementPage";
 import ParkingManagement from "../pages/ParkingManagement/parkingmanagement";
-import ParkingSlots from "../components/ParkingManagement/parkingslots";
+import ParkingSlots from "../components/ParkingManagement/parkingslots/parkingslots";
 
 
 export default function AppRoutes() {

@@ -6,6 +6,7 @@ import rejectIcon from "../../assets/parking/rejected.png";
 import bike from "../../assets/parking/bike.png";
 import car from "../../assets/parking/fourwheel.png";
 import SlotCard from "./slotscard";
+import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 
 type SlotStatus = "Available" | "Occupied" | "Maintenance";
 type VehicleType = "2W" | "4W";
@@ -60,16 +61,19 @@ export default function ParkingSlots() {
     <div className="text-white space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-semibold">Parking Slot Management</h2>
-          <p className="text-gray-400 text-sm">
+          <h2 className={`text-2xl font-semibold ${FONTSIZE[38]}`}
+                      style={{ fontWeight: WEIGHT.seven,color:COLORS.primary_white }}>Parking Slot Management</h2>
+          <p className={`text-gray-400 text-sm ${FONTSIZE[16]}`}
+                      style={{ fontWeight: WEIGHT.four,color:COLORS.grey }}>
             Create and manage parking slots
           </p>
         </div>
 
         <button
-          className="px-5 py-2 rounded-xl
+          className={`px-5 py-2 rounded-xl
                            bg-linear-to-r from-purple-500 to-pink-500
-                           text-sm font-medium shadow-lg"
+                           text-sm font-medium shadow-lg ${FONTSIZE[16]}`}
+                      style={{ fontWeight: WEIGHT.seven,color:COLORS.primary_white }}
         >
           + Create New Slot
         </button>
