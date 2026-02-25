@@ -1,3 +1,10 @@
+import deleteicon from "../../assets/parking/deleteicon.png"
+import editicon from "../../assets/parking/editicon.png"
+import approved from "../../assets/parking/approved.png";
+import unit from "../../assets/parking/unit.png";
+import location from "../../assets/parking/location.png";
+import close1 from "../../assets/parking/close1.png";
+
 type SlotStatus = "Available" | "Occupied" | "Maintenance";
 type VehicleType = "2W" | "4W";
 
@@ -23,21 +30,32 @@ export default function SlotCard({
   bikeIcon,
   carIcon,
   assignedTo,
+  
 }: SlotCardProps) {
   const statusStyle = {
-    Available: "bg-green-500/20 text-green-400",
-    Occupied: "bg-red-500/20 text-red-400",
-    Maintenance: "bg-yellow-500/20 text-yellow-400",
+    Available: "bg-[#00C95033] text-[#05DF72] border border-[#00C9504D]",
+    Maintenance: "bg-[#F0B10033] border border-[#F0B1004D] text-[#FDC700]",
+    Occupied: "bg-[#FB2C3633] border border-[#FB2C364D] text-[#FF6467]",
   }[status];
+
+const cardStyle = {
+  Available:
+    "border border-[#00C9504D] hover:border-[#00C95099]",
+  Maintenance:
+    "border border-[#F0B1004D] hover:border-[#FDC700]",
+  Occupied: 
+    "border border-[#FB2C364D] hover:border-[#FF6467]",
+}[status];
 
   const basement = id.startsWith("B1") ? "Basement 1" : "Basement 2";
 
   return (
     <div
-      className="p-5 rounded-xl border border-white/10
-                 bg-linear-to-br from-[#0F172A] to-[#020617]
-                 hover:border-purple-500/40 transition"
-    >
+  className={`p-5 rounded-xl
+              bg-linear-to-br from-[#0F172A] to-[#020617]
+              transition
+              ${cardStyle}`}
+>
       <div
         className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3
         ${type === "2W" ? "bg-green-500/20" : "bg-blue-500/20"}`}
@@ -50,14 +68,35 @@ export default function SlotCard({
       </div>
 
       <h3 className="font-semibold text-white">{id}</h3>
-      <p className="text-xs text-gray-400">{basement}</p>
+      <p className="flex items-center gap-1 text-xs text-gray-400">
+  <img
+    src={unit}
+    alt="basement"
+    className="w-3 h-3 object-contain"
+  />
+  {basement}
+</p>
 
       <div className="flex gap-2 mt-2">
-        <span className={`text-xs px-2 py-1 rounded ${statusStyle}`}>
-          {status}
-        </span>
+      <span
+  className={`flex items-center gap-1 text-xs px-2 py-1 rounded-lg ${statusStyle}`}
+>
+  {status === "Available" && (
+    <img src={approved} alt="approved" className="w-4 h-4" />
+  )}
 
-        <span className="text-xs px-2 py-1 rounded bg-blue-500/20 text-blue-400">
+  {status === "Maintenance" && (
+    <img src={location} alt="maintenance" className="w-4 h-4" />
+  )}
+
+  {status === "Occupied" && (
+    <img src={close1} alt="occupied" className="w-4 h-4" />
+  )}
+
+  {status}
+</span>
+
+        <span className="text-xs px-2 py-1 rounded-lg bg-[#FFFFFF1A] text-[#99A1AF]">
           {type === "2W" ? "2-Wheeler" : "4-Wheeler"}
         </span>
       </div>
@@ -72,21 +111,26 @@ export default function SlotCard({
       )}
 
       <div className="flex gap-2 mt-4">
-        <button
-          className="flex-1 py-2 rounded-lg text-sm font-medium text-white
-          bg-linear-to-r from-blue-500 to-cyan-500
-          shadow-md shadow-blue-500/20
-          hover:scale-[1.02] transition"
-        >
-          Edit
-        </button>
+       <button
+  className="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-sm font-medium text-white
+  bg-linear-to-r from-[#2B7FFF] to-[#0092B8]
+  shadow-md shadow-blue-500/20
+  hover:scale-[1.02] transition"
+>
+  <img 
+    src={editicon} 
+    alt="Edit"
+    className="w-4 h-4"
+  />
+  Edit
+</button>
 
         <button
-          className="w-10 py-2 rounded-lg text-white
-          bg-red-500/20 border border-red-500/40
+          className="w-12 py-2 rounded-lg text-white
+          bg-linear-to-r from-[#FB2C36] to-[#EC003F] border border-red-500/40
           hover:bg-red-500/30 transition"
         >
-          🗑
+          <img className="w-4 h-4 ml-3.5" src={deleteicon} alt="delete" />
         </button>
       </div>
     </div>
