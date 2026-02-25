@@ -1,8 +1,8 @@
 type Props = {
   title: string;
   count: number;
-  gradientFrom: string;   
-  gradientTo: string;     
+  gradientFrom: string;
+  gradientTo: string;
   borderColor: string;
   iconBg: string;
   icon: string;
@@ -36,9 +36,7 @@ export default function StatusCard({
           <img src={icon} alt="" className="w-4 h-4" />
         </div>
 
-        <span className="text-lg font-bold">
-          {count}
-        </span>
+        <span className="text-lg font-bold">{count}</span>
       </div>
 
       <p className="text-xs text-gray-300">{title}</p>

@@ -1,11 +1,14 @@
-import StatusCard from "./statuscard";
-import pendingIcon from "../../assets/parking/pending.png";
-import approvedIcon from "../../assets/parking/approved.png";
-import suggested from "../../assets/parking/suggested.png";
-import rejectIcon from "../../assets/parking/rejected.png";
-import bike from "../../assets/parking/bike.png";
-import car from "../../assets/parking/fourwheel.png";
+import pendingIcon from "../../../assets/parking/pending.png";
+import approvedIcon from "../../../assets/parking/approved.png";
+import suggested from "../../../assets/parking/suggested.png";
+import rejectIcon from "../../../assets/parking/rejected.png";
+import bike from "../../../assets/parking/bike.png";
+import car from "../../../assets/parking/fourwheel.png";
 import SlotCard from "./slotscard";
+import { useState } from "react";
+import AddParkingSlot from "./Addparkingslot";
+import StatusCard from "../statuscard";
+import EditparkingSlot from "./EditparkingSlot";
 
 type SlotStatus = "Available" | "Occupied" | "Maintenance";
 type VehicleType = "2W" | "4W";
@@ -56,6 +59,10 @@ const slots: Slot[] = [
 ];
 
 export default function ParkingSlots() {
+  const [openAddModal, setOpenAddModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
+
   return (
     <div className="text-white space-y-6">
       <div className="flex justify-between items-center">
@@ -67,9 +74,8 @@ export default function ParkingSlots() {
         </div>
 
         <button
-          className="px-5 py-2 rounded-xl
-                           bg-linear-to-r from-purple-500 to-pink-500
-                           text-sm font-medium shadow-lg"
+          onClick={() => setOpenAddModal(true)}
+          className="px-5 py-2 rounded-xl bg-linear-to-r from-purple-500 to-pink-500 text-sm font-medium shadow-lg"
         >
           + Create New Slot
         </button>
@@ -163,18 +169,36 @@ export default function ParkingSlots() {
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {slots.map((slot) => (
+        {slots.map((slot, index) => (
           <SlotCard
-            key={slot.id}
+            key={slot.id + index}
             id={slot.id}
             status={slot.status}
             type={slot.type}
             bikeIcon={bike}
             assignedTo={slot.assignedTo}
             carIcon={car}
+            onEdit={() => {
+              setSelectedSlot(slot);
+              setOpenEditModal(true);
+            }}
           />
         ))}
       </div>
+
+      {openAddModal && (
+        <AddParkingSlot onClose={() => setOpenAddModal(false)} />
+      )}
+
+      {openEditModal && selectedSlot && (
+        <EditparkingSlot
+          slot={selectedSlot}
+          onClose={() => {
+            setOpenEditModal(false);
+            setSelectedSlot(null);
+          }}
+        />
+      )}
     </div>
   );
 }

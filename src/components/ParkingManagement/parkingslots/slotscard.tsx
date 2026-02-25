@@ -21,6 +21,7 @@ type SlotCardProps = {
   bikeIcon: string;
   carIcon: string;
   assignedTo?: AssignedTo;
+  onEdit?: () => void;
 };
 
 export default function SlotCard({
@@ -30,7 +31,11 @@ export default function SlotCard({
   bikeIcon,
   carIcon,
   assignedTo,
+<<<<<<< HEAD:src/components/ParkingManagement/slotscard.tsx
   
+=======
+  onEdit,
+>>>>>>> 4ed5a7e97d6ed25b73ce4d61b56aba3a550cadf5:src/components/ParkingManagement/parkingslots/slotscard.tsx
 }: SlotCardProps) {
   const statusStyle = {
     Available: "bg-[#00C95033] text-[#05DF72] border border-[#00C9504D]",
@@ -50,12 +55,16 @@ const cardStyle = {
   const basement = id.startsWith("B1") ? "Basement 1" : "Basement 2";
 
   return (
+<<<<<<< HEAD:src/components/ParkingManagement/slotscard.tsx
     <div
   className={`p-5 rounded-xl
               bg-linear-to-br from-[#0F172A] to-[#020617]
               transition
               ${cardStyle}`}
 >
+=======
+    <div className="p-5 rounded-xl border border-white/10 bg-linear-to-br from-[#0F172A] to-[#020617] hover:border-purple-500/40 transition">
+>>>>>>> 4ed5a7e97d6ed25b73ce4d61b56aba3a550cadf5:src/components/ParkingManagement/parkingslots/slotscard.tsx
       <div
         className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3
         ${type === "2W" ? "bg-green-500/20" : "bg-blue-500/20"}`}
@@ -111,6 +120,7 @@ const cardStyle = {
       )}
 
       <div className="flex gap-2 mt-4">
+<<<<<<< HEAD:src/components/ParkingManagement/slotscard.tsx
        <button
   className="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-sm font-medium text-white
   bg-linear-to-r from-[#2B7FFF] to-[#0092B8]
@@ -124,6 +134,17 @@ const cardStyle = {
   />
   Edit
 </button>
+=======
+        <button
+          onClick={onEdit}
+          className="flex-1 py-2 rounded-lg text-sm font-medium text-white
+          bg-linear-to-r from-blue-500 to-cyan-500
+          shadow-md shadow-blue-500/20
+          hover:scale-[1.02] transition"
+        >
+          Edit
+        </button>
+>>>>>>> 4ed5a7e97d6ed25b73ce4d61b56aba3a550cadf5:src/components/ParkingManagement/parkingslots/slotscard.tsx
 
         <button
           className="w-12 py-2 rounded-lg text-white
