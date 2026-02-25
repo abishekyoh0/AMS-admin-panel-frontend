@@ -253,13 +253,13 @@ const NotificationsPage: React.FC = () => {
         {filtered.map((n) => (
           <div key={n.id}
             className={`p-4 rounded-xl border transition
-            ${n.unread ? "" : "border-blue-900"}
+            ${n.unread ? "border-[#2B7FFF]" : "border-transparent"}
             bg-[#FFFFFF0D] border-l-4 border-[#2B7FFF]`}>
             <div className="flex gap-3">
               <input type="checkbox"
                 checked={selected.includes(n.id)}
                 onChange={() => toggleSelect(n.id)}
-                className="mt-1 w-4 h-4" />
+                className="mt-1 w-4 h-4 bg-[#FFFFFF1A] border border-[#FFFFFF33] rounded" />
 
               <div className="flex-1">
                 <div className="flex justify-between items-center">
@@ -290,7 +290,7 @@ const NotificationsPage: React.FC = () => {
                   </span>
 
                   {n.priority && (
-                    <span className={`px-2 py-1 rounded-2xl border-2 border-[#FB2C364D] ${badgeColor(n.priority)} ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
+                    <span className={`px-2 py-1 rounded-2xl border-2 ${badgeColor(n.priority)}`}>
                       {n.priority}
                     </span>
                   )}

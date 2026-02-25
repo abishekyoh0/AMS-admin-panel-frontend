@@ -9,6 +9,7 @@ import Hand from "../../assets/Dashboard/hand.png"
 import Admin from "../../assets/Dashboard/admin.png"
 import Booking from "../../assets/Dashboard/booking.png"
 import Quick from "../../assets/Dashboard/thunder.png"
+import { toast } from "react-toastify";
 
 type QuickAction = {
   id: number;
@@ -17,6 +18,7 @@ type QuickAction = {
   linear: string;
   path: string;
   color: string;
+  toast: string;
 };
 
 const QUICK_ACTIONS: QuickAction[] = [
@@ -25,48 +27,54 @@ const QUICK_ACTIONS: QuickAction[] = [
     title: "Add Resident",
     icon: User,
     linear: "from-[#2B7FFF1A] to-[#2B7FFF1A] border-[#51A2FF4D]",
-    path: "/add-resident",
+    path: "/users",
     color: "#51A2FF",
+    toast: "Add Resident",
   },
   {
     id: 2,
     title: "New Complaint",
     icon: Notes,
     linear: "from-[#F0B1001A] to-orange-400/20 border-[#FDC7004D]",
-    path: "/new-complaint",
+    path: "/complaint",
     color: "#FDC700",
+    toast: "New Complaint"
   },
   {
     id: 3,
     title: "Create Invoice",
     icon: Currency,
     linear: "from-[#00C9501A] to-green-400/20 border-[#05DF724D]",
-    path: "/create-invoice",
+    path: "/invoices",
     color: "#05DF72",
+    toast: "Create Invoice",
   },
   {
     id: 4,
     title: "Register Visitor",
     icon: Hand,
     linear: "from-[#00B8DB1A] to-cyan-400/20 border-[#00D3F34D]",
-    path: "/register-visitor",
+    path: "/visitors",
     color: "#00D3F3",
+    toast: "Register Visitor",
   },
   {
     id: 5,
     title: "Add Staff",
     icon: Admin,
     linear: "from-[#AD46FF1A] to-purple-400/20 border-[#C27AFF4D]",
-    path: "/add-staff",
+    path: "/users",
     color: "#C27AFF",
+    toast: "Add Staff",
   },
   {
     id: 6,
     title: "New Booking",
     icon: Booking,
     linear: "from-[#F6339A1A] to-pink-400/20 border-[#FB64B64D]",
-    path: "/new-booking",
+    path: "",
     color: "#FB64B6",
+    toast: "Coming soon..."
   },
 ];
 
@@ -102,7 +110,7 @@ const QuickAddModal: React.FC<Props> = ({ onClose }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 p-4">
           {QUICK_ACTIONS.map((action) => (
             <div key={action.id}
-              onClick={() => handleNavigate(action.path)}
+              onClick={() => {handleNavigate(action.path); toast.success(action.toast)}}
               className={`cursor-pointer p-4 rounded-xl border bg-linear-to-br ${action.linear} hover:scale-105 transition`}>
               <div className="flex gap-2 justify-between items-center">
                 <div className="flex items-center gap-3">

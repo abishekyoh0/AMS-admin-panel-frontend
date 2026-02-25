@@ -9,6 +9,7 @@ import Staff from "../../assets/Dashboard/admin.png"
 import Maintenance from "../../assets/Dashboard/tool.png"
 import Reports from "../../assets/Dashboard/graph.png"
 import { Download, X } from "lucide-react";
+import { toast } from "react-toastify";
 
 type Report = {
   id: number;
@@ -28,7 +29,7 @@ const REPORTS: Report[] = [
     icon: Occupancy,
     linear: "from-[#2B7FFF1A] to-blue-600/20 border-[#51A2FF4D]",
     color: "#51A2FF",
-    path: "/reports/occupancy",
+    path: "",
   },
   {
     id: 2,
@@ -37,7 +38,7 @@ const REPORTS: Report[] = [
     icon: Revenue,
     linear: "from-[#00C9501A] to-green-600/20 border-[#05DF724D]",
     color: "#05DF72",
-    path: "/reports/revenue",
+    path: "",
   },
   {
     id: 3,
@@ -46,7 +47,7 @@ const REPORTS: Report[] = [
     icon: Complaints,
     linear: "from-[#F0B1001A] to-yellow-600/20 border-[#FDC7004D]",
     color: "#FDC700",
-    path: "/reports/complaints",
+    path: "",
   },
   {
     id: 4,
@@ -55,7 +56,7 @@ const REPORTS: Report[] = [
     icon: Visitor,
     linear: "from-[#00B8DB1A] to-cyan-600/20 border-[#00D3F34D]",
     color: "#00D3F3",
-    path: "/reports/visitors",
+    path: "",
   },
   {
     id: 5,
@@ -64,7 +65,7 @@ const REPORTS: Report[] = [
     icon: Staff,
     linear: "from-[#AD46FF1A] to-purple-600/20 border-[#C27AFF4D]",
     color: "#C27AFF",
-    path: "/reports/staff",
+    path: "",
   },
   {
     id: 6,
@@ -73,7 +74,7 @@ const REPORTS: Report[] = [
     icon: Maintenance,
     linear: "from-[#FF69001A] to-orange-600/20 border-[#FF89044D]",
     color: "#FF8904",
-    path: "/reports/maintenance",
+    path: "",
   },
 ];
 
@@ -110,7 +111,7 @@ const DownloadReportsModal: React.FC<Props> = ({ onClose }) => {
         <div className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
           {REPORTS.map((r) => (
             <div key={r.id}
-              onClick={() => handleNavigate(r.path)}
+              onClick={() => {handleNavigate(r.path); toast.success(`${r.title} downloaded successfully`)}}
               className={`cursor-pointer rounded-xl border bg-linear-to-br ${r.linear} p-5 hover:scale-[1.03] transition`}>
               <div className="flex justify-between items-center mb-2">
                 <span className="text-2xl">
