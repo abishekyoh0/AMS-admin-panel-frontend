@@ -293,7 +293,6 @@ const AccessManagement: React.FC = () => {
           />
         )}
 
-        {/* LIST */}
         <div className="space-y-4">
           {activeType === "moveIn" &&
             filteredForms.map((form) => (
