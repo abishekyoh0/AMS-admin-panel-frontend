@@ -140,7 +140,8 @@ const radius = 120;
 const stroke = 10;
 const normalizedRadius = radius - stroke;
 const circumference = normalizedRadius * 2 * Math.PI;
-// const strokeDashoffset = circumference - (overall / 100) * circumference;
+// const strokeDashoffset =
+//     circumference - (overall / 100) * circumference;
 
 const AnalyticsDashboard: React.FC = () => {
   return (

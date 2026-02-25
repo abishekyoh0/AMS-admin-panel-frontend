@@ -42,63 +42,45 @@ const Notification: React.FC<Props> = ({ open, setOpen }) => {
   return (
     <>
       <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-      <div
-        className="fixed right-4 top-18 z-50 max-w-[95vw] bg-black"
-        style={{ color: COLORS.primary_white }}
-      >
+      <div className="fixed right-4 top-18 z-50 max-w-[95vw] bg-black"
+        style={{ color: COLORS.primary_white }}>
         <div className="rounded-2xl bg-linear-to-br from-[#00B8DB1A] to-[#8E51FF1A] shadow-2xl border border-white/10 overflow-hidden">
           <div className="flex justify-between items-center p-3 border-b border-white/10">
             <div className="flex gap-2 items-center">
               <img src={Bell} className="w-5 h-5" />
-              <h2
-                className={`${FONTSIZE[20]}`}
-                style={{ fontWeight: WEIGHT.seven }}
-              >
+              <h2 className={`${FONTSIZE[20]}`}
+                style={{ fontWeight: WEIGHT.seven }}>
                 Notifications
               </h2>
             </div>
 
-            <span
-              className={`bg-pink-500 px-3 py-1 rounded-full ${FONTSIZE[12]}`}
-              style={{ fontWeight: WEIGHT.seven }}
-            >
+            <span className={`bg-pink-500 px-3 py-1 rounded-full ${FONTSIZE[12]}`}
+              style={{ fontWeight: WEIGHT.seven }}>
               3 New
             </span>
           </div>
 
-          <p
-            className={`px-4 pt-1 pb-3 ${FONTSIZE[12]}`}
-            style={{ fontWeight: WEIGHT.four, color: COLORS.secoundy_gray }}
-          >
+          <p className={`px-4 pt-1 pb-3 ${FONTSIZE[12]}`}
+            style={{ fontWeight: WEIGHT.four, color: COLORS.secoundy_gray }}>
             Stay updated with your latest activities
           </p>
 
           <div className="divide-y divide-white/5">
             {notificationData.map((item, index) => (
-              <div
-                key={index}
-                className="p-4 hover:bg-white/5 cursor-pointer flex justify-between transition"
-              >
+              <div key={index}
+                className="p-4 hover:bg-white/5 cursor-pointer flex justify-between transition">
                 <div className="flex gap-3">
                   <span>
                     <img src={item.icon} className="w-5 h-5" />
                   </span>
 
                   <div>
-                    <p
-                      className={`${FONTSIZE[14]}`}
-                      style={{ fontWeight: WEIGHT.seven }}
-                    >
+                    <p className={`${FONTSIZE[14]}`} style={{ fontWeight: WEIGHT.seven }}>
                       {item.title}
                     </p>
 
-                    <p
-                      className={`${FONTSIZE[12]}`}
-                      style={{
-                        fontWeight: WEIGHT.four,
-                        color: COLORS.secoundy_gray,
-                      }}
-                    >
+                    <p className={`${FONTSIZE[12]}`}
+                      style={{ fontWeight: WEIGHT.four, color: COLORS.secoundy_gray, }}>
                       {item.desc}
                     </p>
 
@@ -117,17 +99,9 @@ const Notification: React.FC<Props> = ({ open, setOpen }) => {
           </div>
 
           <div className="p-4">
-            <button
-              onClick={() => {
-                navigate("/notification");
-                setOpen(false);
-              }}
+            <button onClick={() => { navigate("/notification"); setOpen(false); }}
               className={`w-full bg-linear-to-r from-[#00B8DB] to-[#8E51FF] py-3 rounded-xl font-medium cursor-pointer shadow-lg hover:opacity-90 transition ${FONTSIZE[16]}`}
-              style={{
-                boxShadow:
-                  "0px 4px 6px -4px #00B8DB40, 0px 10px 15px -3px #00B8DB40",
-              }}
-            >
+              style={{ boxShadow: "0px 4px 6px -4px #00B8DB40, 0px 10px 15px -3px #00B8DB40", }}>
               View All Notifications →
             </button>
           </div>

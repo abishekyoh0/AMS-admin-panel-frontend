@@ -1,6 +1,14 @@
 import { X } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import User from "../../assets/Dashboard/user1.png"
+import Notes from "../../assets/Dashboard/notepencil.png"
+import Currency from "../../assets/Dashboard/currency.png"
+import Hand from "../../assets/Dashboard/hand.png"
+import Admin from "../../assets/Dashboard/admin.png"
+import Booking from "../../assets/Dashboard/booking.png"
+import Quick from "../../assets/Dashboard/thunder.png"
 
 type QuickAction = {
   id: number;
@@ -8,50 +16,57 @@ type QuickAction = {
   icon: string;
   linear: string;
   path: string;
+  color: string;
 };
 
 const QUICK_ACTIONS: QuickAction[] = [
   {
     id: 1,
     title: "Add Resident",
-    icon: "👤",
-    linear: "from-blue-600/20 to-blue-400/20 border-blue-500/40",
+    icon: User,
+    linear: "from-[#2B7FFF1A] to-[#2B7FFF1A] border-[#51A2FF4D]",
     path: "/add-resident",
+    color: "#51A2FF",
   },
   {
     id: 2,
     title: "New Complaint",
-    icon: "📝",
-    linear: "from-yellow-600/20 to-orange-400/20 border-yellow-500/40",
+    icon: Notes,
+    linear: "from-[#F0B1001A] to-orange-400/20 border-[#FDC7004D]",
     path: "/new-complaint",
+    color: "#FDC700",
   },
   {
     id: 3,
     title: "Create Invoice",
-    icon: "💰",
-    linear: "from-green-600/20 to-green-400/20 border-green-500/40",
+    icon: Currency,
+    linear: "from-[#00C9501A] to-green-400/20 border-[#05DF724D]",
     path: "/create-invoice",
+    color: "#05DF72",
   },
   {
     id: 4,
     title: "Register Visitor",
-    icon: "👋",
-    linear: "from-cyan-600/20 to-cyan-400/20 border-cyan-500/40",
+    icon: Hand,
+    linear: "from-[#00B8DB1A] to-cyan-400/20 border-[#00D3F34D]",
     path: "/register-visitor",
+    color: "#00D3F3",
   },
   {
     id: 5,
     title: "Add Staff",
-    icon: "👥",
-    linear: "from-purple-600/20 to-purple-400/20 border-purple-500/40",
+    icon: Admin,
+    linear: "from-[#AD46FF1A] to-purple-400/20 border-[#C27AFF4D]",
     path: "/add-staff",
+    color: "#C27AFF",
   },
   {
     id: 6,
     title: "New Booking",
-    icon: "📅",
-    linear: "from-pink-600/20 to-pink-400/20 border-pink-500/40",
+    icon: Booking,
+    linear: "from-[#F6339A1A] to-pink-400/20 border-[#FB64B64D]",
     path: "/new-booking",
+    color: "#FB64B6",
   },
 ];
 
@@ -69,44 +84,43 @@ const QuickAddModal: React.FC<Props> = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/70 z-50 flex justify-center items-center p-4">
-      <div className="w-full max-w-xl bg-linear-to-br from-[#111633] to-[#0b0f25] border border-white/10 rounded-2xl p-6 text-white relative">
-
-        <button
-          onClick={onClose}
-          className="absolute right-5 top-5 text-gray-400 hover:text-white text-xl"
-        >
-          <X />
-        </button>
-
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold">⚡ Quick Add</h2>
-          <p className="text-gray-400 text-sm">
-            Fast shortcuts to common actions
-          </p>
+      <div className="w-full max-w-xl bg-linear-to-br from-[#101828] to-[#000000] border border-[#FFFFFF33] rounded-2xl text-white">
+        <div className="flex justify-between items-center px-6 py-4 border-b border-white/10 bg-linear-to-r from-[#00C95033] to-[#00BC7D33] rounded-t-2xl">
+          <div>
+            <h2 className={`flex gap-2 ${FONTSIZE[30]} ${FONTWEIGHT[700]}`}>
+              <img src={Quick} alt="" /> Quick Add</h2>
+            <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
+              Fast shortcuts to common actions
+            </p>
+          </div>
+          <button onClick={onClose}
+            className="text-gray-400 hover:text-white cursor-pointer">
+            <X />
+          </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 p-4">
           {QUICK_ACTIONS.map((action) => (
-            <div
-              key={action.id}
+            <div key={action.id}
               onClick={() => handleNavigate(action.path)}
-              className={`cursor-pointer p-4 rounded-xl border bg-linear-to-br ${action.linear} hover:scale-105 transition`}
-            >
-              <div className="flex justify-between items-center">
-                <span className="text-lg">{action.icon}</span>
-                <span className="text-sm text-gray-300">+</span>
+              className={`cursor-pointer p-4 rounded-xl border bg-linear-to-br ${action.linear} hover:scale-105 transition`}>
+              <div className="flex gap-2 justify-between items-center">
+                <div className="flex items-center gap-3">
+                  <img src={action.icon} alt="" className="w-8 h-8" />
+                  <p className={`${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>{action.title}</p>
+                </div>
+                <div className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}
+                  style={{ color: action.color }}>+</div>
               </div>
-              <p className="mt-3 font-semibold">{action.title}</p>
             </div>
           ))}
         </div>
-
-        <button
-          onClick={onClose}
-          className="w-full mt-6 bg-white/10 border border-white/20 py-3 rounded-xl hover:bg-white/20 transition"
-        >
-          Close
-        </button>
+        <div className="p-5">
+          <button onClick={onClose}
+            className="w-full mt-6 bg-white/10 border border-white/20 py-3 rounded-xl hover:bg-white/20 transition cursor-pointer" >
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );
