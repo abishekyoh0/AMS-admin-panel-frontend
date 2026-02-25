@@ -1,4 +1,4 @@
-import StatusCard from "./statuscard";
+import StatusCard from "../statuscard";
 import pendingIcon from "../../assets/parking/pending.png";
 import approvedIcon from "../../assets/parking/approved.png";
 import suggested from "../../assets/parking/suggested.png";
