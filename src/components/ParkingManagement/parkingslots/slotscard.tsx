@@ -15,6 +15,7 @@ type SlotCardProps = {
   carIcon: string;
   assignedTo?: AssignedTo;
   onEdit?: () => void;
+  onDelete?: () => void;
 };
 
 export default function SlotCard({
@@ -25,6 +26,7 @@ export default function SlotCard({
   carIcon,
   assignedTo,
   onEdit,
+  onDelete,
 }: SlotCardProps) {
   const statusStyle = {
     Available: "bg-green-500/20 text-green-400",
@@ -81,6 +83,7 @@ export default function SlotCard({
         </button>
 
         <button
+          onClick={onDelete}
           className="w-10 py-2 rounded-lg text-white
           bg-red-500/20 border border-red-500/40
           hover:bg-red-500/30 transition"

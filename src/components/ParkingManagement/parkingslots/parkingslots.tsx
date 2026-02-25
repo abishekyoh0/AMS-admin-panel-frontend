@@ -9,6 +9,7 @@ import { useState } from "react";
 import AddParkingSlot from "./Addparkingslot";
 import StatusCard from "../statuscard";
 import EditparkingSlot from "./EditparkingSlot";
+import Deleteprakingslot from "./Deleteprakingslot";
 
 type SlotStatus = "Available" | "Occupied" | "Maintenance";
 type VehicleType = "2W" | "4W";
@@ -24,15 +25,13 @@ type Slot = {
   };
 };
 
-const slots: Slot[] = [
+const initialSlots: Slot[] = [
   { id: "B1-M-020", status: "Available", type: "2W" },
   { id: "B1-M-025", status: "Available", type: "2W" },
   { id: "B1-M-028", status: "Maintenance", type: "2W" },
   { id: "B1-M-030", status: "Occupied", type: "2W" },
-  { id: "B2-A-104", status: "Occupied", type: "4W" },
   { id: "B2-A-105", status: "Available", type: "4W" },
   { id: "B1-M-020", status: "Available", type: "2W" },
-
   {
     id: "B1-M-025",
     status: "Occupied",
@@ -45,7 +44,6 @@ const slots: Slot[] = [
   },
 
   { id: "B1-M-028", status: "Maintenance", type: "2W" },
-
   {
     id: "B2-A-104",
     status: "Occupied",
@@ -59,9 +57,20 @@ const slots: Slot[] = [
 ];
 
 export default function ParkingSlots() {
+  const [slots, setSlots] = useState<Slot[]>(initialSlots);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openAddModal, setOpenAddModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
+
+  const handleDeleteSlot = () => {
+    if (!selectedSlot) return;
+
+    setSlots((prev) => prev.filter((slot) => !(slot.id === selectedSlot.id)));
+
+    setOpenDeleteModal(false);
+    setSelectedSlot(null);
+  };
 
   return (
     <div className="text-white space-y-6">
@@ -181,6 +190,11 @@ export default function ParkingSlots() {
             onEdit={() => {
               setSelectedSlot(slot);
               setOpenEditModal(true);
+              
+            }}
+            onDelete={() => {
+              setSelectedSlot(slot);
+              setOpenDeleteModal(true);
             }}
           />
         ))}
@@ -195,6 +209,16 @@ export default function ParkingSlots() {
           slot={selectedSlot}
           onClose={() => {
             setOpenEditModal(false);
+            setSelectedSlot(null);
+          }}
+        />
+      )}
+
+      {openDeleteModal && selectedSlot && (
+        <Deleteprakingslot
+          onConfirm={handleDeleteSlot}
+          onCancel={() => {
+            setOpenDeleteModal(false);
             setSelectedSlot(null);
           }}
         />

@@ -7,6 +7,7 @@ import editbutton from "../../../assets/parking/editprakingnbutton.png";
 import { useState } from "react";
 import { FONTSIZE, FONTWEIGHT } from "../../../constent/uiconstent";
 import { X } from "lucide-react";
+import { toast } from "react-toastify";
 
 type SlotStatus = "Available" | "Occupied" | "Maintenance";
 type VehicleType = "2W" | "4W";
@@ -156,7 +157,13 @@ export default function EditparkingSlot({ onClose, slot }: Props) {
             Cancel
           </button>
 
-          <button className="flex-1 py-2 rounded-lg bg-gradient-to-r from-[#AD46FF] to-[#E60076] text-sm font-medium flex items-center justify-center gap-2 cursor-pointer">
+          <button
+            onClick={() => {
+              onClose();
+              toast.success("Parking slot Updated successfully!");
+            }}
+            className="flex-1 py-2 rounded-lg bg-gradient-to-r from-[#AD46FF] to-[#E60076] text-sm font-medium flex items-center justify-center gap-2 cursor-pointer"
+          >
             <img src={editbutton} alt="" />
             Update Slot
           </button>
