@@ -2,6 +2,7 @@ import { useState } from "react";
 import suggest from "../../assets/parking/suggested.png";
 import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 import send from "../../assets/parking/send.png";
+import { X } from "lucide-react";
 
 type Slot = {
   id: string;
@@ -50,13 +51,17 @@ export default function SuggestAlternativeModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#000000CC] backdrop-blur-sm p-3 sm:p-6">
-      
-      <div className="w-full max-w-2xl max-h-[95vh] overflow-y-auto rounded-2xl p-4 sm:p-6 bg-linear-to-br from-[#0F172B] to-[#101828] border border-[#FFFFFF33] shadow-[#00000040] space-y-5 sm:space-y-6">
-
+    <div className=" bg-linear-to-br from-[#0F172B] to-[#101828] border border-white/20 shadow-2xl rounded-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl max-h-[90vh] overflow-y-auto relative">
         <div className="text-center space-y-2">
           <div className="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full bg-[#2B7FFF33] border border-[#51A2FF4D] flex items-center justify-center">
             <img src={suggest} alt="icon" className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
+           <button
+            onClick={onClose}
+            className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition cursor-pointer"
+          >
+            <X size={18} className="text-gray-300" />
+          </button>
 
           <h2
             className={`text-white text-lg sm:text-xl font-semibold ${FONTSIZE[30]}`}
@@ -97,35 +102,54 @@ export default function SuggestAlternativeModal({
           </div>
 
           <div className="flex justify-between">
-            <span className={`${FONTSIZE[14]}`} style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}>
+            <span
+              className={`${FONTSIZE[14]}`}
+              style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
+            >
               Vehicle Number:
             </span>
-            <span className={`${FONTSIZE[14]}`} style={{ fontWeight: WEIGHT.six, color: COLORS.primary_white }}>
+            <span
+              className={`${FONTSIZE[14]}`}
+              style={{ fontWeight: WEIGHT.six, color: COLORS.primary_white }}
+            >
               {vehicleNumber}
             </span>
           </div>
 
           <div className="flex justify-between">
-            <span className={`${FONTSIZE[14]}`} style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}>
+            <span
+              className={`${FONTSIZE[14]}`}
+              style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
+            >
               Model:
             </span>
-            <span className={`${FONTSIZE[14]}`} style={{ fontWeight: WEIGHT.six, color: COLORS.primary_white }}>
+            <span
+              className={`${FONTSIZE[14]}`}
+              style={{ fontWeight: WEIGHT.six, color: COLORS.primary_white }}
+            >
               {vehicleModel}
             </span>
           </div>
 
           <div className="flex justify-between">
-            <span className={`${FONTSIZE[14]}`} style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}>
+            <span
+              className={`${FONTSIZE[14]}`}
+              style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
+            >
               Preferred Slot:
             </span>
-            <span className={`text-purple-400 ${FONTSIZE[14]}`} style={{ fontWeight: WEIGHT.six }}>
+            <span
+              className={`text-purple-400 ${FONTSIZE[14]}`}
+              style={{ fontWeight: WEIGHT.six }}
+            >
               ⭐ {preferredSlot}
             </span>
           </div>
         </div>
 
         <div className="bg-[#2B7FFF1A] border border-[#51A2FF4D] rounded-lg px-3 sm:px-4 py-2 text-xs sm:text-sm text-blue-300">
-          The preferred slot may be occupied. Suggest an alternative nearby slot.
+          The preferred slot may be occupied. Suggest an alternative nearby
+          slot.
         </div>
 
         <div className="space-y-2">

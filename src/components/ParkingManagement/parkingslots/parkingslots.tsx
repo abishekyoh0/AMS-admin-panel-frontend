@@ -1,4 +1,3 @@
-
 import bike from "../../../assets/parking/bike.png";
 import car from "../../../assets/parking/fourwheel.png";
 import SlotCard from "./slotscard";
@@ -8,10 +7,12 @@ import StatusCard from "../statuscard";
 import EditparkingSlot from "./EditparkingSlot";
 import Deleteprakingslot from "./Deleteprakingslot";
 import { COLORS, FONTSIZE, WEIGHT } from "../../../constent/uiconstent";
-import location from "../../../assets/parking/location.png"
-import tick from "../../../assets/parking/approved.png"
-import reject from "../../../assets/parking/reject.png"
-import locationyell from "../../../assets/parking/locationyellow.png"
+import location from "../../../assets/parking/location.png";
+import tick from "../../../assets/parking/approved.png";
+import reject from "../../../assets/parking/reject.png";
+import locationyell from "../../../assets/parking/locationyellow.png";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 type SlotStatus = "Available" | "Occupied" | "Maintenance";
 type VehicleType = "2W" | "4W";
@@ -29,7 +30,6 @@ type Slot = {
 
 const initialSlots: Slot[] = [
   { id: "B1-M-020", status: "Available", type: "2W" },
-  { id: "B1-M-025", status: "Available", type: "2W" },
   { id: "B1-M-028", status: "Maintenance", type: "2W" },
   { id: "B1-M-030", status: "Occupied", type: "2W" },
   { id: "B2-A-105", status: "Available", type: "4W" },
@@ -37,7 +37,7 @@ const initialSlots: Slot[] = [
   {
     id: "B1-M-025",
     status: "Occupied",
-    type: "2W",
+    type: "4W",
     assignedTo: {
       name: "Emily Rodriguez",
       unit: "Unit C-108",
@@ -45,7 +45,7 @@ const initialSlots: Slot[] = [
     },
   },
 
-  { id: "B1-M-028", status: "Maintenance", type: "2W" },
+  { id: "B1-M-028", status: "Maintenance", type: "4W" },
   {
     id: "B2-A-104",
     status: "Occupied",
@@ -64,6 +64,7 @@ export default function ParkingSlots() {
   const [openAddModal, setOpenAddModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
+  const navigate = useNavigate();
 
   const handleDeleteSlot = () => {
     if (!selectedSlot) return;
@@ -76,20 +77,32 @@ export default function ParkingSlots() {
 
   return (
     <div className="text-white space-y-6">
+      <div onClick={() => navigate("/parking")} className="cursor-pointer p-2 ">
+        <ArrowLeft
+          size={30}
+          className=" hover:bg-white/20 hover:rounded-full"
+        />
+      </div>
       <div className="flex justify-between items-center">
         <div>
-        <h2 className={`text-2xl font-semibold ${FONTSIZE[36]}`}
-                             style={{ fontWeight: WEIGHT.seven,color:COLORS .primary_white }}>Parking Slot Management</h2>
-                 <p className={`text-gray-400 text-sm ${FONTSIZE[16]}`}
-                             style={{ fontWeight: WEIGHT.four,color:COLORS.grey }}>
-                   Create and manage parking slots
-                 </p>
-               </div>
+          <h2
+            className={`text-2xl font-semibold ${FONTSIZE[36]}`}
+            style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
+          >
+            Parking Slot Management
+          </h2>
+          <p
+            className={`text-gray-400 text-sm ${FONTSIZE[16]}`}
+            style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
+          >
+            Create and manage parking slots
+          </p>
+        </div>
 
         <button
           onClick={() => setOpenAddModal(true)}
           className={`px-5 py-2 cursor-pointer rounded-xl bg-linear-to-r from-purple-500 to-pink-500 text-sm font-medium shadow-lg ${FONTSIZE[16]}`}
-                      style={{ fontWeight: WEIGHT.seven,color:COLORS.primary_white }}
+          style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
         >
           + Create New Slot
         </button>
@@ -115,8 +128,7 @@ export default function ParkingSlots() {
           borderColor="#05DF724D"
           iconBg="#00C95033"
           icon={tick}
-           countColor="#05DF72"
-          
+          countColor="#05DF72"
         />
 
         <StatusCard
@@ -127,7 +139,7 @@ export default function ParkingSlots() {
           borderColor="#FF64674D"
           iconBg="#FB2C3633"
           icon={reject}
-           countColor="#FF6467"
+          countColor="#FF6467"
         />
 
         <StatusCard
@@ -138,7 +150,7 @@ export default function ParkingSlots() {
           borderColor="#FDC7004D"
           iconBg="#F0B10033"
           icon={locationyell}
-           countColor="#FDC700"
+          countColor="#FDC700"
         />
 
         <StatusCard
@@ -149,7 +161,7 @@ export default function ParkingSlots() {
           borderColor="#05DF724D"
           iconBg="#00C95033"
           icon={bike}
-           countColor="#05DF72"
+          countColor="#05DF72"
         />
 
         <StatusCard
@@ -160,7 +172,7 @@ export default function ParkingSlots() {
           borderColor="#51A2FF4D"
           iconBg="#2B7FFF33"
           icon={car}
-           countColor="#51A2FF"
+          countColor="#51A2FF"
         />
       </div>
 
@@ -182,7 +194,7 @@ export default function ParkingSlots() {
             <button
               key={f}
               className={`px-4 py-2  cursor-pointer text-xs rounded-lg bg-[#111827] border border-gray-700 hover:bg-gray-800 ${FONTSIZE[16]}`}
-                      style={{ fontWeight: WEIGHT.seven,color:COLORS.grey}}
+              style={{ fontWeight: WEIGHT.seven, color: COLORS.grey }}
             >
               {f}
             </button>
@@ -203,7 +215,6 @@ export default function ParkingSlots() {
             onEdit={() => {
               setSelectedSlot(slot);
               setOpenEditModal(true);
-              
             }}
             onDelete={() => {
               setSelectedSlot(slot);

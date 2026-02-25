@@ -87,9 +87,7 @@ function SlotCard({
                 {slot.occupant.name}
               </p>
               <p className="text-[#6A7282] text-xs">{slot.occupant.unit}</p>
-              <p className="text-[#6A7282] text-xs">
-                {slot.occupant.vehicle}
-              </p>
+              <p className="text-[#6A7282] text-xs">{slot.occupant.vehicle}</p>
             </div>
           )}
         </>
@@ -137,12 +135,17 @@ export default function ApproveModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-3 sm:p-6">
-      <div className="bg-linear-to-br from-[#0F172B] to-[#101828] border border-white/20 shadow-2xl rounded-2xl w-full max-w-lg max-h-[92vh] overflow-y-auto">
-
+      <div className=" bg-linear-to-br from-[#0F172B] to-[#101828] border border-white/20 shadow-2xl rounded-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl max-h-[90vh] overflow-y-auto relative">
         <div className="flex flex-col items-center pt-6 sm:pt-8 pb-4 px-5 sm:px-6 text-center">
           <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#00C95033] border-2 border-[#05DF724D] flex items-center justify-center mb-3">
             <img src={tick} className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition cursor-pointer"
+          >
+            <X size={18} className="text-gray-300" />
+          </button>
 
           <h2
             className={`text-white text-lg sm:text-xl font-bold ${FONTSIZE[30]}`}
@@ -157,45 +160,69 @@ export default function ApproveModal({
         </div>
 
         <div className="px-5 sm:px-6 pb-6 space-y-4">
-
           <div className="bg-[#FFFFFF0D] rounded-xl p-4 border border-[#FFFFFF1A]">
             <p className="text-white font-semibold text-sm mb-3">
               Request Details
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 text-sm">
-              <div className={`${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.four,color:COLORS.grey }}>
+              <div
+                className={`${FONTSIZE[14]}`}
+                style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
+              >
                 Vehicle Type:{" "}
-                <span className={`text-white font-medium ${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.six,color:COLORS.primary_white }}>
+                <span
+                  className={`text-white font-medium ${FONTSIZE[14]}`}
+                  style={{
+                    fontWeight: WEIGHT.six,
+                    color: COLORS.primary_white,
+                  }}
+                >
                   {vehicleType === "2W" ? "2-Wheeler" : "4-Wheeler"}
                 </span>
               </div>
 
-              <div className={`${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.four,color:COLORS.grey }}>
+              <div
+                className={`${FONTSIZE[14]}`}
+                style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
+              >
                 Vehicle Number:{" "}
-                <span className={`text-white font-medium  ${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.six,color:COLORS.primary_white }}>
+                <span
+                  className={`text-white font-medium  ${FONTSIZE[14]}`}
+                  style={{
+                    fontWeight: WEIGHT.six,
+                    color: COLORS.primary_white,
+                  }}
+                >
                   {vehicleNumber}
                 </span>
               </div>
 
-              <div className={`${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.four,color:COLORS.grey }}>
+              <div
+                className={`${FONTSIZE[14]}`}
+                style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
+              >
                 Model:{" "}
-                <span className={`text-white font-medium  ${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.six,color:COLORS.primary_white }}>
+                <span
+                  className={`text-white font-medium  ${FONTSIZE[14]}`}
+                  style={{
+                    fontWeight: WEIGHT.six,
+                    color: COLORS.primary_white,
+                  }}
+                >
                   {vehicleModel}
                 </span>
               </div>
 
-              <div className={`${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.four,color:COLORS.grey }}>
+              <div
+                className={`${FONTSIZE[14]}`}
+                style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
+              >
                 Preferred Slot:{" "}
-                <span className={`text-[#C27AFF] font-medium ${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.six }}>
+                <span
+                  className={`text-[#C27AFF] font-medium ${FONTSIZE[14]}`}
+                  style={{ fontWeight: WEIGHT.six }}
+                >
                   ⭐ {preferredSlot}
                 </span>
               </div>
@@ -209,19 +236,58 @@ export default function ApproveModal({
                 SLOT ALREADY OCCUPIED
               </div>
 
-              <p className={`${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.seven,color:COLORS.primary_white }}>Currently Assigned To: <span className={`${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.four,color:COLORS.grey }}>{preferredSlotInfo?.occupant?.name}</span></p>
-              <p className={`${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.seven,color:COLORS.primary_white }}>Unit: <span className={`${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.four,color:COLORS.grey }}>{preferredSlotInfo?.occupant?.unit}</span></p>
-              <p  className={`${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.seven,color:COLORS.primary_white }}>Vehicle: <span  className={`${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.four,color:COLORS.grey }}>{preferredSlotInfo?.occupant?.vehicle}</span></p>
+              <p
+                className={`${FONTSIZE[14]}`}
+                style={{
+                  fontWeight: WEIGHT.seven,
+                  color: COLORS.primary_white,
+                }}
+              >
+                Currently Assigned To:{" "}
+                <span
+                  className={`${FONTSIZE[14]}`}
+                  style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
+                >
+                  {preferredSlotInfo?.occupant?.name}
+                </span>
+              </p>
+              <p
+                className={`${FONTSIZE[14]}`}
+                style={{
+                  fontWeight: WEIGHT.seven,
+                  color: COLORS.primary_white,
+                }}
+              >
+                Unit:{" "}
+                <span
+                  className={`${FONTSIZE[14]}`}
+                  style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
+                >
+                  {preferredSlotInfo?.occupant?.unit}
+                </span>
+              </p>
+              <p
+                className={`${FONTSIZE[14]}`}
+                style={{
+                  fontWeight: WEIGHT.seven,
+                  color: COLORS.primary_white,
+                }}
+              >
+                Vehicle:{" "}
+                <span
+                  className={`${FONTSIZE[14]}`}
+                  style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
+                >
+                  {preferredSlotInfo?.occupant?.vehicle}
+                </span>
+              </p>
 
-              <p className={`text-[#FF8904] text-xs mt-2 ${FONTSIZE[14]}`}
-            style={{ fontWeight: WEIGHT.four }}>
-                ⚠ Clicking "Confirm Approval" Will REASSIGN this slot and remove the previous assignment.
+              <p
+                className={`text-[#FF8904] text-xs mt-2 ${FONTSIZE[14]}`}
+                style={{ fontWeight: WEIGHT.four }}
+              >
+                ⚠ Clicking "Confirm Approval" Will REASSIGN this slot and remove
+                the previous assignment.
               </p>
             </div>
           ) : (
