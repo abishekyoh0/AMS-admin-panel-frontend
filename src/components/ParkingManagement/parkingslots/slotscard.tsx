@@ -14,6 +14,7 @@ type SlotCardProps = {
   bikeIcon: string;
   carIcon: string;
   assignedTo?: AssignedTo;
+  onEdit?: () => void;
 };
 
 export default function SlotCard({
@@ -23,6 +24,7 @@ export default function SlotCard({
   bikeIcon,
   carIcon,
   assignedTo,
+  onEdit,
 }: SlotCardProps) {
   const statusStyle = {
     Available: "bg-green-500/20 text-green-400",
@@ -33,11 +35,7 @@ export default function SlotCard({
   const basement = id.startsWith("B1") ? "Basement 1" : "Basement 2";
 
   return (
-    <div
-      className="p-5 rounded-xl border border-white/10
-                 bg-linear-to-br from-[#0F172A] to-[#020617]
-                 hover:border-purple-500/40 transition"
-    >
+    <div className="p-5 rounded-xl border border-white/10 bg-linear-to-br from-[#0F172A] to-[#020617] hover:border-purple-500/40 transition">
       <div
         className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3
         ${type === "2W" ? "bg-green-500/20" : "bg-blue-500/20"}`}
@@ -73,6 +71,7 @@ export default function SlotCard({
 
       <div className="flex gap-2 mt-4">
         <button
+          onClick={onEdit}
           className="flex-1 py-2 rounded-lg text-sm font-medium text-white
           bg-linear-to-r from-blue-500 to-cyan-500
           shadow-md shadow-blue-500/20
