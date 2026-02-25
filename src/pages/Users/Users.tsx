@@ -3,8 +3,8 @@ import { X } from "lucide-react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
-import residents from "../../assets/access/residents.png"  
-import graph from "../../assets/access/graph.png"
+import residents from "../../assets/access/residents.png";
+import graph from "../../assets/access/graph.png";
 import { Search } from "lucide-react";
 
 type Role = "RESIDENT" | "SECURITY" | "MAINTENANCE" | "ACCOUNTS" | "ADMIN";
@@ -20,8 +20,8 @@ interface User {
   status: Status;
 }
 const roleStyles: Record<Role, string> = {
-    RESIDENT:
-        "bg-blue-500/10 text-blue-400 border border-blue-500/30 curor-pointer",
+  RESIDENT:
+    "bg-blue-500/10 text-blue-400 border border-blue-500/30 curor-pointer",
 
   SECURITY: "bg-green-500/10 text-green-400 border border-green-500/30",
 
@@ -166,7 +166,7 @@ const UserManagement = () => {
     setUsers((prev) => [newUser, ...prev]);
 
     setIsModalOpen(false);
-    setEditingUserId(null); 
+    setEditingUserId(null);
 
     setFormData({
       name: "",
@@ -174,7 +174,7 @@ const UserManagement = () => {
       role: "RESIDENT",
       phone: "",
       unit: "",
-      password: "", 
+      password: "",
     });
   };
 
@@ -243,239 +243,223 @@ const UserManagement = () => {
         <StatCard title="Active Users" count={activeCount} color="blue" />
       </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
-
-  <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-
-    {/* Add User */}
-    <button
-      onClick={() => {
-        setEditingUserId(null);
-        setFormData({
-          name: "",
-          email: "",
-          role: "RESIDENT",
-          phone: "",
-          unit: "",
-          password: "",
-        });
-        setIsModalOpen(true);
-      }}
-      className="flex items-center justify-center gap-2 px-5 py-2 rounded-full
+      <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+          {/* Add User */}
+          <button
+            onClick={() => {
+              setEditingUserId(null);
+              setFormData({
+                name: "",
+                email: "",
+                role: "RESIDENT",
+                phone: "",
+                unit: "",
+                password: "",
+              });
+              setIsModalOpen(true);
+            }}
+            className="flex items-center justify-center gap-2 px-5 py-2 rounded-full
         bg-gradient-to-r from-[#AD46FF] to-[#E60076]
         text-white text-sm transition duration-300 cursor-pointer hover:opacity-90"
-    >
-      <img
-        src={residents}
-        alt="Residents"
-        className="w-5 h-5 mb-1 object-contain"
-      />
-      Add New User
-    </button>
+          >
+            <img
+              src={residents}
+              alt="Residents"
+              className="w-5 h-5 mb-1 object-contain"
+            />
+            Add New User
+          </button>
 
-    {/* Export CSV */}
-    <button
-      onClick={() => {
-        toast.success("CSV exported successfully!");
-      }}
-      className="flex items-center justify-center gap-2 px-5 py-2 rounded-full 
+          {/* Export CSV */}
+          <button
+            onClick={() => {
+              toast.success("CSV exported successfully!");
+            }}
+            className="flex items-center justify-center gap-2 px-5 py-2 rounded-full 
         bg-[#FFFFFF1A] border border-[#FFFFFF33] 
         hover:bg-gray-600 text-white text-sm cursor-pointer transition"
-    >
-      <img
-        src={graph}
-        alt="Graph"
-        className="w-5 h-5 object-contain mb-1"
-      />
-      Export to CSV
-    </button>
+          >
+            <img
+              src={graph}
+              alt="Graph"
+              className="w-5 h-5 object-contain mb-1"
+            />
+            Export to CSV
+          </button>
+        </div>
 
-  </div>
+        <div className="flex-1 lg:ml-auto relative">
+          <Search
+            size={18}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+          />
 
-  <div className="flex-1 lg:ml-auto relative">
-
-    <Search
-      size={18}
-      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-    />
-
-    <input
-      type="text"
-      placeholder="Search users by name or email..."
-      className="w-full pl-12 pr-6 py-3 rounded-full 
+          <input
+            type="text"
+            placeholder="Search users by name or email..."
+            className="w-full pl-12 pr-6 py-3 rounded-full 
         bg-[#1e293b] border border-gray-600 
         focus:outline-none focus:ring-2 focus:ring-purple-500 
         text-sm text-white placeholder-gray-400"
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
-    />
-  </div>
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      </div>
 
-</div>
+      <div className="w-full mb-6">
+        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
+          <FilterTab
+            label="ALL USERS"
+            active={selectedRole === "ALL"}
+            onClick={() => setSelectedRole("ALL")}
+          />
 
-     <div className="w-full mb-6">
+          {roles.map((role) => (
+            <FilterTab
+              key={role}
+              label={`${role} (${getRoleCount(role)})`}
+              active={selectedRole === role}
+              onClick={() => setSelectedRole(role)}
+            />
+          ))}
+        </div>
+      </div>
 
-  <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
+      <div className="w-full">
+        <div className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
+          <table className="min-w-[900px] w-full border-separate border-spacing-0">
+            <thead className="bg-[#FFFFFF0D] border-b border-[#FFFFFF1A]">
+              <tr>
+                {["NAME", "EMAIL", "ROLE", "UNIT", "STATUS", "ACTIONS"].map(
+                  (head, index) => (
+                    <th
+                      key={head}
+                      style={{ ...FONTWEIGHT[500] }}
+                      className={`${FONTSIZE[12]} px-4 py-4 text-[#99A1AF] whitespace-nowrap ${
+                        index === 5 ? "text-center" : "text-left"
+                      }`}
+                    >
+                      {head}
+                    </th>
+                  ),
+                )}
+              </tr>
+            </thead>
 
-    <FilterTab
-      label="ALL USERS"
-      active={selectedRole === "ALL"}
-      onClick={() => setSelectedRole("ALL")}
-    />
+            <tbody>
+              {filteredUsers.map((user) => (
+                <tr
+                  key={user.id}
+                  className="border-b border-[#FFFFFF1A] hover:bg-[#273449] transition"
+                >
+                  <td
+                    style={{ ...FONTWEIGHT[500] }}
+                    className={`${FONTSIZE[14]} px-4 py-4 text-white whitespace-nowrap`}
+                  >
+                    {user.name}
+                  </td>
 
-    {roles.map((role) => (
-      <FilterTab
-        key={role}
-        label={`${role} (${getRoleCount(role)})`}
-        active={selectedRole === role}
-        onClick={() => setSelectedRole(role)}
-      />
-    ))}
+                  <td
+                    style={{ ...FONTWEIGHT[400] }}
+                    className={`${FONTSIZE[14]} px-4 py-4 text-[#99A1AF] whitespace-nowrap`}
+                  >
+                    {user.email}
+                  </td>
 
-  </div>
-</div>
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <span
+                      style={{ ...FONTWEIGHT[500] }}
+                      className={`${FONTSIZE[12]} px-3 py-1 rounded-full ${roleStyles[user.role]}`}
+                    >
+                      {user.role}
+                    </span>
+                  </td>
 
-            <div className="w-full">
-  <div className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
-    
-    <table className="min-w-[900px] w-full border-separate border-spacing-0">
-      
-      <thead className="bg-[#FFFFFF0D] border-b border-[#FFFFFF1A]">
-        <tr>
-          {["NAME", "EMAIL", "ROLE", "UNIT", "STATUS", "ACTIONS"].map(
-            (head, index) => (
-              <th
-                key={head}
-                style={{ ...FONTWEIGHT[500] }}
-                className={`${FONTSIZE[12]} px-4 py-4 text-[#99A1AF] whitespace-nowrap ${
-                  index === 5 ? "text-center" : "text-left"
-                }`}
-              >
-                {head}
-              </th>
-            )
-          )}
-        </tr>
-      </thead>
+                  <td
+                    style={{ ...FONTWEIGHT[400] }}
+                    className={`${FONTSIZE[14]} px-4 py-4 text-white whitespace-nowrap`}
+                  >
+                    {user.unit ?? "-"}
+                  </td>
 
-      <tbody>
-        {filteredUsers.map((user) => (
-          <tr
-            key={user.id}
-            className="border-b border-[#FFFFFF1A] hover:bg-[#273449] transition"
-          >
-            <td
-              style={{ ...FONTWEIGHT[500] }}
-              className={`${FONTSIZE[14]} px-4 py-4 text-white whitespace-nowrap`}
-            >
-              {user.name}
-            </td>
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <span
+                      style={{ ...FONTWEIGHT[500] }}
+                      className={`${FONTSIZE[12]} px-3 py-1 rounded-full ${
+                        user.status === "ACTIVE"
+                          ? "bg-[#00C95033] text-[#05DF72]"
+                          : "bg-[#FB2C3633] text-[#FF6467]"
+                      }`}
+                    >
+                      {user.status}
+                    </span>
+                  </td>
 
-            <td
-              style={{ ...FONTWEIGHT[400] }}
-              className={`${FONTSIZE[14]} px-4 py-4 text-[#99A1AF] whitespace-nowrap`}
-            >
-              {user.email}
-            </td>
-
-            <td className="px-4 py-4 whitespace-nowrap">
-              <span
-                style={{ ...FONTWEIGHT[500] }}
-                className={`${FONTSIZE[12]} px-3 py-1 rounded-full ${roleStyles[user.role]}`}
-              >
-                {user.role}
-              </span>
-            </td>
-
-            <td
-              style={{ ...FONTWEIGHT[400] }}
-              className={`${FONTSIZE[14]} px-4 py-4 text-white whitespace-nowrap`}
-            >
-              {user.unit ?? "-"}
-            </td>
-
-            <td className="px-4 py-4 whitespace-nowrap">
-              <span
-                style={{ ...FONTWEIGHT[500] }}
-                className={`${FONTSIZE[12]} px-3 py-1 rounded-full ${
-                  user.status === "ACTIVE"
-                    ? "bg-[#00C95033] text-[#05DF72]"
-                    : "bg-[#FB2C3633] text-[#FF6467]"
-                }`}
-              >
-                {user.status}
-              </span>
-            </td>
-
-            <td className="px-4 py-4 whitespace-nowrap">
-              <div className="flex items-center justify-center gap-2">
-                
-                <button
-                  onClick={() => setViewUser(user)}
-                  style={{ ...FONTWEIGHT[500] }}
-                  className={`${FONTSIZE[12]} px-3 py-1 rounded-lg 
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <div className="flex items-center justify-center gap-2">
+                      <button
+                        onClick={() => setViewUser(user)}
+                        style={{ ...FONTWEIGHT[500] }}
+                        className={`${FONTSIZE[12]} px-3 py-1 rounded-lg 
                     bg-[#2B7FFF33] text-[#51A2FF] 
                     hover:bg-blue-700 cursor-pointer`}
-                >
-                  View
-                </button>
+                      >
+                        View
+                      </button>
 
-                <button
-                  onClick={() => {
-                    setFormData({
-                      name: user.name,
-                      email: user.email,
-                      role: user.role,
-                      phone: user.phone || "",
-                      unit: user.unit || "",
-                      password: "",
-                    });
-                    setEditingUserId(user.id);
-                    setIsModalOpen(true);
-                  }}
-                  style={{ ...FONTWEIGHT[500] }}
-                  className={`${FONTSIZE[12]} px-3 py-1 rounded-lg 
+                      <button
+                        onClick={() => {
+                          setFormData({
+                            name: user.name,
+                            email: user.email,
+                            role: user.role,
+                            phone: user.phone || "",
+                            unit: user.unit || "",
+                            password: "",
+                          });
+                          setEditingUserId(user.id);
+                          setIsModalOpen(true);
+                        }}
+                        style={{ ...FONTWEIGHT[500] }}
+                        className={`${FONTSIZE[12]} px-3 py-1 rounded-lg 
                     bg-[#FFFFFF1A] text-white 
                     hover:bg-gray-700 cursor-pointer`}
-                >
-                  Edit
-                </button>
+                      >
+                        Edit
+                      </button>
 
-                <button
-              
-                  onClick={() => setConfirmUser(user)}
-                  style={{ ...FONTWEIGHT[500] }}
-                  className={`${FONTSIZE[12]} px-3 py-1 rounded-lg transition duration-300 cursor-pointer
+                      <button
+                        onClick={() => setConfirmUser(user)}
+                        style={{ ...FONTWEIGHT[500] }}
+                        className={`${FONTSIZE[12]} px-3 py-1 rounded-lg transition duration-300 cursor-pointer
                     ${
                       user.status === "ACTIVE"
                         ? "bg-[#FF690033] text-[#FF8904] hover:bg-yellow-700/40"
                         : "bg-[#00C95033] text-[#05DF72] hover:bg-[#00C95055]"
                     }`}
-                >
-                  {user.status === "ACTIVE" ? "Deactivate" : "Activate"}
-                </button>
+                      >
+                        {user.status === "ACTIVE" ? "Deactivate" : "Activate"}
+                      </button>
 
-                <button
-                  onClick={() => setDeleteUser(user)}
-                  style={{ ...FONTWEIGHT[500] }}
-                  className={`${FONTSIZE[12]} px-3 py-1 rounded-lg 
+                      <button
+                        onClick={() => setDeleteUser(user)}
+                        style={{ ...FONTWEIGHT[500] }}
+                        className={`${FONTSIZE[12]} px-3 py-1 rounded-lg 
                     bg-[#FB2C3633] text-[#FF6467] 
                     hover:bg-red-700 cursor-pointer`}
-                >
-                  Delete
-                </button>
-
-              </div>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</div>
-
-
-
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       {isModalOpen && (
         <Modal
@@ -492,13 +476,13 @@ const UserManagement = () => {
       )}
 
       {viewUser && (
-  <ViewUserModal
-    user={viewUser}
-    onClose={() => setViewUser(null)}
-    onToggleStatus={() => {
-      setConfirmUser(viewUser);   
-      setViewUser(null);         
-    }}
+        <ViewUserModal
+          user={viewUser}
+          onClose={() => setViewUser(null)}
+          onToggleStatus={() => {
+            setConfirmUser(viewUser);
+            setViewUser(null);
+          }}
           onEdit={() => {
             setFormData({
               name: viewUser.name,
@@ -542,7 +526,6 @@ const UserManagement = () => {
 
 export default UserManagement;
 
-
 interface StatCardProps {
   title: string;
   count: number;
@@ -559,12 +542,12 @@ const colorStyles = {
 };
 
 const StatCard = ({ title, count, color }: StatCardProps) => (
-    <div
-        className={`p-4 rounded-2xl shadow-lg transition duration-300 ${colorStyles[color]}`}
-    >
-        <p className="text-sm opacity-80">{title}</p>
-        <h2 className="text-2xl font-bold mt-1">{count}</h2>
-    </div>
+  <div
+    className={`p-4 rounded-2xl shadow-lg transition duration-300 ${colorStyles[color]}`}
+  >
+    <p className="text-sm opacity-80">{title}</p>
+    <h2 className="text-2xl font-bold mt-1">{count}</h2>
+  </div>
 );
 
 const FilterTab = ({
@@ -576,10 +559,10 @@ const FilterTab = ({
   active: boolean;
   onClick: () => void;
 }) => (
-    <button
-  onClick={onClick}
-  style={{ ...FONTWEIGHT[500] }}
-  className={`${FONTSIZE[12]} 
+  <button
+    onClick={onClick}
+    style={{ ...FONTWEIGHT[500] }}
+    className={`${FONTSIZE[12]} 
     px-4 py-1.5 
     rounded-full 
     transition 
@@ -589,10 +572,9 @@ const FilterTab = ({
         ? "bg-[#00B8DB] text-white"
         : "bg-[#FFFFFF0D] text-[#99A1AF] hover:bg-gray-600"
     }`}
->
-  {label}
-</button>
-
+  >
+    {label}
+  </button>
 );
 
 const Modal = ({
@@ -740,27 +722,23 @@ const ViewUserModal = ({
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
       <div className="w-full max-w-2xl bg-linear-to-br from-[#0f172a] to-[#1e293b] border border-gray-700 rounded-2xl p-6 shadow-xl">
         <div className="flex items-center justify-between mb-4 border-b border-gray-700 pb-3">
+          <div className="flex items-center gap-3">
+            <img
+              src={residents}
+              alt="Residents"
+              className="w-6 h-6 object-contain"
+            />
 
-  <div className="flex items-center gap-3">
-    <img
-      src={residents}
-      alt="Residents"
-      className="w-6 h-6 object-contain"
-    />
+            <h2 className="text-lg font-semibold">User Details</h2>
+          </div>
 
-    <h2 className="text-lg font-semibold">
-      User Details
-    </h2>
-  </div>
-
-  <button
-    onClick={onClose}
-    className="p-2 rounded-full hover:bg-gray-700 transition cursor-pointer"
-  >
-    <X size={18} />
-  </button>
-
-</div>
+          <button
+            onClick={onClose}
+            className="p-2 rounded-full hover:bg-gray-700 transition cursor-pointer"
+          >
+            <X size={18} />
+          </button>
+        </div>
 
         <div className="grid grid-cols-2 gap-y-4 gap-x-6 text-sm">
           <Detail label="Full Name" value={user.name} />
@@ -802,25 +780,27 @@ const ViewUserModal = ({
               onClick={onEdit}
               className="flex-1 px-4 py-2 rounded-xl cursor-pointer bg-[#00B8DB33] border border-[#00D3F34D] text-[#00D3F3] text-sm"
             >
-             ✏️ Edit User
+              ✏️ Edit User
             </button>
 
-           <button
-  onClick={onToggleStatus}
-  className={`flex-1 px-4 py-2 cursor-pointer rounded-xl text-sm border
-    ${
-      user.status === "ACTIVE"
-        ? "bg-[#FF690033] border-[#FF89044D] text-[#FF8904]"
-        : "bg-[#00C95033] border-[#05DF724D] text-[#05DF72]"
-    }`}
->
- Toggle Status:{user.status === "ACTIVE" ? "Deactivate User" : "Activate User"}
-</button>
+            <button
+              onClick={onToggleStatus}
+              className={`flex-1 px-4 py-2 cursor-pointer rounded-xl text-sm border  flex items-center justify-center gap-1 ${
+                user.status === "ACTIVE"
+                  ? "bg-[#FF690033] border-[#FF89044D] text-[#FF8904]"
+                  : "bg-[#00C95033] border-[#05DF724D] text-[#05DF72]"
+              }`}
+            >
+              <span>Toggle Status : </span>
+              <span>
+                {user.status === "ACTIVE" ? "Deactivate User" : "Activate User"}
+              </span>
+            </button>
           </div>
 
           <button
             onClick={onClose}
-            className="w-full mt-4 px-4 py-2 cursor-pointer rounded-full text-[#0A0A0A] bg-[#FFFFFF1A] border border-[#FFFFFF33] hover:bg-gray-600 text-sm"
+            className="w-full mt-4 px-4 py-2 cursor-pointer rounded-full text-[#FFFFF] bg-[#FFFFFF1A] border border-[#FFFFFF33] hover:bg-gray-600 text-sm"
           >
             Close
           </button>

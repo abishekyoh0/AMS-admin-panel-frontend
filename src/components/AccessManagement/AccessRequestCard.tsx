@@ -74,10 +74,7 @@ const AccessRequestCard: React.FC<Props> = ({ data, onView }) => {
       "
     >
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-
-        
         <div className="flex items-start sm:items-center gap-4">
-
           <div className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center bg-gray-800 rounded-lg shrink-0">
             <img
               src={getTypeIcon(data.type)}
@@ -116,7 +113,6 @@ const AccessRequestCard: React.FC<Props> = ({ data, onView }) => {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
-
           {data.status === "Pending" && (
             <>
               <button
@@ -166,7 +162,6 @@ const AccessRequestCard: React.FC<Props> = ({ data, onView }) => {
           </button>
         </div>
       </div>
-
 
       <div
         className="

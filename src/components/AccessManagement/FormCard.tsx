@@ -1,5 +1,8 @@
 import React from "react";
-import type { FormData, StatusType } from "../../pages/AccessManagement/AccessManagement";
+import type {
+  FormData,
+  StatusType,
+} from "../../pages/AccessManagement/AccessManagement";
 import greenicon from "../../assets/access/greenicon.png";
 import yellowicon from "../../assets/access/yellowicon.png";
 import { FONTWEIGHT, FONTSIZE } from "../../constent/uiconstent";
@@ -10,28 +13,13 @@ interface Props {
 }
 
 const FormCard: React.FC<Props> = ({ form, onView }) => {
-  const approvedStatuses: StatusType[] = [
-    "Approved",
-    "Completed",
-    "Inspected",
-  ];
+  const approvedStatuses: StatusType[] = ["Approved", "Completed", "Inspected"];
 
   const isApproved = approvedStatuses.includes(form.status);
 
   return (
-    <div
-      className="border border-gray-700 rounded-xl
-                 p-4 sm:p-5 md:p-6
-                 space-y-4"
-    >
-      {/* ================= Top Section ================= */}
-      <div
-        className="flex flex-col
-                   sm:flex-row
-                   sm:items-center
-                   sm:justify-between
-                   gap-4"
-      >
+    <div className="border border-gray-700 rounded-xl p-4 sm:p-5 md:p-6 space-y-4">
+      <div className="flex flex-col  sm:flex-row  sm:items-center  sm:justify-between  gap-4">
         {/* Name + Status */}
         <div className="flex flex-wrap items-center gap-3">
           <h3

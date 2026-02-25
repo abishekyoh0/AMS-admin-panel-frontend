@@ -3,7 +3,7 @@ import Export from "../../assets/Sidebar/graph.png";
 import { Search, X } from "lucide-react";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import user from "../../assets/Sidebar/user.png";
-import Checkbox from "../../assets/Sidebar/square.png";
+// import Checkbox from "../../assets/Sidebar/square.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -79,7 +79,7 @@ const INITIAL_VISITORS: Visitor[] = [
 ];
 
 const VisitorManagement: React.FC = () => {
-  const [visitors, setVisitors] = useState<Visitor[]>(INITIAL_VISITORS);
+  const [visitors,_setVisitors] = useState<Visitor[]>(INITIAL_VISITORS);
   const [filter, setFilter] = useState("ALL");
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<Visitor | null>(null);
@@ -103,23 +103,23 @@ const VisitorManagement: React.FC = () => {
     setSelected(visitor);
   };
 
-  const handleCheckout = (id: number) => {
-    const updated = visitors.map((v) => {
-      if (v.id === id) {
-        return {
-          ...v,
-          status: "CHECKED OUT" as const,
-          checkout: new Date().toLocaleString(),
-        };
-      }
-      return v;
-    });
+  // const handleCheckout = (id: number) => {
+  //   const updated = visitors.map((v) => {
+  //     if (v.id === id) {
+  //       return {
+  //         ...v,
+  //         status: "CHECKED OUT" as const,
+  //         checkout: new Date().toLocaleString(),
+  //       };
+  //     }
+  //     return v;
+  //   });
 
-    setVisitors(updated);
+  //   setVisitors(updated);
 
-    const updatedVisitor = updated.find((v) => v.id === id);
-    if (updatedVisitor) setSelected(updatedVisitor);
-  };
+  //   const updatedVisitor = updated.find((v) => v.id === id);
+  //   if (updatedVisitor) setSelected(updatedVisitor);
+  // };
 
   const handleExport = () => {
     toast.success("Report exported successfully", {

@@ -50,9 +50,7 @@ const MoveOutCard: React.FC<Props> = ({
         transition hover:border-gray-600
       "
     >
-      {/* ================= HEADER ================= */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-
         {/* Name + Status */}
         <div className="flex flex-wrap items-center gap-3">
           <h3
@@ -84,7 +82,6 @@ const MoveOutCard: React.FC<Props> = ({
 
         {/* ================= BUTTONS ================= */}
         <div className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
-
           {data.status === "Pending" && (
             <>
               <button
@@ -151,9 +148,17 @@ const MoveOutCard: React.FC<Props> = ({
       >
         {[
           { label: "Property", value: data.property, color: "text-white" },
-          { label: "Move-Out Date", value: data.moveOutDate, color: "text-white" },
+          {
+            label: "Move-Out Date",
+            value: data.moveOutDate,
+            color: "text-white",
+          },
           { label: "Original", value: data.original, color: "text-white" },
-          { label: "Deductions", value: data.deductions, color: "text-red-400" },
+          {
+            label: "Deductions",
+            value: data.deductions,
+            color: "text-red-400",
+          },
           { label: "Refund", value: data.refund, color: "text-[#05DF72]" },
         ].map((item, index) => (
           <div key={index} className="space-y-1">
