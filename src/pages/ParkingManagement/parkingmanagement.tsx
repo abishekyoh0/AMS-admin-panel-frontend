@@ -7,6 +7,8 @@ import suggested from "../../assets/parking/suggested.png";
 import rejectIcon from "../../assets/parking/rejected.png";
 import bike from "../../assets/parking/bike.png";
 import car from "../../assets/parking/fourwheel.png";
+import searchIcon from "../../assets/parking/search.png"
+import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 
 export default function ParkingManagement() {
   const requests = [
@@ -57,6 +59,7 @@ export default function ParkingManagement() {
           borderColor="#FDC7004D"
           iconBg="#F0B10033"
           icon={pendingIcon}
+           countColor="#FDC700"
         />
 
         <StatusCard
@@ -67,6 +70,7 @@ export default function ParkingManagement() {
           borderColor="#05DF724D"
           iconBg="#00C95033"
           icon={approvedIcon}
+           countColor="#05DF72"
         />
 
         <StatusCard
@@ -77,6 +81,7 @@ export default function ParkingManagement() {
           borderColor="#51A2FF4D"
           iconBg="#2B7FFF33"
           icon={suggested}
+           countColor="#51A2FF"
         />
 
         <StatusCard
@@ -87,6 +92,7 @@ export default function ParkingManagement() {
           borderColor="#FF64674D"
           iconBg="#FB2C3633"
           icon={rejectIcon}
+           countColor="#FF6467"
         />
 
         <StatusCard
@@ -97,6 +103,7 @@ export default function ParkingManagement() {
           borderColor="#05DF724D"
           iconBg="#00C95033"
           icon={bike}
+           countColor="#05DF72"
         />
 
         <StatusCard
@@ -107,6 +114,7 @@ export default function ParkingManagement() {
           borderColor="#51A2FF4D"
           iconBg="#2B7FFF33"
           icon={car}
+           countColor="#51A2FF"
         />
       </div>
       <div
@@ -117,57 +125,66 @@ export default function ParkingManagement() {
                 backdrop-blur-md
                 bg-linear-to-r from-[#0F172B80] to-[#10182880]"
       >
-        <div className="relative w-full max-w-152.5">
-          <input
-            type="text"
-            placeholder="Search by name, unit, vehicle..."
-            className="w-full h-13.75
+       <div className="relative w-full max-w-152.5">
+
+  <img
+    src={searchIcon}
+    alt="search"
+    className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 opacity-60"
+  />
+
+  <input
+    type="text"
+    placeholder="Search by name, unit, vehicle..."
+    className={`w-full h-13.75
                bg-[#FFFFFF0D]
                border border-[#FFFFFF1A]
                rounded-xl
-               px-4
+               pl-12 pr-4
                text-sm text-white
                focus:outline-none focus:border-purple-500
-               transition"
-          />
-        </div>
+               transition ${FONTSIZE[16]}`}
+  style={{fontWeight:WEIGHT.four}}/>
+</div>
 
         <div className="flex gap-3">
           <button
-            className="w-37 h-14.5
+            className={`w-37 h-14.5
              rounded-[14px]
              bg-linear-to-r from-[#AD46FF] to-[#F6339A]
              text-white text-sm font-medium
              shadow-[#AD46FF40]
              cursor-pointer
              flex items-center justify-center
-             transition hover:opacity-90"
-          >
+             transition hover:opacity-90 ${FONTSIZE[16]}`}
+         style={{fontWeight:WEIGHT.seven,color:COLORS.primary_white}} >
             Pending
           </button>
 
           <button
-            className="w-39.25 h-13.75
+            className={`w-39.25 h-13.75
              rounded-[14px]
              border-[1.75px] border-[#FFFFFF1A]
              bg-[#FFFFFF0D]
              text-gray-300 text-sm font-medium
              flex items-center justify-center
              cursor-pointer
-             transition hover:bg-gray-800"
+             transition hover:bg-gray-800 ${FONTSIZE[16]}`}
+         style={{fontWeight:WEIGHT.seven,color:COLORS.grey}} 
           >
             Processed
           </button>
 
           <button
-            className="w-25.75 h-13.75
+            className={`w-25.75 h-13.75
              rounded-[14px]
              border-[1.75px] border-[#FFFFFF1A]
              bg-[#FFFFFF0D]
              text-gray-300 text-sm font-medium
              flex items-center justify-center
              cursor-pointer
-             transition hover:bg-gray-800"
+             transition hover:bg-gray-800 ${FONTSIZE[16]}`}
+         style={{fontWeight:WEIGHT.seven,color:COLORS.grey}} 
           >
             All
           </button>

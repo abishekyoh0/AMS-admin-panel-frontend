@@ -84,6 +84,7 @@ export default function ParkingSlots() {
           borderColor="#FDC7004D"
           iconBg="#F0B10033"
           icon={pendingIcon}
+          countColor="#FDC700"
         />
 
         <StatusCard
@@ -94,6 +95,8 @@ export default function ParkingSlots() {
           borderColor="#05DF724D"
           iconBg="#00C95033"
           icon={approvedIcon}
+           countColor="#FDC700"
+          
         />
 
         <StatusCard
@@ -104,6 +107,7 @@ export default function ParkingSlots() {
           borderColor="#51A2FF4D"
           iconBg="#2B7FFF33"
           icon={suggested}
+           countColor="#FDC700"
         />
 
         <StatusCard
@@ -114,6 +118,7 @@ export default function ParkingSlots() {
           borderColor="#FF64674D"
           iconBg="#FB2C3633"
           icon={rejectIcon}
+           countColor="#FDC700"
         />
 
         <StatusCard
@@ -124,6 +129,7 @@ export default function ParkingSlots() {
           borderColor="#05DF724D"
           iconBg="#00C95033"
           icon={bike}
+           countColor="#FDC700"
         />
 
         <StatusCard
@@ -134,6 +140,7 @@ export default function ParkingSlots() {
           borderColor="#51A2FF4D"
           iconBg="#2B7FFF33"
           icon={car}
+           countColor="#FDC700"
         />
       </div>
 
