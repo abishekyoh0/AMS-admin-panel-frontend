@@ -1,11 +1,14 @@
+import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
+
 type Props = {
   title: string;
   count: number;
-  gradientFrom: string;   
-  gradientTo: string;     
+  gradientFrom: string;
+  gradientTo: string;
   borderColor: string;
   iconBg: string;
   icon: string;
+  countColor: string;   
 };
 
 export default function StatusCard({
@@ -16,6 +19,7 @@ export default function StatusCard({
   borderColor,
   iconBg,
   icon,
+  countColor,
 }: Props) {
   return (
     <div
@@ -33,15 +37,29 @@ export default function StatusCard({
           className="w-9 h-9 rounded-lg flex items-center justify-center"
           style={{ background: iconBg }}
         >
-          <img src={icon} alt="" className="w-4 h-4" />
+          <img src={icon} alt="" className="w-5 h-5" />
         </div>
 
-        <span className="text-lg font-bold">
+        <span
+          className={`text-lg ${FONTSIZE[24]}`}
+          style={{
+            fontWeight: WEIGHT.seven,
+            color: countColor,
+          }}
+        >
           {count}
         </span>
       </div>
 
-      <p className="text-xs text-gray-300">{title}</p>
+      <p
+        className={`text-xs mt-2 ${FONTSIZE[14]}`}
+        style={{
+          fontWeight: WEIGHT.five,
+          color: COLORS.grey,
+        }}
+      >
+        {title}
+      </p>
     </div>
   );
 }
