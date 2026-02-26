@@ -23,8 +23,8 @@ import High from "../../assets/notification/warning.png";
 import New from "../../assets/notification/user.png";
 import Monthly from "../../assets/notification/dollar-green.png";
 import Clock from "../../assets/notification/clock.png";
-import { X } from "lucide-react";
 import { toast } from "react-toastify";
+import { X } from "lucide-react";
 
 type FilterBtn = { id: number; label: string; key: string; icon: string; };
 
@@ -38,7 +38,6 @@ type Notification = {
   action?: boolean;
   unread?: boolean;
   icon?: string;
-
 };
 
 const FILTERS: FilterBtn[] = [
@@ -107,21 +106,60 @@ const NOTIFICATIONS: Notification[] = [
   },
 ];
 
+type Delete = {
+  onConfirm: () => void;
+  onCancel: () => void;
+};
+
+const Delete = ({
+  onConfirm,
+  onCancel,
+}: Delete) => {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+      <div className="relative w-full sm:w-[90%] md:w-[500px]  bg-gradient-to-br from-[#0F172B] to-[#101828] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl">
+        <button
+          onClick={onCancel}
+          className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition cursor-pointer"
+        >
+          <X size={18} className="text-gray-300" />
+        </button>
+        <div className="text-center">
+          <h2 className={`${FONTSIZE[30]} ${FONTWEIGHT[700]} text-white`}>
+            Delete Notification
+          </h2>
+          <p
+            className={`${FONTSIZE[16]} ${FONTWEIGHT[400]} text-[#99A1AF] mt-2`}
+          >
+            Are you sure you want to delete this notification?
+          </p>
+        </div>
+        <div className="flex gap-4 justify-center mt-8 ">
+          <button
+            onClick={onCancel}
+            className="px-5 py-2 rounded-lg text-sm font-medium text-white bg-[#FFFFFF0D]  hover:opacity-90 transition cursor-pointer flex items-center"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={onConfirm}
+            className="px-5 py-2 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-[#FB2C36] to-[#EC003F] hover:opacity-90 transition cursor-pointer flex items-center"
+          >
+            Yes, Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 const NotificationsPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [search, setSearch] = useState("");
   const [data, setData] = useState(NOTIFICATIONS);
-  const [selectedIds, setSelectedIds] = useState<Notification | null  >([]);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [showDelete, setShowDelete] = useState(false);
-
-    const deleteAnnouncement = (id: number) => {
-      setData(data.filter((item) => item.id !== id));
-      setShowDelete(false);
-      setSelectedIds([]);
-      
-      toast.error("Announcement deleted");
-    };
-  
 
   const filtered = data.filter((n) => {
     const matchSearch = n.title.toLowerCase().includes(search.toLowerCase());
@@ -166,6 +204,12 @@ const NotificationsPage: React.FC = () => {
     setSelectedIds([]);
   };
 
+  const deleteAnnouncement = (id: number) => {
+    setData(data.filter((item) => item.id !== id));
+    setShowDelete(false);
+    toast.error("Successfully deleted");
+  };
+
   // const unreadCount = data.filter((n) => n.unread).length;
 
   // const markAllRead = () => {
@@ -176,55 +220,7 @@ const NotificationsPage: React.FC = () => {
   const unread = data.filter((n) => n.unread).length;
   const action = data.filter((n) => n.action).length;
 
-  type Delete = {
-  onConfirm: () => void;
-  onCancel: () => void;
-};
-
-const Delete = ({
-  onConfirm,
-  onCancel,
-}: Delete) => {
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <div className="relative w-full sm:w-[90%] md:w-[500px]  bg-linear-to-br from-[#0F172B] to-[#101828] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl">
-        <button
-          onClick={onCancel}
-          className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition cursor-pointer"
-        >
-          <X size={18} className="text-gray-300" />
-        </button>
-        <div className="text-center">
-          <h2 className={`${FONTSIZE[30]} ${FONTWEIGHT[700]} text-white`}>
-            Delete Notification
-          </h2>
-          <p
-            className={`${FONTSIZE[16]} ${FONTWEIGHT[400]} text-[#99A1AF] mt-2`}
-          >
-            Are you sure you want to delete this notification?
-          </p>
-        </div>
-        <div className="flex gap-4 justify-center mt-8 ">
-          <button
-            onClick={onCancel}
-            className="px-5 py-2 rounded-lg text-sm font-medium text-white bg-[#FFFFFF0D]  hover:opacity-90 transition cursor-pointer flex items-center"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={onConfirm}
-            className="px-5 py-2 rounded-lg text-sm font-medium text-white bg-linear-to-r from-[#FB2C36] to-[#EC003F] hover:opacity-90 transition cursor-pointer flex items-center"
-          >
-            Yes, Delete
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
   const navigate = useNavigate();
-
   return (
     <div style={{ color: COLORS.primary_white }}>
       <div className="pt-2 pb-3">
@@ -310,12 +306,12 @@ const Delete = ({
             <div className="flex gap-3">
               <div className="relative mt-2">
                 <input type="checkbox" id={`select-${n.id}`}
-                  checked={n.id}
+                  checked={selectedIds.includes(n.id)}
                   onChange={() => toggleSelect(n.id)}
                   className="peer sr-only" />
                 <label htmlFor={`select-${n.id}`}
                   className="flex h-5 w-5 cursor-pointer items-center justify-center rounded border border-[#00B8DBAA] bg-[#FFFFFF0D] backdrop-blur-sm transition-all peer-checked:border-[#00B8DB]  peer-checked:bg-[#00B8DB]/20 peer-checked:shadow-[0_0_8px_#00B8DB]">
-                  <svg className={`h-3 w-3 text-[#00E0FF] transition-opacity ${(n.id) ? "opacity-100" : "opacity-0" }`}
+                  <svg className={`h-3 w-3 text-[#00E0FF] transition-opacity ${selectedIds.includes(n.id) ? "opacity-100" : "opacity-0"}`}
                     fill="none" stroke="currentColor" viewBox="0 0 24 24" >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                   </svg>
@@ -332,7 +328,7 @@ const Delete = ({
                     )}
                   </h3>
                   <div className="flex gap-3 text-gray-400 text-sm mr-10">
-                    <button onClick={() => navigate("/notification-details", { state: n }) }
+                    <button onClick={() => navigate("/notification-details", { state: n })}
                       className="hover:text-green-400 cursor-pointer">
                       <img src={View} alt="" />
                     </button>
@@ -374,13 +370,11 @@ const Delete = ({
         Showing {filtered.length} of {NOTIFICATIONS.length} notifications
       </p>
 
-
-            {showDelete && (
+      {showDelete && (
         <Delete
           onConfirm={() => {
-            deleteAnnouncement(selectedIds?.id || 0);
-              setShowDelete(false);
-              setSelectedIds([]);
+            deleteAnnouncement(selectedIds[0] || 0);
+            setShowDelete(false);
           }}
           onCancel={() => {
             setShowDelete(false);
