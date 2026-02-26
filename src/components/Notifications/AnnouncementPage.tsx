@@ -19,7 +19,7 @@ import EMERGENCY from "../../assets/Announcement/alarm.png"
 import View from "../../assets/Announcement/Icon (13).png"
 import Pin from "../../assets/Announcement/Icon (14).png"
 import Resend from "../../assets/Announcement/Icon (15).png"
-import Delete from "../../assets/Announcement/Icon (16).png"
+import DeleteIcon from "../../assets/Announcement/Icon (16).png"
 import Schedule from "../../assets/Announcement/Icon (10).png"
 import Published from "../../assets/Announcement/Icon (18).png"
 
@@ -31,7 +31,7 @@ type StatCard = {
   bg: string;
   icon?: string;
   iconBg: string;
-  pin?: boolean;
+  pin?:boolean;
 };
 
 type Filter = {
@@ -105,7 +105,7 @@ const ANNOUNCEMENTS: Announcement[] = [
 ];
 
 const STATS: StatCard[] = [
-  { id: 1, title: "Total Announcements", value: 5, color: "#60a5fa", bg: "bg-linear-to-r from-[#2B7FFF1A] to-[#00B8DB1A] border-[#51A2FF4D]", icon: Alarm, iconBg: "#2B7FFF33", pin: true },
+  { id: 1, title: "Total Announcements", value: 5, color: "#60a5fa", bg: "bg-linear-to-r from-[#2B7FFF1A] to-[#00B8DB1A] border-[#51A2FF4D]", icon: Alarm, iconBg: "#2B7FFF33" ,pin:true},
   { id: 2, title: "Published", value: 3, color: "#22c55e", bg: "bg-linear-to-r from-[#00C9501A] to-[#00BC7D1A] border-[#05DF724D]", icon: Tick, iconBg: "#00C95033" },
   { id: 3, title: "Scheduled", value: 1, color: "#f59e0b", bg: "bg-linear-to-r from-[#F0B1001A] to-[#FE9A001A] border-[#FDC7004D]", icon: Clock, iconBg: "#F0B10033" },
   { id: 4, title: "Expired", value: 1, color: "#ef4444", bg: "bg-linear-to-r from-[#FB2C361A] to-[#FF20561A] border-[#FF64674D]", icon: Close, iconBg: "#FB2C3633" },
@@ -139,6 +139,55 @@ const badgeColor = (priority?: string) => {
       return "bg-blue-500/20 text-blue-400";
   }
 };
+
+type Delete = {
+  onConfirm: () => void;
+  onCancel: () => void;
+};
+
+const Delete = ({
+  onConfirm,
+  onCancel,
+}: Delete) => {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+      <div className="relative w-full sm:w-[90%] md:w-[500px]  bg-gradient-to-br from-[#0F172B] to-[#101828] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl">
+        <button
+          onClick={onCancel}
+          className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition cursor-pointer"
+        >
+          <X size={18} className="text-gray-300" />
+        </button>
+        <div className="text-center">
+          <h2 className={`${FONTSIZE[30]} ${FONTWEIGHT[700]} text-white`}>
+            Delete Parking Slot
+          </h2>
+          <p
+            className={`${FONTSIZE[16]} ${FONTWEIGHT[400]} text-[#99A1AF] mt-2`}
+          >
+            Are you sure you want to delete this parking slot? This action
+            cannot be undone.
+          </p>
+        </div>
+        <div className="flex gap-4 justify-center mt-8 ">
+          <button
+            onClick={onCancel}
+            className="px-5 py-2 rounded-lg text-sm font-medium text-white bg-[#FFFFFF0D]  hover:opacity-90 transition cursor-pointer flex items-center"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={onConfirm}
+            className="px-5 py-2 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-[#FB2C36] to-[#EC003F] hover:opacity-90 transition cursor-pointer flex items-center"
+          >
+            Yes, Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 const AnnouncementModal = ({ item, onClose }: {
   item: Announcement;
@@ -256,6 +305,7 @@ const AnnouncementManagement: React.FC = () => {
   const [category, setCategory] = useState("all");
   const [selected, setSelected] = useState<Announcement | null>(null);
   const [showCreate, setShowCreate] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
 
   const viewDetails = (item: Announcement) => {
     setSelected(item);
@@ -428,9 +478,9 @@ const AnnouncementManagement: React.FC = () => {
                   <button onClick={() => resendAnnouncement(item.id)} className="flex gap-2 items-center bg-linear-to-r from-[#AD46FF] to-[#E60076] px-4 py-2 rounded-lg text-sm cursor-pointer"
                     style={{ boxShadow: "0px 4px 6px -4px #AD46FF40,0px 10px 15px -3px #AD46FF40" }}>
                     <img src={Resend} alt="" />Resend</button>
-                  <button onClick={() => deleteAnnouncement(item.id)} className="flex gap-2 items-center bg-linear-to-r from-[#FB2C36] to-[#EC003F] px-4 py-2 rounded-lg text-sm cursor-pointer"
+                  <button onClick={() => { setSelected(item); setShowDelete(true); }} className="flex gap-2 items-center bg-linear-to-r from-[#FB2C36] to-[#EC003F] px-4 py-2 rounded-lg text-sm cursor-pointer"
                     style={{ boxShadow: "0px 4px 6px -4px #FB2C3640,0px 10px 15px -3px #FB2C3640" }}>
-                    <img src={Delete} alt="" />Delete</button>
+                    <img src={DeleteIcon} alt="" />Delete</button>
                 </div>
               </div>
 
@@ -438,12 +488,25 @@ const AnnouncementManagement: React.FC = () => {
           );
         })}
       </div>
+
+
       {selected && (
         <AnnouncementModal item={selected} onClose={() => setSelected(null)} />
       )}
 
       {showCreate && (
         <CreateAnnouncement onClose={() => setShowCreate(false)} />
+      )}
+
+      {showDelete && (
+        <Delete
+          onConfirm={() => {
+            deleteAnnouncement(selected?.id || 0);
+            setShowDelete(false);
+            setSelected(null);
+          }}
+          onCancel={() => setShowDelete(false)}
+        />
       )}
     </div>
   );
