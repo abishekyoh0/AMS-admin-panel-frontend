@@ -704,5 +704,4 @@ const AnnouncementManagement: React.FC = () => {
   );
 };
 
-
 export default AnnouncementManagement;
