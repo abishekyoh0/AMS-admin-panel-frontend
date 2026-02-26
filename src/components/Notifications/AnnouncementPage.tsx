@@ -197,7 +197,7 @@ type Delete = {
 const Delete = ({ onConfirm, onCancel }: Delete) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <div className="relative w-full sm:w-[90%] md:w-[500px]  bg-gradient-to-br from-[#0F172B] to-[#101828] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl">
+      <div className="relative w-full sm:w-[90%] md:w-[500px]  bg-linear-to-br from-[#0F172B] to-[#101828] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl">
         <button
           onClick={onCancel}
           className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition cursor-pointer"
