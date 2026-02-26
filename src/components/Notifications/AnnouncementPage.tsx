@@ -8,6 +8,19 @@ import Search from "../../assets/notification/search.png";
 import Bell from "../../assets/notification/bell1.png";
 import { X } from "lucide-react";
 import CreateAnnouncement from "./CreateAnnouncement";
+import Notify from "../../assets/Announcement/Icon.png"
+import Add from "../../assets/Announcement/Iconn.png"
+import Alarm from "../../assets/Announcement/Icon (2).png"
+import Tick from "../../assets/Announcement/Icon (3).png"
+import Clock from "../../assets/Announcement/Icon (4).png"
+import Close from "../../assets/Announcement/Icon (5).png"
+import Send from "../../assets/Announcement/Icon (6).png"
+import Eye from "../../assets/Announcement/Icon (7).png"
+import EMERGENCY from "../../assets/Announcement/alarm.png"
+import View from "../../assets/Announcement/Icon (13).png"
+import Pin from "../../assets/Announcement/Icon (14).png"
+import Resend from "../../assets/Announcement/Icon (15).png"
+import Delete from "../../assets/Announcement/Icon (16).png"
 
 type StatCard = {
   id: number;
@@ -15,6 +28,8 @@ type StatCard = {
   value: number | string;
   color: string;
   bg: string;
+  icon?: string;
+  iconBg: string;
 };
 
 type Filter = {
@@ -28,21 +43,23 @@ type Announcement = {
   title: string;
   desc: string;
   tag: string;
-  priority: string;
-  status: string;
+  priority?: "Low" | "Medium" | "High" | "Emergency";
+  status: "Scheduled" | "Published" ; 
   totalSent: number;
   read: number;
   unread: number;
   createdAt?: string;
   scheduledFor?: string;
   expiresOn?: string;
+  icon?: string,
 };
 
 const ANNOUNCEMENTS: Announcement[] = [
   {
     id: 1,
-    title: "🚨 EMERGENCY: Fire Drill on Feb 25",
-    desc: "Mandatory fire drill scheduled for February 25th at 11:00 AM.",
+    icon: EMERGENCY,
+    title: "EMERGENCY: Fire Drill on Feb 25",
+    desc: "Mandatory fire drill scheduled for February 25th at 11:00 AM. All residents must participate. Assembly point: Main Parking Area.",
     tag: "Emergency",
     priority: "Emergency",
     status: "Scheduled",
@@ -55,8 +72,9 @@ const ANNOUNCEMENTS: Announcement[] = [
   },
   {
     id: 2,
+    icon: "",
     title: "Water Supply Maintenance - Sunday",
-    desc: "Water supply will be suspended Sunday for tank cleaning.",
+    desc: "Water supply will be suspended on Sunday, February 23rd from 10:00 AM to 4:00 PM for routine tank cleaning and maintenance.",
     tag: "Maintenance",
     priority: "High",
     status: "Published",
@@ -69,8 +87,9 @@ const ANNOUNCEMENTS: Announcement[] = [
   },
   {
     id: 3,
+    icon: "",
     title: "Community Holi Celebration 2026",
-    desc: "Join us for Holi celebration in community garden.",
+    desc: "Join us for a vibrant Holi celebration on March 14th at 3:00 PM in the community garden. Music, colors, and snacks provided!",
     tag: "Event",
     priority: "Medium",
     status: "Published",
@@ -84,42 +103,12 @@ const ANNOUNCEMENTS: Announcement[] = [
 ];
 
 const STATS: StatCard[] = [
-  {
-    id: 1,
-    title: "Total Announcements",
-    value: 5,
-    color: "#60a5fa",
-    bg: "bg-blue-500/10",
-  },
-  {
-    id: 2,
-    title: "Published",
-    value: 3,
-    color: "#22c55e",
-    bg: "bg-green-500/10",
-  },
-  {
-    id: 3,
-    title: "Scheduled",
-    value: 1,
-    color: "#f59e0b",
-    bg: "bg-yellow-500/10",
-  },
-  { id: 4, title: "Expired", value: 1, color: "#ef4444", bg: "bg-red-500/10" },
-  {
-    id: 5,
-    title: "Total Sent",
-    value: 1200,
-    color: "#a855f7",
-    bg: "bg-purple-500/10",
-  },
-  {
-    id: 6,
-    title: "Total Read",
-    value: 842,
-    color: "#06b6d4",
-    bg: "bg-cyan-500/10",
-  },
+  { id: 1, title: "Total Announcements", value: 5, color: "#60a5fa", bg: "bg-linear-to-r from-[#2B7FFF1A] to-[#00B8DB1A] border-[#51A2FF4D]", icon: Alarm, iconBg: "#2B7FFF33" },
+  { id: 2, title: "Published", value: 3, color: "#22c55e", bg: "bg-linear-to-r from-[#00C9501A] to-[#00BC7D1A] border-[#05DF724D]", icon: Tick, iconBg: "#00C95033" },
+  { id: 3, title: "Scheduled", value: 1, color: "#f59e0b", bg: "bg-linear-to-r from-[#F0B1001A] to-[#FE9A001A] border-[#FDC7004D]", icon: Clock, iconBg: "#F0B10033" },
+  { id: 4, title: "Expired", value: 1, color: "#ef4444", bg: "bg-linear-to-r from-[#FB2C361A] to-[#FF20561A] border-[#FF64674D]", icon: Close, iconBg: "#FB2C3633" },
+  { id: 5, title: "Total Sent", value: 1200, color: "#a855f7", bg: "bg-linear-to-r from-[#AD46FF1A] to-[#F6339A1A] border-[#C27AFF4D]", icon: Send, iconBg: "#AD46FF33" },
+  { id: 6, title: "Total Read", value: 842, color: "#06b6d4", bg: "bg-linear-to-r from-[#00B8DB1A] to-[#00BBA71A] border-[#00D3F34D]", icon: Eye, iconBg: "#00B8DB33" },
 ];
 
 const STATUS_FILTERS: Filter[] = [
@@ -135,6 +124,19 @@ const CATEGORY_FILTERS: Filter[] = [
   { id: 4, label: "Emergency", key: "emergency" },
   { id: 5, label: "Event", key: "event" },
 ];
+
+  const badgeColor = (priority?: string) => {
+    switch (priority) {
+      case "Emergency":
+        return "bg-red-500/20 text-red-400";
+      case "High":
+        return "bg-orange-500/20 text-orange-400";
+      case "Medium":
+        return "bg-yellow-500/20 text-yellow-400";
+      default:
+        return "bg-blue-500/20 text-blue-400";
+    }
+  };
 
 const AnnouncementModal = ({
   item,
@@ -283,33 +285,33 @@ const AnnouncementManagement: React.FC = () => {
 
   return (
     <div style={{ color: COLORS.primary_white }}>
-
       <ToastContainer position="top-right" autoClose={2000} />
 
-      <button
-        onClick={() => navigate(-1)}
+      <button onClick={() => navigate(-1)}
         className="flex items-center gap-2 mb-6 cursor-pointer"
-        style={{ color: COLORS.secoundy_gray }}
-      >
+        style={{ color: COLORS.secoundy_gray }}>
         <img src={BackIcon} className="w-4 h-4" />
         Back to Notification
       </button>
 
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-6">
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-bold">
-            📢 Announcement Management
-          </h1>
-          <p className="text-gray-400 text-sm mt-1">
-            Create and manage resident announcements
-          </p>
+        <div className="flex items-center gap-3">
+          <div>
+            <img src={Notify} alt="" className="bg-linear-to-r from-[#AD46FF33] to-[#F6339A33] p-2 border border-[#C27AFF4D] rounded-xl" />
+          </div>
+          <div>
+            <h1 className={`${FONTSIZE[36]} ${FONTWEIGHT[700]}`}>
+              Announcement Management
+            </h1>
+            <p className={`${FONTSIZE[16]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
+              Create and manage resident announcements
+            </p>
+          </div>
         </div>
-
-        <button
-          onClick={() => setShowCreate(true)}
-          className="bg-linear-to-r from-purple-600 to-pink-500 px-5 py-2 rounded-xl font-semibold shadow-lg cursor-pointer"
-        >
-          + Create Announcement
+        <button onClick={() => setShowCreate(true)}
+          className="flex gap-2 items-center bg-linear-to-r from-[#AD46FF] to-[#E60076] px-5 py-2 rounded-xl font-semibold shadow-lg cursor-pointer"
+          style={{ boxShadow: "0px 4px 6px -4px #AD46FF40,0px 10px 15px -3px #AD46FF40" }}>
+          <img src={Add} alt="" className="w-5 h-5" /> Create Announcement
         </button>
       </div>
 
@@ -317,20 +319,17 @@ const AnnouncementManagement: React.FC = () => {
         {STATS.map((card) => (
           <div
             key={card.id}
-            className={`rounded-xl p-4 border border-white/10 ${card.bg}`}
-          >
-            <p className="text-xs text-gray-400">{card.title}</p>
-            <h2
-              className="text-2xl font-bold mt-1"
-              style={{ color: card.color }}
-            >
-              {card.value}
+            className={`rounded-xl p-4 border-2 ${card.bg}`}>
+            <h2 className={`flex justify-between items-center mt-1 mb-5 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}
+              style={{ color: card.color }}>
+              <img src={card.icon} alt="" className="p-2 rounded-xl" style={{ background: card.iconBg }} /> {card.value}
             </h2>
+            <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{card.title}</p>
           </div>
         ))}
       </div>
 
-      <div className="bg-white/5 border border-white/10 rounded-2xl p-4 mb-6">
+      <div className="bg-linear-to-r from-[#0F172B80] to-[#10182880] border-2 border-[#FFFFFF33] rounded-2xl p-4 mb-6">
         <div className="flex items-center gap-2 bg-[#FFFFFF0D] border border-[#FFFFFF1A] rounded-xl px-3 py-2 mb-4">
           <img src={Search} className="w-4 h-4 opacity-70" />
           <input
@@ -347,12 +346,9 @@ const AnnouncementManagement: React.FC = () => {
               <button
                 key={btn.id}
                 onClick={() => setStatus(btn.key)}
-                className={`px-4 py-2 rounded-xl whitespace-nowrap cursor-pointer ${
-                  status === btn.key
-                    ? "bg-linear-to-r from-pink-500 to-purple-600"
-                    : "bg-white/5 border border-white/10"
-                }`}
-              >
+                className={`px-4 py-2 rounded-xl whitespace-nowrap cursor-pointer ${FONTSIZE[16]} ${FONTWEIGHT[700]}
+                  ${status === btn.key ? "bg-linear-to-r from-[#AD46FF] to-[#F6339A]" : "bg-[#FFFFFF0D] border border-[#FFFFFF1A]"}`}
+                style={{ boxShadow: "0px 4px 6px -4px #AD46FF40,0px 10px 15px -3px #AD46FF40" }}>
                 {btn.label}
               </button>
             ))}
@@ -363,12 +359,9 @@ const AnnouncementManagement: React.FC = () => {
               <button
                 key={btn.id}
                 onClick={() => setCategory(btn.key)}
-                className={`px-4 py-2 rounded-xl whitespace-nowrap cursor-pointer ${
-                  category === btn.key
-                    ? "bg-linear-to-r from-blue-600 to-cyan-500"
-                    : "bg-white/5 border border-white/10"
-                }`}
-              >
+                className={`px-4 py-2 rounded-xl whitespace-nowrap cursor-pointer ${FONTSIZE[16]} ${FONTWEIGHT[700]}
+                  ${category === btn.key ? "bg-linear-to-r from-[#00B8DB] to-[#2B7FFF]" : "bg-[#FFFFFF0D] border border-[#FFFFFF1A]"}`}
+                style={{ boxShadow: "0px 4px 6px -4px #00B8DB40,0px 10px 15px -3px #00B8DB40" }}>
                 {btn.label}
               </button>
             ))}
@@ -378,55 +371,63 @@ const AnnouncementManagement: React.FC = () => {
 
       <div className="space-y-6">
         {filtered.map((item) => {
-          const readPercent =
-            item.totalSent === 0
-              ? 0
-              : Math.round((item.read / item.totalSent) * 100);
+          const readPercent = item.totalSent === 0 ? 0 : Math.round((item.read / item.totalSent) * 100);
 
           return (
-            <div
-              key={item.id}
-              className="rounded-2xl border border-yellow-500/30 bg-linear-to-r from-[#0f1635] to-[#0a0f2a] p-5 shadow-lg"
-            >
-              <h2 className="font-semibold text-lg">{item.title}</h2>
+            <div key={item.id}
+              className="flex gap-5 rounded-2xl border-2 border-[#F0B10080] bg-linear-to-r from-[#0F172B80] to-[#10182880] p-5 shadow-lg"
+              style={{ boxShadow: "0px 4px 6px -4px #F0B1001A,0px 10px 15px -3px #F0B1001A" }}>
+              <img src={Notify} alt="" className="bg-linear-to-r from-[#AD46FF33] to-[#F6339A33] p-2 border border-[#C27AFF4D] rounded-xl w-15 h-15" />
+              <div className="w-full">
+                <div className={`flex items-center flex-wrap gap-2 mt-2 ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
+                  <img src={item.icon} alt="" className="w-5 h-5"/>
+                  <h2 className={`${FONTSIZE[20]} ${FONTWEIGHT[700]}`}>{item.title}</h2>
+                  <span className={`bg-red-500/20 text-red-400 px-2 py-1 rounded-xl `}>
+                   <img src="" alt="" /> {item.tag}
+                  </span>
+                  <span className={`bg-orange-500/20 text-orange-400 px-2 py-1 rounded-xl ${badgeColor(item.priority)}`}>
+                    {item.priority}
+                  </span>
+                  <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded-xl">
+                    {item.status}
+                  </span>
+                </div>
 
-              <div className="flex flex-wrap gap-2 mt-2 text-xs">
-                <span className="bg-red-500/20 text-red-400 px-2 py-1 rounded">
-                  {item.tag}
-                </span>
-                <span className="bg-orange-500/20 text-orange-400 px-2 py-1 rounded">
-                  {item.priority}
-                </span>
-                <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded">
-                  {item.status}
-                </span>
+                <p className="text-gray-400 mt-3 text-sm">{item.desc}</p>
+
+                <div className="w-full bg-white/5 border border-white/10 rounded-xl p-4 mt-4 grid grid-cols-3 text-center">
+                  <div>
+                    <p className="text-gray-400 text-xs">Total Sent</p>
+                    <p className="text-lg font-bold">{item.totalSent}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400 text-xs">Read</p>
+                    <p className="text-green-400 font-bold">
+                      {item.read} ({readPercent}%)
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400 text-xs">Unread</p>
+                    <p className="text-yellow-400 font-bold">{item.unread}</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-3 mt-4">
+                  <button onClick={() => viewDetails(item)} className="flex gap-2 items-center bg-linear-to-r from-[#2B7FFF] to-[#0092B8] px-4 py-2 rounded-lg text-sm cursor-pointer"
+                    style={{boxShadow: "0px 4px 6px -4px #2B7FFF40,0px 10px 15px -3px #2B7FFF40"}}>
+                    <img src={View} alt="" />View Details</button>
+                  <button onClick={() => pinAnnouncement(item.id)} className="flex gap-2 items-center bg-linear-to-r from-[#F0B100] to-[#E17100] px-4 py-2 rounded-lg text-sm cursor-pointer"
+                    style={{boxShadow: "0px 4px 6px -4px #F0B10040,0px 10px 15px -3px #F0B10040"}}>
+                    <img src={Pin} alt="" />Pin</button>
+                  <button onClick={() => resendAnnouncement(item.id)} className="flex gap-2 items-center bg-linear-to-r from-[#AD46FF] to-[#E60076] px-4 py-2 rounded-lg text-sm cursor-pointer"
+                    style={{boxShadow: "0px 4px 6px -4px #AD46FF40,0px 10px 15px -3px #AD46FF40"}}>
+                    <img src={Resend} alt="" />Resend</button>
+                  <button onClick={() => deleteAnnouncement(item.id)} className="flex gap-2 items-center bg-linear-to-r from-[#FB2C36] to-[#EC003F] px-4 py-2 rounded-lg text-sm cursor-pointer"
+                    style={{boxShadow: "0px 4px 6px -4px #FB2C3640,0px 10px 15px -3px #FB2C3640"}}>
+                    <img src={Delete} alt="" />Delete</button>
+                </div>
               </div>
 
-              <p className="text-gray-400 mt-3 text-sm">{item.desc}</p>
-
-              <div className="bg-white/5 border border-white/10 rounded-xl p-4 mt-4 grid grid-cols-3 text-center">
-                <div>
-                  <p className="text-gray-400 text-xs">Total Sent</p>
-                  <p className="text-lg font-bold">{item.totalSent}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-xs">Read</p>
-                  <p className="text-green-400 font-bold">
-                    {item.read} ({readPercent}%)
-                  </p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-xs">Unread</p>
-                  <p className="text-yellow-400 font-bold">{item.unread}</p>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-3 mt-4">
-                <button onClick={() => viewDetails(item)} className="bg-blue-600 px-4 py-2 rounded-lg text-sm cursor-pointer">View</button>
-                <button onClick={() => pinAnnouncement(item.id)} className="bg-yellow-500 px-4 py-2 rounded-lg text-sm cursor-pointer">Pin</button>
-                <button onClick={() => resendAnnouncement(item.id)} className="bg-purple-600 px-4 py-2 rounded-lg text-sm cursor-pointer">Resend</button>
-                <button onClick={() => deleteAnnouncement(item.id)} className="bg-red-600 px-4 py-2 rounded-lg text-sm cursor-pointer">Delete</button>
-              </div>
             </div>
           );
         })}
