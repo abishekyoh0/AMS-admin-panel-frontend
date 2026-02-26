@@ -7,21 +7,21 @@ import BackIcon from "../../assets/notification/back-arrow.png";
 import Search from "../../assets/notification/search.png";
 import { X } from "lucide-react";
 import CreateAnnouncement from "./CreateAnnouncement";
-import Notify from "../../assets/Announcement/Icon.png"
-import Add from "../../assets/Announcement/Iconn.png"
-import Alarm from "../../assets/Announcement/Icon (2).png"
-import Tick from "../../assets/Announcement/Icon (3).png"
-import Clock from "../../assets/Announcement/Icon (4).png"
-import Close from "../../assets/Announcement/Icon (5).png"
-import Send from "../../assets/Announcement/Icon (6).png"
-import Eye from "../../assets/Announcement/Icon (7).png"
-import EMERGENCY from "../../assets/Announcement/alarm.png"
-import View from "../../assets/Announcement/Icon (13).png"
-import Pin from "../../assets/Announcement/Icon (14).png"
-import Resend from "../../assets/Announcement/Icon (15).png"
-import DeleteIcon from "../../assets/Announcement/Icon (16).png"
-import Schedule from "../../assets/Announcement/Icon (10).png"
-import Published from "../../assets/Announcement/Icon (18).png"
+import Notify from "../../assets/Announcement/Icon.png";
+import Add from "../../assets/Announcement/Iconn.png";
+import Alarm from "../../assets/Announcement/Icon (2).png";
+import Tick from "../../assets/Announcement/Icon (3).png";
+import Clock from "../../assets/Announcement/Icon (4).png";
+import Close from "../../assets/Announcement/Icon (5).png";
+import Send from "../../assets/Announcement/Icon (6).png";
+import Eye from "../../assets/Announcement/Icon (7).png";
+import EMERGENCY from "../../assets/Announcement/alarm.png";
+import View from "../../assets/Announcement/Icon (13).png";
+import Pin from "../../assets/Announcement/Icon (14).png";
+import Resend from "../../assets/Announcement/Icon (15).png";
+import DeleteIcon from "../../assets/Announcement/Icon (16).png";
+import Schedule from "../../assets/Announcement/Icon (10).png";
+import Published from "../../assets/Announcement/Icon (18).png";
 
 type StatCard = {
   id: number;
@@ -194,10 +194,7 @@ type Delete = {
   onCancel: () => void;
 };
 
-const Delete = ({
-  onConfirm,
-  onCancel,
-}: Delete) => {
+const Delete = ({ onConfirm, onCancel }: Delete) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
       <div className="relative w-full sm:w-[90%] md:w-[500px]  bg-gradient-to-br from-[#0F172B] to-[#101828] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl">
@@ -235,10 +232,12 @@ const Delete = ({
       </div>
     </div>
   );
-}
+};
 
-
-const AnnouncementModal = ({ item, onClose }: {
+const AnnouncementModal = ({
+  item,
+  onClose,
+}: {
   item: Announcement;
   onClose: () => void;
 }) => {
@@ -625,25 +624,59 @@ const AnnouncementManagement: React.FC = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-3 mt-4">
-                  <button onClick={() => viewDetails(item)} className="flex gap-2 items-center bg-linear-to-r from-[#2B7FFF] to-[#0092B8] px-4 py-2 rounded-lg text-sm cursor-pointer"
-                    style={{ boxShadow: "0px 4px 6px -4px #2B7FFF40,0px 10px 15px -3px #2B7FFF40" }}>
-                    <img src={View} alt="" />View Details</button>
-                  <button onClick={() => pinAnnouncement(item.id)} className="flex gap-2 items-center bg-linear-to-r from-[#F0B100] to-[#E17100] px-4 py-2 rounded-lg text-sm cursor-pointer"
-                    style={{ boxShadow: "0px 4px 6px -4px #F0B10040,0px 10px 15px -3px #F0B10040" }}>
-                    <img src={Pin} alt="" />Pin</button>
-                  <button onClick={() => resendAnnouncement(item.id)} className="flex gap-2 items-center bg-linear-to-r from-[#AD46FF] to-[#E60076] px-4 py-2 rounded-lg text-sm cursor-pointer"
-                    style={{ boxShadow: "0px 4px 6px -4px #AD46FF40,0px 10px 15px -3px #AD46FF40" }}>
-                    <img src={Resend} alt="" />Resend</button>
-                  <button onClick={() => { setSelected(item); setShowDelete(true); }} className="flex gap-2 items-center bg-linear-to-r from-[#FB2C36] to-[#EC003F] px-4 py-2 rounded-lg text-sm cursor-pointer"
-                    style={{ boxShadow: "0px 4px 6px -4px #FB2C3640,0px 10px 15px -3px #FB2C3640" }}>
-                    <img src={DeleteIcon} alt="" />Delete</button>
+                  <button
+                    onClick={() => viewDetails(item)}
+                    className="flex gap-2 items-center bg-linear-to-r from-[#2B7FFF] to-[#0092B8] px-4 py-2 rounded-lg text-sm cursor-pointer"
+                    style={{
+                      boxShadow:
+                        "0px 4px 6px -4px #2B7FFF40,0px 10px 15px -3px #2B7FFF40",
+                    }}
+                  >
+                    <img src={View} alt="" />
+                    View Details
+                  </button>
+                  <button
+                    onClick={() => pinAnnouncement(item.id)}
+                    className="flex gap-2 items-center bg-linear-to-r from-[#F0B100] to-[#E17100] px-4 py-2 rounded-lg text-sm cursor-pointer"
+                    style={{
+                      boxShadow:
+                        "0px 4px 6px -4px #F0B10040,0px 10px 15px -3px #F0B10040",
+                    }}
+                  >
+                    <img src={Pin} alt="" />
+                    Pin
+                  </button>
+                  <button
+                    onClick={() => resendAnnouncement(item.id)}
+                    className="flex gap-2 items-center bg-linear-to-r from-[#AD46FF] to-[#E60076] px-4 py-2 rounded-lg text-sm cursor-pointer"
+                    style={{
+                      boxShadow:
+                        "0px 4px 6px -4px #AD46FF40,0px 10px 15px -3px #AD46FF40",
+                    }}
+                  >
+                    <img src={Resend} alt="" />
+                    Resend
+                  </button>
+                  <button
+                    onClick={() => {
+                      // setSelected(item);
+                      setShowDelete(true);
+                    }}
+                    className="flex gap-2 items-center bg-linear-to-r from-[#FB2C36] to-[#EC003F] px-4 py-2 rounded-lg text-sm cursor-pointer"
+                    style={{
+                      boxShadow:
+                        "0px 4px 6px -4px #FB2C3640,0px 10px 15px -3px #FB2C3640",
+                    }}
+                  >
+                    <img src={DeleteIcon} alt="" />
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>
           );
         })}
       </div>
-
 
       {selected && (
         <AnnouncementModal item={selected} onClose={() => setSelected(null)} />
