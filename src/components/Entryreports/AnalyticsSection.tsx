@@ -1,15 +1,13 @@
-import type { Entry } from "../../pages/EntryReports/entryreports";
 import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import graph from "../../assets/resident/graph.png";
 import mark from "../../assets/resident/mark.png";
+import type { Entry } from "../../pages/EntryReports/EntryReports";
 
 interface Props {
   data: Entry[];
 }
 
 const AnalyticsSection: React.FC<Props> = ({ data }) => {
-
-
   const timeRanges = [
     { label: "06:00 AM - 10:00 AM", start: 6, end: 10 },
     { label: "10:00 AM - 02:00 PM", start: 10, end: 14 },
@@ -37,7 +35,6 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
 
   const maxPeak = Math.max(...peakCounts.map((p) => p.count), 1);
 
-
   const gateCount: Record<string, number> = {};
   data.forEach((entry) => {
     gateCount[entry.gate] = (gateCount[entry.gate] || 0) + 1;
@@ -47,9 +44,7 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
       <div className="bg-[#FFFFFF0D] border border-[#2f3246] rounded-2xl p-6">
-
         <div className="flex items-center gap-3 mb-5">
           <img src={graph} alt="Graph" className="w-5 h-5" />
           <h3
@@ -62,9 +57,7 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
 
         {peakCounts.map((slot, index) => (
           <div key={index} className="mb-4">
-
             <div className="flex justify-between mb-1">
-
               <span
                 style={{ ...FONTWEIGHT[400] }}
                 className={`${FONTSIZE[12]} text-[#99A1AF]`}
@@ -78,7 +71,6 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
               >
                 {slot.count} entries
               </span>
-
             </div>
 
             <div className="w-full bg-[#2a2e44] h-2 rounded-full">
@@ -94,7 +86,6 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
       </div>
 
       <div className="bg-[#FFFFFF0D] border border-[#2f3246] rounded-2xl p-6">
-
         <div className="flex items-center gap-3 mb-5">
           <img src={mark} alt="Gate" className="w-5 h-5" />
           <h3
@@ -106,15 +97,11 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
         </div>
 
         {Object.entries(gateCount).map(([gate, count]) => {
-          const percent = Math.round(
-            (count / totalGateEntries) * 100
-          );
+          const percent = Math.round((count / totalGateEntries) * 100);
 
           return (
             <div key={gate} className="mb-4">
-
               <div className="flex justify-between mb-1">
-
                 <span
                   style={{ ...FONTWEIGHT[400] }}
                   className={`${FONTSIZE[12]} text-[#99A1AF]`}
@@ -128,7 +115,6 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
                 >
                   {count} uses ({percent}%)
                 </span>
-
               </div>
 
               <div className="w-full bg-[#2a2e44] h-2 rounded-full">
@@ -139,12 +125,10 @@ const AnalyticsSection: React.FC<Props> = ({ data }) => {
                   }}
                 />
               </div>
-
             </div>
           );
         })}
       </div>
-
     </div>
   );
 };

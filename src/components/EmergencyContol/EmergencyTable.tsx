@@ -10,19 +10,14 @@ import water from "../../assets/emergency/water.png";
 
 import { FONTWEIGHT } from "../../constent/uiconstent";
 // import { $styles } from "../../styles/fontSizes";
-import {FONTSIZE }from "../../constent/uiconstent"
+import { FONTSIZE } from "../../constent/uiconstent";
 interface Props {
   data: Emergency[];
   onView: (item: Emergency) => void;
   setEmergencies: React.Dispatch<React.SetStateAction<Emergency[]>>;
 }
 
-const EmergencyTable: React.FC<Props> = ({
-  data,
-  onView,
-  setEmergencies,
-}) => {
-
+const EmergencyTable: React.FC<Props> = ({ data, onView, setEmergencies }) => {
   const handleClose = (id: number) => {
     setEmergencies((prev) =>
       prev.map((item) =>
@@ -32,8 +27,8 @@ const EmergencyTable: React.FC<Props> = ({
               status: "Resolved",
               acknowledged: item.total,
             }
-          : item
-      )
+          : item,
+      ),
     );
 
     toast.success("Emergency marked as Resolved ✅");
@@ -49,15 +44,10 @@ const EmergencyTable: React.FC<Props> = ({
 
   return (
     <div className="mt-6 bg-[#FFFFFF0D] rounded-2xl border border-white/10 overflow-hidden">
-
       {/* Header */}
       <div className="px-6 py-4 border-b border-white/10">
         <div className="flex items-center gap-3">
-          <img
-            src={alarm}
-            alt="Alarm"
-            className="w-6 h-6 object-contain"
-          />
+          <img src={alarm} alt="Alarm" className="w-6 h-6 object-contain" />
 
           <h3
             style={{ ...FONTWEIGHT[700] }}
@@ -78,7 +68,6 @@ const EmergencyTable: React.FC<Props> = ({
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1100px] border-collapse">
-
           {/* Table Head */}
           <thead className="bg-white/5">
             <tr
@@ -98,13 +87,11 @@ const EmergencyTable: React.FC<Props> = ({
 
           {/* Table Body */}
           <tbody className="text-gray-200">
-
             {data.map((item) => (
               <tr
                 key={item.id}
                 className="border-t border-white/5 hover:bg-white/5 transition"
               >
-
                 {/* Alert Type */}
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-3">
@@ -140,8 +127,8 @@ const EmergencyTable: React.FC<Props> = ({
                       item.priority === "High"
                         ? "bg-red-500/20 text-red-400"
                         : item.priority === "Medium"
-                        ? "bg-yellow-500/20 text-yellow-400"
-                        : "bg-green-500/20 text-green-400"
+                          ? "bg-yellow-500/20 text-yellow-400"
+                          : "bg-green-500/20 text-green-400"
                     }`}
                   >
                     {item.priority}
@@ -166,22 +153,22 @@ const EmergencyTable: React.FC<Props> = ({
 
                 {/* Time */}
                 <td className="px-4 py-4 whitespace-nowrap">
-  <div className="flex flex-col">
-  <p
-    style={{ ...FONTWEIGHT[500] }}
-    className={`${FONTSIZE[16]} text-white`}
-  >
-    {item.time}
-  </p>
+                  <div className="flex flex-col">
+                    <p
+                      style={{ ...FONTWEIGHT[500] }}
+                      className={`${FONTSIZE[16]} text-white`}
+                    >
+                      {item.time}
+                    </p>
 
-  <p
-    style={{ ...FONTWEIGHT[400] }}
-    className={`${FONTSIZE[12]} text-gray-400 mt-1`}
-  >
-    2026-01-28
-  </p>
-</div>
-</td>
+                    <p
+                      style={{ ...FONTWEIGHT[400] }}
+                      className={`${FONTSIZE[12]} text-gray-400 mt-1`}
+                    >
+                      2026-01-28
+                    </p>
+                  </div>
+                </td>
 
                 {/* Acknowledged */}
                 <td className="px-4 py-4">
@@ -215,38 +202,34 @@ const EmergencyTable: React.FC<Props> = ({
 
                 {/* Actions */}
                 <td className="px-4 py-4">
-  <div className="flex items-center gap-2">
-
-    {/* View Button */}
-    <button
-      onClick={() => onView(item)}
-      style={{ ...FONTWEIGHT[600] }}
-      className={`${FONTSIZE[14]} px-3 py-1 rounded-lg 
+                  <div className="flex items-center gap-2">
+                    {/* View Button */}
+                    <button
+                      onClick={() => onView(item)}
+                      style={{ ...FONTWEIGHT[600] }}
+                      className={`${FONTSIZE[14]} px-3 py-1 rounded-lg 
                   bg-blue-500/20 text-blue-400 
                   hover:bg-blue-500/30 transition cursor-pointer`}
-    >
-      View
-    </button>
+                    >
+                      View
+                    </button>
 
-    {/* Close Button */}
-    {item.status === "Active" && (
-      <button
-        onClick={() => handleClose(item.id)}
-        style={{ ...FONTWEIGHT[600] }}
-        className={`${FONTSIZE[14]} px-3 py-1 rounded-lg 
+                    {/* Close Button */}
+                    {item.status === "Active" && (
+                      <button
+                        onClick={() => handleClose(item.id)}
+                        style={{ ...FONTWEIGHT[600] }}
+                        className={`${FONTSIZE[14]} px-3 py-1 rounded-lg 
                     bg-green-500/20 text-green-400 
                     hover:bg-green-500/30 transition cursor-pointer`}
-      >
-        Close
-      </button>
-    )}
-
-  </div>
-</td>
-
+                      >
+                        Close
+                      </button>
+                    )}
+                  </div>
+                </td>
               </tr>
             ))}
-
           </tbody>
         </table>
       </div>

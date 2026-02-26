@@ -51,7 +51,6 @@ const MoveOutCard: React.FC<Props> = ({
       "
     >
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-        {/* Name + Status */}
         <div className="flex flex-wrap items-center gap-3">
           <h3
             style={{ ...FONTWEIGHT[600] }}
@@ -80,7 +79,6 @@ const MoveOutCard: React.FC<Props> = ({
           </span>
         </div>
 
-        {/* ================= BUTTONS ================= */}
         <div className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
           {data.status === "Pending" && (
             <>

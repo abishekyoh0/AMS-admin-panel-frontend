@@ -6,7 +6,12 @@ import Clock from "../../assets/notification/clock.png";
 import Location from "../../assets/notification/location.png";
 import Home from "../../assets/notification/home.png";
 import FileIcon from "../../assets/notification/file.png";
-import { COLORS, FONTSIZE, FONTWEIGHT, WEIGHT } from "../../constent/uiconstent";
+import {
+  COLORS,
+  FONTSIZE,
+  FONTWEIGHT,
+  WEIGHT,
+} from "../../constent/uiconstent";
 
 const NotificationDetails: React.FC = () => {
   const navigate = useNavigate();
@@ -23,7 +28,6 @@ const NotificationDetails: React.FC = () => {
 
   return (
     <div style={{ color: COLORS.primary_white }}>
-
       <button
         onClick={() => navigate(-1)}
         className="flex items-center gap-2 mb-6 cursor-pointer"
@@ -43,7 +47,10 @@ const NotificationDetails: React.FC = () => {
             {data.title}
           </h1>
 
-          <p className={`mt-1 ${FONTSIZE[16]}`} style={{ color: COLORS.secoundy_gray }}>
+          <p
+            className={`mt-1 ${FONTSIZE[16]}`}
+            style={{ color: COLORS.secoundy_gray }}
+          >
             {data.desc}
           </p>
 
@@ -73,7 +80,6 @@ const NotificationDetails: React.FC = () => {
       </div>
 
       <div className="rounded-2xl border border-white/10 bg-linear-to-br from-[#111633] to-[#0b0f25] p-6 shadow-lg">
-
         <div className="flex items-center gap-2 mb-3">
           <img src={FileIcon} className="w-6 h-6" />
           <h3 className={`${FONTSIZE[20]}`} style={{ ...FONTWEIGHT[700] }}>
@@ -89,7 +95,10 @@ const NotificationDetails: React.FC = () => {
         </p>
 
         <div className="mt-6">
-          <p className={`mb-3 ${FONTSIZE[14]}`} style={{ fontWeight: WEIGHT.seven }}>
+          <p
+            className={`mb-3 ${FONTSIZE[14]}`}
+            style={{ fontWeight: WEIGHT.seven }}
+          >
             Attachments (2)
           </p>
 
@@ -104,7 +113,10 @@ const NotificationDetails: React.FC = () => {
                 </div>
 
                 <div>
-                  <p className={`${FONTSIZE[14]}`} style={{ fontWeight: WEIGHT.seven }}>
+                  <p
+                    className={`${FONTSIZE[14]}`}
+                    style={{ fontWeight: WEIGHT.seven }}
+                  >
                     file_{item}.jpg
                   </p>
                   <p
@@ -118,7 +130,6 @@ const NotificationDetails: React.FC = () => {
             ))}
           </div>
         </div>
-
       </div>
     </div>
   );
