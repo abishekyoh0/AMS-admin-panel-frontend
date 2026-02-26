@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { X } from "lucide-react";
+import { Upload, X } from "lucide-react";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import createicon from "../../assets/parking/createicon.png";
 import Send from "../../assets/Announcement/Icon (15).png"
@@ -160,9 +160,10 @@ const CreateAnnouncement: React.FC<Props> = ({ onClose }) => {
               Attachment (Optional)
             </label>
 
-            <div className="mt-2 border border-dashed border-white/20 rounded-xl p-6 text-center bg-[#FFFFFF0D]">
-              ⬆ Click to upload or drag & drop
-              <p className="text-xs text-gray-400 mt-1">
+            <div className="mt-2 border border-dashed border-white/20 rounded-xl p-6 text-center bg-[#FFFFFF0D]" style={{color: COLORS.secoundy_gray}}>
+              <p className="flex flex-col items-center" >
+                <Upload /> Click to upload or drag & drop</p>             
+              <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}>
                 PNG, JPG or PDF (max 5MB)
               </p>
             </div>
