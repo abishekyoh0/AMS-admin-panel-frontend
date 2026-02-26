@@ -29,14 +29,9 @@ const menuItems = [
   { to: "/complaint", label: "Complaints", icon: complainticon, end: true },
   { to: "/visitors", label: "Visitors", icon: visitorsicon, end: true },
   { to: "/invoices", label: "Invoices", icon: invoicesicon, end: true },
+  { to: "/parking", label: "Parking", icon: parkingicon, end: true },
+  { to: "/emergency-control", label: "Emergency Control", icon: emergencyicon, end: true },
   { to: "/entry-reports", label: "Entry Reports", icon: entryicon, end: true },
-  {
-    to: "/emergency-control",
-    label: "Emergency Control",
-    icon: emergencyicon,
-    end: true,
-  },
-    { to: "/parking", label: "Parking", icon: parkingicon, end: true },
 
 ];
 
