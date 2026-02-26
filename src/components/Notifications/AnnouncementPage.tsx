@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import BackIcon from "../../assets/notification/back-arrow.png";
 import Search from "../../assets/notification/search.png";
-import Bell from "../../assets/notification/bell1.png";
 import { X } from "lucide-react";
 import CreateAnnouncement from "./CreateAnnouncement";
 import Notify from "../../assets/Announcement/Icon.png"
@@ -21,6 +20,8 @@ import View from "../../assets/Announcement/Icon (13).png"
 import Pin from "../../assets/Announcement/Icon (14).png"
 import Resend from "../../assets/Announcement/Icon (15).png"
 import Delete from "../../assets/Announcement/Icon (16).png"
+import Schedule from "../../assets/Announcement/Icon (10).png"
+import Published from "../../assets/Announcement/Icon (18).png"
 
 type StatCard = {
   id: number;
@@ -30,6 +31,7 @@ type StatCard = {
   bg: string;
   icon?: string;
   iconBg: string;
+  pin?: boolean;
 };
 
 type Filter = {
@@ -44,7 +46,7 @@ type Announcement = {
   desc: string;
   tag: string;
   priority?: "Low" | "Medium" | "High" | "Emergency";
-  status: "Scheduled" | "Published" ; 
+  status: "Scheduled" | "Published";
   totalSent: number;
   read: number;
   unread: number;
@@ -103,7 +105,7 @@ const ANNOUNCEMENTS: Announcement[] = [
 ];
 
 const STATS: StatCard[] = [
-  { id: 1, title: "Total Announcements", value: 5, color: "#60a5fa", bg: "bg-linear-to-r from-[#2B7FFF1A] to-[#00B8DB1A] border-[#51A2FF4D]", icon: Alarm, iconBg: "#2B7FFF33" },
+  { id: 1, title: "Total Announcements", value: 5, color: "#60a5fa", bg: "bg-linear-to-r from-[#2B7FFF1A] to-[#00B8DB1A] border-[#51A2FF4D]", icon: Alarm, iconBg: "#2B7FFF33", pin: true },
   { id: 2, title: "Published", value: 3, color: "#22c55e", bg: "bg-linear-to-r from-[#00C9501A] to-[#00BC7D1A] border-[#05DF724D]", icon: Tick, iconBg: "#00C95033" },
   { id: 3, title: "Scheduled", value: 1, color: "#f59e0b", bg: "bg-linear-to-r from-[#F0B1001A] to-[#FE9A001A] border-[#FDC7004D]", icon: Clock, iconBg: "#F0B10033" },
   { id: 4, title: "Expired", value: 1, color: "#ef4444", bg: "bg-linear-to-r from-[#FB2C361A] to-[#FF20561A] border-[#FF64674D]", icon: Close, iconBg: "#FB2C3633" },
@@ -125,23 +127,20 @@ const CATEGORY_FILTERS: Filter[] = [
   { id: 5, label: "Event", key: "event" },
 ];
 
-  const badgeColor = (priority?: string) => {
-    switch (priority) {
-      case "Emergency":
-        return "bg-red-500/20 text-red-400";
-      case "High":
-        return "bg-orange-500/20 text-orange-400";
-      case "Medium":
-        return "bg-yellow-500/20 text-yellow-400";
-      default:
-        return "bg-blue-500/20 text-blue-400";
-    }
-  };
+const badgeColor = (priority?: string) => {
+  switch (priority) {
+    case "Emergency":
+      return "bg-red-500/20 text-red-400";
+    case "High":
+      return "bg-orange-500/20 text-orange-400";
+    case "Medium":
+      return "bg-yellow-500/20 text-yellow-400";
+    default:
+      return "bg-blue-500/20 text-blue-400";
+  }
+};
 
-const AnnouncementModal = ({
-  item,
-  onClose,
-}: {
+const AnnouncementModal = ({ item, onClose }: {
   item: Announcement;
   onClose: () => void;
 }) => {
@@ -150,36 +149,40 @@ const AnnouncementModal = ({
 
   return (
     <div className="fixed inset-0 bg-black/70 z-50 flex justify-center items-center p-4">
-      <div className="w-full max-w-3xl max-h-125 overflow-y-auto bg-linear-to-br from-[#111633] to-[#0b0f25] border border-white/10 rounded-2xl p-6 text-white relative">
-        <button
-          onClick={onClose}
-          className="absolute right-5 top-5 text-gray-400 hover:text-white text-xl cursor-pointer"
-        >
+      <div className="w-full max-w-3xl max-h-125 overflow-y-auto bg-linear-to-br from-[#0F172B] to-[#101828] border border-[#FFFFFF33] rounded-2xl p-6 text-white relative">
+        <button onClick={onClose}
+          className="absolute right-5 top-5 text-gray-400 hover:text-white text-xl cursor-pointer">
           <X />
         </button>
 
-        <div className="flex items-start gap-4 mb-4">
+        <div className="flex gap-4 mb-6">
           <div className="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center">
-            <img src={Bell} alt="" />
+            <img src={Notify} alt="" />
           </div>
           <div>
-            <h2 className="text-xl font-bold">{item.title}</h2>
-            <p className="text-gray-400 text-sm">ANN-00{item.id}</p>
+            <div className="flex items-center gap-2">
+              <img src={item.icon} alt="" className="w-5 h-5" />
+              <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>{item.title}</h2>
+            </div>
+            <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+              style={{ color: COLORS.secoundy_gray }}>ANN-00{item.id}</p>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-2 mb-5 text-xs">
-          <span className="bg-red-500/20 text-red-400 px-3 py-1 rounded">
+          <span className="bg-red-500/20 text-red-400 px-3 py-1 rounded-xl">
             {item.tag}
           </span>
-          <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded">
+          <span className={`px-2 py-1 rounded-xl ${badgeColor(item.priority)}`}>
             {item.priority}
           </span>
-          <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded">
+          <span className={`flex items-center px-2 py-1 rounded-xl ${item.status == "Scheduled" ? "bg-[#2B7FFF33] text-[#51A2FF]" : "bg-[#00C95033] text-[#05DF72]"}`}>
+            {item.status == "Scheduled" ? <img src={Schedule} alt="" className="w-4 h-4 mr-1 inline" /> : <img src={Published} alt="" className="w-4 h-4 mr-1 inline" />}
             {item.status}
           </span>
-          <span className="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded">
-            📌 Pinned
+          <span className="flex gap-2 items-center bg-linear-to-r from-[#F0B100] to-[#E17100] px-4 py-1 rounded-lg text-sm cursor-pointer"
+            style={{ boxShadow: "0px 4px 6px -4px #F0B10040,0px 10px 15px -3px #F0B10040" }}>
+            <img src={Pin} alt="" /> Pinned
           </span>
         </div>
 
@@ -259,6 +262,8 @@ const AnnouncementManagement: React.FC = () => {
   };
 
   const pinAnnouncement = (_id: number) => {
+    const item = data.find((d) => d.id === _id);
+    if (!item) return;
     toast.success("Announcement pinned");
   };
 
@@ -380,15 +385,16 @@ const AnnouncementManagement: React.FC = () => {
               <img src={Notify} alt="" className="bg-linear-to-r from-[#AD46FF33] to-[#F6339A33] p-2 border border-[#C27AFF4D] rounded-xl w-15 h-15" />
               <div className="w-full">
                 <div className={`flex items-center flex-wrap gap-2 mt-2 ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}>
-                  <img src={item.icon} alt="" className="w-5 h-5"/>
+                  <img src={item.icon} alt="" className="w-5 h-5" />
                   <h2 className={`${FONTSIZE[20]} ${FONTWEIGHT[700]}`}>{item.title}</h2>
                   <span className={`bg-red-500/20 text-red-400 px-2 py-1 rounded-xl `}>
-                   <img src="" alt="" /> {item.tag}
+                    <img src="" alt="" /> {item.tag}
                   </span>
-                  <span className={`bg-orange-500/20 text-orange-400 px-2 py-1 rounded-xl ${badgeColor(item.priority)}`}>
+                  <span className={`px-2 py-1 rounded-xl ${badgeColor(item.priority)}`}>
                     {item.priority}
                   </span>
-                  <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded-xl">
+                  <span className={`flex items-center px-2 py-1 rounded-xl ${item.status == "Scheduled" ? "bg-[#2B7FFF33] text-[#51A2FF]" : "bg-[#00C95033] text-[#05DF72]"}`}>
+                    {item.status == "Scheduled" ? <img src={Schedule} alt="" className="w-4 h-4 mr-1 inline" /> : <img src={Published} alt="" className="w-4 h-4 mr-1 inline" />}
                     {item.status}
                   </span>
                 </div>
@@ -414,16 +420,16 @@ const AnnouncementManagement: React.FC = () => {
 
                 <div className="flex flex-wrap gap-3 mt-4">
                   <button onClick={() => viewDetails(item)} className="flex gap-2 items-center bg-linear-to-r from-[#2B7FFF] to-[#0092B8] px-4 py-2 rounded-lg text-sm cursor-pointer"
-                    style={{boxShadow: "0px 4px 6px -4px #2B7FFF40,0px 10px 15px -3px #2B7FFF40"}}>
+                    style={{ boxShadow: "0px 4px 6px -4px #2B7FFF40,0px 10px 15px -3px #2B7FFF40" }}>
                     <img src={View} alt="" />View Details</button>
                   <button onClick={() => pinAnnouncement(item.id)} className="flex gap-2 items-center bg-linear-to-r from-[#F0B100] to-[#E17100] px-4 py-2 rounded-lg text-sm cursor-pointer"
-                    style={{boxShadow: "0px 4px 6px -4px #F0B10040,0px 10px 15px -3px #F0B10040"}}>
+                    style={{ boxShadow: "0px 4px 6px -4px #F0B10040,0px 10px 15px -3px #F0B10040" }}>
                     <img src={Pin} alt="" />Pin</button>
                   <button onClick={() => resendAnnouncement(item.id)} className="flex gap-2 items-center bg-linear-to-r from-[#AD46FF] to-[#E60076] px-4 py-2 rounded-lg text-sm cursor-pointer"
-                    style={{boxShadow: "0px 4px 6px -4px #AD46FF40,0px 10px 15px -3px #AD46FF40"}}>
+                    style={{ boxShadow: "0px 4px 6px -4px #AD46FF40,0px 10px 15px -3px #AD46FF40" }}>
                     <img src={Resend} alt="" />Resend</button>
                   <button onClick={() => deleteAnnouncement(item.id)} className="flex gap-2 items-center bg-linear-to-r from-[#FB2C36] to-[#EC003F] px-4 py-2 rounded-lg text-sm cursor-pointer"
-                    style={{boxShadow: "0px 4px 6px -4px #FB2C3640,0px 10px 15px -3px #FB2C3640"}}>
+                    style={{ boxShadow: "0px 4px 6px -4px #FB2C3640,0px 10px 15px -3px #FB2C3640" }}>
                     <img src={Delete} alt="" />Delete</button>
                 </div>
               </div>
