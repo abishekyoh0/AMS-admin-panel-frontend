@@ -18,9 +18,9 @@ export default function AddParkingSlot({ onClose }: Props) {
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="w-full sm:w-[90%] md:w-[600px] lg:w-[700px] max-h-[90vh] overflow-y-auto bg-gradient-to-br from-[#0F172B] to-[#101828] border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8 shadow-2xl relative ">
+      <div className="w-full sm:w-[90%] md:w-150 lg:w-175 max-h-[90vh] overflow-y-auto bg-linear-to-br from-[#0F172B] to-[#101828] border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8 shadow-2xl relative ">
         <div className="text-center mb-6">
-          <div className="w-19 h-19 mx-auto mb-3 rounded-full flex items-center justify-center bg-gradient-to-br from-[#AD46FF33] to-[#F6339A33] border border-[#C27AFF4D] ">
+          <div className="w-19 h-19 mx-auto mb-3 rounded-full flex items-center justify-center bg-linear-to-br from-[#AD46FF33] to-[#F6339A33] border border-[#C27AFF4D] ">
             <img src={createicon} alt="" />
           </div>
           <h2 className={`${FONTSIZE[30]} ${FONTWEIGHT[700]}`}>
@@ -143,7 +143,7 @@ export default function AddParkingSlot({ onClose }: Props) {
               onClose();
               toast.success("Parking slot Updated successfully!");
             }}
-            className="flex-1 py-2 rounded-lg bg-gradient-to-r from-[#AD46FF] to-[#E60076] text-sm font-medium flex items-center justify-center gap-2 cursor-pointer"
+            className="flex-1 py-2 rounded-lg bg-linear-to-r from-[#AD46FF] to-[#E60076] text-sm font-medium flex items-center justify-center gap-2 cursor-pointer"
           >
             <img src={createbutton} alt="" />
             Create Slot
