@@ -7,21 +7,21 @@ import BackIcon from "../../assets/notification/back-arrow.png";
 import Search from "../../assets/notification/search.png";
 import { X } from "lucide-react";
 import CreateAnnouncement from "./CreateAnnouncement";
-import Notify from "../../assets/Announcement/Icon.png";
-import Add from "../../assets/Announcement/Iconn.png";
-import Alarm from "../../assets/Announcement/Icon (2).png";
-import Tick from "../../assets/Announcement/Icon (3).png";
-import Clock from "../../assets/Announcement/Icon (4).png";
-import Close from "../../assets/Announcement/Icon (5).png";
-import Send from "../../assets/Announcement/Icon (6).png";
-import Eye from "../../assets/Announcement/Icon (7).png";
-import EMERGENCY from "../../assets/Announcement/alarm.png";
-import View from "../../assets/Announcement/Icon (13).png";
-import Pin from "../../assets/Announcement/Icon (14).png";
-import Resend from "../../assets/Announcement/Icon (15).png";
-import DeleteIcon from "../../assets/Announcement/Icon (16).png";
-import Schedule from "../../assets/Announcement/Icon (10).png";
-import Published from "../../assets/Announcement/Icon (18).png";
+import Notify from "../../assets/Announcement/Icon.png"
+import Add from "../../assets/Announcement/Iconn.png"
+import Alarm from "../../assets/Announcement/Icon (2).png"
+import Tick from "../../assets/Announcement/Icon (3).png"
+import Clock from "../../assets/Announcement/Icon (4).png"
+import Close from "../../assets/Announcement/Icon (5).png"
+import Send from "../../assets/Announcement/Icon (6).png"
+import Eye from "../../assets/Announcement/Icon (7).png"
+import EMERGENCY from "../../assets/Announcement/alarm.png"
+import View from "../../assets/Announcement/Icon (13).png"
+import Pin from "../../assets/Announcement/Icon (14).png"
+import Resend from "../../assets/Announcement/Icon (15).png"
+import DeleteIcon from "../../assets/Announcement/Icon (16).png"
+import Schedule from "../../assets/Announcement/Icon (10).png"
+import Published from "../../assets/Announcement/Icon (18).png"
 
 type StatCard = {
   id: number;
@@ -206,13 +206,12 @@ const Delete = ({ onConfirm, onCancel }: Delete) => {
         </button>
         <div className="text-center">
           <h2 className={`${FONTSIZE[30]} ${FONTWEIGHT[700]} text-white`}>
-            Delete Parking Slot
+            Delete Notification
           </h2>
           <p
             className={`${FONTSIZE[16]} ${FONTWEIGHT[400]} text-[#99A1AF] mt-2`}
           >
-            Are you sure you want to delete this parking slot? This action
-            cannot be undone.
+            Are you sure you want to delete this notification?
           </p>
         </div>
         <div className="flex gap-4 justify-center mt-8 ">
@@ -234,10 +233,8 @@ const Delete = ({ onConfirm, onCancel }: Delete) => {
   );
 };
 
-const AnnouncementModal = ({
-  item,
-  onClose,
-}: {
+
+const AnnouncementModal = ({ item, onClose }: {
   item: Announcement;
   onClose: () => void;
 }) => {
@@ -404,6 +401,9 @@ const AnnouncementManagement: React.FC = () => {
 
   const deleteAnnouncement = (id: number) => {
     setData(data.filter((item) => item.id !== id));
+    setShowDelete(false);
+    setSelected(null);
+    
     toast.error("Announcement deleted");
   };
 
@@ -690,10 +690,12 @@ const AnnouncementManagement: React.FC = () => {
         <Delete
           onConfirm={() => {
             deleteAnnouncement(selected?.id || 0);
-            setShowDelete(false);
-            setSelected(null);
+              setShowDelete(false);
+              setSelected(null);
           }}
-          onCancel={() => setShowDelete(false)}
+          onCancel={() => {
+            setShowDelete(false);
+          }}
         />
       )}
     </div>
