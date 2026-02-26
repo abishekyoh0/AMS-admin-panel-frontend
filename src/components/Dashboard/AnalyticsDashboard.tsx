@@ -239,22 +239,40 @@ const AnalyticsDashboard: React.FC = () => {
             </ResponsiveContainer>
           </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-                        {BOTTOM_STATS.map((item, i) => (
-                            <div key={i}
-                                style={{ background: item.gradient, border: `1px solid ${item.border}`, boxShadow: "0 10px 25px rgba(0,0,0,0.4)" }}
-                                className=" rounded-xl p-4">
-                                <p className={`mb-2 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>{item.title}</p>
-                                <p className={`mb-2 ${FONTSIZE[30]} ${FONTWEIGHT[700]}`} style={{ color: item.color }}>
-                                    {item.value}
-                                </p>
-                                <p className={`flex items-center gap-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
-                                    style={{ color: item.subColor }}>
-                                    <img src={item.icon} alt="" />{item.sub}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+            {BOTTOM_STATS.map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  background: item.gradient,
+                  border: `1px solid ${item.border}`,
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.4)",
+                }}
+                className=" rounded-xl p-4"
+              >
+                <p
+                  className={`mb-2 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                  style={{ color: COLORS.secoundy_gray }}
+                >
+                  {item.title}
+                </p>
+                <p
+                  className={`mb-2 ${FONTSIZE[30]} ${FONTWEIGHT[700]}`}
+                  style={{ color: item.color }}
+                >
+                  {item.value}
+                </p>
+                <p
+                  className={`flex items-center gap-1 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                  style={{ color: item.subColor }}
+                >
+                  <img src={item.icon} alt="" />
+                  {item.sub}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
 
         <div className="bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl p-4 sm:p-5">
           <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
@@ -267,21 +285,35 @@ const AnalyticsDashboard: React.FC = () => {
             Overall health metrics
           </p>
 
-                    <div className="flex flex-col items-center">
-                        <div style={{ position: "relative", width: 240, height: 240 }}>
-                            <svg height="100%" width="100%">
-                                <circle stroke="#ffffff20" fill="transparent" strokeWidth={stroke} r={normalizedRadius} cx="120" cy="120" />
-                                <circle stroke="url(#gradient)" fill="transparent" strokeWidth={stroke}
-                                    strokeLinecap="round" strokeDasharray={`${circumference} ${circumference}`}
-                                    // style={{ strokeDashoffset, transition: "stroke-dashoffset 1s ease" }}
-                                    r={normalizedRadius} cx="120" cy="120" />
-                                <defs>
-                                    <linearGradient id="gradient">
-                                        <stop offset="0%" stopColor="#06b6d4" />
-                                        <stop offset="100%" stopColor="#6366f1" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
+          <div className="flex flex-col items-center">
+            <div style={{ position: "relative", width: 240, height: 240 }}>
+              <svg height="100%" width="100%">
+                <circle
+                  stroke="#ffffff20"
+                  fill="transparent"
+                  strokeWidth={stroke}
+                  r={normalizedRadius}
+                  cx="120"
+                  cy="120"
+                />
+                <circle
+                  stroke="url(#gradient)"
+                  fill="transparent"
+                  strokeWidth={stroke}
+                  strokeLinecap="round"
+                  strokeDasharray={`${circumference} ${circumference}`}
+                  // style={{ strokeDashoffset, transition: "stroke-dashoffset 1s ease" }}
+                  r={normalizedRadius}
+                  cx="120"
+                  cy="120"
+                />
+                <defs>
+                  <linearGradient id="gradient">
+                    <stop offset="0%" stopColor="#06b6d4" />
+                    <stop offset="100%" stopColor="#6366f1" />
+                  </linearGradient>
+                </defs>
+              </svg>
 
               <div
                 className="flex flex-col items-center justify-center"
