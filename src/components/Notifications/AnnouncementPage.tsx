@@ -7,21 +7,21 @@ import BackIcon from "../../assets/notification/back-arrow.png";
 import Search from "../../assets/notification/search.png";
 import { X } from "lucide-react";
 import CreateAnnouncement from "./CreateAnnouncement";
-import Notify from "../../assets/Announcement/Icon.png"
-import Add from "../../assets/Announcement/Iconn.png"
-import Alarm from "../../assets/Announcement/Icon (2).png"
-import Tick from "../../assets/Announcement/Icon (3).png"
-import Clock from "../../assets/Announcement/Icon (4).png"
-import Close from "../../assets/Announcement/Icon (5).png"
-import Send from "../../assets/Announcement/Icon (6).png"
-import Eye from "../../assets/Announcement/Icon (7).png"
-import EMERGENCY from "../../assets/Announcement/alarm.png"
-import View from "../../assets/Announcement/Icon (13).png"
-import Pin from "../../assets/Announcement/Icon (14).png"
-import Resend from "../../assets/Announcement/Icon (15).png"
-import DeleteIcon from "../../assets/Announcement/Icon (16).png"
-import Schedule from "../../assets/Announcement/Icon (10).png"
-import Published from "../../assets/Announcement/Icon (18).png"
+import Notify from "../../assets/Announcement/Icon.png";
+import Add from "../../assets/Announcement/Iconn.png";
+import Alarm from "../../assets/Announcement/Icon (2).png";
+import Tick from "../../assets/Announcement/Icon (3).png";
+import Clock from "../../assets/Announcement/Icon (4).png";
+import Close from "../../assets/Announcement/Icon (5).png";
+import Send from "../../assets/Announcement/Icon (6).png";
+import Eye from "../../assets/Announcement/Icon (7).png";
+import EMERGENCY from "../../assets/Announcement/alarm.png";
+import View from "../../assets/Announcement/Icon (13).png";
+import Pin from "../../assets/Announcement/Icon (14).png";
+import Resend from "../../assets/Announcement/Icon (15).png";
+import DeleteIcon from "../../assets/Announcement/Icon (16).png";
+import Schedule from "../../assets/Announcement/Icon (10).png";
+import Published from "../../assets/Announcement/Icon (18).png";
 
 type StatCard = {
   id: number;
@@ -233,8 +233,10 @@ const Delete = ({ onConfirm, onCancel }: Delete) => {
   );
 };
 
-
-const AnnouncementModal = ({ item, onClose }: {
+const AnnouncementModal = ({
+  item,
+  onClose,
+}: {
   item: Announcement;
   onClose: () => void;
 }) => {
@@ -403,7 +405,7 @@ const AnnouncementManagement: React.FC = () => {
     setData(data.filter((item) => item.id !== id));
     setShowDelete(false);
     setSelected(null);
-    
+
     toast.error("Announcement deleted");
   };
 
@@ -690,8 +692,8 @@ const AnnouncementManagement: React.FC = () => {
         <Delete
           onConfirm={() => {
             deleteAnnouncement(selected?.id || 0);
-              setShowDelete(false);
-              setSelected(null);
+            setShowDelete(false);
+            setSelected(null);
           }}
           onCancel={() => {
             setShowDelete(false);
