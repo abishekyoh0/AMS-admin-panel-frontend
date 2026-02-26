@@ -327,13 +327,11 @@ const AnnouncementManagement: React.FC = () => {
   const [category, setCategory] = useState("all");
   const [selected, setSelected] = useState<Announcement | null>(null);
   const [showCreate, setShowCreate] = useState(false);
-  
 
   const viewDetails = (item: Announcement) => {
     setSelected(item);
   };
 
- 
   const pinAnnouncement = (id: number) => {
     setData((prev) => {
       const updated = prev.map((item) =>
