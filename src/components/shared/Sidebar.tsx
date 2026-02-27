@@ -18,12 +18,7 @@ import parkingicon from "../../assets/Sidebar/parking.png"
 
 const menuItems = [
   { to: "/", label: "Dashboard", icon: dashboardicon, end: true },
-  {
-    to: "/access-management",
-    label: "Access Management",
-    icon: accessicon,
-    end: false,
-  },
+  { to: "/access-management", label: "Access Management", icon: accessicon, end: false, },
   { to: "/building", label: "Building", icon: buildingicon, end: true },
   { to: "/user", label: "Users", icon: usericon, end: true },
   { to: "/complaint", label: "Complaints", icon: complainticon, end: true },
